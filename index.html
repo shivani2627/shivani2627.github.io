@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivani Harode — UX/UI Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1b3358;
+  --navy-mid:#233b63;
+  --gold:#d4a843;
+  --gold-light:#e8c265;
+  --gold-pale:#fdf6e3;
+  --cream:#faf8f3;
+  --white:#ffffff;
+  --text:#1a1924;
+  --text-mid:#4a4860;
+  --text-light:#8a8aa0;
+  --border:#e4e0d8;
+  --border-light:#eeebe4;
+  --green:#10B981;
+  --green-light:#ecfdf5;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;line-height:1.6}
+
+/* HERO */
+.hero{min-height:100vh;background:var(--navy);display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px 20px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-150px;right:-150px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,0.12) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(46,79,133,0.5) 0%,transparent 65%);pointer-events:none}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-tag{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;animation:fadeUp 0.6s ease 0.1s both}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(48px,6vw,76px);line-height:1.0;color:#fff;margin-bottom:20px;font-weight:500;animation:fadeUp 0.7s ease 0.2s both}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-subtitle{font-size:18px;color:rgba(255,255,255,0.6);line-height:1.8;margin-bottom:40px;font-weight:300;animation:fadeUp 0.7s ease 0.3s both}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.7s ease 0.45s both}
+.btn{padding:14px 32px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all 0.3s;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:0.02em}
+.btn-primary{background:var(--gold);color:var(--navy)}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,0.15)}
+.btn-secondary{border:2px solid rgba(255,255,255,0.3);color:#fff;background:transparent}
+.btn-secondary:hover{border-color:var(--gold);background:rgba(212,168,67,0.1)}
+
+/* PROJECTS SECTION */
+section{max-width:1200px;margin:0 auto;padding:100px 40px}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.section-title{font-family:'Fraunces',serif;font-size:clamp(36px,4vw,52px);line-height:1.05;color:var(--text);margin-bottom:16px;font-weight:500}
+.section-title em{font-style:italic;color:var(--navy)}
+.section-lead{font-size:17px;color:var(--text-mid);line-height:1.8;font-weight:300;max-width:620px;margin-bottom:60px}
+
+/* PROJECTS GRID */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px}
+.project-card{background:var(--white);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:all 0.3s;cursor:pointer}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.08);border-color:var(--gold)}
+.project-header{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;padding:20px;text-align:center}
+.project-body{padding:28px}
+.project-tag{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;font-weight:500}
+.project-title{font-family:'Fraunces',serif;font-size:20px;color:var(--text);margin-bottom:10px;font-weight:500}
+.project-desc{font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:20px}
+.project-link{display:inline-flex;align-items:center;gap:6px;color:var(--navy);text-decoration:none;font-weight:500;font-size:13px;border-bottom:2px solid var(--navy);transition:all 0.2s}
+.project-link:hover{color:var(--gold);border-color:var(--gold)}
+
+/* ABOUT SECTION */
+.about-split{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.about-text p{font-size:15px;color:var(--text-mid);line-height:1.85;margin-bottom:20px;font-weight:300}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.skill-item{background:var(--gold-pale);border:1px solid rgba(212,168,67,0.25);border-radius:12px;padding:16px}
+.skill-category{font-size:12px;font-weight:600;color:var(--navy);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px}
+.skill-tag{font-size:11px;padding:4px 10px;background:var(--white);border-radius:100px;color:var(--text-mid);border:1px solid rgba(212,168,67,0.2)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:60px 40px;text-align:center;border-top:1px solid rgba(255,255,255,0.1)}
+.footer-content{max-width:1200px;margin:0 auto}
+.footer-brand{font-family:'Fraunces',serif;font-size:20px;color:#fff;margin-bottom:24px;font-weight:500}
+.footer-brand span{color:var(--gold)}
+.footer-nav{display:flex;gap:24px;justify-content:center;margin-bottom:32px;flex-wrap:wrap}
+.footer-nav a{font-size:14px;color:rgba(255,255,255,0.6);text-decoration:none;transition:color 0.2s}
+.footer-nav a:hover{color:var(--gold)}
+.footer-contact{margin-bottom:24px}
+.contact-link{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,0.7);text-decoration:none;font-size:14px;transition:color 0.2s;margin:0 12px}
+.contact-link:hover{color:var(--gold)}
+.footer-credit{font-size:12px;color:rgba(255,255,255,0.3)}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+.fu.on{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  section{padding:60px 24px}
+  .about-split{grid-template-columns:1fr;gap:40px}
+  .projects-grid{grid-template-columns:1fr}
+  .hero-cta{flex-direction:column}
+  .btn{width:100%}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="hero-tag fu">UX/UI Designer & Design Systems Specialist</div>
+    <h1 class="hero-title fu fu2">Shivani<br><em>Harode</em></h1>
+    <p class="hero-subtitle fu fu3">Designing digital experiences for government, legal, and education sectors. I create interfaces that serve complex workflows, reduce user friction, and scale across 500+ organizations.</p>
+    <div class="hero-cta fu fu4">
+      <a href="mailto:shivaniharode@gmail.com" class="btn btn-primary">📧 Get in Touch</a>
+      <a href="#projects" class="btn btn-secondary">View Projects ↓</a>
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="eyebrow fu">Portfolio</div>
+  <h2 class="section-title fu fu2">Featured<br><em>Projects</em></h2>
+  <p class="section-lead fu fu3">Recent design work across case management systems, school finance platforms, and brand identity.</p>
+
+  <div class="projects-grid fu">
+    <!-- PROTECT Overview -->
+    <div class="project-card">
+      <div class="project-header">🛡️</div>
+      <div class="project-body">
+        <div class="project-tag">Full-Cycle Design</div>
+        <h3 class="project-title">PROTECT Platform</h3>
+        <p class="project-desc">Complete redesign of Wisconsin's statewide prosecutor case management system serving all 72 counties.</p>
+        <a href="Protect logo.html" class="project-link">View case study →</a>
+      </div>
+    </div>
+
+    <!-- PROTECT Logo -->
+    <div class="project-card">
+      <div class="project-header">🎨</div>
+      <div class="project-body">
+        <div class="project-tag">Brand Identity</div>
+        <h3 class="project-title">Logo & Identity System</h3>
+        <p class="project-desc">Strategic branding for legal platform with Wisconsin state integration and scales of justice motif.</p>
+        <a href="Protect logo.html" class="project-link">View case study →</a>
+      </div>
+    </div>
+
+    <!-- Details Pane -->
+    <div class="project-card">
+      <div class="project-header">📋</div>
+      <div class="project-body">
+        <div class="project-tag">Desktop UX</div>
+        <h3 class="project-title">Details Pane Redesign</h3>
+        <p class="project-desc">Eliminated tab-switching friction with collapsible, context-aware data panels in Windows desktop app.</p>
+        <a href="protect-details-pane.html" class="project-link">View case study →</a>
+      </div>
+    </div>
+
+    <!-- eFiling -->
+    <div class="project-card">
+      <div class="project-header">🌐</div>
+      <div class="project-body">
+        <div class="project-tag">Web Tool</div>
+        <h3 class="project-title">eFiling Site</h3>
+        <p class="project-desc">Web-based inter-county search tool with nightly data sync from all PROTECT databases.</p>
+        <a href="protect-efiling.html" class="project-link">View case study →</a>
+      </div>
+    </div>
+
+    <!-- XCQ -->
+    <div class="project-card">
+      <div class="project-header">🔍</div>
+      <div class="project-body">
+        <div class="project-tag">Legacy Redesign</div>
+        <h3 class="project-title">XCQ Inter-County Query</h3>
+        <p class="project-desc">Ground-up redesign of 20-year-old web app with modern design system and improved data grid.</p>
+        <a href="protect-xcq.html" class="project-link">View case study →</a>
+      </div>
+    </div>
+
+    <!-- Missouri DESE -->
+    <div class="project-card">
+      <div class="project-header">🎓</div>
+      <div class="project-body">
+        <div class="project-tag">Current Work</div>
+        <h3 class="project-title">Missouri DESE Finance</h3>
+        <p class="project-desc">School finance platform redesign for 500+ districts — 40-50% faster task completion, 60% fewer errors.</p>
+        <a href="missouri-dese-case-study%20(1).html" class="project-link">View case study →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section style="background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="eyebrow fu">About</div>
+  <h2 class="section-title fu fu2">Designer,<br><em>Systems Thinker</em></h2>
+  
+  <div class="about-split fu">
+    <div class="about-text">
+      <p>I design digital systems for complex domains — law, government, finance, education. My work focuses on reducing user friction, eliminating errors, and scaling design language across organizations.</p>
+      <p>Currently at the State of Wisconsin (District Attorney IT Program), I've led full-cycle design work on 5 interconnected products serving legal professionals across all 72 counties.</p>
+      <p>I believe great design is invisible — it makes hard tasks feel simple, reduces cognitive load, and builds trust through consistency.</p>
+    </div>
+    
+    <div>
+      <div class="skills-grid fu fu2">
+        <div class="skill-item">
+          <div class="skill-category">Design</div>
+          <div class="skill-tags">
+            <span class="skill-tag">UI/UX</span>
+            <span class="skill-tag">Design Systems</span>
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Prototyping</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-category">Research</div>
+          <div class="skill-tags">
+            <span class="skill-tag">User Testing</span>
+            <span class="skill-tag">Interviews</span>
+            <span class="skill-tag">Analytics</span>
+            <span class="skill-tag">Accessibility</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-category">Technical</div>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Responsive</span>
+            <span class="skill-tag">Performance</span>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-category">Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Figma</span>
+            <span class="skill-tag">Adobe Suite</span>
+            <span class="skill-tag">Gimp</span>
+            <span class="skill-tag">Jam.jam</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-brand">Shivani <span>Harode</span></div>
+    <div class="footer-nav">
+      <a href="mailto:shivaniharode@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/shivani-harode-b00625147" target="_blank">LinkedIn</a>
+      <a href="https://github.com/shivani2627" target="_blank">GitHub</a>
+    </div>
+    <div class="footer-contact">
+      <a href="mailto:shivaniharode@gmail.com" class="contact-link">📧 shivaniharode@gmail.com</a>
+      <a href="https://www.linkedin.com/in/shivani-harode-b00625147" target="_blank" class="contact-link">🔗 LinkedIn</a>
+    </div>
+    <div class="footer-credit">© 2026 Shivani Harode. Designed and built with care.</div>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('on');
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fu').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
