@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROTECT — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #233b63;
+    --navy-dark: #172846;
+    --navy-light: #2e4f85;
+    --gold: #e1c25c;
+    --gold-light: #f0d97a;
+    --gold-pale: #faf3d8;
+    --off-white: #f7f5f0;
+    --warm-white: #fefcf8;
+    --text: #1a1a24;
+    --text-mid: #4a4a5a;
+    --text-light: #8a8a9a;
+    --border: #e2ddd6;
+    --border-light: #ece9e2;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    background: var(--navy-dark);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(225,194,92,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 30%;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(46,79,133,0.4) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 64px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(225,194,92,0.3);
+    border-radius: 100px;
+    padding: 6px 14px;
+    margin-bottom: 40px;
+    width: fit-content;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(48px, 5vw, 72px);
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 17px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 56px;
+    font-weight: 300;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 40px;
+  }
+
+  .meta-item {
+    padding-right: 32px;
+  }
+
+  .meta-item + .meta-item {
+    padding-left: 32px;
+    border-left: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .meta-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .meta-value {
+    font-size: 14px;
+    color: rgba(255,255,255,0.85);
+    font-weight: 400;
+  }
+
+  .hero-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 80px 80px 40px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo-showcase {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 64px 48px;
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    backdrop-filter: blur(10px);
+    animation: fadeUp 0.8s ease 0.3s both;
+  }
+
+  .logo-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .logo-shield {
+    width: 52px;
+    height: 56px;
+  }
+
+  .logo-wordmark {
+    font-family: 'DM Serif Display', serif;
+    font-size: 42px;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-wordmark .pro { color: var(--navy-light); }
+  .logo-wordmark .tect { color: var(--gold); }
+
+  .logo-tagline {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    margin-top: 8px;
+    text-transform: uppercase;
+  }
+
+  .logo-border-box {
+    display: inline-block;
+    border: 1.5px solid var(--navy-light);
+    border-radius: 6px;
+    padding: 2px 8px;
+    margin-top: 20px;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.3);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    z-index: 2;
+    animation: fadeUp 1s ease 0.8s both;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--gold);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { left: -100%; }
+    50%, 100% { left: 100%; }
+  }
+
+  /* ── Sections ── */
+  section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px;
+  }
+
+  section.full-bleed {
+    max-width: none;
+    padding: 0;
+  }
+
+  .section-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 3.5vw, 48px);
+    line-height: 1.1;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--navy);
+  }
+
+  .section-lead {
+    font-size: 18px;
+    color: var(--text-mid);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 640px;
+  }
+
+  /* ── About band ── */
+  .about-band {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-sticky {
+    position: sticky;
+    top: 40px;
+  }
+
+  .body-text {
+    font-size: 16px;
+    color: var(--text-mid);
+    line-height: 1.85;
+    margin-bottom: 20px;
+  }
+
+  .body-text:last-child { margin-bottom: 0; }
+
+  .highlight-quote {
+    border-left: 3px solid var(--gold);
+    padding: 16px 24px;
+    margin: 32px 0;
+    background: var(--gold-pale);
+    border-radius: 0 8px 8px 0;
+    font-size: 16px;
+    color: var(--navy-dark);
+    font-style: italic;
+    line-height: 1.7;
+  }
+
+  /* ── Requirements ── */
+  .requirements-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 48px;
+  }
+
+  .req-card {
+    background: var(--warm-white);
+    padding: 36px;
+    transition: background 0.2s;
+  }
+
+  .req-card:hover { background: #faf8f4; }
+
+  .req-icon {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  .req-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .req-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+
+  /* ── Research ── */
+  .research-split {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 60px;
+  }
+
+  .research-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .research-list li {
+    display: flex;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .research-list li::before {
+    content: attr(data-num);
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    min-width: 24px;
+    padding-top: 3px;
+    font-weight: 500;
+  }
+
+  .research-aside {
+    background: var(--navy-dark);
+    border-radius: 20px;
+    padding: 40px;
+    color: rgba(255,255,255,0.7);
+    position: sticky;
+    top: 40px;
+  }
+
+  .research-aside-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
+  .insight-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .insight-item:last-child { border-bottom: none; }
+
+  .insight-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  /* ── Design Goals ── */
+  .goals-section {
+    background: var(--navy-dark);
+    color: #fff;
+  }
+
+  .goals-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px;
+  }
+
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+
+  .goal-card {
+    background: var(--navy-dark);
+    padding: 44px 36px;
+    transition: background 0.2s;
+  }
+
+  .goal-card:hover { background: rgba(255,255,255,0.03); }
+
+  .goal-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .goal-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .goal-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.75;
+    font-weight: 300;
+  }
+
+  /* ── Concept Development ── */
+  .concept-tabs {
+    margin-top: 60px;
+  }
+
+  .tab-nav {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .tab-btn {
+    padding: 14px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-light);
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  .tab-btn:hover { color: var(--text); }
+
+  .tab-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
+    font-weight: 500;
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+
+  .concept-text h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 28px;
+    color: var(--text);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .concept-text p {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .concept-visual {
+    background: var(--off-white);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+  }
+
+  /* Wisconsin state outline SVG placeholder */
+  .wi-shape {
+    width: 120px;
+    opacity: 0.7;
+  }
+
+  /* Scales visual */
+  .scales-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .scales-beam {
+    width: 140px;
+    height: 3px;
+    background: var(--navy);
+    border-radius: 2px;
+    position: relative;
+    margin: 8px 0;
+  }
+
+  .scales-beam::before {
+    content: '';
+    position: absolute;
+    left: 50%; top: -10px;
+    transform: translateX(-50%);
+    width: 3px; height: 28px;
+    background: var(--navy);
+    border-radius: 2px;
+  }
+
+  .scales-pans {
+    display: flex;
+    justify-content: space-between;
+    width: 160px;
+    margin-top: 4px;
+  }
+
+  .scales-pan {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: var(--gold-pale);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+
+  /* Typography visual */
+  .type-visual { text-align: center; }
+  .type-pro { font-family: 'DM Serif Display', serif; font-size: 56px; color: var(--navy); font-weight: 400; line-height: 1; }
+  .type-tect { font-family: 'DM Serif Display', serif; font-size: 56px; color: var(--gold); font-weight: 400; line-height: 1; }
+  .type-caption { font-size: 11px; color: var(--text-light); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 16px; }
+
+  /* ── Color Strategy ── */
+  .color-section {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .color-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px;
+  }
+
+  .color-swatches {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .swatch-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+
+  .swatch-color {
+    height: 160px;
+    display: flex;
+    align-items: flex-end;
+    padding: 20px 24px;
+  }
+
+  .swatch-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    opacity: 0.7;
+  }
+
+  .swatch-body {
+    background: var(--warm-white);
+    padding: 24px;
+  }
+
+  .swatch-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .swatch-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* ── Tools ── */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 60px;
+  }
+
+  .tool-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 24px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+  }
+
+  .tool-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .tool-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+
+  .tool-use {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* ── Logo in Action ── */
+  .action-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px;
+  }
+
+  .mockup-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    margin-top: 60px;
+  }
+
+  .mockup-card {
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--off-white);
+  }
+
+  .mockup-card.tall { grid-row: span 2; }
+
+  .mockup-header {
+    background: #233b63;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mockup-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .mockup-body {
+    padding: 32px;
+  }
+
+  .mockup-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  /* Login screen simulation */
+  .login-sim {
+    background: #1e2a3a;
+    border-radius: 10px;
+    padding: 32px 24px;
+    text-align: center;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .login-logo-area {
+    margin-bottom: 16px;
+  }
+
+  .login-pro { color: #4a7abf; font-family: 'DM Serif Display', serif; font-size: 26px; }
+  .login-tect { color: var(--gold); font-family: 'DM Serif Display', serif; font-size: 26px; }
+
+  .login-subtitle {
+    font-size: 9px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .login-field {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    text-align: left;
+  }
+
+  .login-btn {
+    background: #233b63;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 28px;
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 8px;
+    width: 100%;
+    letter-spacing: 0.05em;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  /* Table simulation */
+  .table-sim {
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .table-sim-header {
+    background: #233b63;
+    color: rgba(255,255,255,0.9);
+    padding: 10px 16px;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .table-sim-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 0.7fr 1.4fr;
+    padding: 9px 16px;
+    border-bottom: 1px solid var(--border-light);
+    font-size: 12px;
+    align-items: center;
+  }
+
+  .table-sim-row:nth-child(even) { background: var(--off-white); }
+
+  .name-link { color: #2255aa; text-decoration: underline; }
+
+  /* Desktop thumbnail sim */
+  .desktop-sim {
+    background: #1a1f2e;
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 72px;
+  }
+
+  .icon-box {
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 700;
+  }
+
+  .icon-label {
+    font-size: 10px;
+    color: rgba(255,255,255,0.7);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ── Outcomes ── */
+  .outcomes-band {
+    background: var(--navy-dark);
+  }
+
+  .outcomes-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px;
+  }
+
+  .outcomes-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-top: 60px;
+  }
+
+  .stat-cell {
+    background: var(--navy-dark);
+    padding: 44px 36px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+
+  .stat-cell:hover { background: rgba(255,255,255,0.03); }
+
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 52px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* ── Reflection ── */
+  .reflection-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 80px;
+  }
+
+  .reflection-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    margin-top: 60px;
+  }
+
+  .reflection-card {
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 36px;
+  }
+
+  .reflection-card.dark {
+    background: var(--navy-dark);
+    border-color: transparent;
+  }
+
+  .rc-icon {
+    font-size: 24px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .rc-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: var(--text);
+  }
+
+  .reflection-card.dark .rc-title { color: #fff; }
+
+  .rc-body {
+    font-size: 15px;
+    color: var(--text-mid);
+    line-height: 1.8;
+  }
+
+  .reflection-card.dark .rc-body { color: rgba(255,255,255,0.55); font-weight: 300; }
+
+  /* ── Footer ── */
+  footer {
+    background: var(--off-white);
+    border-top: 1px solid var(--border);
+    padding: 48px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-brand {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    color: var(--navy);
+  }
+
+  .footer-brand span { color: var(--gold); }
+
+  .footer-meta {
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  /* ── Animations ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-left > * {
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-left .hero-tag { animation-delay: 0.1s; }
+  .hero-left .hero-title { animation-delay: 0.2s; }
+  .hero-left .hero-subtitle { animation-delay: 0.3s; }
+  .hero-left .hero-meta { animation-delay: 0.45s; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-right { display: none; }
+    section, .about-inner, .goals-inner, .color-inner, .action-section, .outcomes-inner, .reflection-section { padding: 60px 32px; }
+    .about-inner, .research-split, .concept-tabs .tab-content.active, .color-swatches, .mockup-grid, .reflection-grid { grid-template-columns: 1fr; gap: 32px; }
+    .goals-grid, .tools-grid, .outcomes-stats { grid-template-columns: 1fr 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+    .hero-left { padding: 60px 32px; }
+    .hero-meta { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Logo Design Case Study</div>
+    <h1 class="hero-title">
+      Branding a<br>
+      <em>Legal Intelligence</em><br>
+      Platform
+    </h1>
+    <p class="hero-subtitle">
+      Creating a trustworthy, scalable visual identity for PROTECT — Wisconsin's statewide prosecutor case management system used by District Attorneys across all counties.
+    </p>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <div class="meta-label">Client</div>
+        <div class="meta-value">State of Wisconsin</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Role</div>
+        <div class="meta-value">Sr. Web Designer</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Year</div>
+        <div class="meta-value">2024–2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="logo-showcase">
+      <div class="logo-lockup">
+        <svg class="logo-shield" viewBox="0 0 52 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M26 2L4 12V28C4 40 14 50 26 54C38 50 48 40 48 28V12L26 2Z" fill="#233b63" stroke="#e1c25c" stroke-width="2"/>
+          <path d="M18 28L23 33L34 22" stroke="#e1c25c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div class="logo-wordmark">
+            <span class="pro">PRO</span><span class="tect">TECT</span>
+          </div>
+        </div>
+      </div>
+      <div class="logo-tagline">Case Management System</div>
+      <div class="logo-border-box">
+        <span style="font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.08em;">Prosecutor Technology for Case Tracking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div>
+</div>
+
+<!-- ── ABOUT ── -->
+<div class="about-band">
+  <div class="about-inner">
+    <div class="about-sticky fade-up">
+      <div class="section-eyebrow">Overview</div>
+      <h2 class="section-title">The<br><em>Challenge</em></h2>
+    </div>
+    <div>
+      <p class="body-text fade-up">
+        As a Senior Web Designer at the State of Wisconsin, I was entrusted with creating a brand identity for PROTECT — an internal tool that stands for <strong>Prosecutor Technology for Case Tracking</strong>. This system is a custom-built case management platform developed by the District Attorney IT Program (DAIT) to support legal professionals, specifically District Attorneys, in managing, tracking, and organizing case files and workflows.
+      </p>
+      <div class="highlight-quote fade-up">
+        "The logo needed to resonate with legal professionals, government stakeholders, and IT teams alike — appearing on web portals, internal documents, reports, digital dashboards, and training materials."
+      </div>
+      <p class="body-text fade-up">
+        PROTECT is used across counties and jurisdictions statewide, making its branding highly visible and symbolically important. My challenge was to balance traditional legal aesthetics with a modern design sensibility that aligns with today's digital interfaces — while still maintaining a sense of official credibility and simplicity.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ── CLIENT REQUIREMENTS ── -->
+<section>
+  <div class="section-eyebrow fade-up">Client Brief</div>
+  <h2 class="section-title fade-up">What the<br><em>State Required</em></h2>
+  <p class="section-lead fade-up">The brief provided clear expectations for the logo's symbolism and practical purpose across all touchpoints.</p>
+
+  <div class="requirements-grid fade-up">
+    <div class="req-card">
+      <div class="req-icon">🗺️</div>
+      <div class="req-title">State Map Integration</div>
+      <div class="req-desc">Incorporate the map of Wisconsin to establish a geographic and governmental connection, anchoring the platform to its state-level jurisdiction.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">⚖️</div>
+      <div class="req-title">Symbol of Justice</div>
+      <div class="req-desc">Include a symbol of justice — ideally the scales of law — to reflect the platform's legal purpose and reinforce its role in the justice system.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">🔤</div>
+      <div class="req-title">Clear Program Identity</div>
+      <div class="req-desc">Visually represent the program name PROTECT prominently, ensuring instant recognition across all distributed materials and digital surfaces.</div>
+    </div>
+    <div class="req-card">
+      <div class="req-icon">📐</div>
+      <div class="req-title">Format Adaptability</div>
+      <div class="req-desc">Ensure the logo works at both web and print formats — from small UI thumbnails and application icons to large-format reports and presentation slides.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESEARCH ── -->
+<section style="padding-top:0;">
+  <div class="section-eyebrow fade-up">Research & Discovery</div>
+  <h2 class="section-title fade-up">Informed by<br><em>Context & Precedent</em></h2>
+
+  <div class="research-split">
+    <div>
+      <p class="body-text fade-up">Before sketching, I conducted a structured research phase to understand the conventions, constraints, and expectations of this specific design context.</p>
+      <ul class="research-list fade-up">
+        <li data-num="01">How legal and government entities typically represent themselves visually — understanding the vocabulary of official institutional branding.</li>
+        <li data-num="02">Existing case management system logos used in other states and countries, identifying patterns and opportunities for differentiation.</li>
+        <li data-num="03">The meaning and visual variations of justice symbols, especially the scales — exploring both classical and modern interpretations.</li>
+        <li data-num="04">Color theory and typography practices in legal branding — how color communicates authority, trust, and clarity.</li>
+        <li data-num="05">Internal use cases to understand where and how the logo would be applied: dashboards, documentation headers, email templates, Help Page, FAQ page, and training guides.</li>
+      </ul>
+    </div>
+    <div class="research-aside fade-up">
+      <div class="research-aside-title">Key Insights</div>
+      <div class="insight-item">
+        <div class="insight-dot"></div>
+        Government logos prioritize legibility at small scale — detail gets lost in app icons and favicons
+      </div>
+      <div class="insight-item">
+        <div class="insight-dot"></div>
+        Most competing platforms use generic shield motifs — an opportunity for geographic specificity
+      </div>
+      <div class="insight-item">
+        <div class="insight-dot"></div>
+        Legal professionals respond to balanced, symmetrical compositions — asymmetry reads as unstable
+      </div>
+      <div class="insight-item">
+        <div class="insight-dot"></div>
+        Bold sans-serif acronyms outperform wordmarks in UI header contexts at small sizes
+      </div>
+      <div class="insight-item">
+        <div class="insight-dot"></div>
+        Color contrast must meet WCAG AA for accessibility on all digital surfaces
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── DESIGN GOALS ── -->
+<div class="goals-section full-bleed">
+  <div class="goals-inner">
+    <div class="section-eyebrow fade-up" style="color:rgba(255,255,255,0.4);">Design Goals</div>
+    <h2 class="section-title fade-up" style="color:#fff;">Three Core<br><em style="color:var(--gold);">Design Principles</em></h2>
+    <p class="section-lead fade-up" style="color:rgba(255,255,255,0.5);">Based on research and the client brief, I defined three non-negotiable goals that guided every decision.</p>
+
+    <div class="goals-grid fade-up">
+      <div class="goal-card">
+        <div class="goal-number">01 / Recognition</div>
+        <div class="goal-name">Instant Platform Identity</div>
+        <div class="goal-desc">The logo should immediately identify PROTECT as a Wisconsin state tool — communicating geographic origin and institutional authority without explanation.</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-number">02 / Trust</div>
+        <div class="goal-name">Authority & Security</div>
+        <div class="goal-desc">It should convey professionalism, security, and authority — the key qualities required for a legal application used by District Attorneys handling sensitive case data.</div>
+      </div>
+      <div class="goal-card">
+        <div class="goal-number">03 / Versatility</div>
+        <div class="goal-name">Scale Without Compromise</div>
+        <div class="goal-desc">The design must be effective at all sizes and formats — from a 16px favicon to a full-bleed printed training manual cover — without losing meaning or clarity.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONCEPT DEVELOPMENT ── -->
+<section>
+  <div class="section-eyebrow fade-up">Concept Development</div>
+  <h2 class="section-title fade-up">Building the<br><em>Visual Language</em></h2>
+  <p class="section-lead fade-up">Four distinct conceptual elements were developed and refined to form the final logo system.</p>
+
+  <div class="concept-tabs fade-up">
+    <div class="tab-nav">
+      <button class="tab-btn active" onclick="switchTab(this,'t1')">Wisconsin Map</button>
+      <button class="tab-btn" onclick="switchTab(this,'t2')">Scales of Justice</button>
+      <button class="tab-btn" onclick="switchTab(this,'t3')">Typography</button>
+    </div>
+
+    <div class="tab-content active" id="t1">
+      <div class="concept-text">
+        <h3>State Silhouette as Anchor</h3>
+        <p>Integrating a visual silhouette of Wisconsin was not merely decorative — it was a strategic choice to instantly anchor the platform to its geographic and governmental context.</p>
+        <p>The shape is highly recognizable to its target audience of Wisconsin DAs and reinforces the system's role as a statewide tool operating at the state level. It grounds the brand in place before a single word is read.</p>
+        <p>Rather than using a complex outline, I chose a simplified, iconic form that remains legible at small sizes while still being unmistakably Wisconsin.</p>
+      </div>
+      <div class="concept-visual">
+        <svg viewBox="0 0 160 180" width="120" style="opacity:0.75">
+          <path d="M80 20 L130 40 L140 80 L120 110 L130 150 L100 160 L70 150 L40 130 L30 90 L20 60 L50 30 Z" fill="none" stroke="#233b63" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="80" cy="90" r="5" fill="#e1c25c"/>
+        </svg>
+        <p style="font-size:12px;color:var(--text-light);margin-top:16px;text-align:center;letter-spacing:0.05em;">Wisconsin silhouette with state capital marker</p>
+      </div>
+    </div>
+
+    <div class="tab-content" id="t2">
+      <div class="concept-text">
+        <h3>A Modern Take on the Scales</h3>
+        <p>The scales of law, placed within or overlapping the Wisconsin map, were designed in a minimal, clean style to modernize the look while preserving their meaning — fairness, equality, and impartiality.</p>
+        <p>Rather than using overly ornate or traditionally heavy imagery, I chose a balanced, simplified version. This keeps the logo from feeling dated while still reading as "legal" to any viewer.</p>
+        <p>The scales are rendered at a weight that works both as a standalone icon and as an integrated element within the full lockup.</p>
+      </div>
+      <div class="concept-visual">
+        <div class="scales-visual">
+          <div style="width:3px;height:40px;background:var(--navy);border-radius:2px;margin:0 auto;"></div>
+          <div class="scales-beam"></div>
+          <div class="scales-pans">
+            <div class="scales-pan">⚖</div>
+            <div class="scales-pan">⚖</div>
+          </div>
+          <p style="font-size:12px;color:var(--text-light);margin-top:20px;letter-spacing:0.05em;text-align:center;">Simplified balance motif</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="t3">
+      <div class="concept-text">
+        <h3>Wordmark & Meaning by Design</h3>
+        <p>The program name — PROTECT — was carefully styled to emphasize both its meaning and the user group it serves. The split is intentional and semantic:</p>
+        <p><strong>"PRO"</strong> connects to "Prosecutor" — the primary user group — rendered in a deep navy that signals professionalism and government authority.</p>
+        <p><strong>"TECT"</strong> subtly suggests technology, protection, security, and coverage — reflecting the application's core purpose in safeguarding legal data. This portion uses golden yellow to create visual contrast and draw the eye.</p>
+        <p>The font is bold and sans-serif, chosen for clarity and accessibility, especially on digital screens where the logo appears in dashboard headers and application UI.</p>
+      </div>
+      <div class="concept-visual">
+        <div class="type-visual">
+          <div><span class="type-pro">PRO</span><span class="type-tect">TECT</span></div>
+          <div class="type-caption">Prosecutor · Technology · Protection · Coverage</div>
+          <div style="margin-top:24px;display:flex;gap:16px;justify-content:center;">
+            <div style="text-align:center;">
+              <div style="width:48px;height:48px;background:var(--navy);border-radius:8px;margin:0 auto 8px;"></div>
+              <div style="font-size:10px;color:var(--text-light);">Navy</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="width:48px;height:48px;background:var(--gold);border-radius:8px;margin:0 auto 8px;"></div>
+              <div style="font-size:10px;color:var(--text-light);">Gold</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── COLOR STRATEGY ── -->
+<div class="color-section full-bleed">
+  <div class="color-inner">
+    <div class="section-eyebrow fade-up">Color Strategy</div>
+    <h2 class="section-title fade-up">A Palette Built<br><em>on Trust</em></h2>
+    <p class="section-lead fade-up">Color plays a significant role in how users perceive a government brand. The selected palette was developed to reflect authority, clarity, and trust — while remaining approachable and modern.</p>
+
+    <div class="color-swatches fade-up">
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#233b63;">
+          <span class="swatch-hex" style="color:rgba(255,255,255,0.5);">#233b63</span>
+        </div>
+        <div class="swatch-body">
+          <div class="swatch-name">Navy Blue — Authority</div>
+          <div class="swatch-desc">Associated with strength, trust, and stability. This blue tone creates a strong visual anchor and aligns with traditional government and legal branding. It serves as the dominant color across all interfaces and print materials.</div>
+        </div>
+      </div>
+      <div class="swatch-card">
+        <div class="swatch-color" style="background:#e1c25c;">
+          <span class="swatch-hex" style="color:rgba(0,0,0,0.4);">#e1c25c</span>
+        </div>
+        <div class="swatch-body">
+          <div class="swatch-name">Golden Yellow — Energy</div>
+          <div class="swatch-desc">A warm, contrasting tone that adds energy and optimism without being overly bright or casual. It highlights "TECT" in the wordmark, giving the logo a modern twist. Together, the navy-and-gold combination balances professionalism with visual interest.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TOOLS & WORKFLOW ── -->
+<section>
+  <div class="section-eyebrow fade-up">Tools & Workflow</div>
+  <h2 class="section-title fade-up">How the Work<br><em>Got Done</em></h2>
+  <p class="section-lead fade-up">Each tool served a specific purpose across the design, production, and handoff pipeline.</p>
+
+  <div class="tools-grid fade-up">
+    <div class="tool-card">
+      <span class="tool-icon">🎨</span>
+      <div class="tool-name">Adobe Illustrator</div>
+      <div class="tool-use">Primary tool for final logo design, vector creation, and export across all required formats — SVG, PNG, PDF, and EPS.</div>
+    </div>
+    <div class="tool-card">
+      <span class="tool-icon">🖼️</span>
+      <div class="tool-name">Gimp</div>
+      <div class="tool-use">Used for desktop application work — creating the application thumbnail, icon assets, and .ico files for Windows deployment.</div>
+    </div>
+    <div class="tool-card">
+      <span class="tool-icon">🔲</span>
+      <div class="tool-name">Figma</div>
+      <div class="tool-use">Helped visualize how the logo would appear across various UI elements — dashboard headers, web portals, Help Page layouts, and documentation cards.</div>
+    </div>
+    <div class="tool-card">
+      <span class="tool-icon">📄</span>
+      <div class="tool-name">Word & InVision</div>
+      <div class="tool-use">Used for sharing mockups with stakeholders, collecting structured feedback across review rounds, and presenting final handoff documentation.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── LOGO IN ACTION ── -->
+<div class="action-section fade-up">
+  <div class="section-eyebrow">Logo in Action</div>
+  <h2 class="section-title">The Logo<br><em>Across Touchpoints</em></h2>
+  <p class="section-lead" style="margin-bottom:0;">How the PROTECT identity performs across its real-world contexts — from login screens to inter-county search interfaces.</p>
+
+  <div class="mockup-grid">
+    <!-- Dashboard Login -->
+    <div class="mockup-card tall">
+      <div class="mockup-header">
+        <div class="mockup-dot" style="background:#ff5f57;"></div>
+        <div class="mockup-dot" style="background:#febc2e;"></div>
+        <div class="mockup-dot" style="background:#28c840;"></div>
+        <span style="font-size:11px;color:rgba(255,255,255,0.4);margin-left:8px;">PROTECT — Login</span>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-label">Dashboard Login Screen</div>
+        <div class="login-sim">
+          <div class="login-logo-area">
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:4px;">
+              <svg width="26" height="28" viewBox="0 0 52 56" fill="none">
+                <path d="M26 2L4 12V28C4 40 14 50 26 54C38 50 48 40 48 28V12L26 2Z" fill="#233b63" stroke="#e1c25c" stroke-width="2"/>
+                <path d="M18 28L23 33L34 22" stroke="#e1c25c" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="login-pro">PRO</span><span class="login-tect">TECT</span>
+            </div>
+            <div class="login-subtitle">Case Management System</div>
+          </div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.35);margin-bottom:16px;">Prosecutor Technology for Case Tracking<br>State of Wisconsin District Attorney IT Program</div>
+          <div class="login-field">Select a county PROTECT database to use</div>
+          <div style="display:flex;gap:8px;margin-top:4px;">
+            <button class="login-btn" style="background:#1a3055;">Cancel</button>
+            <button class="login-btn">Connect</button>
+          </div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:16px;">Version 6.0.37.475 · 04/27/2025<br>Copyright 2024 District Attorney Information Technology</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inter-county Query -->
+    <div class="mockup-card">
+      <div class="mockup-header">
+        <div class="mockup-dot" style="background:#ff5f57;"></div>
+        <div class="mockup-dot" style="background:#febc2e;"></div>
+        <div class="mockup-dot" style="background:#28c840;"></div>
+        <span style="font-size:11px;color:rgba(255,255,255,0.4);margin-left:8px;">Web Inter-County Query</span>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-label">DA Inter-County Search Results</div>
+        <div class="table-sim">
+          <div class="table-sim-header">
+            <svg width="18" height="18" viewBox="0 0 52 56" fill="none" style="flex-shrink:0;">
+              <path d="M26 2L4 12V28C4 40 14 50 26 54C38 50 48 40 48 28V12L26 2Z" fill="#e1c25c" stroke="#e1c25c" stroke-width="1"/>
+            </svg>
+            DA Inter-County Query
+          </div>
+          <div style="padding:8px 16px;font-size:11px;color:var(--text-light);border-bottom:1px solid var(--border);">Search results for Last = <strong>wood</strong> &nbsp;·&nbsp; Results found: 5003</div>
+          <div style="display:grid;grid-template-columns:2fr 1fr 0.7fr 1.4fr;padding:7px 16px;background:var(--navy-dark);font-size:10px;font-weight:500;letter-spacing:0.05em;color:rgba(255,255,255,0.7);">
+            <span>Full Name</span><span>DOB</span><span>Gender</span><span>Alias Details</span>
+          </div>
+          <div class="table-sim-row"><span class="name-link">Akbar, Aubreyona Renee</span><span style="font-size:11px;">07/25/1997</span><span style="font-size:11px;">F</span><span style="font-size:11px;">AKA Aubreyona Woodley</span></div>
+          <div class="table-sim-row"><span class="name-link">Allen, Chad R</span><span style="font-size:11px;">07/30/1973</span><span style="font-size:11px;">M</span><span style="font-size:11px;">AKA Chad Russell Allen</span></div>
+          <div class="table-sim-row"><span class="name-link">Arp, Troy J</span><span style="font-size:11px;">02/04/1968</span><span style="font-size:11px;">M</span><span style="font-size:11px;">AKA Troy Jay Woods</span></div>
+          <div class="table-sim-row"><span class="name-link">Ballesteros, Diana</span><span style="font-size:11px;">10/05/1967</span><span style="font-size:11px;">F</span><span style="font-size:11px;">AKA D. Wood + 3 More</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Windows Thumbnail -->
+    <div class="mockup-card">
+      <div class="mockup-header">
+        <div class="mockup-dot" style="background:#ff5f57;"></div>
+        <div class="mockup-dot" style="background:#febc2e;"></div>
+        <div class="mockup-dot" style="background:#28c840;"></div>
+        <span style="font-size:11px;color:rgba(255,255,255,0.4);margin-left:8px;">Windows Desktop</span>
+      </div>
+      <div class="mockup-body">
+        <div class="mockup-label">Windows Thumbnail</div>
+        <div class="desktop-sim">
+          <div class="icon-item" style="opacity:0.5;">
+            <div class="icon-box" style="background:#1a6b1a;">▶</div>
+            <span class="icon-label">VLC media player</span>
+          </div>
+          <div class="icon-item">
+            <div class="icon-box" style="background:#233b63;border:2px solid #e1c25c;">
+              <svg width="28" height="28" viewBox="0 0 52 56" fill="none">
+                <path d="M26 2L4 12V28C4 40 14 50 26 54C38 50 48 40 48 28V12L26 2Z" fill="#233b63" stroke="#e1c25c" stroke-width="3"/>
+                <path d="M18 28L23 33L34 22" stroke="#e1c25c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="icon-label" style="color:#fff;font-weight:500;">PROTECT</span>
+          </div>
+          <div class="icon-item" style="opacity:0.5;">
+            <div class="icon-box" style="background:#0f4fa8;">E</div>
+            <span class="icon-label">Microsoft Edge</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── OUTCOMES ── -->
+<div class="outcomes-band full-bleed">
+  <div class="outcomes-inner">
+    <div class="section-eyebrow fade-up" style="color:rgba(255,255,255,0.4);">Outcomes</div>
+    <h2 class="section-title fade-up" style="color:#fff;">Delivered a<br><em style="color:var(--gold);">Complete Identity System</em></h2>
+    <div class="outcomes-stats fade-up">
+      <div class="stat-cell">
+        <div class="stat-num">72</div>
+        <div class="stat-label">Wisconsin counties served<br>by the deployed system</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Export formats delivered<br>SVG · PNG · ICO · PDF</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Core touchpoints<br>Dashboard · Web · Desktop</div>
+      </div>
+      <div class="stat-cell">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Unified visual identity<br>across all platforms</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── REFLECTION ── -->
+<div class="reflection-section">
+  <div class="section-eyebrow fade-up">Reflection</div>
+  <h2 class="section-title fade-up">What I<br><em>Learned</em></h2>
+
+  <div class="reflection-grid fade-up">
+    <div class="reflection-card dark">
+      <span class="rc-icon">🏛️</span>
+      <div class="rc-title">Designing for Institutional Audiences</div>
+      <div class="rc-body">Government and legal design demands a different vocabulary than commercial branding. Trust signals — symmetry, navy blue, official typography — carry more weight than novelty. Learning when to embrace convention rather than break it was the key discipline of this project.</div>
+    </div>
+    <div class="reflection-card">
+      <span class="rc-icon">📐</span>
+      <div class="rc-title">Scalability as a First-Class Constraint</div>
+      <div class="rc-body">Every design decision was tested at 16px and 160px. Designing scalable logos means eliminating fine details early — not as a compromise, but as the actual design goal. The constraint made the final mark stronger.</div>
+    </div>
+    <div class="reflection-card">
+      <span class="rc-icon">🔤</span>
+      <div class="rc-title">Embedded Meaning in Typography</div>
+      <div class="rc-body">The PRO/TECT wordmark split taught me that typographic hierarchy can carry narrative. When the split aligns with real meaning — "Prosecutor" and "Technology" — it doesn't feel like a gimmick; it becomes part of how users understand the platform.</div>
+    </div>
+    <div class="reflection-card dark">
+      <span class="rc-icon">🤝</span>
+      <div class="rc-title">Stakeholder-Centered Iteration</div>
+      <div class="rc-body">Working with legal professionals, IT teams, and government stakeholders simultaneously required careful translation of design rationale into non-design language. Every review round sharpened both the mark and my ability to communicate intent.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-brand">PRO<span>TECT</span> — Case Study</div>
+  <div class="footer-meta">Shivani Harode · Sr. Web Designer · State of Wisconsin · 2024–2025</div>
+</footer>
+
+<script>
+  function switchTab(btn, id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(id).classList.add('active');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

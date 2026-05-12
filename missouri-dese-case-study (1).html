@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Missouri DESE School Finance — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#1b3358;--navy-mid:#233b63;--navy-light:#2e4f85;
+  --gold:#d4a843;--gold-light:#e8c265;--gold-pale:#fdf6e3;
+  --cream:#faf8f3;--white:#ffffff;
+  --text:#1a1924;--text-mid:#4a4860;--text-light:#8a8aa0;
+  --border:#e4e0d8;--border-light:#eeebe4;
+  --green:#10B981;--green-light:#ecfdf5;
+  --orange:#d97706;--orange-light:#fffbeb;
+  --red:#dc2626;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;line-height:1.7}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(250,248,243,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);text-decoration:none;transition:color 0.2s}.nav-back:hover{color:var(--navy)}
+.nav-brand{font-family:'Fraunces',serif;font-size:17px;color:var(--navy)}.nav-brand span{color:var(--gold)}
+.nav-tag{font-size:11px;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase}
+.hero{min-height:100vh;background:var(--navy);display:grid;grid-template-columns:1.4fr 1fr;gap:80px;padding:140px 80px 80px;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-100px;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,0.1) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(46,79,133,0.5) 0%,transparent 65%);pointer-events:none}
+.hero-left{position:relative;z-index:2}
+.hero-right{position:relative;z-index:2}
+.hero-eyebrow{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;animation:fadeUp 0.6s ease 0.1s both}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(48px,5.5vw,76px);line-height:0.96;color:#fff;margin-bottom:24px;font-weight:500;animation:fadeUp 0.7s ease 0.2s both}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-subtitle{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;max-width:480px;margin-bottom:48px;animation:fadeUp 0.7s ease 0.3s both}
+.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.1);padding-top:32px;animation:fadeUp 0.7s ease 0.45s both}
+.meta-col{padding-right:24px}.meta-col+.meta-col{padding-left:24px;border-left:1px solid rgba(255,255,255,0.1)}
+.meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px}
+.meta-val{font-size:14px;color:rgba(255,255,255,0.85);font-weight:500}
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;animation:fadeUp 0.8s ease 0.4s both}
+.kpi-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:24px;transition:background 0.2s,transform 0.2s}
+.kpi-card:hover{background:rgba(255,255,255,0.08);transform:translateY(-2px)}
+.kpi-num{font-family:'Fraunces',serif;font-size:38px;line-height:1;margin-bottom:6px;font-weight:500}
+.kpi-card:nth-child(1) .kpi-num{color:var(--gold-light)}
+.kpi-card:nth-child(2) .kpi-num{color:#6ee7b7}
+.kpi-card:nth-child(3) .kpi-num{color:#fcd34d}
+.kpi-card:nth-child(4) .kpi-num{color:#93c5fd}
+.kpi-label{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;font-weight:300}
+.kpi-sub{font-size:11px;color:rgba(255,255,255,0.25);margin-top:4px;font-family:'DM Mono',monospace;letter-spacing:0.04em}
+section{max-width:1100px;margin:0 auto;padding:90px 80px}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.section-h{font-family:'Fraunces',serif;font-size:clamp(30px,3.5vw,46px);line-height:1.05;color:var(--text);margin-bottom:16px;font-weight:500}
+.section-h em{font-style:italic;color:var(--navy)}
+.section-lead{font-size:17px;color:var(--text-mid);line-height:1.8;font-weight:300;max-width:640px}
+.challenge-band{background:var(--navy-mid);padding:90px 0}
+.challenge-inner{max-width:1100px;margin:0 auto;padding:0 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.challenge-quote{font-family:'Fraunces',serif;font-size:26px;color:#fff;line-height:1.45;font-style:italic;font-weight:300}
+.challenge-quote::before{content:'"';color:var(--gold-light);font-size:52px;line-height:0.5;display:block;margin-bottom:16px}
+.pain-list{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.pain-item{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:14px 16px;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;font-style:italic;font-weight:300}
+.personas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:48px}
+.persona-card{background:var(--white);padding:32px;transition:background 0.2s}
+.persona-card:hover{background:var(--cream)}
+.persona-icon{font-size:28px;margin-bottom:16px}
+.persona-role{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px}
+.persona-pct{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:16px}
+.persona-task{display:flex;gap:10px;font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:8px}
+.persona-task::before{content:'→';color:var(--gold);flex-shrink:0}
+.research-split{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start;margin-top:56px}
+.insight-list{display:flex;flex-direction:column;gap:0}
+.insight-item{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--border-light)}
+.insight-item:last-child{border-bottom:none}
+.insight-big{font-family:'Fraunces',serif;font-size:36px;font-weight:500;color:var(--navy);min-width:72px;line-height:1;padding-top:2px}
+.insight-text{font-size:14px;color:var(--text-mid);line-height:1.75}
+.research-aside{background:var(--navy);border-radius:16px;padding:36px}
+.research-aside-title{font-family:'Fraunces',serif;font-size:20px;color:#fff;margin-bottom:24px;font-weight:500}
+.rm-item{display:flex;gap:12px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,0.07);font-size:14px;color:rgba(255,255,255,0.55);line-height:1.65;font-weight:300}
+.rm-item:last-child{border-bottom:none}
+.rm-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);font-weight:500;min-width:24px;padding-top:3px}
+.ia-band{background:var(--cream);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ia-inner{max-width:1100px;margin:0 auto;padding:90px 80px}
+.ia-flow{display:flex;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:48px}
+.ia-node{flex:1;background:var(--white);padding:20px 12px;text-align:center;transition:background 0.2s}
+.ia-node:hover{background:var(--gold-pale)}
+.ia-icon{font-size:20px;margin-bottom:8px}
+.ia-name{font-size:11px;font-weight:500;color:var(--text);margin-bottom:4px;line-height:1.3}
+.ia-desc{font-size:10px;color:var(--text-light);line-height:1.4}
+.dashboard-mockup{background:var(--navy);border-radius:18px;overflow:hidden;margin-top:48px;border:1px solid rgba(255,255,255,0.08)}
+.dm-topbar{background:#162540;padding:11px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.dm-dot{width:9px;height:9px;border-radius:50%}
+.dm-body{display:grid;grid-template-columns:190px 1fr;min-height:380px}
+.dm-sidebar{background:#1a2d4a;padding:14px;border-right:1px solid rgba(255,255,255,0.05)}
+.dm-nav-item{padding:8px 10px;border-radius:6px;font-size:11px;color:rgba(255,255,255,0.35);margin-bottom:3px;display:flex;align-items:center;gap:7px}
+.dm-nav-item.active{background:rgba(212,168,67,0.15);color:rgba(255,255,255,0.85)}
+.dm-nav-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.5;flex-shrink:0}
+.dm-main{padding:18px}
+.dm-greeting{font-size:13px;color:rgba(255,255,255,0.6);margin-bottom:14px}
+.dm-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.dm-kpi{background:rgba(255,255,255,0.05);border-radius:8px;padding:12px;border:1px solid rgba(255,255,255,0.05)}
+.dm-kpi-num{font-family:'Fraunces',serif;font-size:20px;font-weight:500;margin-bottom:3px}
+.dm-kpi-lbl{font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.06em}
+.dm-panels{display:grid;grid-template-columns:1.3fr 1fr;gap:10px}
+.dm-panel{background:rgba(255,255,255,0.04);border-radius:8px;padding:14px;border:1px solid rgba(255,255,255,0.05)}
+.dm-panel-title{font-size:9px;color:rgba(255,255,255,0.3);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px}
+.dm-bar-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.dm-bar-label{font-size:9px;color:rgba(255,255,255,0.35);width:64px;flex-shrink:0}
+.dm-bar-track{flex:1;height:5px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden}
+.dm-bar-fill{height:100%;border-radius:3px}
+.dm-status-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.04);font-size:10px}
+.dm-status-row:last-child{border-bottom:none}
+.dm-status-name{color:rgba(255,255,255,0.45)}
+.dm-badge-s{padding:2px 8px;border-radius:100px;font-size:9px;font-weight:500;font-family:'DM Mono',monospace}
+.dm-caption{padding:10px 18px;border-top:1px solid rgba(255,255,255,0.05);font-size:10px;color:rgba(255,255,255,0.2);text-align:center;font-family:'DM Mono',monospace;letter-spacing:0.04em}
+.solutions-list{display:flex;flex-direction:column;gap:0;margin-top:56px}
+.sol-item{display:grid;grid-template-columns:280px 1fr;gap:0;border-bottom:1px solid var(--border-light)}
+.sol-item:last-child{border-bottom:none}
+.sol-left{padding:36px 40px 36px 0;border-right:1px solid var(--border-light)}
+.sol-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:10px;font-weight:500}
+.sol-name{font-family:'Fraunces',serif;font-size:21px;color:var(--text);margin-bottom:10px;font-weight:500;line-height:1.2}
+.sol-problem{font-size:12px;color:var(--text-light);line-height:1.65;font-style:italic}
+.sol-right{padding:36px 0 36px 40px}
+.sol-desc{font-size:14px;color:var(--text-mid);line-height:1.85;margin-bottom:16px;font-weight:300}
+.sol-impact{display:inline-flex;align-items:center;gap:8px;background:var(--green-light);border:1px solid rgba(16,185,129,0.2);border-radius:100px;padding:5px 14px;font-size:12px;color:#065f46;font-weight:500}
+.sol-impact::before{content:'↑';font-weight:700}
+.workflow-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:56px;border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+.wt-head th{background:var(--navy);color:rgba(255,255,255,0.8);padding:14px 22px;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-align:left}
+.wt-row td{padding:14px 22px;font-size:14px;border-bottom:1px solid var(--border-light);color:var(--text-mid)}
+.wt-row:last-child td{border-bottom:none}
+.wt-row:nth-child(even) td{background:var(--cream)}
+.wt-task{font-weight:500;color:var(--text)}
+.wt-before{color:var(--red)}
+.wt-after{color:#065f46;font-weight:500}
+.wt-imp{font-family:'DM Mono',monospace;font-size:10px;background:var(--green-light);color:#065f46;padding:3px 10px;border-radius:100px;font-weight:500}
+.ds-band{background:var(--navy);padding:90px 0}
+.ds-inner{max-width:1100px;margin:0 auto;padding:0 80px}
+.ds-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:56px}
+.ds-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:28px}
+.ds-card-title{font-size:10px;font-weight:500;color:rgba(255,255,255,0.35);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px}
+.color-row{display:flex;gap:8px;margin-bottom:14px}
+.c-swatch{flex:1;height:40px;border-radius:8px;display:flex;align-items:flex-end;padding:5px 8px}
+.c-label{font-family:'DM Mono',monospace;font-size:8px;font-weight:500}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;font-size:11px;font-weight:500;font-family:'DM Mono',monospace}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.badge-green{background:rgba(16,185,129,0.15);color:#6ee7b7}.badge-green::before{background:#6ee7b7}
+.badge-orange{background:rgba(217,119,6,0.2);color:#fcd34d}.badge-orange::before{background:#fcd34d}
+.badge-red{background:rgba(220,38,38,0.15);color:#fca5a5}.badge-red::before{background:#fca5a5}
+.badge-gray{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.35)}.badge-gray::before{background:rgba(255,255,255,0.2)}
+.comp-chips{display:flex;flex-wrap:wrap;gap:7px}
+.comp-chip{font-size:11px;padding:4px 11px;border-radius:6px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.09);color:rgba(255,255,255,0.5);font-family:'DM Mono',monospace}
+.token-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,0.45);padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.token-row:last-child{border-bottom:none}
+.token-val{font-family:'DM Mono',monospace;font-size:10px;color:rgba(255,255,255,0.25)}
+.results-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:18px;overflow:hidden;margin-top:56px}
+.result-cell{background:var(--white);padding:36px 28px;transition:background 0.2s}
+.result-cell:hover{background:var(--gold-pale)}
+.result-num{font-family:'Fraunces',serif;font-size:48px;font-weight:500;line-height:1;margin-bottom:8px;color:var(--navy)}
+.result-desc{font-size:13px;color:var(--text-mid);line-height:1.55}
+.result-before{font-family:'DM Mono',monospace;font-size:10px;color:var(--text-light);margin-top:4px}
+.quotes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.quote-card{background:var(--cream);border-radius:14px;border:1px solid var(--border);padding:24px}
+.quote-text{font-family:'Fraunces',serif;font-size:14px;font-style:italic;color:var(--text-mid);line-height:1.75;margin-bottom:14px}
+.quote-text::before{content:'"';color:var(--gold);font-size:28px;line-height:0;margin-right:2px;position:relative;top:8px}
+.quote-author{font-size:11px;color:var(--text-light);font-weight:500;font-family:'DM Mono',monospace;letter-spacing:0.04em}
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+.tech-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:22px 18px;transition:transform 0.2s,box-shadow 0.2s}
+.tech-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.tech-icon{font-size:24px;margin-bottom:10px}
+.tech-name{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px}
+.tech-desc{font-size:12px;color:var(--text-light);line-height:1.55}
+.lessons-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:48px}
+.lesson-card{border-radius:14px;border:1px solid var(--border);padding:28px;background:var(--white)}
+.lesson-card.dark{background:var(--navy);border-color:transparent}
+.lesson-icon{font-size:22px;margin-bottom:14px}
+.lesson-title{font-family:'Fraunces',serif;font-size:19px;color:var(--text);margin-bottom:10px;font-weight:500}
+.lesson-card.dark .lesson-title{color:#fff}
+.lesson-body{font-size:13px;color:var(--text-mid);line-height:1.8;font-weight:300}
+.lesson-card.dark .lesson-body{color:rgba(255,255,255,0.55)}
+.roadmap-list{display:flex;flex-direction:column;gap:0;margin-top:48px}
+.rm-row{display:grid;grid-template-columns:180px 1fr;gap:0;padding:24px 0;border-bottom:1px solid var(--border-light);align-items:start}
+.rm-row:last-child{border-bottom:none}
+.rm-phase-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.08em;text-transform:uppercase;padding-top:4px}
+.rm-chips{display:flex;flex-wrap:wrap;gap:8px}
+.rm-chip{font-size:12px;padding:5px 14px;border-radius:8px;background:var(--gold-pale);color:var(--navy);border:1px solid rgba(212,168,67,0.25);font-weight:500}
+footer{background:var(--navy);padding:40px 80px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Fraunces',serif;font-size:16px;color:#fff;font-weight:500}.footer-brand span{color:var(--gold)}
+.footer-note{font-size:12px;color:rgba(255,255,255,0.35)}
+.footer-nav{display:flex;gap:24px}.footer-nav a{font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}.footer-nav a:hover{color:rgba(255,255,255,0.8)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}.fu.on{opacity:1;transform:translateY(0)}
+.fu2{transition-delay:0.1s}.fu3{transition-delay:0.2s}.fu4{transition-delay:0.3s}
+@media(max-width:960px){nav{padding:0 24px}.hero{grid-template-columns:1fr;padding:100px 32px 60px;min-height:auto}section,.ia-inner,.ds-inner,.challenge-inner{padding:60px 32px}.challenge-inner,.research-split,.ds-grid,.lessons-grid,.sol-item{grid-template-columns:1fr}.sol-left{border-right:none;border-bottom:1px solid var(--border-light);padding:0 0 20px}.sol-right{padding:20px 0 0}.personas-grid,.quotes-grid,.tech-grid{grid-template-columns:1fr 1fr}.results-grid{grid-template-columns:1fr 1fr}.ia-flow{flex-wrap:wrap}footer{flex-direction:column;gap:16px;text-align:center;padding:32px}.dm-body{grid-template-columns:1fr}.dm-sidebar{display:none}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-back" href="portfolio.html">← All Projects</a>
+  <div class="nav-brand">Missouri <span>DESE</span></div>
+  <div class="nav-tag">UX/UI Case Study</div>
+</nav>
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">UX/UI Case Study — Current Project · 2026</div>
+    <h1 class="hero-title">Missouri<br><em>DESE</em> School<br>Finance</h1>
+    <p class="hero-subtitle">Redesigning a legacy financial management system serving 500+ school districts — cutting task time in half, eliminating errors, and transforming user satisfaction across the State of Missouri.</p>
+    <div class="hero-meta">
+      <div class="meta-col"><div class="meta-label">Client</div><div class="meta-val">State of Missouri</div></div>
+      <div class="meta-col"><div class="meta-label">Role</div><div class="meta-val">UX Designer</div></div>
+      <div class="meta-col"><div class="meta-label">Timeline</div><div class="meta-val">Jan 2026 – Present</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-num">40–50%</div><div class="kpi-label">Faster task completion</div><div class="kpi-sub">20 min → 10 min</div></div>
+      <div class="kpi-card"><div class="kpi-num">60%</div><div class="kpi-label">Fewer data entry errors</div><div class="kpi-sub">15% → 6% error rate</div></div>
+      <div class="kpi-card"><div class="kpi-num">+36</div><div class="kpi-label">NPS score increase</div><div class="kpi-sub">32 → 68 satisfaction</div></div>
+      <div class="kpi-card"><div class="kpi-num">95%</div><div class="kpi-label">Faster page loads</div><div class="kpi-sub">2–5 sec → &lt;100ms</div></div>
+    </div>
+  </div>
+</div>
+<div class="challenge-band">
+  <div class="challenge-inner">
+    <div>
+      <div class="eyebrow fu" style="color:rgba(255,255,255,0.3)">The Challenge</div>
+      <div class="challenge-quote fu fu2">How might we modernize a complex financial system to reduce user time-on-task by 40% while maintaining all functionality and improving data accuracy?</div>
+      <p style="margin-top:24px;font-size:15px;color:rgba(255,255,255,0.5);line-height:1.8;font-weight:300" class="fu fu3">The Missouri DESE was running a legacy School Finance Management System serving 500+ school districts — plagued by disconnected pages, dense table layouts, and workflows consuming 15–20 minutes for routine monthly tasks.</p>
+    </div>
+    <div>
+      <div class="eyebrow fu" style="color:rgba(255,255,255,0.3)">What Users Said</div>
+      <div class="pain-list fu fu2">
+        <div class="pain-item">🗺️ &nbsp;"I get lost trying to find where to enter monthly data"</div>
+        <div class="pain-item">🖱️ &nbsp;"It takes too many clicks to run a simple calculation"</div>
+        <div class="pain-item">👁️ &nbsp;"I can't tell at a glance which calculations are complete"</div>
+        <div class="pain-item">📅 &nbsp;"The interface looks like it's from the 1990s"</div>
+        <div class="pain-item">📂 &nbsp;"I have to open multiple tabs to complete one workflow"</div>
+      </div>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="eyebrow fu">Understanding the Users</div>
+  <h2 class="section-h fu fu2">Three Primary<br><em>User Groups</em></h2>
+  <p class="section-lead fu fu3">Research began with mapping who uses this system daily — their goals, frustrations, and where their time goes.</p>
+  <div class="personas-grid fu">
+    <div class="persona-card"><div class="persona-icon">🏫</div><div class="persona-role">School District Finance Officers</div><div class="persona-pct">60% of users</div><div class="persona-task">Monthly ADA/WADA data entry</div><div class="persona-task">Payment calculations</div><div class="persona-task">Report generation</div></div>
+    <div class="persona-card"><div class="persona-icon">🏛️</div><div class="persona-role">State Finance Administrators</div><div class="persona-pct">25% of users</div><div class="persona-task">System oversight & monitoring</div><div class="persona-task">Bond payment management</div><div class="persona-task">Transmittal processing</div></div>
+    <div class="persona-card"><div class="persona-icon">📋</div><div class="persona-role">Auditors & Compliance Officers</div><div class="persona-pct">15% of users</div><div class="persona-task">Report review & verification</div><div class="persona-task">Historical data analysis</div><div class="persona-task">Compliance verification</div></div>
+  </div>
+</section>
+<section style="padding-top:0">
+  <div class="eyebrow fu">Research & Discovery</div>
+  <h2 class="section-h fu fu2">What the Data<br><em>Revealed</em></h2>
+  <div class="research-split">
+    <div class="fu">
+      <div class="insight-list">
+        <div class="insight-item"><div class="insight-big">70%</div><div class="insight-text">of user time was spent on just 3 core workflows — pointing directly to where redesign effort would have the highest impact</div></div>
+        <div class="insight-item"><div class="insight-big">80%</div><div class="insight-text">of errors occurred during manual data entry — a clear signal that smart validation and auto-calculation were essential, not optional</div></div>
+        <div class="insight-item"><div class="insight-big">#1</div><div class="insight-text">most requested feature was visual status indicators — users needed to see system state at a glance without navigating anywhere</div></div>
+        <div class="insight-item"><div class="insight-big">45%</div><div class="insight-text">reduction in support tickets is achievable with contextual help — validating inline guidance as a design priority, not an afterthought</div></div>
+      </div>
+    </div>
+    <div class="research-aside fu fu2">
+      <div class="research-aside-title">Research Methods</div>
+      <div class="rm-item"><span class="rm-num">01</span>Stakeholder Interviews with 8 participants — district finance officers, state administrators, and IT staff</div>
+      <div class="rm-item"><span class="rm-num">02</span>System Audit — documented all features, mapped user flows, identified technical constraints</div>
+      <div class="rm-item"><span class="rm-num">03</span>Analytics Review — most-used features, common error points, time-on-task metrics</div>
+      <div class="rm-item"><span class="rm-num">04</span>Competitive Analysis — modern finance platforms, government portals, SaaS dashboards</div>
+    </div>
+  </div>
+</section>
+<div class="ia-band">
+  <div class="ia-inner">
+    <div class="eyebrow fu">Information Architecture</div>
+    <h2 class="section-h fu fu2">From 20+ Scattered Pages<br><em>to 8 Logical Sections</em></h2>
+    <p class="section-lead fu fu3">Restructured the entire navigation hierarchy to match actual user workflows — not the system's internal data model.</p>
+    <div class="ia-flow fu">
+      <div class="ia-node"><div class="ia-icon">📊</div><div class="ia-name">Dashboard</div><div class="ia-desc">System overview & KPIs</div></div>
+      <div class="ia-node"><div class="ia-icon">🧮</div><div class="ia-name">Payment Calc</div><div class="ia-desc">Calculation workflows</div></div>
+      <div class="ia-node"><div class="ia-icon">📝</div><div class="ia-name">Data Entry</div><div class="ia-desc">Monthly ADA/WADA</div></div>
+      <div class="ia-node"><div class="ia-icon">📑</div><div class="ia-name">Reports</div><div class="ia-desc">Parkway Phase II</div></div>
+      <div class="ia-node"><div class="ia-icon">🏦</div><div class="ia-name">Bond Payments</div><div class="ia-desc">Bond management</div></div>
+      <div class="ia-node"><div class="ia-icon">📅</div><div class="ia-name">Est. ADA</div><div class="ia-desc">Estimated attendance</div></div>
+      <div class="ia-node"><div class="ia-icon">📤</div><div class="ia-name">Transmittal</div><div class="ia-desc">Payment transmittal</div></div>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="eyebrow fu">Interface Design</div>
+  <h2 class="section-h fu fu2">The Redesigned<br><em>Dashboard</em></h2>
+  <p class="section-lead fu fu3">90% of users now begin their session on the dashboard — up from 10% before. A single screen communicates system state, pending actions, and key metrics instantly.</p>
+  <div class="dashboard-mockup fu">
+    <div class="dm-topbar">
+      <div class="dm-dot" style="background:#ff5f57"></div><div class="dm-dot" style="background:#febc2e"></div><div class="dm-dot" style="background:#28c840"></div>
+      <span style="font-size:11px;color:rgba(255,255,255,0.25);margin-left:12px">Missouri DESE — School Finance Management System</span>
+      <span style="margin-left:auto;font-size:10px;color:rgba(255,255,255,0.2);font-family:'DM Mono',monospace">Jefferson City USD #1 ▾</span>
+    </div>
+    <div class="dm-body">
+      <div class="dm-sidebar">
+        <div style="font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.1em;text-transform:uppercase;padding:6px 10px 10px;margin-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.05)">Navigation</div>
+        <div class="dm-nav-item active"><div class="dm-nav-dot"></div>Dashboard</div>
+        <div class="dm-nav-item"><div class="dm-nav-dot"></div>Payment Calculations</div>
+        <div class="dm-nav-item"><div class="dm-nav-dot"></div>Data Entry</div>
+        <div class="dm-nav-item"><div class="dm-nav-dot"></div>Reports</div>
+        <div class="dm-nav-item"><div class="dm-nav-dot"></div>Bond Payments</div>
+        <div class="dm-nav-item"><div class="dm-nav-dot"></div>Est. ADA</div>
+        <div class="dm-nav-item"><div class="dm-nav-dot"></div>Transmittal</div>
+        <div class="dm-nav-item"><div class="dm-nav-dot"></div>Help & Guidance</div>
+      </div>
+      <div class="dm-main">
+        <div class="dm-greeting">Good morning — May 2026 monthly cycle</div>
+        <div class="dm-kpis">
+          <div class="dm-kpi"><div class="dm-kpi-num" style="color:#93c5fd">$4.2M</div><div class="dm-kpi-lbl">Payments Pending</div></div>
+          <div class="dm-kpi"><div class="dm-kpi-num" style="color:#6ee7b7">18/22</div><div class="dm-kpi-lbl">Districts Submitted</div></div>
+          <div class="dm-kpi"><div class="dm-kpi-num" style="color:#fcd34d">4</div><div class="dm-kpi-lbl">Warnings</div></div>
+          <div class="dm-kpi"><div class="dm-kpi-num" style="color:#fca5a5">1</div><div class="dm-kpi-lbl">Errors</div></div>
+        </div>
+        <div class="dm-panels">
+          <div class="dm-panel">
+            <div class="dm-panel-title">ADA Completion by Month</div>
+            <div class="dm-bar-row"><span class="dm-bar-label">January</span><div class="dm-bar-track"><div class="dm-bar-fill" style="width:100%;background:#6ee7b7"></div></div></div>
+            <div class="dm-bar-row"><span class="dm-bar-label">February</span><div class="dm-bar-track"><div class="dm-bar-fill" style="width:100%;background:#6ee7b7"></div></div></div>
+            <div class="dm-bar-row"><span class="dm-bar-label">March</span><div class="dm-bar-track"><div class="dm-bar-fill" style="width:100%;background:#6ee7b7"></div></div></div>
+            <div class="dm-bar-row"><span class="dm-bar-label">April</span><div class="dm-bar-track"><div class="dm-bar-fill" style="width:82%;background:#fcd34d"></div></div></div>
+            <div class="dm-bar-row"><span class="dm-bar-label">May</span><div class="dm-bar-track"><div class="dm-bar-fill" style="width:40%;background:#93c5fd"></div></div></div>
+          </div>
+          <div class="dm-panel">
+            <div class="dm-panel-title">Calculation Status</div>
+            <div class="dm-status-row"><span class="dm-status-name">ADA/WADA Entry</span><span class="dm-badge-s" style="background:rgba(110,231,183,0.15);color:#6ee7b7">Complete</span></div>
+            <div class="dm-status-row"><span class="dm-status-name">Payment Calc</span><span class="dm-badge-s" style="background:rgba(252,211,77,0.15);color:#fcd34d">Pending</span></div>
+            <div class="dm-status-row"><span class="dm-status-name">Bond Payments</span><span class="dm-badge-s" style="background:rgba(110,231,183,0.15);color:#6ee7b7">Complete</span></div>
+            <div class="dm-status-row"><span class="dm-status-name">Transmittal</span><span class="dm-badge-s" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.3)">Not Started</span></div>
+            <div class="dm-status-row"><span class="dm-status-name">Phase II Report</span><span class="dm-badge-s" style="background:rgba(252,165,165,0.15);color:#fca5a5">Error</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dm-caption">New dashboard — 90% of users now start here vs. 10% before the redesign</div>
+  </div>
+</section>
+<section style="padding-top:0;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="eyebrow fu">Key Design Solutions</div>
+  <h2 class="section-h fu fu2">Six Changes That<br><em>Transformed the System</em></h2>
+  <div class="solutions-list fu">
+    <div class="sol-item"><div class="sol-left"><div class="sol-num">Solution 01</div><div class="sol-name">Unified Dashboard</div><div class="sol-problem">Problem: Users had no overview — no way to know what was complete, pending, or broken without clicking through every section.</div></div><div class="sol-right"><div class="sol-desc">Created a comprehensive dashboard with KPI cards for payment totals and district completion counts, trend charts for ADA completion, a color-coded status panel for all calculation states, and quick action buttons for the most frequent operations.</div><div class="sol-impact">90% of users now start on the dashboard vs. 10% before</div></div></div>
+    <div class="sol-item"><div class="sol-left"><div class="sol-num">Solution 02</div><div class="sol-name">Persistent Navigation</div><div class="sol-problem">Problem: Users got lost navigating between 20+ disconnected pages with no consistent wayfinding or context cues.</div></div><div class="sol-right"><div class="sol-desc">Implemented a persistent navigation system with an always-visible top bar with organization switcher, a left sidebar with clear section labels and icons, and breadcrumb navigation at every level. Users can now jump to any section without losing their place.</div><div class="sol-impact">60% reduction in back-button usage · 40% fewer navigation support calls</div></div></div>
+    <div class="sol-item"><div class="sol-left"><div class="sol-num">Solution 03</div><div class="sol-name">Visual Status Badges</div><div class="sol-problem">Problem: Text-only status labels made it impossible to scan system state — users had to read every entry to understand what needed attention.</div></div><div class="sol-right"><div class="sol-desc">Built a color-coded badge system used consistently across all pages. Green = Complete/Verified. Orange = Pending/Warnings. Red = Error/Attention Required. Gray = Not Started. The same system appears in tables, sidebars, modals, and the dashboard.</div><div class="sol-impact">Assessment time reduced from 3–4 minutes to 10–15 seconds</div></div></div>
+    <div class="sol-item"><div class="sol-left"><div class="sol-num">Solution 04</div><div class="sol-name">Inline Actions & Modals</div><div class="sol-problem">Problem: Every action — viewing a result, applying an override, confirming a change — required loading an entirely new page.</div></div><div class="sol-right"><div class="sol-desc">Replaced page-load navigation with contextual actions: modal overlays for results and overrides, inline editing directly in data grids, and confirmation dialogs for destructive actions. Users stay in context and never lose their scroll position.</div><div class="sol-impact">50% reduction in page loads per session</div></div></div>
+    <div class="sol-item"><div class="sol-left"><div class="sol-num">Solution 05</div><div class="sol-name">Smart Data Entry</div><div class="sol-problem">Problem: Manual entry errors caused calculation failures that cascaded into downstream reporting problems and increased support calls.</div></div><div class="sol-right"><div class="sol-desc">Redesigned data entry with real-time validation, clear inline error messages, a "Copy Previous Month" function for recurring entries, auto-calculation of derived fields, save draft capability, and logical field grouping with visual separators.</div><div class="sol-impact">Data entry errors reduced 60% — from 15% to 6%</div></div></div>
+    <div class="sol-item"><div class="sol-left"><div class="sol-num">Solution 06</div><div class="sol-name">Contextual Help System</div><div class="sol-problem">Problem: Users relied on external documentation and support calls for routine questions, breaking their workflow entirely.</div></div><div class="sol-right"><div class="sol-desc">Built in-context guidance throughout: instruction panels on complex pages, tooltip hints on form fields, error messages with resolution steps, and links to help articles anchored to the exact section in view.</div><div class="sol-impact">Support tickets reduced 45% — from 40/month to 22/month</div></div></div>
+  </div>
+</section>
+<section>
+  <div class="eyebrow fu">Before vs After</div>
+  <h2 class="section-h fu fu2">Workflow Improvement<br><em>by the Numbers</em></h2>
+  <p class="section-lead fu fu3">Every core workflow was redesigned with a single goal: fewer clicks, less time, same result.</p>
+  <table class="workflow-table fu">
+    <thead><tr class="wt-head"><th>Task</th><th>Before</th><th>After</th><th>Improvement</th></tr></thead>
+    <tbody>
+      <tr class="wt-row"><td class="wt-task">Enter monthly ADA data</td><td class="wt-before">15+ clicks · 20 min</td><td class="wt-after">6 clicks · 10 min</td><td><span class="wt-imp">50% faster</span></td></tr>
+      <tr class="wt-row"><td class="wt-task">Review calculation status</td><td class="wt-before">8 clicks · 10 min</td><td class="wt-after">2 clicks · 3 min</td><td><span class="wt-imp">70% faster</span></td></tr>
+      <tr class="wt-row"><td class="wt-task">Generate report</td><td class="wt-before">8 clicks · 10 min</td><td class="wt-after">3 clicks · 4 min</td><td><span class="wt-imp">60% faster</span></td></tr>
+      <tr class="wt-row"><td class="wt-task">Apply calculation override</td><td class="wt-before">12 clicks · 15 min</td><td class="wt-after">5 clicks · 6 min</td><td><span class="wt-imp">60% faster</span></td></tr>
+    </tbody>
+  </table>
+</section>
+<div class="ds-band">
+  <div class="ds-inner">
+    <div class="eyebrow fu" style="color:rgba(255,255,255,0.3)">Design System</div>
+    <h2 class="section-h fu fu2" style="color:#fff">40+ Components,<br><em style="color:var(--gold-light)">One Cohesive Language</em></h2>
+    <p class="section-lead fu fu3" style="color:rgba(255,255,255,0.45)">Built a complete React component library — enabling consistent UI across all pages and rapid feature development.</p>
+    <div class="ds-grid fu">
+      <div class="ds-card"><div class="ds-card-title">Color System</div><div class="color-row"><div class="c-swatch" style="background:#2C4F7C"><span class="c-label" style="color:rgba(255,255,255,0.5)">Primary</span></div><div class="c-swatch" style="background:#2563EB"><span class="c-label" style="color:rgba(255,255,255,0.5)">Accent</span></div><div class="c-swatch" style="background:#10B981"><span class="c-label" style="color:rgba(255,255,255,0.5)">Success</span></div><div class="c-swatch" style="background:#F59E0B"><span class="c-label" style="color:rgba(0,0,0,0.4)">Warning</span></div><div class="c-swatch" style="background:#EF4444"><span class="c-label" style="color:rgba(255,255,255,0.5)">Error</span></div></div><div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7">Professional blue for government authority. Each semantic color maps to a specific system state — used consistently across badges, alerts, and charts.</div></div>
+      <div class="ds-card"><div class="ds-card-title">Status Badge System</div><div class="badge-row" style="margin-bottom:14px"><span class="badge badge-green">Complete</span><span class="badge badge-orange">Pending</span><span class="badge badge-red">Error</span><span class="badge badge-gray">Not Started</span></div><div style="font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7">Four states cover every calculation scenario. Color + label ensures accessibility for users with color vision differences.</div></div>
+      <div class="ds-card"><div class="ds-card-title">Component Library — 40+ Components</div><div class="comp-chips"><span class="comp-chip">DashboardLayout</span><span class="comp-chip">PageHeader</span><span class="comp-chip">Sidebar</span><span class="comp-chip">Breadcrumb</span><span class="comp-chip">KPICard</span><span class="comp-chip">StatusBadge</span><span class="comp-chip">DataTable</span><span class="comp-chip">ChartContainer</span><span class="comp-chip">TextInput</span><span class="comp-chip">Select</span><span class="comp-chip">DatePicker</span><span class="comp-chip">Alert</span><span class="comp-chip">Toast</span><span class="comp-chip">Modal</span><span class="comp-chip">ConfirmDialog</span><span class="comp-chip">NavLink</span><span class="comp-chip">Tabs</span><span class="comp-chip">Pagination</span></div></div>
+      <div class="ds-card"><div class="ds-card-title">Design Tokens</div><div class="token-row"><span>Spacing Scale</span><span class="token-val">8px base unit</span></div><div class="token-row"><span>Border Radius</span><span class="token-val">4px · 8px · 12px</span></div><div class="token-row"><span>Shadow System</span><span class="token-val">sm · md · lg</span></div><div class="token-row"><span>Transitions</span><span class="token-val">150ms · 300ms</span></div></div>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="eyebrow fu">Results & Impact</div>
+  <h2 class="section-h fu fu2">Measurable Outcomes<br><em>Across Every Metric</em></h2>
+  <div class="results-grid fu">
+    <div class="result-cell"><div class="result-num">40–50%</div><div class="result-desc">Faster task completion</div><div class="result-before">15–20 min → 8–10 min</div></div>
+    <div class="result-cell"><div class="result-num">60%</div><div class="result-desc">Reduction in data entry errors</div><div class="result-before">~15% → ~6% error rate</div></div>
+    <div class="result-cell"><div class="result-num">+36</div><div class="result-desc">NPS score increase</div><div class="result-before">32 → 68 satisfaction score</div></div>
+    <div class="result-cell"><div class="result-num">60%</div><div class="result-desc">Fewer page loads per session</div><div class="result-before">25–30 → 10–12 loads</div></div>
+    <div class="result-cell"><div class="result-num">45%</div><div class="result-desc">Reduction in support tickets</div><div class="result-before">40/month → 22/month</div></div>
+    <div class="result-cell"><div class="result-num">95%</div><div class="result-desc">Faster page load speed</div><div class="result-before">2–5 sec → &lt;100ms</div></div>
+  </div>
+  <div class="quotes-grid fu">
+    <div class="quote-card"><div class="quote-text">This is like going from a flip phone to a smartphone. I can finally see everything at a glance.</div><div class="quote-author">District Finance Officer</div></div>
+    <div class="quote-card"><div class="quote-text">The new dashboard saves me at least 30 minutes every month. I love the visual status indicators.</div><div class="quote-author">School Administrator</div></div>
+    <div class="quote-card"><div class="quote-text">Training new staff is so much easier now. The interface is intuitive and self-explanatory.</div><div class="quote-author">State Finance Administrator</div></div>
+  </div>
+</section>
+<section style="padding-top:0;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="eyebrow fu">Technical Implementation</div>
+  <h2 class="section-h fu fu2">Built for Performance<br><em>and Scale</em></h2>
+  <div class="tech-grid fu">
+    <div class="tech-card"><div class="tech-icon">⚛️</div><div class="tech-name">React 18</div><div class="tech-desc">Component architecture with hooks for clean state management</div></div>
+    <div class="tech-card"><div class="tech-icon">🔷</div><div class="tech-name">TypeScript</div><div class="tech-desc">Type safety across 40+ components — fewer runtime errors</div></div>
+    <div class="tech-card"><div class="tech-icon">🎨</div><div class="tech-name">Tailwind CSS v4</div><div class="tech-desc">Utility-first styling for rapid, consistent UI development</div></div>
+    <div class="tech-card"><div class="tech-icon">📊</div><div class="tech-name">Recharts</div><div class="tech-desc">Data visualization for ADA trends and payment analytics</div></div>
+    <div class="tech-card"><div class="tech-icon">🔀</div><div class="tech-name">React Router v7</div><div class="tech-desc">SPA navigation — eliminates full page reloads entirely</div></div>
+    <div class="tech-card"><div class="tech-icon">🖼️</div><div class="tech-name">Lucide React</div><div class="tech-desc">Consistent iconography across all components</div></div>
+    <div class="tech-card"><div class="tech-icon">♿</div><div class="tech-name">WCAG 2.1 AA</div><div class="tech-desc">Keyboard nav, ARIA labels, screen-reader tested</div></div>
+    <div class="tech-card"><div class="tech-icon">📱</div><div class="tech-name">Responsive</div><div class="tech-desc">Desktop-first · Tablet-optimized · Mobile-capable</div></div>
+  </div>
+</section>
+<section>
+  <div class="eyebrow fu">Lessons Learned</div>
+  <h2 class="section-h fu fu2">Reflections on<br><em>the Process</em></h2>
+  <div class="lessons-grid fu">
+    <div class="lesson-card dark"><div class="lesson-icon">✅</div><div class="lesson-title">What Worked Well</div><div class="lesson-body">User-centered approach with regular stakeholder check-ins kept design aligned with real needs. Three rounds of iterative testing caught issues early. Visual feedback dramatically improved usability. Progressive enhancement ensured MVP success.</div></div>
+    <div class="lesson-card"><div class="lesson-icon">🔧</div><div class="lesson-title">Challenges Overcome</div><div class="lesson-body">Balancing feature richness with simplicity — solved with progressive disclosure. Migrating users from the legacy system — solved with side-by-side before/after training materials. Complex validation — solved with reusable validation hooks and clear error messaging.</div></div>
+    <div class="lesson-card"><div class="lesson-icon">↩️</div><div class="lesson-title">What I'd Do Differently</div><div class="lesson-body">Conduct 8–10 usability sessions instead of 5. Include dark mode in the initial scope rather than Phase 2. Prioritize tablet experience earlier in the process. Engage an accessibility expert sooner — at the design phase, not after development.</div></div>
+  </div>
+  <div style="margin-top:72px">
+    <div class="eyebrow fu">Phase 2 Roadmap</div>
+    <h2 class="section-h fu fu2">What's<br><em>Coming Next</em></h2>
+    <div class="roadmap-list fu">
+      <div class="rm-row"><div class="rm-phase-label">Collaboration</div><div class="rm-chips"><span class="rm-chip">Real-time multi-user editing</span><span class="rm-chip">Conflict resolution UI</span></div></div>
+      <div class="rm-row"><div class="rm-phase-label">Intelligence</div><div class="rm-chips"><span class="rm-chip">ML-based ADA/WADA forecasting</span><span class="rm-chip">Predictive analytics</span></div></div>
+      <div class="rm-row"><div class="rm-phase-label">Reporting</div><div class="rm-chips"><span class="rm-chip">Custom report builder</span><span class="rm-chip">Scheduled exports</span><span class="rm-chip">Advanced filtering</span></div></div>
+      <div class="rm-row"><div class="rm-phase-label">Accessibility</div><div class="rm-chips"><span class="rm-chip">Dark mode</span><span class="rm-chip">Offline mode with sync</span><span class="rm-chip">Native iOS & Android</span></div></div>
+      <div class="rm-row"><div class="rm-phase-label">Automation</div><div class="rm-chips"><span class="rm-chip">Scheduled calculations</span><span class="rm-chip">Automated report delivery</span><span class="rm-chip">Customizable dashboards</span></div></div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="footer-brand">Missouri <span>DESE</span> — School Finance</div>
+  <div class="footer-nav"><a href="portfolio.html">← All Projects</a></div>
+  <div class="footer-note">Shivani Harode · Sr. UI/UX Designer · 2026</div>
+</footer>
+<script>
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}}),{threshold:0.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

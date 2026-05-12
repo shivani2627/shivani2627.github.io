@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROTECT XCQ — Inter-County Query Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1b3358;--navy-mid:#233b63;--gold:#d4a843;--gold-light:#e8c265;--gold-pale:#fdf6e3;--cream:#faf8f3;--white:#ffffff;--text:#1a1924;--text-mid:#4a4860;--text-light:#8a8aa0;--border:#e4e0d8;--border-light:#eeebe4;--purple:#4a3580;--purple-light:#f0edf8}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(250,248,243,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);text-decoration:none;transition:color 0.2s}.nav-back:hover{color:var(--navy)}
+.nav-brand{font-family:'Fraunces',serif;font-size:17px;color:var(--navy)}.nav-brand span{color:var(--gold)}
+.nav-tag{font-size:11px;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase}
+
+/* HERO — dark with purple tint */
+.hero{padding:140px 80px 80px;background:#1a1630;display:grid;grid-template-columns:1.5fr 1fr;gap:80px;align-items:end;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-150px;right:-150px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(74,53,128,0.4) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-200px;left:10%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,0.08) 0%,transparent 65%);pointer-events:none}
+.hero-number{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,64px);line-height:1.0;color:#fff;margin-bottom:20px;font-weight:500}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-subtitle{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.8;font-weight:300;margin-bottom:40px;max-width:520px}
+.hero-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.1);padding-top:32px}
+.meta-col{padding-right:20px}.meta-col+.meta-col{padding-left:20px;border-left:1px solid rgba(255,255,255,0.1)}
+.meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px}
+.meta-val{font-size:13px;color:rgba(255,255,255,0.85);font-weight:500}
+.hero-right{position:relative;z-index:2;display:flex;flex-direction:column;gap:12px}
+.legacy-badge{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px}
+.lb-year{font-family:'Fraunces',serif;font-size:36px;color:rgba(255,255,255,0.2);line-height:1;margin-bottom:6px}
+.lb-label{font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px}
+.lb-desc{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;font-weight:300}
+.new-badge{background:rgba(212,168,67,0.1);border:1px solid rgba(212,168,67,0.25);border-radius:12px;padding:20px}
+.nb-label{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.nb-desc{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.65;font-weight:300}
+
+section{max-width:1100px;margin:0 auto;padding:90px 80px}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.section-h{font-family:'Fraunces',serif;font-size:clamp(30px,3.5vw,46px);line-height:1.05;color:var(--text);margin-bottom:16px;font-weight:500}
+.section-h em{font-style:italic;color:var(--navy)}
+.section-lead{font-size:17px;color:var(--text-mid);line-height:1.8;font-weight:300;max-width:640px}
+
+/* PROCESS PHASES */
+.phases{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:56px}
+.phase{background:var(--white);padding:28px 20px;text-align:center;transition:background 0.2s;cursor:default}
+.phase:hover{background:var(--cream)}
+.phase-icon{font-size:22px;margin-bottom:12px}
+.phase-name{font-size:12px;font-weight:500;color:var(--text);margin-bottom:6px}
+.phase-desc{font-size:11px;color:var(--text-light);line-height:1.6}
+
+/* DESIGN SYSTEM SHOWCASE */
+.ds-showcase{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:56px}
+.ds-card{border-radius:16px;border:1px solid var(--border);padding:32px;background:var(--white)}
+.ds-card.dark{background:var(--navy);border-color:transparent}
+.ds-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:20px}
+.ds-card.dark .ds-title{color:#fff}
+.color-row{display:flex;gap:8px;margin-bottom:20px}
+.c-swatch{height:40px;border-radius:8px;flex:1;display:flex;align-items:flex-end;padding:6px;font-size:9px;font-family:'DM Mono',monospace}
+.type-demo{display:flex;flex-direction:column;gap:10px}
+.type-row{display:flex;align-items:baseline;gap:12px}
+.type-sample{font-family:'Fraunces',serif;color:var(--text)}
+.type-label{font-size:10px;color:var(--text-light);letter-spacing:0.06em}
+.grid-demo{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.grid-cell{height:32px;background:rgba(255,255,255,0.07);border-radius:4px;border:1px solid rgba(255,255,255,0.08)}
+.grid-cell.header{background:rgba(212,168,67,0.2);border-color:rgba(212,168,67,0.3)}
+
+/* PROCESS STEPS */
+.proc-steps{display:flex;flex-direction:column;gap:0;margin-top:56px}
+.ps-item{display:grid;grid-template-columns:56px 1fr;gap:32px;padding:32px 0;border-bottom:1px solid var(--border-light);align-items:start}
+.ps-item:last-child{border-bottom:none}
+.ps-num{font-family:'Fraunces',serif;font-size:36px;color:var(--border);line-height:1;font-weight:700;transition:color 0.3s}
+.ps-item:hover .ps-num{color:var(--gold-light)}
+.ps-title{font-family:'Fraunces',serif;font-size:20px;color:var(--text);margin-bottom:10px;font-weight:500}
+.ps-body{font-size:14px;color:var(--text-mid);line-height:1.8}
+.ps-sub{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.ps-point{display:flex;gap:10px;font-size:13px;color:var(--text-mid);line-height:1.6}
+.ps-point::before{content:'→';color:var(--gold);flex-shrink:0}
+
+/* OLD VS NEW COMPARISON */
+.compare-section{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:48px}
+.comp-panel{border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+.comp-header{padding:14px 20px;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.comp-header.old{background:#f5f4f2;color:var(--text-light)}
+.comp-header.new{background:var(--gold-pale);color:#7a5c00;border-color:rgba(212,168,67,0.2)}
+.comp-body{background:var(--white);padding:0}
+.comp-row{display:flex;gap:12px;padding:12px 20px;border-bottom:1px solid var(--border-light);font-size:13px;color:var(--text-mid);line-height:1.55}
+.comp-row:last-child{border-bottom:none}
+.comp-row .ic{flex-shrink:0;margin-top:1px}
+
+/* SKETCH/WIREFRAME SIM */
+.xcq-sim{background:#1a1630;border-radius:20px;overflow:hidden;margin-top:56px}
+.xs-topbar{background:#120f24;padding:12px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.xs-dot{width:9px;height:9px;border-radius:50%}
+.xs-header-bar{background:#1f1a3a;padding:12px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.xs-logo{font-family:'Fraunces',serif;font-size:15px;display:flex;gap:2px}
+.xs-nav-item{font-size:11px;color:rgba(255,255,255,0.3);padding:4px 12px;border-radius:100px}
+.xs-nav-item.active{background:rgba(212,168,67,0.15);color:var(--gold-light)}
+.xs-search-area{padding:20px;background:#161228;border-bottom:1px solid rgba(255,255,255,0.05)}
+.xs-search-row{display:flex;gap:12px;align-items:center;margin-bottom:10px}
+.xs-field{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:7px 12px;font-size:12px;color:rgba(255,255,255,0.4);font-family:'DM Sans',sans-serif;flex:1}
+.xs-field.short{flex:0 0 120px}
+.xs-btn{background:#d4a843;border:none;border-radius:4px;padding:7px 20px;font-size:12px;color:#1a1a00;font-weight:500;font-family:'DM Sans',sans-serif}
+.xs-table-head{display:grid;grid-template-columns:2fr 1fr 0.8fr 0.8fr 1.5fr;padding:8px 20px;background:rgba(255,255,255,0.04);gap:8px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.xs-th{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.06em;text-transform:uppercase}
+.xs-row{display:grid;grid-template-columns:2fr 1fr 0.8fr 0.8fr 1.5fr;padding:9px 20px;gap:8px;border-bottom:1px solid rgba(255,255,255,0.03);align-items:center}
+.xs-row:hover{background:rgba(255,255,255,0.02)}
+.xs-row:nth-child(even){background:rgba(255,255,255,0.01)}
+.xs-cell{font-size:12px;color:rgba(255,255,255,0.5)}
+.xs-link{color:#7aabdc;text-decoration:underline;font-size:12px}
+.xs-caption{padding:12px 20px;font-size:11px;color:rgba(255,255,255,0.2);text-align:center;border-top:1px solid rgba(255,255,255,0.04)}
+
+/* CHALLENGES + SOLUTIONS */
+.cs-split{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:56px}
+.cs-col-title{font-family:'Fraunces',serif;font-size:22px;color:var(--text);margin-bottom:24px;font-weight:500}
+.cs-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid var(--border-light);font-size:14px;color:var(--text-mid);line-height:1.65}
+.cs-item:last-child{border-bottom:none}
+.cs-bullet{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:8px;flex-shrink:0}
+
+/* TAKEAWAY */
+.takeaway-band{background:#1a1630;padding:90px 0}
+.takeaway-inner{max-width:1100px;margin:0 auto;padding:0 80px;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
+.takeaway-quote{font-family:'Fraunces',serif;font-size:26px;color:#fff;line-height:1.45;font-style:italic;font-weight:300}
+.takeaway-quote::before{content:'"';color:var(--gold-light);font-size:48px;line-height:0.5;display:block;margin-bottom:16px}
+.kl-item{display:flex;gap:14px;font-size:14px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:16px}
+.kl-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:7px;flex-shrink:0}
+
+footer{background:var(--cream);border-top:1px solid var(--border);padding:36px 80px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Fraunces',serif;font-size:15px;color:var(--navy)}.footer-brand span{color:var(--gold)}
+.footer-note{font-size:12px;color:var(--text-light)}
+.footer-nav{display:flex;gap:24px}.footer-nav a{font-size:13px;color:var(--text-light);text-decoration:none;transition:color 0.2s}.footer-nav a:hover{color:var(--navy)}
+
+.fu{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}.fu.on{opacity:1;transform:translateY(0)}
+.fu2{transition-delay:0.1s}.fu3{transition-delay:0.2s}.fu4{transition-delay:0.3s}
+@media(max-width:900px){nav{padding:0 24px}.hero{grid-template-columns:1fr;padding:100px 32px 60px}section{padding:60px 32px}.phases{grid-template-columns:1fr 1fr}.ds-showcase,.compare-grid,.cs-split,.takeaway-inner{grid-template-columns:1fr}.takeaway-band{padding:60px 0}.takeaway-inner{padding:0 32px}footer{flex-direction:column;gap:12px;text-align:center;padding:28px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-back" href="protect-overview.html">← All Projects</a>
+  <div class="nav-brand">PRO<span>TECT</span></div>
+  <div class="nav-tag">04 / XCQ Inter-County Query</div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-number fu">04 — Web Application Redesign</div>
+    <h1 class="hero-title fu fu2">PROTECT XCQ<br><em>Inter-County</em><br>Query</h1>
+    <p class="hero-subtitle fu fu3">A ground-up redesign of a legacy web application originally built in 2005 — modernized with a proper design system, improved UX, and a performant data grid built for legal search workflows across all Wisconsin counties.</p>
+    <div class="hero-meta fu fu4">
+      <div class="meta-col"><div class="meta-label">Client</div><div class="meta-val">SOW – DOA</div></div>
+      <div class="meta-col"><div class="meta-label">Role</div><div class="meta-val">Sr. UI/UX Designer</div></div>
+      <div class="meta-col"><div class="meta-label">Legacy Age</div><div class="meta-val">~20 Years</div></div>
+      <div class="meta-col"><div class="meta-label">Year</div><div class="meta-val">2024–2025</div></div>
+    </div>
+  </div>
+  <div class="hero-right fu">
+    <div class="legacy-badge">
+      <div class="lb-year">2005</div>
+      <div class="lb-label">Original build year</div>
+      <div class="lb-desc">The XCQ was built nearly 20 years ago with no design system, inconsistent layouts, poor performance on large result sets, and no accessibility considerations.</div>
+    </div>
+    <div class="new-badge">
+      <div class="nb-label">✓ Redesigned 2024</div>
+      <div class="nb-desc">Modern design system, consistent component library, improved search UX, new data grid, and stakeholder-validated high-fidelity prototypes — all built in Figma before engineering handoff.</div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="eyebrow fu">Objective</div>
+  <h2 class="section-h fu fu2">Redesigning a<br><em>20-Year-Old App</em></h2>
+  <p class="section-lead fu fu3">The goal was to redesign the XCQ Inter-County Query web application to improve its appearance and performance. The original process was developed back in 2005 — before modern UX standards, accessible design, or responsive web practices existed.</p>
+
+  <div class="phases fu">
+    <div class="phase"><div class="phase-icon">🔎</div><div class="phase-name">Discovery</div><div class="phase-desc">User research, stakeholder sessions, pain point mapping</div></div>
+    <div class="phase"><div class="phase-icon">🎨</div><div class="phase-name">Design System</div><div class="phase-desc">Color palette, typography, component library in Figma</div></div>
+    <div class="phase"><div class="phase-icon">✏️</div><div class="phase-name">Ideation</div><div class="phase-desc">Sketches and low-fidelity wireframes exploring layouts</div></div>
+    <div class="phase"><div class="phase-icon">🖥</div><div class="phase-name">Prototyping</div><div class="phase-desc">High-fidelity prototypes reviewed by stakeholders</div></div>
+    <div class="phase"><div class="phase-icon">🚀</div><div class="phase-name">Handoff</div><div class="phase-desc">Developer specs, component docs, and final review</div></div>
+  </div>
+</section>
+
+<!-- DESIGN SYSTEM -->
+<section style="padding-top:0;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="eyebrow fu">Design System</div>
+  <h2 class="section-h fu fu2">Built a System<br><em>From Scratch</em></h2>
+  <p class="section-lead fu fu3">The XCQ had no design system — no defined color palette, no typography scale, no reusable components. My first step was to establish a consistent foundation that distributors PROTECT's visual identity and could scale across all future updates.</p>
+
+  <div class="ds-showcase fu">
+    <div class="ds-card">
+      <div class="ds-title">Color Palette</div>
+      <div class="color-row">
+        <div class="c-swatch" style="background:#1b3358"><span style="color:rgba(255,255,255,0.5)">Navy</span></div>
+        <div class="c-swatch" style="background:#2e4f85"><span style="color:rgba(255,255,255,0.5)">Mid</span></div>
+        <div class="c-swatch" style="background:#d4a843"><span style="color:rgba(0,0,0,0.5)">Gold</span></div>
+        <div class="c-swatch" style="background:#e8e6e0"><span style="color:rgba(0,0,0,0.3)">Light</span></div>
+        <div class="c-swatch" style="background:#fdf6e3"><span style="color:rgba(0,0,0,0.3)">Pale</span></div>
+      </div>
+      <div style="font-size:13px;color:var(--text-mid);line-height:1.7">Created a consistent, and non-repeating color palette using CSS variables. Primary blue for structure and authority; gold as the accent for interactive elements and key actions.</div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-title">Typography Scale</div>
+      <div class="type-demo">
+        <div class="type-row"><span class="type-sample" style="font-size:28px">H1 Heading</span><span class="type-label">28px / Fraunces</span></div>
+        <div class="type-row"><span class="type-sample" style="font-size:20px">H2 Heading</span><span class="type-label">20px / Fraunces</span></div>
+        <div class="type-row"><span class="type-sample" style="font-size:14px;font-family:'DM Sans',sans-serif">Body text</span><span class="type-label">14px / DM Sans</span></div>
+        <div class="type-row"><span class="type-sample" style="font-size:12px;font-family:'DM Mono',monospace">Mono label</span><span class="type-label">12px / DM Mono</span></div>
+      </div>
+    </div>
+    <div class="ds-card dark">
+      <div class="ds-title">Component Library</div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="flex:1;height:32px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:4px;display:flex;align-items:center;padding:0 10px"><span style="font-size:11px;color:rgba(255,255,255,0.3)">Search field</span></div>
+          <div style="background:var(--gold);padding:6px 16px;border-radius:4px;font-size:11px;color:#1a1a00;font-weight:500">Search</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:10px 12px">
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px">
+            <div style="height:12px;background:rgba(212,168,67,0.25);border-radius:2px"></div>
+            <div style="height:12px;background:rgba(212,168,67,0.25);border-radius:2px"></div>
+            <div style="height:12px;background:rgba(212,168,67,0.25);border-radius:2px"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+            <div style="height:10px;background:rgba(255,255,255,0.06);border-radius:2px"></div>
+            <div style="height:10px;background:rgba(255,255,255,0.06);border-radius:2px"></div>
+            <div style="height:10px;background:rgba(255,255,255,0.06);border-radius:2px"></div>
+          </div>
+        </div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6">Reusable form inputs, data grid with sortable headers, status badges, and pagination — all built to spec for developer handoff</div>
+      </div>
+    </div>
+    <div class="ds-card">
+      <div class="ds-title">Data Grid Design</div>
+      <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;background:var(--navy);padding:8px 12px;gap:8px">
+          <div style="font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.05em">Full Name ↕</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.05em">DOB ↕</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.6);letter-spacing:0.05em">County</div>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;gap:8px;background:#fdf6e3;border-bottom:1px solid var(--border)">
+          <span style="font-size:12px;color:#2255aa;text-decoration:underline">Akbar, Aubreyona R</span>
+          <span style="font-size:12px;color:var(--text-mid)">07/25/1997</span>
+          <span style="font-size:12px;color:var(--text-mid)">Dane</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;gap:8px;border-bottom:1px solid var(--border-light)">
+          <span style="font-size:12px;color:#2255aa;text-decoration:underline">Allen, Chad R</span>
+          <span style="font-size:12px;color:var(--text-mid)">07/30/1973</span>
+          <span style="font-size:12px;color:var(--text-mid)">Milwaukee</span>
+        </div>
+        <div style="display:grid;grid-template-columns:2fr 1fr 1fr;padding:8px 12px;gap:8px;background:#f9f8f5">
+          <span style="font-size:12px;color:#2255aa;text-decoration:underline">Arp, Troy J</span>
+          <span style="font-size:12px;color:var(--text-mid)">02/04/1968</span>
+          <span style="font-size:12px;color:var(--text-mid)">Waukesha</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section>
+  <div class="eyebrow fu">Design Process</div>
+  <h2 class="section-h fu fu2">Step by Step<br><em>Through the Redesign</em></h2>
+  <div class="proc-steps">
+    <div class="ps-item fu">
+      <div class="ps-num">01</div>
+      <div>
+        <div class="ps-title">Discovery & Stakeholder Alignment</div>
+        <div class="ps-body">Conducted structured discovery sessions with key stakeholders, the Business Analyst, and end-users — primarily DA staff who run inter-county queries daily. Reviewed customer feedback reports to understand real pain points and performance bottlenecks in the legacy application.</div>
+        <div class="ps-sub">
+          <div class="ps-point">Identified key pain points: slow load times on large result sets, confusing layout that hadn't changed in 20 years, no column sorting, and no mobile consideration</div>
+          <div class="ps-point">Reviewed business goals and aligned the redesign to both UX improvements and technical constraints from the development team</div>
+        </div>
+      </div>
+    </div>
+    <div class="ps-item fu">
+      <div class="ps-num">02</div>
+      <div>
+        <div class="ps-title">Design System Creation</div>
+        <div class="ps-body">Before any wireframes, I established a comprehensive Design System Blueprint in Figma — a first for the XCQ product. This included color tokens, typography scale, component specs (buttons, inputs, tables, badges), and spacing rules derived from PROTECT's established brand standards.</div>
+        <div class="ps-sub">
+          <div class="ps-point">Used Figma's component architecture to ensure all elements were consistent and reusable across screens</div>
+          <div class="ps-point">Simplified the update process — future changes cascade automatically across all instances</div>
+        </div>
+      </div>
+    </div>
+    <div class="ps-item fu">
+      <div class="ps-num">03</div>
+      <div>
+        <div class="ps-title">Ideation & Sketching</div>
+        <div class="ps-body">Started with rough sketches using Draw.io and Jam.jam to explore multiple approaches to the search interface, results grid, and filtering patterns. Sketches were kept loose to encourage iteration — we explored three distinct layout directions before converging on the most usable structure for legal professionals.</div>
+        <div class="ps-sub">
+          <div class="ps-point">Explored tab-based vs. single-page search flows — single page won for its lower cognitive overhead</div>
+          <div class="ps-point">Tested different approaches to displaying county data — inline column vs. filtered views</div>
+        </div>
+      </div>
+    </div>
+    <div class="ps-item fu">
+      <div class="ps-num">04</div>
+      <div>
+        <div class="ps-title">High-Fidelity Prototyping</div>
+        <div class="ps-body">Built high-fidelity, interactive prototypes in Figma using the new design system. Shared with stakeholders and end-users for structured feedback rounds, then iterated through two more rounds of refinement before finalizing the component specs and developer handoff package.</div>
+        <div class="ps-sub">
+          <div class="ps-point">Added sorting, filtering, and column-level controls to the data grid — features the legacy app completely lacked</div>
+          <div class="ps-point">Accessibility improvements: proper color contrast ratios, keyboard-navigable table, screen-reader-compatible headers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OLD VS NEW -->
+<section class="compare-section" style="padding:90px 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 80px">
+    <div class="eyebrow fu">Old vs New</div>
+    <h2 class="section-h fu fu2">Before and After<br><em>Side by Side</em></h2>
+    <div class="compare-grid fu">
+      <div class="comp-panel">
+        <div class="comp-header old">⬛ Legacy XCQ — Original Design</div>
+        <div class="comp-body">
+          <div class="comp-row"><span class="ic">🏚</span>Built in 2005 — no modern design system or components</div>
+          <div class="comp-row"><span class="ic">🔀</span>Inconsistent layouts across search, results, and detail pages</div>
+          <div class="comp-row"><span class="ic">⛔</span>No column sorting — users couldn't reorder results</div>
+          <div class="comp-row"><span class="ic">🐌</span>Poor performance on large query results — no pagination strategy</div>
+          <div class="comp-row"><span class="ic">♿</span>No accessibility consideration — failed contrast and keyboard nav</div>
+          <div class="comp-row"><span class="ic">📱</span>Fixed-width layout — not usable on smaller screens</div>
+          <div class="comp-row"><span class="ic">🔄</span>No design documentation — every update required re-design from scratch</div>
+        </div>
+      </div>
+      <div class="comp-panel">
+        <div class="comp-header new">✦ Redesigned XCQ — New Design</div>
+        <div class="comp-body">
+          <div class="comp-row"><span class="ic">✅</span>Full design system — color tokens, type scale, component library</div>
+          <div class="comp-row"><span class="ic">✅</span>Consistent layouts governed by reusable Figma components</div>
+          <div class="comp-row"><span class="ic">✅</span>Sortable columns with clear visual indicators and keyboard support</div>
+          <div class="comp-row"><span class="ic">✅</span>Improved data grid with pagination — handles 5,000+ records without degradation</div>
+          <div class="comp-row"><span class="ic">✅</span>WCAG AA contrast, proper table semantics, keyboard-navigable</div>
+          <div class="comp-row"><span class="ic">✅</span>Responsive layout that adapts to monitor sizes and browser zoom</div>
+          <div class="comp-row"><span class="ic">✅</span>Figma component library as single source of truth for all future updates</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Real screenshot comparison -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:32px">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+        <div style="background:#2a2a2a;padding:10px 16px;font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:8px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#ff5f57;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#febc2e;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#28c840;display:inline-block"></span>
+          Old XCQ Screens (Legacy)
+        </div>
+        <img src="xcq-old-screens.png" alt="Old XCQ Interface" style="width:100%;display:block;object-fit:cover;object-position:top;max-height:320px">
+        <div style="padding:12px 16px;font-size:12px;color:var(--text-light);background:var(--cream);border-top:1px solid var(--border-light)">Original XCQ interface — dense, unstyled, no sorting controls or visual hierarchy</div>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+        <div style="background:#1b3358;padding:10px 16px;font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:8px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#ff5f57;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#febc2e;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#28c840;display:inline-block"></span>
+          New XCQ Screens (Redesigned)
+        </div>
+        <img src="xcq-new-screens.png" alt="New XCQ Interface" style="width:100%;display:block;object-fit:cover;object-position:top;max-height:320px">
+        <div style="padding:12px 16px;font-size:12px;color:var(--text-light);background:var(--cream);border-top:1px solid var(--border-light)">Redesigned XCQ — navy header, sortable columns, structured data grid, PROTECT branding applied</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEW DESIGN SIM -->
+<section>
+  <div class="eyebrow fu">New Interface</div>
+  <h2 class="section-h fu fu2">The Redesigned<br><em>XCQ Experience</em></h2>
+
+  <div class="xcq-sim fu">
+    <div class="xs-topbar">
+      <div class="xs-dot" style="background:#ff5f57"></div>
+      <div class="xs-dot" style="background:#febc2e"></div>
+      <div class="xs-dot" style="background:#28c840"></div>
+      <span style="font-size:11px;color:rgba(255,255,255,0.2);margin-left:12px">PROTECT XCQ — Inter-County Query (New Design)</span>
+    </div>
+    <div class="xs-header-bar">
+      <div class="xs-logo"><span style="color:#5b9bd5">PRO</span><span style="color:var(--gold)">TECT</span></div>
+      <span class="xs-nav-item active">XCQ Search</span>
+      <span class="xs-nav-item">Person Lookup</span>
+      <span class="xs-nav-item">Case Search</span>
+      <span class="xs-nav-item">Reports</span>
+    </div>
+    <div class="xs-search-area">
+      <div style="font-size:11px;color:rgba(255,255,255,0.3);margin-bottom:12px;letter-spacing:0.06em;text-transform:uppercase">Search People — All Counties</div>
+      <div class="xs-search-row">
+        <div class="xs-field">Last Name</div>
+        <div class="xs-field">First Name</div>
+        <div class="xs-field short">Date of Birth</div>
+        <div class="xs-field short">County</div>
+        <div class="xs-btn">Search ↗</div>
+      </div>
+    </div>
+    <div style="padding:8px 20px;background:rgba(255,255,255,0.02);font-size:11px;color:rgba(255,255,255,0.25);display:flex;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.04)">
+      <span>Showing results for Last = <strong style="color:rgba(255,255,255,0.4)">wood</strong></span>
+      <span>5,003 results found across 72 counties · Sorted by: Name A→Z</span>
+    </div>
+    <div class="xs-table-head">
+      <div class="xs-th">Full Name ↕</div><div class="xs-th">DOB ↕</div><div class="xs-th">Gender</div><div class="xs-th">Race</div><div class="xs-th">Alias Details</div>
+    </div>
+    <div class="xs-row"><span class="xs-link">Akbar, Aubreyona Renee</span><span class="xs-cell">07/25/1997</span><span class="xs-cell">F</span><span class="xs-cell">B</span><span class="xs-cell" style="font-size:11px;color:rgba(255,255,255,0.35)">AKA Aubreyona Woodley</span></div>
+    <div class="xs-row"><span class="xs-link">Allen, Chad R</span><span class="xs-cell">07/30/1973</span><span class="xs-cell">M</span><span class="xs-cell">W</span><span class="xs-cell" style="font-size:11px;color:rgba(255,255,255,0.35)">AKA Chad Russell Allen · AKA Chad Woodford</span></div>
+    <div class="xs-row"><span class="xs-link">Arp, Troy J</span><span class="xs-cell">02/04/1968</span><span class="xs-cell">M</span><span class="xs-cell">W</span><span class="xs-cell" style="font-size:11px;color:rgba(255,255,255,0.35)">AKA Troy Jay Woods · AKA Troy Jay Arp</span></div>
+    <div class="xs-row"><span class="xs-link">Ballesteros, Diana Renee</span><span class="xs-cell">10/05/1967</span><span class="xs-cell">F</span><span class="xs-cell">I</span><span class="xs-cell" style="font-size:11px;color:rgba(255,255,255,0.35)">AKA D. Wood · AKA Diana Renee Wood <span style="color:var(--gold);font-size:10px">+3</span></span></div>
+    <div class="xs-row" style="opacity:0.35"><span class="xs-link">Carlson, Michael</span><span class="xs-cell">—</span><span class="xs-cell">M</span><span class="xs-cell">W</span><span class="xs-cell" style="font-size:11px;color:rgba(255,255,255,0.25)">AKA Mike Woodfield</span></div>
+    <div class="xs-caption">Page 1 of 501 · 10 results per page · ← Prev  1  2  3 … 501  Next →</div>
+  </div>
+
+  <!-- Real Screenshots -->
+  <div style="margin-top:48px">
+    <div style="display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:24px"><span style="width:20px;height:1px;background:var(--gold);display:inline-block"></span>Actual Screens From the Project</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.08)">
+        <div style="background:#120f24;padding:10px 16px;font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:8px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#ff5f57;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#febc2e;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#28c840;display:inline-block"></span>
+          Sketches & Wireframes
+        </div>
+        <img src="xcq-wireframes.png" alt="XCQ Wireframes" style="width:100%;display:block;object-fit:cover;object-position:top;max-height:300px">
+        <div style="padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.3);background:#1a1630;border-top:1px solid rgba(255,255,255,0.06)">Early wireframes exploring layout structures and search interaction patterns</div>
+      </div>
+      <div style="border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,0.08)">
+        <div style="background:#120f24;padding:10px 16px;font-size:11px;color:rgba(255,255,255,0.4);display:flex;align-items:center;gap:8px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#ff5f57;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#febc2e;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#28c840;display:inline-block"></span>
+          Design System Documentation
+        </div>
+        <img src="xcq-design-system.png" alt="XCQ Design System" style="width:100%;display:block;object-fit:cover;object-position:top;max-height:300px">
+        <div style="padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.3);background:#1a1630;border-top:1px solid rgba(255,255,255,0.06)">Design system documentation — color tokens, component specs, and layout grid defined in Figma</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES + SOLUTIONS -->
+<section style="padding-top:0">
+  <div class="eyebrow fu">Challenges & Solutions</div>
+  <h2 class="section-h fu fu2">Obstacles and How<br><em>I Solved Them</em></h2>
+  <div class="cs-split fu">
+    <div>
+      <div class="cs-col-title">Challenges</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Designing web-style UI within older browser constraints — some advanced CSS features were unavailable in the supported browser versions</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Maintaining visual consistency with the existing PROTECT desktop application while building something fundamentally more modern</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Performance concerns — the legacy grid rendered all results at once; the new design needed pagination without disrupting existing user workflows</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Stakeholder alignment across IT, legal staff, and business analysts who each had different priorities for the redesign</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Validating design decisions without traditional usability testing — institutional constraints limited direct access to end-users</div>
+    </div>
+    <div>
+      <div class="cs-col-title">Solutions</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Used progressive enhancement — designed for modern browsers first, then tested and adjusted fallbacks for constrained environments</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Derived the XCQ design from the PROTECT brand system, using the same navy/gold palette and typographic approach for visual continuity</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Introduced pagination with configurable page size — users can set 10, 25, or 50 results per page based on their workflow preference</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Created a structured review cadence with stakeholders — bi-weekly check-ins with decision trackers to document all approved and pending design choices</div>
+      <div class="cs-item"><div class="cs-bullet"></div>Compensated with proxy testing — observed BA staff using the prototype in context and incorporated their behavioral observations into final revisions</div>
+    </div>
+  </div>
+</section>
+
+<div class="takeaway-band">
+  <div class="takeaway-inner">
+    <div>
+      <div class="eyebrow fu" style="color:rgba(255,255,255,0.3)">Takeaway</div>
+      <div class="takeaway-quote fu fu2">Redesigning legacy government applications requires as much organizational skill as design skill — the hardest part is alignment, not aesthetics.</div>
+    </div>
+    <div>
+      <div class="eyebrow fu" style="color:rgba(255,255,255,0.3)">Key Learnings</div>
+      <div class="fu fu2">
+        <div class="kl-item"><div class="kl-dot"></div>Legacy systems often have undocumented requirements that only emerge during design review — building in iteration cycles is essential</div>
+        <div class="kl-item"><div class="kl-dot"></div>A design system is the most impactful first deliverable for any legacy redesign project — it creates alignment before a single screen is designed</div>
+        <div class="kl-item"><div class="kl-dot"></div>Designing for legal professionals means prioritizing data density, accuracy, and speed over minimalism — the "clean" solution is often the wrong one</div>
+        <div class="kl-item"><div class="kl-dot"></div>Government projects also taught me about redesigning municipal websites — the importance of clear layout, clean visual design, and feature focus for public-facing tools</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">PRO<span>TECT</span> — XCQ Inter-County Query</div>
+  <div class="footer-nav"><a href="protect-efiling.html">← eFiling Site</a><a href="protect-overview.html">← All Projects</a></div>
+  <div class="footer-note">Shivani Harode · 2024–2025</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}}),{threshold:0.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

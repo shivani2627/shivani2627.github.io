@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PROTECT eFiling Site — Case Study</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#1b3358;--navy-mid:#233b63;--gold:#d4a843;--gold-light:#e8c265;--gold-pale:#fdf6e3;--cream:#faf8f3;--white:#ffffff;--text:#1a1924;--text-mid:#4a4860;--text-light:#8a8aa0;--border:#e4e0d8;--border-light:#eeebe4;--teal:#1a7a6e;--teal-light:#e8f6f4}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(250,248,243,0.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-back{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-mid);text-decoration:none;transition:color 0.2s}.nav-back:hover{color:var(--navy)}
+.nav-brand{font-family:'Fraunces',serif;font-size:17px;color:var(--navy)}.nav-brand span{color:var(--gold)}
+.nav-tag{font-size:11px;color:var(--text-light);letter-spacing:0.08em;text-transform:uppercase}
+
+/* HERO — teal-tinged dark for differentiation */
+.hero{padding:140px 80px 80px;background:var(--teal);display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:end;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,0.15) 0%,transparent 65%);pointer-events:none}
+.hero-number{font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(40px,5vw,64px);line-height:1.0;color:#fff;margin-bottom:20px;font-weight:500}
+.hero-title em{font-style:italic;color:var(--gold-light)}
+.hero-subtitle{font-size:17px;color:rgba(255,255,255,0.65);line-height:1.8;font-weight:300;margin-bottom:40px;max-width:500px}
+.hero-meta{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(255,255,255,0.15);padding-top:32px}
+.meta-col{padding-right:24px}.meta-col+.meta-col{padding-left:24px;border-left:1px solid rgba(255,255,255,0.15)}
+.meta-label{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:6px}
+.meta-val{font-size:14px;color:rgba(255,255,255,0.9);font-weight:500}
+.hero-right{position:relative;z-index:2}
+
+/* Data nightly badge */
+.data-badge{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px;backdrop-filter:blur(10px)}
+.db-stat{display:flex;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.08)}
+.db-stat:last-child{border-bottom:none;padding-bottom:0}
+.db-num{font-family:'Fraunces',serif;font-size:28px;color:var(--gold-light);min-width:60px}
+.db-label{font-size:13px;color:rgba(255,255,255,0.55);line-height:1.5;font-weight:300}
+
+section{max-width:1100px;margin:0 auto;padding:90px 80px}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:20px}
+.eyebrow::before{content:'';width:20px;height:1px;background:var(--gold)}
+.section-h{font-family:'Fraunces',serif;font-size:clamp(30px,3.5vw,46px);line-height:1.05;color:var(--text);margin-bottom:16px;font-weight:500}
+.section-h em{font-style:italic;color:var(--navy)}
+.section-lead{font-size:17px;color:var(--text-mid);line-height:1.8;font-weight:300;max-width:640px}
+
+/* HOW IT WORKS flow */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;position:relative}
+.how-grid::before{content:'';position:absolute;top:28px;left:calc(12.5%);right:calc(12.5%);height:1px;background:var(--border);z-index:0}
+.how-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.how-circle{width:56px;height:56px;border-radius:50%;background:var(--white);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Fraunces',serif;font-size:20px;color:var(--navy);transition:border-color 0.3s,background 0.3s}
+.how-step:hover .how-circle{border-color:var(--gold);background:var(--gold-pale)}
+.how-step-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:8px}
+.how-step-desc{font-size:12px;color:var(--text-light);line-height:1.6}
+
+/* FEATURES */
+.features-list{display:flex;flex-direction:column;gap:0;margin-top:56px}
+.feat-item{display:grid;grid-template-columns:240px 1fr;gap:48px;padding:36px 0;border-bottom:1px solid var(--border-light);align-items:start}
+.feat-item:last-child{border-bottom:none}
+.feat-label-area{padding-top:4px}
+.feat-number{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:0.1em;margin-bottom:8px}
+.feat-name{font-family:'Fraunces',serif;font-size:20px;color:var(--text);font-weight:500;line-height:1.2}
+.feat-detail{font-size:15px;color:var(--text-mid);line-height:1.8}
+.feat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{font-size:11px;padding:4px 12px;border-radius:100px;border:1px solid var(--border);color:var(--text-mid);background:var(--white)}
+
+/* TABLE SIM */
+.table-mockup{background:var(--navy);border-radius:20px;overflow:hidden;margin-top:56px}
+.tm-header{background:#162540;padding:12px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.tm-dot{width:9px;height:9px;border-radius:50%}
+.tm-page-title{background:var(--navy-mid);padding:12px 20px;display:flex;align-items:center;gap:10px}
+.tm-page-title svg{flex-shrink:0}
+.tm-page-name{font-size:13px;font-weight:500;color:rgba(255,255,255,0.85)}
+.tm-breadcrumb{font-size:11px;color:rgba(255,255,255,0.3);margin-left:4px}
+.tm-search-bar{background:#1a2d4a;padding:10px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid rgba(255,255,255,0.05)}
+.tm-search-field{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:4px;padding:6px 12px;font-size:12px;color:rgba(255,255,255,0.5);width:220px;font-family:'DM Sans',sans-serif}
+.tm-search-btn{background:var(--gold);border:none;border-radius:4px;padding:6px 16px;font-size:12px;color:var(--navy);font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer}
+.tm-results-bar{padding:8px 20px;background:#1e3050;font-size:11px;color:rgba(255,255,255,0.35);display:flex;justify-content:space-between}
+.tm-table-head{display:grid;grid-template-columns:2.2fr 1fr 0.7fr 0.7fr 1.8fr;background:#1a2d4a;padding:8px 20px;gap:8px}
+.tm-th{font-size:10px;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:0.06em;text-transform:uppercase}
+.tm-row{display:grid;grid-template-columns:2.2fr 1fr 0.7fr 0.7fr 1.8fr;padding:10px 20px;gap:8px;border-bottom:1px solid rgba(255,255,255,0.04);align-items:center}
+.tm-row:nth-child(even){background:rgba(255,255,255,0.015)}
+.tm-row:hover{background:rgba(212,168,67,0.05)}
+.tm-cell{font-size:12px;color:rgba(255,255,255,0.6)}
+.tm-link{color:#5b9bd5;text-decoration:underline;cursor:pointer;font-size:12px}
+.tm-caption{padding:12px 20px;border-top:1px solid rgba(255,255,255,0.05);font-size:11px;color:rgba(255,255,255,0.25);text-align:center}
+
+/* DESIGN DECISIONS */
+.decisions-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin-top:48px}
+.dec-card{border-radius:14px;border:1px solid var(--border);padding:28px;background:var(--white);transition:transform 0.2s,box-shadow 0.2s}
+.dec-card:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.dec-icon{font-size:22px;margin-bottom:14px}
+.dec-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px}
+.dec-desc{font-size:13px;color:var(--text-mid);line-height:1.7}
+
+/* TAKEAWAY */
+.takeaway-band{background:var(--teal);padding:90px 0}
+.takeaway-inner{max-width:1100px;margin:0 auto;padding:0 80px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.takeaway-quote{font-family:'Fraunces',serif;font-size:26px;color:#fff;line-height:1.45;font-style:italic;font-weight:300}
+.takeaway-quote::before{content:'"';color:var(--gold-light);font-size:48px;line-height:0.5;display:block;margin-bottom:16px}
+.kl-item{display:flex;gap:14px;font-size:14px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:16px}
+.kl-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);margin-top:7px;flex-shrink:0}
+
+footer{background:var(--cream);border-top:1px solid var(--border);padding:36px 80px;display:flex;align-items:center;justify-content:space-between}
+.footer-brand{font-family:'Fraunces',serif;font-size:15px;color:var(--navy)}.footer-brand span{color:var(--gold)}
+.footer-note{font-size:12px;color:var(--text-light)}
+.footer-nav{display:flex;gap:24px}.footer-nav a{font-size:13px;color:var(--text-light);text-decoration:none;transition:color 0.2s}.footer-nav a:hover{color:var(--navy)}
+
+.fu{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}.fu.on{opacity:1;transform:translateY(0)}
+.fu2{transition-delay:0.1s}.fu3{transition-delay:0.2s}.fu4{transition-delay:0.3s}
+@media(max-width:900px){nav{padding:0 24px}.hero{grid-template-columns:1fr;padding:100px 32px 60px}section{padding:60px 32px}.how-grid{grid-template-columns:1fr 1fr}.feat-item{grid-template-columns:1fr;gap:16px}.decisions-grid{grid-template-columns:1fr}.takeaway-inner{grid-template-columns:1fr}.takeaway-band{padding:60px 0}.takeaway-inner{padding:0 32px}footer{flex-direction:column;gap:12px;text-align:center;padding:28px}}
+</style>
+</head>
+<body>
+<nav>
+  <a class="nav-back" href="protect-overview.html">← All Projects</a>
+  <div class="nav-brand">PRO<span>TECT</span></div>
+  <div class="nav-tag">03 / eFiling Site</div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-number fu">03 — Web Tool Design</div>
+    <h1 class="hero-title fu fu2">PROTECT<br><em>eFiling Site</em></h1>
+    <p class="hero-subtitle fu fu3">A web-based inter-county search tool enabling District Attorney staff to look up case and person details across all Wisconsin counties — with data refreshed nightly from every PROTECT database.</p>
+    <div class="hero-meta fu fu4">
+      <div class="meta-col"><div class="meta-label">Client</div><div class="meta-val">SOW – DOA</div></div>
+      <div class="meta-col"><div class="meta-label">Role</div><div class="meta-val">Sr. UI/UX Designer</div></div>
+      <div class="meta-col"><div class="meta-label">Year</div><div class="meta-val">2024–2025</div></div>
+    </div>
+  </div>
+  <div class="hero-right fu">
+    <div class="data-badge">
+      <div class="db-stat"><div class="db-num">72</div><div class="db-label">Wisconsin counties<br>connected to the system</div></div>
+      <div class="db-stat"><div class="db-num">Nightly</div><div class="db-label">Automated data sync from<br>all PROTECT county databases</div></div>
+      <div class="db-stat"><div class="db-num">Web</div><div class="db-label">Browser-based — no desktop<br>installation required</div></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="eyebrow fu">Project Overview</div>
+  <h2 class="section-h fu fu2">What is the<br><em>eFiling Site?</em></h2>
+  <p class="section-lead fu fu3">The PROTECT eFiling Site is a web-based tool that lets PROTECT users search case and person details across counties. It pulls fresh data each night from all PROTECT databases, making case lookups faster and easier for DA staff who need to cross-reference records outside their own county's jurisdiction.</p>
+
+  <div class="how-grid fu">
+    <div class="how-step">
+      <div class="how-circle">🌙</div>
+      <div class="how-step-title">Nightly Data Pull</div>
+      <div class="how-step-desc">All 72 county PROTECT databases sync overnight to a central web-accessible source</div>
+    </div>
+    <div class="how-step">
+      <div class="how-circle">🔍</div>
+      <div class="how-step-title">DA Searches</div>
+      <div class="how-step-desc">Staff enter case or person details to search across all county records simultaneously</div>
+    </div>
+    <div class="how-step">
+      <div class="how-circle">📊</div>
+      <div class="how-step-title">Results Surface</div>
+      <div class="how-step-desc">Matching records appear in a structured, scannable data table with key fields visible</div>
+    </div>
+    <div class="how-step">
+      <div class="how-circle">📋</div>
+      <div class="how-step-title">Case Accessed</div>
+      <div class="how-step-desc">Staff click through to full case or person detail without switching to the desktop app</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0;background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="eyebrow fu">Key Features Designed</div>
+  <h2 class="section-h fu fu2">What I Built<br><em>Into the Interface</em></h2>
+  <div class="features-list fu">
+    <div class="feat-item">
+      <div class="feat-label-area">
+        <div class="feat-number">01</div>
+        <div class="feat-name">Cross-county Search</div>
+      </div>
+      <div>
+        <div class="feat-detail">Designed a single search interface that queries all 72 county databases simultaneously. Users can search by name, case number, date of birth, or other identifiers without selecting a county first — the system returns all matching results and indicates which county each record belongs to.</div>
+        <div class="feat-chips"><span class="chip">Search UX</span><span class="chip">Data Architecture</span><span class="chip">Multi-source Query</span></div>
+      </div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-label-area">
+        <div class="feat-number">02</div>
+        <div class="feat-name">eFiling Business Rules Data Table</div>
+      </div>
+      <div>
+        <div class="feat-detail">Designed a dense, scannable data grid displaying attorney and compliance filing data across counties. Built with sortable columns, clear status indicators, and enough information density for legal professionals who work with large datasets daily.</div>
+        <div class="feat-chips"><span class="chip">Data Grid</span><span class="chip">Sortable Columns</span><span class="chip">Status Indicators</span></div>
+      </div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-label-area">
+        <div class="feat-number">03</div>
+        <div class="feat-name">Error State & Validation Handling</div>
+      </div>
+      <div>
+        <div class="feat-detail">Designed clear error messaging for when a county connection fails or search returns unexpected results. Error states were designed to be actionable — telling users what to do next, not just that something went wrong. Inline validation prevents invalid searches from being submitted.</div>
+        <div class="feat-chips"><span class="chip">Error UX</span><span class="chip">Form Validation</span><span class="chip">Accessibility</span></div>
+      </div>
+    </div>
+    <div class="feat-item">
+      <div class="feat-label-area">
+        <div class="feat-number">04</div>
+        <div class="feat-name">Person & Case Detail Views</div>
+      </div>
+      <div>
+        <div class="feat-detail">Designed linked detail pages that expand individual search results into full person or case records — including AKA aliases, case associations, hearing dates, and county provenance — without leaving the web interface or needing to open the PROTECT desktop app.</div>
+        <div class="feat-chips"><span class="chip">Detail Views</span><span class="chip">Record Linking</span><span class="chip">Case Data</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TABLE MOCKUP -->
+<section>
+  <div class="eyebrow fu">Interface in Action</div>
+  <h2 class="section-h fu fu2">The Search Results<br><em>Experience</em></h2>
+  <p class="section-lead fu fu3">The eFiling data table was designed to surface maximum information density within a legal professional's scanning pattern — name first, identifiers second, county and alias details on the right.</p>
+
+  <div class="table-mockup fu">
+    <div class="tm-header">
+      <div class="tm-dot" style="background:#ff5f57"></div>
+      <div class="tm-dot" style="background:#febc2e"></div>
+      <div class="tm-dot" style="background:#28c840"></div>
+      <span style="font-size:11px;color:rgba(255,255,255,0.25);margin-left:12px">PROTECT eFiling Site — Search Results</span>
+    </div>
+    <div class="tm-page-title">
+      <svg width="18" height="20" viewBox="0 0 52 56" fill="none"><path d="M26 2L4 12V28C4 40 14 50 26 54C38 50 48 40 48 28V12L26 2Z" fill="#d4a843" stroke="#d4a843" stroke-width="1"/></svg>
+      <span class="tm-page-name">DA Inter-County Query</span>
+      <span class="tm-breadcrumb">/ Search / Search People</span>
+    </div>
+    <div class="tm-search-bar">
+      <span style="font-size:11px;color:rgba(255,255,255,0.35)">Search results for Last =</span>
+      <div class="tm-search-field">wood</div>
+      <div class="tm-search-btn">Search</div>
+      <span style="font-size:11px;color:rgba(255,255,255,0.25);margin-left:auto">Results found: 5,003</span>
+    </div>
+    <div class="tm-table-head">
+      <div class="tm-th">Full Name ↕</div>
+      <div class="tm-th">DOB ↕</div>
+      <div class="tm-th">Gender ↕</div>
+      <div class="tm-th">Race ↕</div>
+      <div class="tm-th">Alias Details</div>
+    </div>
+    <div class="tm-row"><span class="tm-link">Akbar, Aubreyona Renee</span><span class="tm-cell">07/25/1997</span><span class="tm-cell">F</span><span class="tm-cell">B</span><span class="tm-cell" style="color:rgba(255,255,255,0.4);font-size:11px">AKA Aubreyona Woodley</span></div>
+    <div class="tm-row"><span class="tm-link">Allen, Chad R</span><span class="tm-cell">07/30/1973</span><span class="tm-cell">M</span><span class="tm-cell">W</span><span class="tm-cell" style="color:rgba(255,255,255,0.4);font-size:11px">AKA Chad Russell Allen</span></div>
+    <div class="tm-row"><span class="tm-link">Arp, Troy J</span><span class="tm-cell">02/04/1968</span><span class="tm-cell">M</span><span class="tm-cell">W</span><span class="tm-cell" style="color:rgba(255,255,255,0.4);font-size:11px">AKA Troy Jay Woods · AKA Troy Jay Arp</span></div>
+    <div class="tm-row"><span class="tm-link">Ballesteros, Diana Renee</span><span class="tm-cell">10/05/1967</span><span class="tm-cell">F</span><span class="tm-cell">I</span><span class="tm-cell" style="color:rgba(255,255,255,0.4);font-size:11px">AKA D. Wood · AKA Diana Renee Wood <span style="color:var(--gold);font-size:10px">+3 More</span></span></div>
+    <div class="tm-row" style="opacity:0.4"><span class="tm-link">Carlson, Michael W</span><span class="tm-cell">—</span><span class="tm-cell">M</span><span class="tm-cell">W</span><span class="tm-cell" style="color:rgba(255,255,255,0.4);font-size:11px">AKA Mike Woodfield</span></div>
+    <div class="tm-caption">Showing 5 of 5,003 results across all 72 Wisconsin counties · Data synced nightly</div>
+  </div>
+
+  <!-- Real Screenshots -->
+  <div style="margin-top:48px">
+    <div style="display:flex;align-items:center;gap:12px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:24px"><span style="width:20px;height:1px;background:var(--gold);display:inline-block"></span>Actual Screens From the Project</div>
+    <div style="display:grid;grid-template-columns:1fr;gap:20px">
+      <div style="border-radius:14px;overflow:hidden;border:1px solid var(--border)">
+        <div style="background:#1a7a6e;padding:10px 16px;font-size:11px;color:rgba(255,255,255,0.5);display:flex;align-items:center;gap:8px">
+          <span style="width:8px;height:8px;border-radius:50%;background:#ff5f57;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#febc2e;display:inline-block"></span>
+          <span style="width:8px;height:8px;border-radius:50%;background:#28c840;display:inline-block"></span>
+          eFiling Site — Actual Interface Screens
+        </div>
+        <img src="efiling-hero.png" alt="eFiling Site Header" style="width:100%;display:block;object-fit:cover;object-position:top;max-height:220px;border-bottom:1px solid var(--border)">
+        <img src="efiling-screens.png" alt="eFiling Site Screens" style="width:100%;display:block;object-fit:cover;object-position:top;max-height:400px">
+        <div style="padding:12px 16px;font-size:12px;color:var(--text-light);background:var(--cream);border-top:1px solid var(--border-light)">eFiling interface screens showing attorney and compliance filing data tables across multiple view states</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN DECISIONS -->
+<section style="padding-top:0">
+  <div class="eyebrow fu">Design Decisions</div>
+  <h2 class="section-h fu fu2">Why These Choices<br><em>Were Made</em></h2>
+  <div class="decisions-grid fu">
+    <div class="dec-card"><div class="dec-icon">📋</div><div class="dec-title">Dense table over cards</div><div class="dec-desc">Legal professionals scan large datasets. Card layouts would require too much scrolling. A tight data table with good visual hierarchy lets users process 20+ rows at a glance.</div></div>
+    <div class="dec-card"><div class="dec-icon">🔤</div><div class="dec-title">Last name first, always</div><div class="dec-desc">DA staff search by surname. The table columns and sort order were designed around this mental model — not alphabetical first name order, which slows legal lookups.</div></div>
+    <div class="dec-card"><div class="dec-icon">🔗</div><div class="dec-title">Alias column surfaced prominently</div><div class="dec-desc">AKA records are critical for cross-county matching. Surfacing aliases inline in the results grid — not hidden in a detail view — was an intentional design decision backed by user research.</div></div>
+    <div class="dec-card"><div class="dec-icon">🌐</div><div class="dec-title">Web-first, no installation</div><div class="dec-desc">Not all DA staff need full PROTECT desktop access. A browser-based tool means lighter deployment, broader access, and faster adoption across offices with varying IT setups.</div></div>
+    <div class="dec-card"><div class="dec-icon">⚠️</div><div class="dec-title">Actionable error states</div><div class="dec-desc">Error messages were redesigned to tell users exactly what to do — not just what went wrong. "County connection failed — try again or contact IT" is more useful than a generic error banner.</div></div>
+    <div class="dec-card"><div class="dec-icon">🔄</div><div class="dec-title">Nightly sync transparency</div><div class="dec-desc">The UI communicates clearly when data was last synced. Legal staff need to know data recency before acting on a record — a small detail with a significant trust impact.</div></div>
+  </div>
+</section>
+
+<div class="takeaway-band">
+  <div class="takeaway-inner">
+    <div>
+      <div class="eyebrow fu" style="color:rgba(255,255,255,0.3)">Impact & Takeaway</div>
+      <div class="takeaway-quote fu fu2">A well-designed search interface for legal professionals isn't about simplicity — it's about putting the right data in the right order, fast.</div>
+    </div>
+    <div>
+      <div class="eyebrow fu" style="color:rgba(255,255,255,0.3)">Key Learnings</div>
+      <div class="fu fu2">
+        <div class="kl-item"><div class="kl-dot"></div>Data density is a feature, not a problem — legal professionals prefer information-rich interfaces over simplified consumer-style layouts</div>
+        <div class="kl-item"><div class="kl-dot"></div>Designing for nightly batch data required thinking through edge cases: stale data, sync failures, and partial county outages</div>
+        <div class="kl-item"><div class="kl-dot"></div>Inter-county legal workflows have unique mental models — designing for them requires understanding the actual process, not just the data structure</div>
+        <div class="kl-item"><div class="kl-dot"></div>Transparency about data freshness builds institutional trust — a critical factor in government and legal tooling</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-brand">PRO<span>TECT</span> — eFiling Site</div>
+  <div class="footer-nav"><a href="protect-details-pane.html">← Details Pane</a><a href="protect-xcq.html">XCQ Query →</a></div>
+  <div class="footer-note">Shivani Harode · 2024–2025</div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');obs.unobserve(e.target)}}),{threshold:0.1});
+document.querySelectorAll('.fu').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
