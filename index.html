@@ -7,7 +7,7 @@
 <meta property="og:title" content="Shivani Harode — Senior UI/UX Designer">
 <title>Shivani Harode — Senior UI/UX Designer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:opsz,wght@3.5..21,300;3.5..21,400;3.5..21,500&display=swap" rel="stylesheet">
 <style>
 :root {
   --a: #2563eb;
@@ -34,7 +34,7 @@ a{text-decoration:none;color:inherit}
 img{display:block;max-width:100%}
 
 /* NAV */
-#nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--g3);transition:box-shadow var(--tr)}
+#nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(255,255,255,0.97);backdrop-filter:blur(10px);border-bottom:1px solid rgba(0,0,0,0.05)}
 #nav.scrolled{box-shadow:0 1px 8px rgba(0,0,0,0.07)}
 .nb{font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:var(--t1)}.nb span{color:var(--a)}
 .nl{display:flex;gap:28px}
@@ -46,7 +46,7 @@ img{display:block;max-width:100%}
 
 /* HERO */
 .hero{max-width:1000px;margin:0 auto;padding:136px 48px 96px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
-.htag{display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--a);background:var(--a-bg);border-radius:4px;padding:4px 10px;margin-bottom:22px}
+.htag{display:inline-flex;align-items:center;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--a);background:var(--a-bg);border-radius:4px;padding:6px 12px;margin-bottom:16px}
 .hname{font-family:'Fraunces',serif;font-size:clamp(42px,6vw,70px);line-height:1.0;font-weight:500;color:var(--t1);margin-bottom:8px;letter-spacing:-.03em}
 .hname em{font-style:italic;color:var(--a)}
 .hrole{font-size:15px;color:var(--t3);margin-bottom:18px}
@@ -134,7 +134,7 @@ img{display:block;max-width:100%}
 /* ABOUT */
 .aboutw{display:grid;grid-template-columns:220px 1fr;gap:56px;align-items:start}
 .aboutl{position:sticky;top:76px}
-.avatar{width:140px;height:140px;border-radius:50%;background:var(--a-bg);border:2px solid var(--a-border);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:36px;font-style:italic;color:var(--a);font-weight:300;margin-bottom:16px}
+.avatar{width:140px;height:140px;border-radius:50%;background:var(--a-bg);border:2px solid var(--a-border);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:32px;color:var(--a);font-weight:500}
 .aname{font-family:'Fraunces',serif;font-size:16px;font-weight:500;color:var(--t1);margin-bottom:3px}
 .arole{font-size:13px;color:var(--t3);margin-bottom:18px}
 .clinks{display:flex;flex-direction:column;gap:7px}
@@ -163,11 +163,11 @@ img{display:block;max-width:100%}
 .cfs{font-size:13px;color:var(--t4);margin-bottom:20px}
 .cff{margin-bottom:12px}
 .cfl{font-size:12px;font-weight:500;color:var(--t2);display:block;margin-bottom:4px}
-.cfi{width:100%;padding:9px 11px;border-radius:6px;border:1px solid var(--g3);background:var(--w);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--t1);outline:none;transition:border-color var(--tr),box-shadow var(--tr)}
+.cfi{width:100%;padding:9px 11px;border-radius:6px;border:1px solid var(--g3);background:var(--w);font-family:'DM Sans',sans-serif;font-size:14px;color:var(--t1);outline:none;transition:border-color var(--tr)}
 .cfi:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
 .cfi::placeholder{color:var(--t4)}
 textarea.cfi{min-height:96px;resize:vertical}
-.csub{width:100%;padding:11px;border-radius:6px;background:var(--a);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;transition:background var(--tr),transform var(--tr);margin-top:4px}
+.csub{width:100%;padding:11px;border-radius:6px;background:var(--a);color:#fff;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;transition:background var(--tr),transform var(--tr)}
 .csub:hover{background:var(--a-h);transform:translateY(-1px)}
 
 /* FOOTER */
@@ -252,13 +252,13 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
     <div>
       <div class="sgl">Skills</div>
       <div class="tags">
-        <span class="tag">UX Research</span><span class="tag">UI Design</span><span class="tag">Design Systems</span><span class="tag">Wireframing</span><span class="tag">Prototyping</span><span class="tag">Brand Identity</span><span class="tag">Data Visualization</span><span class="tag">WCAG 2.1 AA</span><span class="tag">Stakeholder Comms</span><span class="tag">Dev Handoff</span><span class="tag">Legacy Redesign</span><span class="tag">Enterprise UX</span>
+        <span class="tag">UX Research</span><span class="tag">UI Design</span><span class="tag">Design Systems</span><span class="tag">Wireframing</span><span class="tag">Prototyping</span><span class="tag">Accessibility</span>
       </div>
     </div>
     <div>
       <div class="sgl">Tools</div>
       <div class="tags">
-        <span class="tag ttool">Figma</span><span class="tag ttool">React</span><span class="tag ttool">TypeScript</span><span class="tag ttool">Tailwind CSS</span><span class="tag ttool">Illustrator</span><span class="tag ttool">Axure RP 10</span><span class="tag ttool">InVision</span><span class="tag ttool">Draw.io</span>
+        <span class="tag ttool">Figma</span><span class="tag ttool">React</span><span class="tag ttool">TypeScript</span><span class="tag ttool">Tailwind CSS</span><span class="tag ttool">Illustrator</span><span class="tag ttool">Axure RP</span>
       </div>
     </div>
   </div>
@@ -290,15 +290,15 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
           <div class="pm"><div class="pmn">60%</div><div class="pml">Fewer errors</div></div>
           <div class="pm"><div class="pmn">+36</div><div class="pml">NPS points</div></div>
         </div>
-        <div class="pchips"><span class="pch">UX Research</span><span class="pch">Dashboard Design</span><span class="pch">React · TypeScript</span><span class="pch">Design System</span><span class="pch">500+ Districts</span><span class="pch">WCAG 2.1 AA</span></div>
-        <a href="case-studies/missouri-dese.html" class="bproj">View Case Study <span class="arr">→</span></a>
+        <div class="pchips"><span class="pch">UX Research</span><span class="pch">Dashboard Design</span><span class="pch">React · TypeScript</span><span class="pch">Design System</span><span class="pch">WCAG 2.1</span></div>
+        <a href="missouri-dese.html" class="bproj">View Case Study <span class="arr">→</span></a>
       </div>
     </div>
 
     <!-- PROTECT -->
     <div class="proj fu fu2" style="grid-template-columns:1fr 1fr">
       <div class="pvis" style="order:-1">
-        <img src="images/protect-preview.jpg" alt="PROTECT System" loading="lazy"
+        <img src="protect-preview.jpg" alt="PROTECT System" loading="lazy"
           onerror="this.style.display='none';this.parentElement.style.cssText+='font-size:40px;color:var(--t4)';this.parentElement.textContent='⚖️'">
       </div>
       <div class="pc">
@@ -310,8 +310,8 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
           <div class="pm"><div class="pmn">72</div><div class="pml">Counties</div></div>
           <div class="pm"><div class="pmn">18mo</div><div class="pml">Duration</div></div>
         </div>
-        <div class="pchips"><span class="pch">Brand Identity</span><span class="pch">Desktop UX</span><span class="pch">Web Apps</span><span class="pch">Design System</span><span class="pch">Legal UX</span></div>
-        <a href="case-studies/protect.html" class="bproj">View Case Study <span class="arr">→</span></a>
+        <div class="pchips"><span class="pch">Brand Identity</span><span class="pch">Desktop UX</span><span class="pch">Web Apps</span><span class="pch">Design System</span><span class="pch">Legal Tech</span></div>
+        <a href="protect.html" class="bproj">View Case Study <span class="arr">→</span></a>
       </div>
     </div>
 
@@ -325,7 +325,7 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
         <div class="psml">Enterprise UX · HP</div>
         <h3 class="psmtitle">HP <em>Managed Print</em> Services</h3>
         <p class="psmd">Designed 30+ screens for HP's enterprise MPS platform. Self-taught Axure RP 10 and delivered on schedule.</p>
-        <a href="case-studies/hp-mps.html" class="bsm">View case study <span>→</span></a>
+        <a href="hp-mps.html" class="bsm">View case study <span>→</span></a>
       </div>
     </div>
     <div class="psm" style="background:var(--g1)">
@@ -354,7 +354,7 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
       </div>
       <div class="expl-r">
         <div class="epr">UX Designer — School Finance Application</div>
-        <div class="epd2">Leading the full UX redesign of the School Finance Management System serving 500+ school districts. Delivered a 40+ component React design system and restructured navigation from 20+ pages to 8 logical sections, reducing task time by 40–50%.</div>
+        <div class="epd2">Leading the full UX redesign of the School Finance Management System serving 500+ school districts. Delivered a 40+ component React design system and restructured navigation to improve task completion by 40-50%.</div>
         <div class="etags"><span class="etag">Figma</span><span class="etag">React</span><span class="etag">TypeScript</span><span class="etag">Tailwind CSS</span><span class="etag">WCAG 2.1</span></div>
       </div>
     </div>
@@ -366,7 +366,7 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
       </div>
       <div class="expl-r">
         <div class="epr">Sr. UI/UX Designer — PROTECT Case Management</div>
-        <div class="epd2">Sole UX designer for 18 months on Wisconsin's statewide prosecutor platform. Delivered 5 interconnected products — brand identity, desktop application, eFiling tool, XCQ legacy redesign, and the Details Pane feature — across all 72 counties.</div>
+        <div class="epd2">Sole UX designer for 18 months on Wisconsin's statewide prosecutor platform. Delivered 5 interconnected products — brand identity, desktop application, eFiling tool, XCQ redesign, and ongoing UI improvements.</div>
         <div class="etags"><span class="etag">Figma</span><span class="etag">Illustrator</span><span class="etag">Brand Identity</span><span class="etag">Windows Desktop</span></div>
       </div>
     </div>
@@ -390,7 +390,7 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
       </div>
       <div class="expl-r">
         <div class="epr">UI/UX Designer — FedEx &amp; Citibank</div>
-        <div class="epd2">Delivered UX design for major enterprise clients at two leading IT consultancies — logistics (FedEx) and financial services (Citibank). Complex multi-stakeholder enterprise design at scale.</div>
+        <div class="epd2">Delivered UX design for major enterprise clients at two leading IT consultancies — logistics (FedEx) and financial services (Citibank). Complex multi-stakeholder enterprise projects.</div>
         <div class="etags"><span class="etag">Enterprise UX</span><span class="etag">Financial Services</span><span class="etag">Logistics</span></div>
       </div>
     </div>
@@ -412,7 +412,7 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
           Shivaniharode@gmail.com
         </a>
         <a href="tel:6089823299" class="cl">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-5.61-5.61 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-5.61-5.61 19.79 19.79 0 01-3.07-8.63 2 2 0 012-2.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.71 11a15.93 15.93 0 005.59 5.59l1.73-1.73a2 2 0 012.11-.45 12.84 12.84 0 002.81.7 2 2 0 011.72 2z"/></svg>
           (608) 982-3299
         </a>
         <a href="https://www.linkedin.com/in/shivani-harode-b00625147" target="_blank" rel="noopener" class="cl">
@@ -428,11 +428,11 @@ footer{border-top:1px solid var(--g3);padding:24px 48px;max-width:1000px;margin:
     <div class="aboutr fu fu2">
       <div class="sl" style="margin-bottom:6px">About Me</div>
       <h2 class="sh" style="margin-bottom:22px">Designer, Artist &amp; <em>Problem Solver</em></h2>
-      <p class="abp">I'm a UX/UI designer and artist passionate about solving complex problems through thoughtful design. Right now, I'm working with the <strong>State of Missouri</strong> on the DESE School Finance Application, transforming how 500+ school districts manage their finances.</p>
-      <p class="abp">Previously, I was the solo UI/UX designer with the <strong>State of Wisconsin</strong> on the PROTECT Case Management System — handling five major design efforts: logo design, desktop app redesign, Details Pane web feature, XCQ legacy web redesign, and the eFiling application.</p>
-      <p class="abp">Before that, I designed <strong>30+ screens at HP – Managed Print Services</strong>, self-teaching Axure RP 10 to meet project needs and delivering on schedule. I've also worked at <strong>Atos|Syntel and Synechron</strong>, delivering results for FedEx and Citibank.</p>
+      <p class="abp">I'm a UX/UI designer and artist passionate about solving complex problems through thoughtful design. Right now, I'm working with the <strong>State of Missouri</strong> on the School Finance Management System — redesigning a legacy platform used by 500+ school districts across the state.</p>
+      <p class="abp">Previously, I was the solo UI/UX designer with the <strong>State of Wisconsin</strong> on the PROTECT Case Management System — handling five major design efforts: logo design, case management interface redesign, eFiling tool, inter-county query system, and ongoing desktop app improvements.</p>
+      <p class="abp">Before that, I designed <strong>30+ screens at HP – Managed Print Services</strong>, self-teaching Axure RP 10 to meet project needs and delivering on schedule. I've also worked on enterprise projects at <strong>FedEx (via Atos|Syntel) and Citibank (via Synechron)</strong>.</p>
       <p class="abp">I hold a degree in <strong>Information Technology from Yeshwantrao Chavan College of Engineering</strong> in India, where I discovered my passion for human-centered design.</p>
-      <div class="ff">🏆&nbsp; Outside of work, I love old Bollywood music — nothing like Lata or Kishore. I recently <strong>won the Best Creative Dish award at the Dallas StarChef culinary competition</strong> presented by Michelin-star chef Mayank Istwal. Creativity truly transcends mediums.</div>
+      <div class="ff">🏆&nbsp; Outside of work, I love old Bollywood music — nothing like Lata or Kishore. I recently <strong>won the Best Creative Dish award at the Dallas StarChef culinary competition</strong> with my "Fusion Dessert Khichdi." 🍽️</div>
     </div>
   </div>
 </div>
