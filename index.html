@@ -4,148 +4,172 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Shivani Harode — Senior UI/UX Designer. Government &amp; Enterprise UX portfolio.">
-  <meta property="og:title" content="Shivani Harode — Senior UI/UX Designer">
   <title>Shivani Harode — Senior UI/UX Designer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
-      --bg:#faf8f5;--surface:#f2ede8;--surface2:#ece6df;
-      --border:rgba(60,50,40,0.10);--text:#1a1714;--muted:#6b6460;
-      --accent:#8b6f47;--accent2:#4a7c6a;
-      --tag-bg:rgba(60,50,40,0.05);--tag-border:rgba(60,50,40,0.12);
-      --font-serif:'Fraunces',Georgia,serif;
-      --font-sans:'DM Sans',system-ui,sans-serif;
-      --font-mono:'DM Mono',monospace;
+      --bg:#ffffff;
+      --surface:#f7f4f0;
+      --surface2:#efe9e2;
+      --border:rgba(30,20,10,0.09);
+      --border-med:rgba(30,20,10,0.15);
+      --text:#1c1714;
+      --muted:#7a706a;
+      --soft:#b0a89e;
+      --accent:#7c5c36;
+      --accent-light:#f0e8dc;
+      --accent2:#3d7260;
+      --accent2-light:#e0eeea;
+      --fs:'Fraunces',Georgia,serif;
+      --fd:'DM Sans',system-ui,sans-serif;
+      --fm:'DM Mono',monospace;
     }
     html{scroll-behavior:smooth}
-    body{background:var(--bg);color:var(--text);font-family:var(--font-sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+    body{background:var(--bg);color:var(--text);font-family:var(--fd);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 
-    /* NAV */
-    nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(24px,5vw,80px);height:64px;background:rgba(250,248,245,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-    .nav-logo{font-family:var(--font-serif);font-size:18px;font-weight:400;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
-    .nav-links{display:flex;gap:32px;list-style:none}
-    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,80px);background:rgba(255,255,255,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-logo{font-family:var(--fs);font-size:17px;font-weight:400;color:var(--text);text-decoration:none;letter-spacing:-.02em}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;letter-spacing:.01em;transition:color .18s}
     .nav-links a:hover{color:var(--text)}
-    .nav-cta{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:transparent;border:1px solid var(--border);border-radius:6px;color:var(--muted);text-decoration:none;font-size:13px;font-family:var(--font-mono);transition:border-color .2s,color .2s}
+    .nav-cta{padding:7px 18px;border:1px solid var(--border-med);border-radius:6px;color:var(--muted);text-decoration:none;font-size:13px;font-family:var(--fm);transition:all .18s}
     .nav-cta:hover{border-color:var(--accent);color:var(--accent)}
 
-    /* HERO */
-    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:80px clamp(24px,5vw,80px) 60px;position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 40%,rgba(74,124,106,0.07) 0%,transparent 70%),radial-gradient(ellipse 40% 60% at 20% 80%,rgba(139,111,71,0.05) 0%,transparent 60%);pointer-events:none}
-    .hero-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--accent2);margin-bottom:28px;letter-spacing:.06em}
-    .hero-label::before{content:'';width:24px;height:1px;background:var(--accent2);opacity:.6}
-    h1.hero-title{font-family:var(--font-serif);font-size:clamp(52px,8vw,96px);font-weight:300;line-height:1.0;letter-spacing:-.03em;color:var(--text);margin-bottom:24px}
+    /* ── HERO ── */
+    .hero{min-height:100vh;display:flex;align-items:center;padding:80px clamp(20px,5vw,80px) 60px;position:relative;overflow:hidden}
+    .hero::after{content:'';position:absolute;top:-120px;right:-80px;width:540px;height:540px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,54,0.07) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:700px}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:11px;color:var(--accent2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:32px}
+    .hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent2)}
+    h1.hero-title{font-family:var(--fs);font-size:clamp(48px,7.5vw,88px);font-weight:300;line-height:1.01;letter-spacing:-.03em;color:var(--text);margin-bottom:28px}
     h1.hero-title em{font-style:italic;color:var(--accent)}
-    .hero-sub{font-size:clamp(14px,1.8vw,17px);color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:48px}
-    .hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:80px}
-    .btn-primary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:var(--accent);color:#fff;border-radius:6px;text-decoration:none;font-size:14px;font-weight:500;transition:opacity .2s}
-    .btn-primary:hover{opacity:.88}
-    .btn-secondary{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;background:transparent;color:var(--muted);border:1px solid var(--border);border-radius:6px;text-decoration:none;font-size:14px;transition:border-color .2s,color .2s}
-    .btn-secondary:hover{border-color:rgba(60,50,40,0.25);color:var(--text)}
-    .hero-stats{display:flex;gap:48px;flex-wrap:wrap}
-    .stat{display:flex;flex-direction:column;gap:2px}
-    .stat-num{font-family:var(--font-serif);font-size:36px;font-weight:300;color:var(--text);letter-spacing:-.02em}
-    .stat-label{font-size:12px;color:var(--muted);font-family:var(--font-mono);letter-spacing:.04em}
+    .hero-desc{font-size:17px;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:44px}
+    .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:72px}
+    .btn-fill{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--accent);color:#fff;border-radius:7px;text-decoration:none;font-size:14px;font-weight:500;letter-spacing:.01em;transition:opacity .18s}
+    .btn-fill:hover{opacity:.85}
+    .btn-outline{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border:1px solid var(--border-med);border-radius:7px;color:var(--muted);text-decoration:none;font-size:14px;transition:all .18s}
+    .btn-outline:hover{border-color:var(--text);color:var(--text)}
+    .hero-stats{display:flex;gap:52px;flex-wrap:wrap;padding-top:40px;border-top:1px solid var(--border)}
+    .stat-val{font-family:var(--fs);font-size:38px;font-weight:300;color:var(--text);letter-spacing:-.02em;line-height:1}
+    .stat-lbl{font-size:12px;color:var(--muted);font-family:var(--fm);letter-spacing:.04em;margin-top:4px}
 
-    /* SKILLS STRIP */
-    .skills-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px clamp(24px,5vw,80px);display:flex;flex-wrap:wrap;gap:10px 24px;background:var(--surface)}
-    .strip-label{width:100%;font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
-    .skill-tag{display:inline-flex;padding:4px 12px;border-radius:100px;background:var(--tag-bg);border:1px solid var(--tag-border);font-size:12px;color:var(--muted)}
+    /* ── DIVIDER ── */
+    .divider{height:1px;background:var(--border);margin:0 clamp(20px,5vw,80px)}
 
-    /* SECTIONS */
-    .section{padding:100px clamp(24px,5vw,80px)}
-    .section-header{margin-bottom:64px}
-    .section-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--muted);letter-spacing:.06em;margin-bottom:16px}
-    .section-label::before{content:'';width:18px;height:1px;background:var(--muted);opacity:.5}
-    h2.section-title{font-family:var(--font-serif);font-size:clamp(36px,5vw,56px);font-weight:300;letter-spacing:-.03em;line-height:1.1;color:var(--text)}
-    h2.section-title em{font-style:italic;color:var(--accent)}
-    .section-desc{font-size:16px;color:var(--muted);max-width:480px;margin-top:16px;line-height:1.7}
+    /* ── SECTIONS ── */
+    .section{padding:96px clamp(20px,5vw,80px)}
+    .section.alt{background:var(--surface)}
+    .section-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px}
+    .section-eyebrow::before{content:'';width:18px;height:1px;background:var(--soft)}
+    h2.sec-title{font-family:var(--fs);font-size:clamp(34px,4.5vw,52px);font-weight:300;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:16px}
+    h2.sec-title em{font-style:italic;color:var(--accent)}
+    .sec-sub{font-size:16px;color:var(--muted);max-width:460px;line-height:1.7;margin-bottom:60px}
 
-    /* PROJECT CARDS */
-    .projects{display:flex;flex-direction:column;gap:80px}
-    .project-card{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-    .project-card.reverse{direction:rtl}
-    .project-card.reverse>*{direction:ltr}
-    .project-thumbnail{border-radius:16px;overflow:hidden;background:var(--surface2);border:1px solid var(--border);aspect-ratio:16/9;position:relative}
-    .project-thumbnail svg{width:100%;height:100%;display:block}
-    .project-meta{display:flex;flex-direction:column;gap:20px}
-    .project-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--accent2);letter-spacing:.05em}
-    .badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:pulse 2s ease-in-out infinite}
-    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-    .project-client{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.05em}
-    h3.project-title{font-family:var(--font-serif);font-size:clamp(28px,3.5vw,40px);font-weight:300;letter-spacing:-.02em;line-height:1.15;color:var(--text)}
-    h3.project-title em{font-style:italic;color:var(--accent)}
-    .project-desc{font-size:15px;color:var(--muted);line-height:1.75}
-    .project-outcomes{display:flex;gap:28px;flex-wrap:wrap;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-    .outcome{display:flex;flex-direction:column;gap:2px}
-    .outcome-val{font-family:var(--font-serif);font-size:26px;font-weight:300;color:var(--accent);letter-spacing:-.02em}
-    .outcome-label{font-size:11px;color:var(--muted);font-family:var(--font-mono)}
-    .project-tags{display:flex;flex-wrap:wrap;gap:8px}
-    .tag{display:inline-flex;padding:4px 12px;border-radius:100px;background:var(--tag-bg);border:1px solid var(--tag-border);font-size:11px;color:var(--muted);font-family:var(--font-mono)}
-    .project-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:14px;font-weight:500;transition:gap .2s}
-    .project-link:hover{gap:10px}
+    /* ── WORK CARDS ── */
+    .work-stack{display:flex;flex-direction:column;gap:72px}
+    .work-card{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .work-card.flip{direction:rtl}
+    .work-card.flip>*{direction:ltr}
+    .thumb{border-radius:14px;overflow:hidden;border:1px solid var(--border);aspect-ratio:16/9;background:var(--surface2)}
+    .thumb svg{width:100%;height:100%;display:block}
+    .card-body{display:flex;flex-direction:column;gap:18px}
+    .card-label{display:flex;align-items:center;gap:8px}
+    .live-dot{width:7px;height:7px;border-radius:50%;background:var(--accent2);animation:blink 2.4s ease-in-out infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+    .card-eyebrow{font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:.05em}
+    h3.card-title{font-family:var(--fs);font-size:clamp(26px,3vw,38px);font-weight:300;letter-spacing:-.02em;line-height:1.15;color:var(--text)}
+    h3.card-title em{font-style:italic;color:var(--accent)}
+    .card-desc{font-size:15px;color:var(--muted);line-height:1.75}
+    .outcomes{display:flex;gap:24px;flex-wrap:wrap;padding:16px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .oc-val{font-family:var(--fs);font-size:24px;font-weight:300;color:var(--accent);line-height:1}
+    .oc-lbl{font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:3px}
+    .tags{display:flex;flex-wrap:wrap;gap:7px}
+    .tag{padding:4px 11px;border-radius:100px;border:1px solid var(--border-med);font-size:11px;color:var(--muted);font-family:var(--fm);background:var(--bg)}
+    .card-link{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:14px;font-weight:500;transition:gap .18s}
+    .card-link:hover{gap:10px}
 
-    /* SUB-PROJECTS */
-    .sub-projects{margin-top:48px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-    .sub-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:20px;text-decoration:none;transition:border-color .2s,transform .2s;display:block}
-    .sub-card:hover{border-color:rgba(60,50,40,0.22);transform:translateY(-2px)}
-    .sub-card-icon{width:32px;height:32px;border-radius:8px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;margin-bottom:12px;color:var(--accent);font-family:var(--font-mono);font-weight:600}
-    .sub-card-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px}
-    .sub-card-desc{font-size:11px;color:var(--muted);font-family:var(--font-mono)}
+    /* PROTECT sub-cards */
+    .sub-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:8px}
+    .sub-card{display:block;padding:16px;border:1px solid var(--border);border-radius:10px;text-decoration:none;background:var(--bg);transition:border-color .18s,background .18s}
+    .sub-card:hover{border-color:var(--border-med);background:var(--surface)}
+    .sub-num{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.06em;margin-bottom:6px}
+    .sub-title{font-size:13px;font-weight:500;color:var(--text)}
+    .sub-desc{font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:2px}
 
-    /* EXPERIENCE */
-    .experience-list{display:flex;flex-direction:column;gap:0}
-    .exp-item{display:grid;grid-template-columns:220px 1fr;gap:48px;padding:40px 0;border-bottom:1px solid var(--border)}
-    .exp-item:first-child{border-top:1px solid var(--border)}
-    .exp-period{font-family:var(--font-mono);font-size:12px;color:var(--muted);padding-top:4px}
-    .exp-role{font-family:var(--font-serif);font-size:20px;font-weight:300;color:var(--text);margin-bottom:4px}
-    .exp-company{font-size:13px;color:var(--accent2);margin-bottom:12px;font-family:var(--font-mono)}
+    /* ── DESIGN PROCESS ── */
+    .process-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative}
+    .process-grid::before{content:'';position:absolute;top:28px;left:28px;right:28px;height:1px;background:var(--border-med)}
+    .process-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 12px;position:relative}
+    .step-circle{width:56px;height:56px;border-radius:50%;border:1.5px solid var(--border-med);background:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:11px;color:var(--accent);font-weight:600;margin-bottom:20px;position:relative;z-index:1}
+    .process-step.active .step-circle{background:var(--accent);border-color:var(--accent);color:#fff}
+    .step-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:8px}
+    .step-desc{font-size:13px;color:var(--muted);line-height:1.6}
+    .step-tools{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:10px}
+    .step-tool{padding:3px 9px;border-radius:100px;background:var(--accent-light);font-size:10px;color:var(--accent);font-family:var(--fm)}
+    .process-step.active .step-tool{background:var(--accent2-light);color:var(--accent2)}
+
+    /* ── EXPERIENCE ── */
+    .exp-list{display:flex;flex-direction:column}
+    .exp-row{display:grid;grid-template-columns:180px 1fr;gap:40px;padding:36px 0;border-bottom:1px solid var(--border)}
+    .exp-row:first-child{border-top:1px solid var(--border)}
+    .exp-period{font-family:var(--fm);font-size:12px;color:var(--muted);padding-top:2px}
+    .exp-role{font-family:var(--fs);font-size:20px;font-weight:300;color:var(--text);margin-bottom:3px}
+    .exp-co{font-family:var(--fm);font-size:12px;color:var(--accent2);margin-bottom:10px;letter-spacing:.02em}
     .exp-desc{font-size:14px;color:var(--muted);line-height:1.7}
 
-    /* ABOUT */
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-    .about-initials{width:180px;height:180px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-serif);font-size:48px;font-weight:300;color:var(--accent);margin-bottom:32px;overflow:hidden}
-    .about-text p{font-size:16px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+    /* ── ABOUT ── */
+    .about-grid{display:grid;grid-template-columns:280px 1fr;gap:72px;align-items:start}
+    .about-avatar{width:200px;height:200px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:44px;font-weight:300;color:var(--accent);overflow:hidden;margin-bottom:28px}
+    .about-skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+    .skill-pill{padding:5px 13px;border-radius:100px;border:1px solid var(--border-med);font-size:12px;color:var(--muted);font-family:var(--fm);background:var(--bg)}
+    .about-text p{font-size:15.5px;color:var(--muted);line-height:1.8;margin-bottom:18px}
+    .about-text p:last-child{margin-bottom:0}
 
-    /* CONTACT */
-    .contact-inner{max-width:600px}
-    .contact-links{display:flex;flex-direction:column;gap:0;margin-top:40px}
-    .contact-item{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);transition:padding-left .2s}
-    .contact-item:first-child{border-top:1px solid var(--border)}
-    .contact-item:hover{padding-left:8px}
-    .contact-label{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;width:100px}
-    .contact-value{font-size:15px;color:var(--text);flex:1}
-    .contact-arrow{color:var(--muted);font-size:16px}
+    /* ── CONTACT ── */
+    .contact-wrap{max-width:640px}
+    .contact-list{margin-top:40px}
+    .contact-row{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid var(--border);text-decoration:none;color:var(--text);transition:padding-left .18s}
+    .contact-row:first-child{border-top:1px solid var(--border)}
+    .contact-row:hover{padding-left:8px}
+    .contact-lbl{font-family:var(--fm);font-size:11px;color:var(--soft);letter-spacing:.07em;text-transform:uppercase;width:90px;flex-shrink:0}
+    .contact-val{font-size:15px;color:var(--text);flex:1}
+    .contact-arr{color:var(--soft);font-size:15px}
 
-    /* FOOTER */
-    footer{padding:40px clamp(24px,5vw,80px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
-    .footer-copy{font-size:13px;color:var(--muted);font-family:var(--font-mono)}
-    .footer-links{display:flex;gap:24px}
-    .footer-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s}
-    .footer-links a:hover{color:var(--text)}
+    /* ── FOOTER ── */
+    footer{padding:32px clamp(20px,5vw,80px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .foot-copy{font-family:var(--fm);font-size:12px;color:var(--soft)}
+    .foot-links{display:flex;gap:20px}
+    .foot-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .18s}
+    .foot-links a:hover{color:var(--text)}
 
-    /* RESPONSIVE */
-    @media(max-width:900px){
-      .project-card,.project-card.reverse{grid-template-columns:1fr;direction:ltr}
+    /* ── RESPONSIVE ── */
+    @media(max-width:960px){
+      .work-card,.work-card.flip{grid-template-columns:1fr;direction:ltr}
+      .process-grid{grid-template-columns:1fr 1fr;gap:32px}
+      .process-grid::before{display:none}
       .about-grid{grid-template-columns:1fr}
-      .exp-item{grid-template-columns:1fr;gap:8px}
+      .exp-row{grid-template-columns:1fr;gap:6px}
       .nav-links{display:none}
     }
     @media(max-width:600px){
       .hero-stats{gap:28px}
-      .sub-projects{grid-template-columns:1fr 1fr}
+      .sub-grid{grid-template-columns:1fr}
+      .process-grid{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Shivani Harode</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
+    <li><a href="#process">Process</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#about">About</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -155,48 +179,43 @@
 
 <!-- HERO -->
 <section class="hero">
-  <span class="hero-label">Senior UI/UX Designer &middot; 8+ Years</span>
-  <h1 class="hero-title">Shivani&ensp;<em>Harode</em></h1>
-  <p class="hero-sub">Government &amp; Enterprise UX &middot; Frisco, TX<br>
-  I design complex systems that real people depend on &mdash; transforming legacy government applications into modern, efficient, and accessible tools.</p>
-  <div class="hero-actions">
-    <a href="#work" class="btn-primary">View Work &rarr;</a>
-    <a href="#contact" class="btn-secondary">Get in Touch</a>
-  </div>
-  <div class="hero-stats">
-    <div class="stat"><span class="stat-num">8+</span><span class="stat-label">Years</span></div>
-    <div class="stat"><span class="stat-num">3</span><span class="stat-label">State Clients</span></div>
-    <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Districts Served</span></div>
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Senior UI/UX Designer &middot; 8+ Years</div>
+    <h1 class="hero-title">Shivani<br><em>Harode</em></h1>
+    <p class="hero-desc">Government &amp; Enterprise UX &middot; Frisco, TX<br>
+    I design complex systems that real people depend on &mdash; transforming legacy government applications into modern, efficient, and accessible tools.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn-fill">View Work &rarr;</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">8+</div><div class="stat-lbl">Years</div></div>
+      <div><div class="stat-val">3</div><div class="stat-lbl">State Clients</div></div>
+      <div><div class="stat-val">500+</div><div class="stat-lbl">Districts Served</div></div>
+    </div>
   </div>
 </section>
 
-<!-- SKILLS STRIP -->
-<div class="skills-strip">
-  <span class="strip-label">Skills</span>
-  <span class="skill-tag">UX Research</span><span class="skill-tag">UI Design</span><span class="skill-tag">Design Systems</span><span class="skill-tag">Wireframing</span><span class="skill-tag">Prototyping</span><span class="skill-tag">Brand Identity</span><span class="skill-tag">Data Visualization</span><span class="skill-tag">WCAG 2.1 AA</span><span class="skill-tag">Stakeholder Comms</span><span class="skill-tag">Dev Handoff</span><span class="skill-tag">Legacy Redesign</span><span class="skill-tag">Enterprise UX</span>
-  <span class="strip-label" style="margin-top:8px">Tools</span>
-  <span class="skill-tag">Figma</span><span class="skill-tag">React</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">Illustrator</span><span class="skill-tag">Axure RP 10</span><span class="skill-tag">InVision</span><span class="skill-tag">Draw.io</span>
-</div>
+<div class="divider"></div>
 
 <!-- WORK -->
 <section class="section" id="work">
-  <div class="section-header">
-    <span class="section-label">Selected Work</span>
-    <h2 class="section-title">Case Studies &amp; <em>Featured Projects</em></h2>
-    <p class="section-desc">Enterprise and government UX across two state clients.</p>
-  </div>
-  <div class="projects">
+  <div class="section-eyebrow">Selected Work</div>
+  <h2 class="sec-title">Case Studies &amp; <em>Featured Projects</em></h2>
+  <p class="sec-sub">Enterprise and government UX across two state clients.</p>
 
-    <!-- CARD 1: DESE -->
-    <div class="project-card">
-      <div class="project-thumbnail">
+  <div class="work-stack">
+
+    <!-- DESE -->
+    <div class="work-card">
+      <div class="thumb">
         <svg width="100%" height="100%" viewBox="0 0 680 383" role="img" preserveAspectRatio="xMidYMid slice">
           <title>Missouri DESE School Finance Dashboard</title>
           <defs>
             <linearGradient id="dese-bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0C447C"/><stop offset="100%" stop-color="#042C53"/></linearGradient>
-            <linearGradient id="dbar1" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#378ADD"/><stop offset="100%" stop-color="#85B7EB"/></linearGradient>
-            <linearGradient id="dbar2" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#1D9E75"/><stop offset="100%" stop-color="#5DCAA5"/></linearGradient>
-            <linearGradient id="dbar3" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#BA7517"/><stop offset="100%" stop-color="#EF9F27"/></linearGradient>
+            <linearGradient id="db1" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#378ADD"/><stop offset="100%" stop-color="#85B7EB"/></linearGradient>
+            <linearGradient id="db2" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#1D9E75"/><stop offset="100%" stop-color="#5DCAA5"/></linearGradient>
+            <linearGradient id="db3" x1="0" y1="1" x2="0" y2="0"><stop offset="0%" stop-color="#BA7517"/><stop offset="100%" stop-color="#EF9F27"/></linearGradient>
           </defs>
           <rect width="680" height="383" fill="url(#dese-bg)"/>
           <line x1="40" y1="80" x2="640" y2="80" stroke="#185FA5" stroke-width="0.5" opacity="0.4"/>
@@ -224,11 +243,11 @@
           <text x="565" y="119" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#B5D4F4" opacity="0.8">Districts</text>
           <rect x="40" y="162" width="280" height="148" rx="8" fill="#042C53" opacity="0.9" stroke="#185FA5" stroke-width="0.5"/>
           <text x="56" y="182" font-family="sans-serif" font-size="11" fill="#B5D4F4" opacity="0.7">Budget allocation by category</text>
-          <rect x="70" y="230" width="28" height="60" rx="3" fill="url(#dbar1)"/>
-          <rect x="114" y="218" width="28" height="72" rx="3" fill="url(#dbar2)"/>
-          <rect x="158" y="242" width="28" height="48" rx="3" fill="url(#dbar3)"/>
-          <rect x="202" y="225" width="28" height="65" rx="3" fill="url(#dbar1)" opacity="0.7"/>
-          <rect x="246" y="235" width="28" height="55" rx="3" fill="url(#dbar2)" opacity="0.7"/>
+          <rect x="70" y="230" width="28" height="60" rx="3" fill="url(#db1)"/>
+          <rect x="114" y="218" width="28" height="72" rx="3" fill="url(#db2)"/>
+          <rect x="158" y="242" width="28" height="48" rx="3" fill="url(#db3)"/>
+          <rect x="202" y="225" width="28" height="65" rx="3" fill="url(#db1)" opacity="0.7"/>
+          <rect x="246" y="235" width="28" height="55" rx="3" fill="url(#db2)" opacity="0.7"/>
           <line x1="56" y1="295" x2="300" y2="295" stroke="#185FA5" stroke-width="0.5" opacity="0.5"/>
           <rect x="338" y="162" width="302" height="148" rx="8" fill="#042C53" opacity="0.9" stroke="#185FA5" stroke-width="0.5"/>
           <text x="354" y="182" font-family="sans-serif" font-size="11" fill="#B5D4F4" opacity="0.7">District finance summary</text>
@@ -248,42 +267,41 @@
           <text x="354" y="293" font-family="sans-serif" font-size="10" fill="#B5D4F4">Jefferson City SD</text><text x="490" y="293" font-family="sans-serif" font-size="10" fill="#B5D4F4">$1.7M</text><circle cx="596" cy="289" r="4" fill="#5DCAA5"/>
           <rect x="40" y="326" width="600" height="28" rx="6" fill="#0C447C" opacity="0.5"/>
           <text x="56" y="344" font-family="sans-serif" font-size="11" fill="#85B7EB" font-weight="600">Missouri DESE &middot; School Finance Redesign</text>
-          <text x="560" y="344" text-anchor="end" font-family="sans-serif" font-size="10" fill="#B5D4F4" opacity="0.7">React &middot; TypeScript &middot; WCAG 2.1 AA</text>
         </svg>
       </div>
-      <div class="project-meta">
-        <div>
-          <div class="project-badge"><span class="badge-dot"></span>Current Project</div>
-          <div class="project-client" style="margin-top:6px">State of Missouri &middot; Jan 2026 &ndash; Present</div>
+      <div class="card-body">
+        <div class="card-label">
+          <span class="live-dot"></span>
+          <span class="card-eyebrow">Current &middot; State of Missouri &middot; Jan 2026 &ndash; Present</span>
         </div>
-        <h3 class="project-title">Missouri <em>DESE</em> School Finance</h3>
-        <p class="project-desc">Led the complete UX overhaul of a legacy financial management system serving 500+ school districts &mdash; from research through a 40+ component React design system.</p>
-        <div class="project-outcomes">
-          <div class="outcome"><span class="outcome-val">40&ndash;50%</span><span class="outcome-label">Faster tasks</span></div>
-          <div class="outcome"><span class="outcome-val">60%</span><span class="outcome-label">Fewer errors</span></div>
-          <div class="outcome"><span class="outcome-val">+36</span><span class="outcome-label">NPS points</span></div>
+        <h3 class="card-title">Missouri <em>DESE</em><br>School Finance</h3>
+        <p class="card-desc">Led the complete UX overhaul of a legacy financial management system serving 500+ school districts &mdash; from research through a 40+ component React design system.</p>
+        <div class="outcomes">
+          <div><div class="oc-val">40&ndash;50%</div><div class="oc-lbl">Faster tasks</div></div>
+          <div><div class="oc-val">60%</div><div class="oc-lbl">Fewer errors</div></div>
+          <div><div class="oc-val">+36</div><div class="oc-lbl">NPS points</div></div>
         </div>
-        <div class="project-tags">
-          <span class="tag">UX Research</span><span class="tag">Dashboard Design</span><span class="tag">React &middot; TypeScript</span><span class="tag">Design System</span><span class="tag">500+ Districts</span><span class="tag">WCAG 2.1 AA</span>
+        <div class="tags">
+          <span class="tag">UX Research</span><span class="tag">Dashboard Design</span><span class="tag">React &middot; TypeScript</span><span class="tag">Design System</span><span class="tag">WCAG 2.1 AA</span>
         </div>
-        <a href="missouri-dese.html" class="project-link">View Case Study &rarr;</a>
+        <a href="missouri-dese.html" class="card-link">View Case Study &rarr;</a>
       </div>
     </div>
 
-    <!-- CARD 2: PROTECT -->
-    <div class="project-card reverse">
-      <div class="project-thumbnail">
+    <!-- PROTECT -->
+    <div class="work-card flip">
+      <div class="thumb">
         <svg width="100%" height="100%" viewBox="0 0 680 383" role="img" preserveAspectRatio="xMidYMid slice">
           <title>PROTECT Case Management System</title>
           <defs>
-            <linearGradient id="prot-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3C3489"/><stop offset="100%" stop-color="#26215C"/></linearGradient>
-            <linearGradient id="prot-btn" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7F77DD"/><stop offset="100%" stop-color="#534AB7"/></linearGradient>
+            <linearGradient id="pbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#3C3489"/><stop offset="100%" stop-color="#26215C"/></linearGradient>
+            <linearGradient id="pbtn" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#7F77DD"/><stop offset="100%" stop-color="#534AB7"/></linearGradient>
           </defs>
-          <rect width="680" height="383" fill="url(#prot-bg)"/>
+          <rect width="680" height="383" fill="url(#pbg)"/>
           <path d="M340 22 L360 30 L360 52 Q360 64 340 72 Q320 64 320 52 L320 30 Z" fill="#534AB7" opacity="0.7" stroke="#7F77DD" stroke-width="1.5"/>
           <text x="340" y="52" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#EEEDFE">P</text>
           <rect x="40" y="82" width="130" height="254" rx="8" fill="#26215C" opacity="0.9" stroke="#534AB7" stroke-width="0.5"/>
-          <rect x="52" y="98" width="106" height="28" rx="5" fill="url(#prot-btn)"/>
+          <rect x="52" y="98" width="106" height="28" rx="5" fill="url(#pbtn)"/>
           <text x="105" y="117" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#EEEDFE" font-weight="600">Cases</text>
           <rect x="52" y="134" width="106" height="24" rx="5" fill="#3C3489" opacity="0.6"/><text x="105" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#AFA9EC">Parties</text>
           <rect x="52" y="164" width="106" height="24" rx="5" fill="#3C3489" opacity="0.6"/><text x="105" y="180" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#AFA9EC">Hearings</text>
@@ -308,7 +326,7 @@
           <rect x="202" y="250" width="58" height="18" rx="4" fill="#3C3489" stroke="#7F77DD" stroke-width="0.5"/><text x="231" y="262" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#CECBF6">Petition.pdf</text>
           <rect x="268" y="250" width="52" height="18" rx="4" fill="#3C3489" stroke="#7F77DD" stroke-width="0.5"/><text x="294" y="262" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#CECBF6">Order.pdf</text>
           <rect x="328" y="250" width="58" height="18" rx="4" fill="#3C3489" stroke="#7F77DD" stroke-width="0.5"/><text x="357" y="262" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#CECBF6">Notice.pdf</text>
-          <rect x="202" y="284" width="90" height="26" rx="5" fill="url(#prot-btn)"/><text x="247" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#EEEDFE">Schedule Hearing</text>
+          <rect x="202" y="284" width="90" height="26" rx="5" fill="url(#pbtn)"/><text x="247" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#EEEDFE">Schedule Hearing</text>
           <rect x="302" y="284" width="60" height="26" rx="5" fill="#534AB7" opacity="0.6" stroke="#7F77DD" stroke-width="0.5"/><text x="332" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#CECBF6">Add Party</text>
           <rect x="372" y="284" width="52" height="26" rx="5" fill="#534AB7" opacity="0.6" stroke="#7F77DD" stroke-width="0.5"/><text x="398" y="301" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#CECBF6">eFile</text>
           <rect x="480" y="82" width="160" height="254" rx="8" fill="#26215C" opacity="0.9" stroke="#534AB7" stroke-width="0.5"/>
@@ -324,39 +342,37 @@
           <rect x="496" y="272" width="128" height="40" rx="6" fill="#534AB7" opacity="0.5" stroke="#7F77DD" stroke-width="0.5"/>
           <text x="560" y="289" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#CECBF6">XCQ Inter-County</text>
           <text x="560" y="303" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#EF9F27" font-weight="600">2 Counties Linked</text>
-          <rect x="40" y="350" width="600" height="24" rx="6" fill="#26215C" opacity="0.7"/>
-          <text x="56" y="366" font-family="sans-serif" font-size="11" fill="#CECBF6" font-weight="600">PROTECT &middot; State of Wisconsin Case Management</text>
         </svg>
       </div>
-      <div class="project-meta">
-        <div class="project-client">State of Wisconsin</div>
-        <h3 class="project-title">PROTECT Case <em>Management</em></h3>
-        <p class="project-desc">Redesigned Wisconsin&rsquo;s statewide case management platform for social services &mdash; spanning five interconnected modules from brand identity to inter-county querying.</p>
-        <div class="project-tags">
-          <span class="tag">Logo &amp; Identity</span><span class="tag">Details Pane</span><span class="tag">eFiling</span><span class="tag">XCQ Inter-County</span><span class="tag">Axure RP 10</span><span class="tag">Figma</span>
+      <div class="card-body">
+        <div class="card-eyebrow">State of Wisconsin</div>
+        <h3 class="card-title">PROTECT Case <em>Management</em></h3>
+        <p class="card-desc">Redesigned Wisconsin&rsquo;s statewide case management platform for social services &mdash; spanning five interconnected modules from brand identity to inter-county querying.</p>
+        <div class="tags">
+          <span class="tag">Logo &amp; Identity</span><span class="tag">Details Pane</span><span class="tag">eFiling</span><span class="tag">XCQ Query</span><span class="tag">Axure RP 10</span>
         </div>
-        <a href="protect.html" class="project-link">View Case Study &rarr;</a>
-        <div class="sub-projects">
-          <a href="protect-logo.html" class="sub-card"><div class="sub-card-icon">01</div><div class="sub-card-title">Logo &amp; Identity</div><div class="sub-card-desc">Brand system</div></a>
-          <a href="protect-details.html" class="sub-card"><div class="sub-card-icon">02</div><div class="sub-card-title">Details Pane</div><div class="sub-card-desc">UI component</div></a>
-          <a href="protect-efiling.html" class="sub-card"><div class="sub-card-icon">03</div><div class="sub-card-title">eFiling Site</div><div class="sub-card-desc">Public portal</div></a>
-          <a href="protect-xcq.html" class="sub-card"><div class="sub-card-icon">04</div><div class="sub-card-title">XCQ Query</div><div class="sub-card-desc">Inter-county</div></a>
+        <a href="protect.html" class="card-link">View Case Study &rarr;</a>
+        <div class="sub-grid">
+          <a href="protect-logo.html" class="sub-card"><div class="sub-num">01 &mdash; Logo &amp; Identity</div><div class="sub-title">Brand System</div><div class="sub-desc">Visual identity &amp; guidelines</div></a>
+          <a href="protect-details.html" class="sub-card"><div class="sub-num">02 &mdash; Details Pane</div><div class="sub-title">UI Component</div><div class="sub-desc">Case detail panel redesign</div></a>
+          <a href="protect-efiling.html" class="sub-card"><div class="sub-num">03 &mdash; eFiling</div><div class="sub-title">Public Portal</div><div class="sub-desc">Self-service filing site</div></a>
+          <a href="protect-xcq.html" class="sub-card"><div class="sub-num">04 &mdash; XCQ Query</div><div class="sub-title">Inter-County</div><div class="sub-desc">Cross-jurisdiction lookup</div></a>
         </div>
       </div>
     </div>
 
-    <!-- CARD 3: HP MPS -->
-    <div class="project-card">
-      <div class="project-thumbnail">
+    <!-- HP MPS -->
+    <div class="work-card">
+      <div class="thumb">
         <svg width="100%" height="100%" viewBox="0 0 680 383" role="img" preserveAspectRatio="xMidYMid slice">
           <title>HP Managed Print Services Dashboard</title>
           <defs>
-            <linearGradient id="hp-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a1a"/><stop offset="100%" stop-color="#0a0a0a"/></linearGradient>
-            <linearGradient id="hp-gauge" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0096D6"/><stop offset="100%" stop-color="#00CCF5"/></linearGradient>
+            <linearGradient id="hbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a1a1a"/><stop offset="100%" stop-color="#0a0a0a"/></linearGradient>
+            <linearGradient id="hg" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#0096D6"/><stop offset="100%" stop-color="#00CCF5"/></linearGradient>
           </defs>
-          <rect width="680" height="383" fill="url(#hp-bg)"/>
-          <pattern id="hp-dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="0.8" fill="#0096D6" opacity="0.2"/></pattern>
-          <rect width="680" height="383" fill="url(#hp-dots)"/>
+          <rect width="680" height="383" fill="url(#hbg)"/>
+          <pattern id="hd" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="12" cy="12" r="0.8" fill="#0096D6" opacity="0.2"/></pattern>
+          <rect width="680" height="383" fill="url(#hd)"/>
           <rect x="40" y="22" width="72" height="38" rx="6" fill="#0096D6"/>
           <text x="76" y="47" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="900" fill="white">hp</text>
           <text x="126" y="44" font-family="sans-serif" font-size="14" font-weight="600" fill="#00CCF5">Managed Print Services</text>
@@ -404,83 +420,163 @@
           <text x="560" y="280" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#888">Uptime SLA</text>
           <text x="560" y="306" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#0096D6">99.1%</text>
           <rect x="502" y="320" width="116" height="6" rx="3" fill="#222"/>
-          <rect x="502" y="320" width="115" height="6" rx="3" fill="url(#hp-gauge)" opacity="0.8"/>
+          <rect x="502" y="320" width="115" height="6" rx="3" fill="url(#hg)" opacity="0.8"/>
         </svg>
       </div>
-      <div class="project-meta">
-        <div class="project-client">HP Inc.</div>
-        <h3 class="project-title">HP <em>Managed Print</em> Services</h3>
-        <p class="project-desc">Designed an enterprise fleet monitoring dashboard for HP&rsquo;s Managed Print Services division &mdash; giving IT administrators real-time visibility into printer health, toner levels, and uptime SLAs across hundreds of devices.</p>
-        <div class="project-tags">
+      <div class="card-body">
+        <div class="card-eyebrow">HP Inc.</div>
+        <h3 class="card-title">HP <em>Managed Print</em> Services</h3>
+        <p class="card-desc">Designed an enterprise fleet monitoring dashboard giving IT administrators real-time visibility into printer health, toner levels, and uptime SLAs across hundreds of devices.</p>
+        <div class="tags">
           <span class="tag">Enterprise UX</span><span class="tag">Dashboard Design</span><span class="tag">Fleet Monitoring</span><span class="tag">Figma</span><span class="tag">Data Visualization</span>
         </div>
-        <a href="hp-mps.html" class="project-link">View Case Study &rarr;</a>
+        <a href="hp-mps.html" class="card-link">View Case Study &rarr;</a>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- EXPERIENCE -->
-<section class="section" id="experience" style="background:var(--surface)">
-  <div class="section-header">
-    <span class="section-label">Experience</span>
-    <h2 class="section-title">Where I&rsquo;ve <em>Worked</em></h2>
-  </div>
-  <div class="experience-list">
-    <div class="exp-item">
-      <div class="exp-period">Jan 2026 &ndash; Present</div>
-      <div><div class="exp-role">Senior UI/UX Designer</div><div class="exp-company">State of Missouri &middot; DESE School Finance</div><p class="exp-desc">Leading end-to-end UX redesign of the Department of Elementary and Secondary Education&rsquo;s financial management system. Delivered a 40-component React design system, WCAG 2.1 AA compliance, and measurable efficiency gains across 500+ school districts.</p></div>
+<div class="divider"></div>
+
+<!-- DESIGN PROCESS -->
+<section class="section alt" id="process">
+  <div class="section-eyebrow">How I Work</div>
+  <h2 class="sec-title">My Design <em>Process</em></h2>
+  <p class="sec-sub">A structured, research-driven approach to solving complex enterprise and government UX challenges.</p>
+
+  <div class="process-grid">
+    <div class="process-step">
+      <div class="step-circle">01</div>
+      <div class="step-title">Discover</div>
+      <p class="step-desc">Stakeholder interviews, heuristic audits, and user shadowing to uncover real pain points in legacy workflows.</p>
+      <div class="step-tools">
+        <span class="step-tool">Interviews</span>
+        <span class="step-tool">Heuristics</span>
+        <span class="step-tool">Shadowing</span>
+      </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-period">2022 &ndash; 2025</div>
-      <div><div class="exp-role">Lead UX Designer</div><div class="exp-company">State of Wisconsin &middot; PROTECT</div><p class="exp-desc">Redesigned PROTECT, Wisconsin&rsquo;s statewide case management platform for social services. Led five parallel workstreams: brand identity, details pane, eFiling portal, XCQ inter-county query, and the core case view.</p></div>
+    <div class="process-step">
+      <div class="step-circle">02</div>
+      <div class="step-title">Define</div>
+      <p class="step-desc">Synthesising research into personas, journey maps, and clear problem statements aligned with business goals.</p>
+      <div class="step-tools">
+        <span class="step-tool">Journey Maps</span>
+        <span class="step-tool">Personas</span>
+        <span class="step-tool">HMW</span>
+      </div>
     </div>
-    <div class="exp-item">
-      <div class="exp-period">2019 &ndash; 2022</div>
-      <div><div class="exp-role">UI/UX Designer</div><div class="exp-company">HP Inc. &middot; Managed Print Services</div><p class="exp-desc">Designed enterprise fleet monitoring dashboards for HP&rsquo;s Managed Print Services division. Created scalable UI patterns for real-time device health, predictive toner alerts, and SLA reporting across large corporate deployments.</p></div>
+    <div class="process-step active">
+      <div class="step-circle">03</div>
+      <div class="step-title">Design</div>
+      <p class="step-desc">Rapid wireframes, high-fidelity prototypes, and component-level design systems built for scale and handoff.</p>
+      <div class="step-tools">
+        <span class="step-tool">Figma</span>
+        <span class="step-tool">Axure RP</span>
+        <span class="step-tool">Design Systems</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">04</div>
+      <div class="step-title">Test</div>
+      <p class="step-desc">Moderated usability testing and accessibility audits against WCAG 2.1 AA with real end-users.</p>
+      <div class="step-tools">
+        <span class="step-tool">Usability Testing</span>
+        <span class="step-tool">WCAG 2.1 AA</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-circle">05</div>
+      <div class="step-title">Deliver</div>
+      <p class="step-desc">Developer-ready specs, annotated handoff docs, and ongoing collaboration through build and launch.</p>
+      <div class="step-tools">
+        <span class="step-tool">Dev Handoff</span>
+        <span class="step-tool">Redlines</span>
+        <span class="step-tool">QA Review</span>
+      </div>
     </div>
   </div>
 </section>
 
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-eyebrow">Experience</div>
+  <h2 class="sec-title">Where I&rsquo;ve <em>Worked</em></h2>
+  <div class="exp-list" style="margin-top:48px">
+    <div class="exp-row">
+      <div class="exp-period">Jan 2026 &ndash; Present</div>
+      <div>
+        <div class="exp-role">Senior UI/UX Designer</div>
+        <div class="exp-co">State of Missouri &middot; DESE School Finance</div>
+        <p class="exp-desc">Leading end-to-end UX redesign of the Department of Elementary and Secondary Education&rsquo;s financial management system. Delivered a 40-component React design system, WCAG 2.1 AA compliance, and measurable efficiency gains across 500+ school districts.</p>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">2022 &ndash; 2025</div>
+      <div>
+        <div class="exp-role">Lead UX Designer</div>
+        <div class="exp-co">State of Wisconsin &middot; PROTECT</div>
+        <p class="exp-desc">Redesigned PROTECT, Wisconsin&rsquo;s statewide case management platform for social services. Led five parallel workstreams: brand identity, details pane, eFiling portal, XCQ inter-county query, and the core case view.</p>
+      </div>
+    </div>
+    <div class="exp-row">
+      <div class="exp-period">2019 &ndash; 2022</div>
+      <div>
+        <div class="exp-role">UI/UX Designer</div>
+        <div class="exp-co">HP Inc. &middot; Managed Print Services</div>
+        <p class="exp-desc">Designed enterprise fleet monitoring dashboards for HP&rsquo;s Managed Print Services division. Created scalable UI patterns for real-time device health, predictive toner alerts, and SLA reporting across large corporate deployments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
 <!-- ABOUT -->
-<section class="section" id="about">
+<section class="section alt" id="about">
   <div class="about-grid">
     <div>
-      <span class="section-label">About</span>
-      <h2 class="section-title" style="margin-bottom:32px">Designing for <em>Real People</em></h2>
-      <div class="about-initials">SH</div>
+      <div class="section-eyebrow">About</div>
+      <h2 class="sec-title" style="margin-bottom:28px">Designing for <em>Real People</em></h2>
+      <div class="about-avatar">SH</div>
+      <div class="about-skills">
+        <span class="skill-pill">UX Research</span><span class="skill-pill">UI Design</span><span class="skill-pill">Design Systems</span><span class="skill-pill">Wireframing</span><span class="skill-pill">Prototyping</span><span class="skill-pill">Brand Identity</span><span class="skill-pill">Data Visualization</span><span class="skill-pill">WCAG 2.1 AA</span><span class="skill-pill">Stakeholder Comms</span><span class="skill-pill">Dev Handoff</span><span class="skill-pill">Legacy Redesign</span><span class="skill-pill">Enterprise UX</span>
+      </div>
     </div>
     <div class="about-text">
       <p>I&rsquo;m Shivani Harode, a Senior UI/UX Designer based in Frisco, TX with 8+ years of experience building complex enterprise and government systems from the ground up.</p>
       <p>My work lives at the intersection of rigorous research, accessible design, and engineering realities. I&rsquo;ve spent the last several years transforming legacy government applications into modern, efficient tools &mdash; the kind that caseworkers and district administrators actually want to use.</p>
       <p>When I&rsquo;m not designing systems, I&rsquo;m thinking about systems &mdash; how information flows, where friction lives, and what it takes to make something genuinely easy to use at scale.</p>
-      <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:24px">
-        <span class="skill-tag">Figma</span><span class="skill-tag">React</span><span class="skill-tag">TypeScript</span><span class="skill-tag">Tailwind CSS</span><span class="skill-tag">Illustrator</span><span class="skill-tag">Axure RP 10</span><span class="skill-tag">InVision</span><span class="skill-tag">Draw.io</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:24px">
+        <span class="skill-pill">Figma</span><span class="skill-pill">React</span><span class="skill-pill">TypeScript</span><span class="skill-pill">Tailwind CSS</span><span class="skill-pill">Illustrator</span><span class="skill-pill">Axure RP 10</span><span class="skill-pill">InVision</span><span class="skill-pill">Draw.io</span>
       </div>
     </div>
   </div>
 </section>
 
+<div class="divider"></div>
+
 <!-- CONTACT -->
-<section class="section" id="contact" style="background:var(--surface)">
-  <div class="contact-inner">
-    <span class="section-label">Contact</span>
-    <h2 class="section-title">Let&rsquo;s <em>Work Together</em></h2>
-    <p class="section-desc" style="margin-top:16px">Open to senior design roles, contract work, and collaboration on meaningful government and enterprise UX projects.</p>
-    <div class="contact-links">
-      <a href="mailto:Shivaniharode@gmail.com" class="contact-item"><span class="contact-label">Email</span><span class="contact-value">Shivaniharode@gmail.com</span><span class="contact-arrow">&#8599;</span></a>
-      <a href="tel:6089823299" class="contact-item"><span class="contact-label">Phone</span><span class="contact-value">(608) 982-3299</span><span class="contact-arrow">&#8599;</span></a>
-      <a href="https://linkedin.com/in/shivani-harode-b00625147" target="_blank" rel="noopener" class="contact-item"><span class="contact-label">LinkedIn</span><span class="contact-value">shivani-harode-b00625147</span><span class="contact-arrow">&#8599;</span></a>
-      <a href="resume.pdf" target="_blank" class="contact-item"><span class="contact-label">Resume</span><span class="contact-value">Download PDF</span><span class="contact-arrow">&#8599;</span></a>
+<section class="section" id="contact">
+  <div class="contact-wrap">
+    <div class="section-eyebrow">Contact</div>
+    <h2 class="sec-title">Let&rsquo;s <em>Work Together</em></h2>
+    <p style="font-size:16px;color:var(--muted);line-height:1.7;margin-top:12px;max-width:440px">Open to senior design roles, contract work, and collaboration on meaningful government and enterprise UX projects.</p>
+    <div class="contact-list">
+      <a href="mailto:Shivaniharode@gmail.com" class="contact-row"><span class="contact-lbl">Email</span><span class="contact-val">Shivaniharode@gmail.com</span><span class="contact-arr">&#8599;</span></a>
+      <a href="tel:6089823299" class="contact-row"><span class="contact-lbl">Phone</span><span class="contact-val">(608) 982-3299</span><span class="contact-arr">&#8599;</span></a>
+      <a href="https://linkedin.com/in/shivani-harode-b00625147" target="_blank" rel="noopener" class="contact-row"><span class="contact-lbl">LinkedIn</span><span class="contact-val">shivani-harode-b00625147</span><span class="contact-arr">&#8599;</span></a>
+      <a href="resume.pdf" target="_blank" class="contact-row"><span class="contact-lbl">Resume</span><span class="contact-val">Download PDF</span><span class="contact-arr">&#8599;</span></a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-copy">&copy; 2026 Shivani Harode &middot; Frisco, TX</span>
-  <div class="footer-links">
+  <span class="foot-copy">&copy; 2026 Shivani Harode &middot; Frisco, TX</span>
+  <div class="foot-links">
     <a href="mailto:Shivaniharode@gmail.com">Email</a>
     <a href="https://linkedin.com/in/shivani-harode-b00625147" target="_blank" rel="noopener">LinkedIn</a>
     <a href="resume.pdf" target="_blank">Resume</a>
