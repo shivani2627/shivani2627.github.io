@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESE School Finance — Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#ffffff;
+      --surface:#f7f4f1;
+      --surface2:#efebe5;
+      --border:rgba(28,18,10,0.08);
+      --border-med:rgba(28,18,10,0.14);
+      --text:#1c1714;
+      --muted:#7a706a;
+      --soft:#b5ada7;
+      --accent:#7c5c36;
+      --accent-bg:#f5ede2;
+      --navy:#2C4F7C;
+      --navy-dark:#1E3A5F;
+      --blue:#2563EB;
+      --blue-dark:#1D4ED8;
+      --fs:'Fraunces',Georgia,serif;
+      --fd:'DM Sans',system-ui,sans-serif;
+      --fm:'DM Mono',monospace;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--fd);font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+    /* ── TOP NAV ── */
+    .topbar{position:fixed;top:0;left:0;right:0;z-index:200;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,3vw,40px);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .topbar-left{display:flex;align-items:center;gap:16px}
+    .back-link{display:inline-flex;align-items:center;gap:6px;color:var(--muted);text-decoration:none;font-size:13px;font-family:var(--fm);transition:color .15s}
+    .back-link:hover{color:var(--text)}
+    .topbar-sep{width:1px;height:18px;background:var(--border-med)}
+    .topbar-title{font-family:var(--fm);font-size:12px;color:var(--soft);letter-spacing:.04em}
+    .topbar-badge{padding:3px 10px;border-radius:100px;background:var(--accent-bg);border:1px solid rgba(124,92,54,0.2);font-family:var(--fm);font-size:10px;color:var(--accent);letter-spacing:.05em}
+
+    /* ── SIDEBAR ── */
+    .layout{display:flex;padding-top:56px;min-height:100vh}
+    .sidebar{width:220px;flex-shrink:0;position:sticky;top:56px;height:calc(100vh - 56px);overflow-y:auto;border-right:1px solid var(--border);padding:28px 0}
+    .sidebar-section-label{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;padding:0 20px;margin-bottom:6px;margin-top:20px}
+    .sidebar-section-label:first-child{margin-top:0}
+    .sidebar-link{display:block;padding:7px 20px;font-size:13px;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:all .15s}
+    .sidebar-link:hover{color:var(--text);background:var(--surface);border-left-color:var(--border-med)}
+    .sidebar-link.active{color:var(--navy);font-weight:500;border-left-color:var(--navy);background:rgba(44,79,124,0.05)}
+
+    /* ── CONTENT ── */
+    .content{flex:1;min-width:0;padding:52px clamp(28px,4vw,64px) 80px}
+    .content-inner{max-width:820px}
+
+    /* ── PAGE HERO ── */
+    .page-hero{margin-bottom:52px;padding-bottom:40px;border-bottom:1px solid var(--border)}
+    .page-eyebrow{font-family:var(--fm);font-size:11px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
+    h1.page-title{font-family:var(--fs);font-size:clamp(36px,5vw,56px);font-weight:300;letter-spacing:-.03em;line-height:1.05;color:var(--text);margin-bottom:16px}
+    h1.page-title em{font-style:italic;color:var(--accent)}
+    .page-desc{font-size:16px;color:var(--muted);max-width:580px;line-height:1.75}
+    .hero-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+    .hero-pill{padding:4px 12px;border-radius:100px;border:1px solid var(--border-med);font-size:11px;font-family:var(--fm);color:var(--muted)}
+
+    /* ── DS SECTIONS ── */
+    .ds-section{margin-bottom:72px;scroll-margin-top:72px}
+    .ds-section-header{margin-bottom:28px}
+    .ds-eyebrow{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+    h2.ds-title{font-family:var(--fs);font-size:clamp(24px,3vw,36px);font-weight:300;letter-spacing:-.02em;color:var(--text);margin-bottom:10px}
+    h2.ds-title em{font-style:italic;color:var(--accent)}
+    .ds-desc{font-size:14px;color:var(--muted);line-height:1.75;max-width:600px}
+    .divider{height:1px;background:var(--border);margin:0 0 72px}
+
+    /* ── PREVIEW SHELL ── */
+    .preview{border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-top:24px}
+    .preview-label{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .preview-tag{padding:2px 8px;border-radius:4px;background:var(--surface2);font-size:9px;color:var(--muted);border:1px solid var(--border-med)}
+    .preview-body{padding:28px;background:#F9FAFB}
+    .preview-body.white{background:#fff}
+    .preview-body.navy{background:#2C4F7C;padding:0}
+    .preview-body.tight{padding:16px}
+    .preview-body.flush{padding:0}
+
+    /* ── COLOR TOKENS ── */
+    .color-group{margin-bottom:24px}
+    .color-group-label{font-family:var(--fm);font-size:11px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+    .color-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+    .color-chip{border-radius:10px;overflow:hidden;border:1px solid var(--border);cursor:default}
+    .chip-swatch{height:48px}
+    .chip-body{padding:10px 12px;background:#fff}
+    .chip-token{font-family:var(--fm);font-size:9px;color:var(--soft);letter-spacing:.03em;margin-bottom:2px}
+    .chip-hex{font-family:var(--fm);font-size:11px;color:var(--text);font-weight:500}
+    .chip-use{font-size:10px;color:var(--muted);margin-top:3px;line-height:1.4}
+
+    /* ── TYPE SCALE ── */
+    .type-table{width:100%;border-collapse:collapse}
+    .type-table tr{border-bottom:1px solid var(--border)}
+    .type-table tr:first-child{border-top:1px solid var(--border)}
+    .type-table td{padding:14px 0;vertical-align:middle}
+    .type-table td:first-child{width:130px;vertical-align:top;padding-top:16px}
+    .type-token{font-family:var(--fm);font-size:11px;color:var(--muted)}
+    .type-spec{font-family:var(--fm);font-size:10px;color:var(--soft);margin-top:2px}
+    .type-samplecol{flex:1}
+
+    /* rendered type samples */
+    .ts-page-title{font-size:20px;font-weight:600;color:#111827;font-family:var(--fd)}
+    .ts-subtitle{font-size:14px;color:#6B7280;font-family:var(--fd)}
+    .ts-label{font-size:14px;font-weight:600;color:#111827;font-family:var(--fd)}
+    .ts-th{font-size:11px;font-weight:700;color:#fff;background:#2C4F7C;padding:4px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:.05em;font-family:var(--fd);display:inline-block}
+    .ts-body{font-size:14px;color:#111827;font-family:var(--fd)}
+    .ts-link{font-size:14px;font-weight:500;color:#2563EB;text-decoration:underline;font-family:var(--fd)}
+    .ts-helper{font-size:12px;font-style:italic;color:#6B7280;font-family:var(--fd)}
+    .ts-badge{font-size:11px;font-weight:600;background:#DCFCE7;color:#15803D;padding:2px 9px;border-radius:999px;font-family:var(--fd);display:inline-block}
+    .ts-button{font-size:14px;font-weight:500;background:#2C4F7C;color:#fff;padding:7px 16px;border-radius:7px;font-family:var(--fd);display:inline-block}
+    .ts-nav{font-size:14px;font-weight:500;color:#374151;font-family:var(--fd)}
+
+    /* ── SPACING GRID ── */
+    .space-grid{display:flex;flex-direction:column;gap:10px;margin-top:16px}
+    .space-row{display:flex;align-items:center;gap:16px}
+    .space-bar{background:rgba(44,79,124,0.15);border-radius:4px;height:20px;flex-shrink:0}
+    .space-info{font-family:var(--fm);font-size:12px;color:var(--muted)}
+    .space-token{font-family:var(--fm);font-size:11px;color:var(--navy);font-weight:500}
+
+    /* ── COMPONENT PREVIEWS — DESE ── */
+    /* TopNav */
+    .c-topnav{background:#2C4F7C;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+    .c-topnav-brand{display:flex;align-items:center;gap:10px}
+    .c-topnav-logo{width:36px;height:36px;border-radius:6px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:12px;font-weight:400;color:#fff}
+    .c-topnav-text{}
+    .c-topnav-name{font-size:13px;font-weight:600;color:#fff;font-family:var(--fd)}
+    .c-topnav-sub{font-size:10px;color:rgba(255,255,255,.55);font-family:var(--fm);letter-spacing:.03em}
+    .c-topnav-right{display:flex;align-items:center;gap:14px}
+    .c-bell{position:relative;width:34px;height:34px;border-radius:7px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);cursor:pointer}
+    .c-bell svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:1.6}
+    .c-bell-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:#EF4444;border-radius:50%;border:1.5px solid #2C4F7C}
+    .c-avatar{width:32px;height:32px;border-radius:50%;background:#2563EB;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;font-family:var(--fd)}
+    .c-user-info{}
+    .c-username{font-size:12px;font-weight:600;color:#fff;font-family:var(--fd)}
+    .c-userrole{font-size:10px;color:rgba(255,255,255,.5);font-family:var(--fd)}
+    .c-chevron{width:14px;height:14px;stroke:rgba(255,255,255,.5);fill:none;stroke-width:1.8}
+
+    /* Sidebar */
+    .c-sidebar{background:#fff;border-right:1px solid #E5E7EB;width:200px;padding:16px 0;font-family:var(--fd)}
+    .c-sidebar-group-label{font-size:10px;font-family:var(--fm);color:#9CA3AF;letter-spacing:.08em;text-transform:uppercase;padding:10px 16px 4px}
+    .c-nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px;margin:1px 6px;border-radius:7px;font-size:13px;color:#374151;cursor:pointer;transition:background .12s}
+    .c-nav-item.active{background:#2563EB;color:#fff}
+    .c-nav-item:not(.active):hover{background:#F3F4F6}
+    .c-nav-icon{width:15px;height:15px;border-radius:3px;flex-shrink:0;opacity:.7}
+    .c-nav-icon.home{background:currentColor}
+    .c-sub-wrap{padding:2px 0 2px 30px}
+    .c-sub-item{display:block;padding:5px 10px;margin:1px 0;font-size:12px;color:#374151;cursor:pointer;border-radius:5px;border-left:2px solid #E5E7EB;font-family:var(--fd)}
+    .c-sub-item:hover{background:#F9FAFB}
+    .c-sub-item.active-sub{border-left-color:#2563EB;color:#2563EB;background:#EFF6FF}
+    .c-sidebar-footer{padding:16px 16px 4px;margin-top:16px;border-top:1px solid #F3F4F6;font-size:11px;color:#9CA3AF;font-family:var(--fm)}
+
+    /* FilterBar */
+    .c-filterbar{background:#fff;border-radius:10px;padding:16px 20px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.04);display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end}
+    .c-filter-group{display:flex;flex-direction:column;gap:4px}
+    .c-filter-label{font-size:13px;font-weight:600;color:#111827;font-family:var(--fd)}
+    .c-filter-select{padding:7px 12px;border:1px solid #D1D5DB;border-radius:6px;font-size:13px;font-family:var(--fd);color:#111827;background:#fff;min-width:140px}
+    .c-filter-btn{padding:7px 16px;background:#2C4F7C;color:#fff;border:none;border-radius:7px;font-size:13px;font-weight:500;font-family:var(--fd);cursor:pointer;align-self:flex-end}
+
+    /* DataTable */
+    .c-table-wrap{overflow-x:auto;border-radius:8px;border:1px solid #E5E7EB;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    .c-table{width:100%;border-collapse:collapse;font-family:var(--fd)}
+    .c-table thead tr{background:#2C4F7C}
+    .c-table thead th{padding:10px 14px;font-size:11px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.05em;text-align:left;white-space:nowrap}
+    .c-table thead th.r{text-align:right}
+    .c-table tbody tr{background:#fff;border-bottom:1px solid #F3F4F6}
+    .c-table tbody tr:hover{background:#F9FAFB}
+    .c-table tbody td{padding:9px 14px;font-size:13px;color:#111827;white-space:nowrap}
+    .c-table tbody td.r{text-align:right}
+    .c-table tbody td.lnk{color:#2563EB;text-decoration:underline;cursor:pointer}
+    .c-table tbody td.lnk:hover{color:#1D4ED8}
+    .c-table tfoot tr{background:#F3F4F6;border-top:2px solid #D1D5DB}
+    .c-table tfoot td{padding:9px 14px;font-size:13px;font-weight:700;color:#111827}
+    .c-table tfoot td.r{text-align:right}
+
+    /* Badge */
+    .c-badge-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .c-badge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:600;font-family:var(--fd)}
+    .c-badge.success{background:#DCFCE7;color:#15803D}
+    .c-badge.warning{background:#FEF9C3;color:#92400E}
+    .c-badge.error{background:#FEE2E2;color:#B91C1C}
+    .c-badge.neutral{background:#F3F4F6;color:#374151}
+
+    /* Buttons */
+    .c-btn-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .c-btn-primary{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:#2C4F7C;color:#fff;border-radius:7px;font-size:13px;font-weight:500;font-family:var(--fd);border:none;cursor:pointer;transition:background .15s}
+    .c-btn-primary:hover{background:#1E3A5F}
+    .c-btn-outline{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;background:#fff;color:#111827;border:1px solid #111827;border-radius:7px;font-size:13px;font-weight:500;font-family:var(--fd);cursor:pointer;transition:background .15s}
+    .c-btn-outline:hover{background:#F9FAFB}
+    .c-btn-link{background:none;border:none;color:#2563EB;font-size:13px;font-weight:500;font-family:var(--fd);text-decoration:underline;cursor:pointer;padding:0}
+    .c-btn-link:hover{color:#1D4ED8}
+
+    /* Focus state demo */
+    .c-focus-demo{display:flex;flex-direction:column;gap:16px}
+    .c-focus-input{padding:8px 12px;border:1px solid #D1D5DB;border-radius:6px;font-size:13px;font-family:var(--fd);width:100%;outline:none}
+    .c-focus-input.focused{border-color:#2563EB;box-shadow:0 0 0 3px rgba(37,99,235,.2)}
+    .c-focus-btn{padding:8px 18px;background:#2C4F7C;color:#fff;border-radius:7px;font-size:13px;font-weight:500;font-family:var(--fd);border:none;cursor:pointer;outline:none}
+    .c-focus-btn.focused{outline:3px solid #2563EB;outline-offset:2px}
+
+    /* AlertBox / InfoBox */
+    .c-alert{background:#FEF9C3;border-left:4px solid #FBBF24;border-radius:8px;padding:14px 18px}
+    .c-alert-title{font-size:13px;font-weight:600;color:#92400E;font-family:var(--fd);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+    .c-alert textarea{width:100%;padding:8px 10px;font-size:12px;font-family:var(--fd);border:1px solid #FDE68A;border-radius:6px;background:#FFFDE7;color:#78350F;resize:vertical;min-height:52px;outline:none}
+    .c-info{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:8px;padding:14px 18px}
+    .c-info-text{font-size:13px;color:#1E40AF;font-family:var(--fd);line-height:1.6}
+    .c-info-text a{color:#2563EB;font-weight:600;text-decoration:underline}
+
+    /* SummaryCard */
+    .c-summary{background:#fff;border-radius:10px;padding:20px 24px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.04);font-family:var(--fd);font-size:13px}
+    .c-summary-title{font-size:13px;font-weight:600;color:#111827;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #F3F4F6}
+    .c-summary-grid{display:grid;grid-template-columns:9rem 1fr;gap:6px 12px}
+    .c-summary-label{font-weight:600;color:#111827}
+    .c-summary-value{color:#374151}
+
+    /* EmptyState */
+    .c-empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:44px 20px;background:#fff;border-radius:12px;border:1px solid #E5E7EB}
+    .c-empty-icon{width:52px;height:52px;background:#EFF6FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:14px}
+    .c-empty-title{font-size:15px;font-weight:600;color:#374151;font-family:var(--fd);margin-bottom:4px}
+    .c-empty-sub{font-size:13px;color:#6B7280;font-family:var(--fd)}
+
+    /* DeseFoot */
+    .c-desefoot{border-left:4px solid #2C4F7C;background:#F9FAFB;padding:12px 18px;border-radius:0 8px 8px 0;font-size:13px;color:#374151;font-family:var(--fd);line-height:1.6}
+    .c-desefoot a{color:#2563EB;text-decoration:underline;font-weight:500}
+
+    /* PageHeader */
+    .c-pageheader{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap}
+    .c-ph-title{font-size:20px;font-weight:600;color:#111827;font-family:var(--fd)}
+    .c-ph-sub{font-size:14px;color:#6B7280;font-family:var(--fd);margin-top:3px}
+    .c-ph-actions{display:flex;gap:8px;align-items:center;flex-shrink:0}
+
+    /* DropdownMenu */
+    .c-dropdown-wrap{position:relative;display:inline-block}
+    .c-dropdown{position:absolute;right:0;top:calc(100% + 6px);width:200px;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.1);border:1px solid #E5E7EB;padding:4px 0;z-index:10}
+    .c-dropdown-item{display:flex;align-items:center;gap:8px;padding:8px 14px;font-size:13px;color:#374151;font-family:var(--fd);cursor:pointer;transition:background .12s}
+    .c-dropdown-item:hover{background:#EFF6FF;color:#2563EB}
+    .c-dropdown-div{border-top:1px solid #F3F4F6;margin:4px 0}
+    .c-dropdown-item.danger{color:#B91C1C}
+    .c-dropdown-item.danger:hover{background:#FEE2E2;color:#B91C1C}
+
+    /* Role chips */
+    .role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:4px}
+    .role-card{padding:16px;border-radius:10px;border:1px solid var(--border)}
+    .role-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;font-family:var(--fd)}
+    .role-desc{font-size:12px;color:var(--muted);line-height:1.5;font-family:var(--fd)}
+    .role-pill{display:inline-flex;margin-top:10px;padding:2px 9px;border-radius:100px;font-size:10px;font-family:var(--fm)}
+    .role-pill.dese{background:#EFF6FF;color:#1E40AF;border:1px solid #BFDBFE}
+    .role-pill.district{background:#F0FDF4;color:#15803D;border:1px solid #BBF7D0}
+    .role-pill.public{background:#F3F4F6;color:#374151;border:1px solid #E5E7EB}
+
+    /* Section index table */
+    .index-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:20px}
+    .index-item{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);text-decoration:none;color:var(--text);transition:border-color .15s}
+    .index-item:hover{border-color:var(--border-med)}
+    .index-num{font-family:var(--fm);font-size:10px;color:var(--soft);width:24px;flex-shrink:0}
+    .index-name{font-size:13px;font-weight:500;color:var(--text)}
+    .index-arr{margin-left:auto;color:var(--soft);font-size:13px}
+
+    /* ── FOOTER ── */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:24px clamp(16px,3vw,40px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-top:0}
+    .foot-copy{font-family:var(--fm);font-size:11px;color:var(--soft)}
+    .foot-links{display:flex;gap:20px}
+    .foot-links a{font-size:12px;color:var(--muted);text-decoration:none}
+    .foot-links a:hover{color:var(--text)}
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:800px){
+      .sidebar{display:none}
+      .content{padding:28px 20px 60px}
+      .role-grid,.index-grid{grid-template-columns:1fr}
+      .c-filterbar{flex-direction:column;align-items:stretch}
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="missouri-dese.html" class="back-link">&#8592; Case Study</a>
+    <div class="topbar-sep"></div>
+    <span class="topbar-title">DESE School Finance &mdash; Design System</span>
+  </div>
+  <span class="topbar-badge">v1.0 &middot; 2026</span>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR NAV -->
+  <nav class="sidebar">
+    <div class="sidebar-section-label">Overview</div>
+    <a href="#intro" class="sidebar-link active">Introduction</a>
+    <a href="#principles" class="sidebar-link">Design Principles</a>
+    <a href="#roles" class="sidebar-link">Role Model</a>
+
+    <div class="sidebar-section-label">Foundations</div>
+    <a href="#colors" class="sidebar-link">Color Tokens</a>
+    <a href="#typography" class="sidebar-link">Typography</a>
+    <a href="#spacing" class="sidebar-link">Spacing &amp; Layout</a>
+
+    <div class="sidebar-section-label">Components</div>
+    <a href="#topnav" class="sidebar-link">TopNavBar</a>
+    <a href="#sidebar-comp" class="sidebar-link">SidebarNav</a>
+    <a href="#pageheader" class="sidebar-link">PageHeader</a>
+    <a href="#filterbar" class="sidebar-link">FilterBar</a>
+    <a href="#datatable" class="sidebar-link">DataTable</a>
+    <a href="#badges" class="sidebar-link">Badge</a>
+    <a href="#buttons" class="sidebar-link">Buttons</a>
+    <a href="#alerts" class="sidebar-link">AlertBox &amp; InfoBox</a>
+    <a href="#summary" class="sidebar-link">SummaryCard</a>
+    <a href="#empty" class="sidebar-link">EmptyState</a>
+    <a href="#dropdown" class="sidebar-link">DropdownMenu</a>
+    <a href="#footer-comp" class="sidebar-link">DeseFoot</a>
+    <a href="#accessibility" class="sidebar-link">Accessibility</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <div class="content-inner">
+
+      <!-- PAGE HERO -->
+      <div class="page-hero" id="intro">
+        <div class="page-eyebrow">Design System &middot; Missouri DESE School Finance Portal</div>
+        <h1 class="page-title">Component Library &amp;<br><em>Design Foundations</em></h1>
+        <p class="page-desc">A complete, production-ready design system built for the Missouri Department of Elementary and Secondary Education. 40+ components built in React + TypeScript + Tailwind CSS v4 — role-aware, WCAG 2.1 AA compliant, and designed for high-information-density government workflows.</p>
+        <div class="hero-pills">
+          <span class="hero-pill">React + TypeScript</span>
+          <span class="hero-pill">Tailwind CSS v4</span>
+          <span class="hero-pill">WCAG 2.1 AA</span>
+          <span class="hero-pill">40+ Components</span>
+          <span class="hero-pill">Role-aware</span>
+          <span class="hero-pill">No external UI libraries</span>
+        </div>
+      </div>
+
+      <!-- QUICK INDEX -->
+      <div class="ds-section">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Contents</div>
+          <h2 class="ds-title">What&rsquo;s in this <em>System</em></h2>
+        </div>
+        <div class="index-grid">
+          <a href="#colors" class="index-item"><span class="index-num">01</span><span class="index-name">Color Tokens</span><span class="index-arr">&#8594;</span></a>
+          <a href="#typography" class="index-item"><span class="index-num">02</span><span class="index-name">Typography Scale</span><span class="index-arr">&#8594;</span></a>
+          <a href="#topnav" class="index-item"><span class="index-num">03</span><span class="index-name">TopNavBar</span><span class="index-arr">&#8594;</span></a>
+          <a href="#sidebar-comp" class="index-item"><span class="index-num">04</span><span class="index-name">SidebarNav</span><span class="index-arr">&#8594;</span></a>
+          <a href="#filterbar" class="index-item"><span class="index-num">05</span><span class="index-name">FilterBar &amp; Inputs</span><span class="index-arr">&#8594;</span></a>
+          <a href="#datatable" class="index-item"><span class="index-num">06</span><span class="index-name">DataTable</span><span class="index-arr">&#8594;</span></a>
+          <a href="#badges" class="index-item"><span class="index-num">07</span><span class="index-name">Badge</span><span class="index-arr">&#8594;</span></a>
+          <a href="#buttons" class="index-item"><span class="index-num">08</span><span class="index-name">Buttons</span><span class="index-arr">&#8594;</span></a>
+          <a href="#alerts" class="index-item"><span class="index-num">09</span><span class="index-name">AlertBox &amp; InfoBox</span><span class="index-arr">&#8594;</span></a>
+          <a href="#summary" class="index-item"><span class="index-num">10</span><span class="index-name">SummaryCard</span><span class="index-arr">&#8594;</span></a>
+          <a href="#empty" class="index-item"><span class="index-num">11</span><span class="index-name">EmptyState</span><span class="index-arr">&#8594;</span></a>
+          <a href="#accessibility" class="index-item"><span class="index-num">12</span><span class="index-name">Accessibility</span><span class="index-arr">&#8594;</span></a>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- DESIGN PRINCIPLES -->
+      <div class="ds-section" id="principles">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Foundations</div>
+          <h2 class="ds-title">Design <em>Principles</em></h2>
+          <p class="ds-desc">Five principles shaped every decision in this system — from token naming to component behavior.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px">
+          <div style="padding:20px;border-radius:12px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:20px;margin-bottom:10px">🎯</div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">Information Density</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">Compact, data-heavy layout. No decorative whitespace. Every pixel earns its place in a workflow used for hours each day.</div>
+          </div>
+          <div style="padding:20px;border-radius:12px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:20px;margin-bottom:10px">🔁</div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">Ruthless Consistency</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">Same table header, same card border, same footer bar on every page. Predictability reduces cognitive load for daily users.</div>
+          </div>
+          <div style="padding:20px;border-radius:12px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:20px;margin-bottom:10px">👤</div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">Role Awareness</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">DESE sees all controls. Districts see pre-filled locked inputs. Public sees read-only dropdowns. One system, three contexts.</div>
+          </div>
+          <div style="padding:20px;border-radius:12px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:20px;margin-bottom:10px">♿</div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">Accessibility First</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">Every element has a visible focus ring. Color is never the sole affordance — links are always underlined. WCAG 2.1 AA throughout.</div>
+          </div>
+          <div style="padding:20px;border-radius:12px;background:var(--surface);border:1px solid var(--border);grid-column:1/-1">
+            <div style="font-size:20px;margin-bottom:10px">📐</div>
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">Utilitarian Clarity</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">No illustrations, no gradients (except the dashboard hero), no decorative elements. This is a government tool used by finance professionals — the aesthetic is purposefully clean and institutional.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ROLES -->
+      <div class="ds-section" id="roles">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Foundations</div>
+          <h2 class="ds-title">Role <em>Model</em></h2>
+          <p class="ds-desc">The UI adapts to three distinct roles. Components accept a <code style="font-family:var(--fm);font-size:12px;background:var(--surface);padding:1px 6px;border-radius:4px">userRole</code> prop and render appropriately — locking inputs, hiding controls, or showing read-only states as needed.</p>
+        </div>
+        <div class="role-grid">
+          <div class="role-card">
+            <div class="role-name">DESE Administrator</div>
+            <div class="role-desc">Full system access. Can edit all data, add accounting notes, export all districts, manage submissions, and see system-wide views.</div>
+            <span class="role-pill dese">Full Access</span>
+          </div>
+          <div class="role-card">
+            <div class="role-name">District User</div>
+            <div class="role-desc">Scoped to own district. Can submit reports, view own data, and interact with permitted forms. Inputs pre-filled and locked where appropriate.</div>
+            <span class="role-pill district">Scoped Access</span>
+          </div>
+          <div class="role-card">
+            <div class="role-name">Public / Guest</div>
+            <div class="role-desc">Read-only. Can view published district financial data. Dropdowns are filterable but non-editable. No submission capabilities.</div>
+            <span class="role-pill public">Read Only</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- COLOR TOKENS -->
+      <div class="ds-section" id="colors">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Foundations</div>
+          <h2 class="ds-title">Color <em>Tokens</em></h2>
+          <p class="ds-desc">All colors defined as CSS custom properties in <code style="font-family:var(--fm);font-size:12px;background:var(--surface);padding:1px 6px;border-radius:4px">tokens.css</code>. The palette anchors on government-authoritative navy with interactive blue as the single affordance color — creating a consistent, learnable system for all user types.</p>
+        </div>
+
+        <div class="color-group">
+          <div class="color-group-label">Brand &amp; Interactive</div>
+          <div class="color-row">
+            <div class="color-chip"><div class="chip-swatch" style="background:#2C4F7C"></div><div class="chip-body"><div class="chip-token">--color-navy</div><div class="chip-hex">#2C4F7C</div><div class="chip-use">Headers, table headers, sidebar accents, primary buttons</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#1E3A5F"></div><div class="chip-body"><div class="chip-token">--color-navy-dark</div><div class="chip-hex">#1E3A5F</div><div class="chip-use">Hover state for navy elements</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#2563EB"></div><div class="chip-body"><div class="chip-token">--color-blue</div><div class="chip-hex">#2563EB</div><div class="chip-use">Links, active nav, focus rings, interactive affordance</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#1D4ED8"></div><div class="chip-body"><div class="chip-token">--color-blue-dark</div><div class="chip-hex">#1D4ED8</div><div class="chip-use">Hover state for blue links and buttons</div></div></div>
+          </div>
+        </div>
+
+        <div class="color-group">
+          <div class="color-group-label">Backgrounds &amp; Surfaces</div>
+          <div class="color-row">
+            <div class="color-chip"><div class="chip-swatch" style="background:#F9FAFB;border-bottom:1px solid #E5E7EB"></div><div class="chip-body"><div class="chip-token">--color-bg</div><div class="chip-hex">#F9FAFB</div><div class="chip-use">Page background</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#FFFFFF;border-bottom:1px solid #E5E7EB"></div><div class="chip-body"><div class="chip-token">--color-surface</div><div class="chip-hex">#FFFFFF</div><div class="chip-use">Cards, panels, sidebar background</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#F3F4F6"></div><div class="chip-body"><div class="chip-token">--color-total-row</div><div class="chip-hex">#F3F4F6</div><div class="chip-use">TOTAL/footer rows in DataTable</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#E5E7EB"></div><div class="chip-body"><div class="chip-token">--color-border</div><div class="chip-hex">#E5E7EB</div><div class="chip-use">Card borders, table row dividers</div></div></div>
+          </div>
+        </div>
+
+        <div class="color-group">
+          <div class="color-group-label">Text</div>
+          <div class="color-row">
+            <div class="color-chip"><div class="chip-swatch" style="background:#111827"></div><div class="chip-body"><div class="chip-token">--color-text-primary</div><div class="chip-hex">#111827</div><div class="chip-use">Headings and body text</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#6B7280"></div><div class="chip-body"><div class="chip-token">--color-text-secondary</div><div class="chip-hex">#6B7280</div><div class="chip-use">Subtitles, labels, helper text</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#9CA3AF"></div><div class="chip-body"><div class="chip-token">--color-text-muted</div><div class="chip-hex">#9CA3AF</div><div class="chip-use">Placeholder text</div></div></div>
+          </div>
+        </div>
+
+        <div class="color-group">
+          <div class="color-group-label">Feedback &amp; Status</div>
+          <div class="color-row">
+            <div class="color-chip"><div class="chip-swatch" style="background:#FEF9C3"></div><div class="chip-body"><div class="chip-token">--color-alert-bg</div><div class="chip-hex">#FEF9C3</div><div class="chip-use">Yellow alert / accounting notes background</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#FBBF24"></div><div class="chip-body"><div class="chip-token">--color-alert-border</div><div class="chip-hex">#FBBF24</div><div class="chip-use">Alert left border accent</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#EFF6FF"></div><div class="chip-body"><div class="chip-token">--color-info-bg</div><div class="chip-hex">#EFF6FF</div><div class="chip-use">Blue info box background</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#BFDBFE"></div><div class="chip-body"><div class="chip-token">--color-info-border</div><div class="chip-hex">#BFDBFE</div><div class="chip-use">Info box border</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#16A34A"></div><div class="chip-body"><div class="chip-token">--color-success</div><div class="chip-hex">#16A34A</div><div class="chip-use">Success states, submitted badges</div></div></div>
+            <div class="color-chip"><div class="chip-swatch" style="background:#EF4444"></div><div class="chip-body"><div class="chip-token">--color-danger</div><div class="chip-hex">#EF4444</div><div class="chip-use">Errors, notification badge dot</div></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- TYPOGRAPHY -->
+      <div class="ds-section" id="typography">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Foundations</div>
+          <h2 class="ds-title">Typography <em>Scale</em></h2>
+          <p class="ds-desc">System sans-serif stack throughout — utilitarian clarity for a data-heavy portal. Ten distinct text roles, each with a defined size, weight, and semantic purpose. No decorative typefaces.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">Type scale — all 10 roles rendered at spec <span class="preview-tag">Foundation</span></div>
+          <div class="preview-body white" style="padding:0">
+            <table class="type-table" style="width:100%">
+              <tr><td><div class="type-token">page-title</div><div class="type-spec">text-xl &middot; semibold</div></td><td><div class="ts-page-title">District Budget Overview</div></td></tr>
+              <tr><td><div class="type-token">page-subtitle</div><div class="type-spec">text-sm &middot; regular</div></td><td><div class="ts-subtitle">Fiscal Year 2025 &middot; Kansas City SD</div></td></tr>
+              <tr><td><div class="type-token">section-label</div><div class="type-spec">text-sm &middot; semibold</div></td><td><div class="ts-label">Fund Category</div></td></tr>
+              <tr><td><div class="type-token">table-header</div><div class="type-spec">text-xs &middot; uppercase</div></td><td><div class="ts-th">District Name</div></td></tr>
+              <tr><td><div class="type-token">table-body</div><div class="type-spec">text-sm &middot; regular</div></td><td><div class="ts-body">$4,218,350.00</div></td></tr>
+              <tr><td><div class="type-token">link</div><div class="type-spec">text-sm &middot; medium</div></td><td><div class="ts-link">View Fund Detail &rarr;</div></td></tr>
+              <tr><td><div class="type-token">helper</div><div class="type-spec">text-xs &middot; italic</div></td><td><div class="ts-helper">Amounts reflect unaudited actuals as of last submission</div></td></tr>
+              <tr><td><div class="type-token">badge</div><div class="type-spec">text-xs &middot; semibold</div></td><td><div class="ts-badge">Submitted</div></td></tr>
+              <tr><td><div class="type-token">button</div><div class="type-spec">text-sm &middot; medium</div></td><td><div class="ts-button">Export Report</div></td></tr>
+              <tr><td><div class="type-token">nav-item</div><div class="type-spec">text-sm &middot; medium</div></td><td><div class="ts-nav">Fund Accounting</div></td></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- SPACING -->
+      <div class="ds-section" id="spacing">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Foundations</div>
+          <h2 class="ds-title">Spacing &amp; <em>Layout</em></h2>
+          <p class="ds-desc">Fixed layout shell: 256px sidebar, 64px top bar, 24px content padding throughout. Consistent vertical rhythm via <code style="font-family:var(--fm);font-size:12px;background:var(--surface);padding:1px 5px;border-radius:4px">space-y-6</code> (24px gaps) between page sections.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">Layout shell &amp; spacing tokens <span class="preview-tag">Foundation</span></div>
+          <div class="preview-body white">
+            <div class="space-grid">
+              <div class="space-row"><div class="space-bar" style="width:256px"><span style="font-size:10px;font-family:var(--fm);color:#2C4F7C;padding:0 8px;line-height:20px;display:block">Sidebar — 256px</span></div><div class="space-info"><span class="space-token">w-64</span> &middot; Fixed left, top-16, height calc(100vh - 4rem)</div></div>
+              <div class="space-row"><div class="space-bar" style="width:64px;background:rgba(37,99,235,.15)"><span style="font-size:10px;font-family:var(--fm);color:#2563EB;padding:0 8px;line-height:20px;display:block">Top 64px</span></div><div class="space-info"><span class="space-token">h-16</span> &middot; Fixed top bar, full width</div></div>
+              <div class="space-row"><div class="space-bar" style="width:96px;background:rgba(124,92,54,.15)"><span style="font-size:10px;font-family:var(--fm);color:#7c5c36;padding:0 8px;line-height:20px;display:block">Content 24px</span></div><div class="space-info"><span class="space-token">p-6</span> &middot; Main content area padding, all sides</div></div>
+              <div class="space-row"><div class="space-bar" style="width:96px;background:rgba(124,92,54,.15)"><span style="font-size:10px;font-family:var(--fm);color:#7c5c36;padding:0 8px;line-height:20px;display:block">Card 24px</span></div><div class="space-info"><span class="space-token">p-6</span> &middot; Card internal padding</div></div>
+              <div class="space-row"><div class="space-bar" style="width:96px;background:rgba(124,92,54,.15)"><span style="font-size:10px;font-family:var(--fm);color:#7c5c36;padding:0 8px;line-height:20px;display:block">Section 24px</span></div><div class="space-info"><span class="space-token">space-y-6</span> &middot; Vertical gap between page sections</div></div>
+            </div>
+            <div style="margin-top:20px;display:flex;flex-wrap:wrap;gap:10px">
+              <div style="padding:6px 12px;border-radius:6px;background:var(--surface);border:1px solid var(--border);font-family:var(--fm);font-size:11px;color:var(--muted)">rounded-xl — Cards &amp; panels (12px)</div>
+              <div style="padding:6px 12px;border-radius:6px;background:var(--surface);border:1px solid var(--border);font-family:var(--fm);font-size:11px;color:var(--muted)">rounded-lg — Inputs &amp; buttons (8px)</div>
+              <div style="padding:6px 12px;border-radius:6px;background:var(--surface);border:1px solid var(--border);font-family:var(--fm);font-size:11px;color:var(--muted)">rounded-full — Badges (999px)</div>
+              <div style="padding:6px 12px;border-radius:6px;background:var(--surface);border:1px solid var(--border);font-family:var(--fm);font-size:11px;color:var(--muted)">shadow-sm — Cards, table containers</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- TOP NAV -->
+      <div class="ds-section" id="topnav">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>TopNavBar</em></h2>
+          <p class="ds-desc">Fixed header bar, full width, 64px height. Navy background. Contains logo slot, notification bell with badge, and user profile menu with role label.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">TopNavBar — full width preview <span class="preview-tag">TopNavBar.tsx</span></div>
+          <div class="preview-body navy">
+            <div class="c-topnav">
+              <div class="c-topnav-brand">
+                <div class="c-topnav-logo">DESE</div>
+                <div class="c-topnav-text">
+                  <div class="c-topnav-name">Missouri DESE</div>
+                  <div class="c-topnav-sub">School Finance Portal</div>
+                </div>
+              </div>
+              <div class="c-topnav-right">
+                <div class="c-bell">
+                  <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                  <div class="c-bell-dot"></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px">
+                  <div class="c-avatar">JS</div>
+                  <div class="c-user-info">
+                    <div class="c-username">Jane Smith</div>
+                    <div class="c-userrole">District Administrator</div>
+                  </div>
+                  <svg class="c-chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR NAV -->
+      <div class="ds-section" id="sidebar-comp">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>SidebarNav</em></h2>
+          <p class="ds-desc">Fixed left sidebar, 256px wide, white background. Active item uses blue fill. Yearly Tasks group is a collapsible accordion with indented sub-items. Footer has help links and version number.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">SidebarNav — active state, accordion, sub-items <span class="preview-tag">SidebarNav.tsx</span></div>
+          <div class="preview-body flush">
+            <div style="display:flex">
+              <div class="c-sidebar" style="width:100%">
+                <div class="c-sidebar-group-label">Main</div>
+                <div class="c-nav-item active">
+                  <svg class="c-nav-icon" style="background:none;opacity:1" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                  Dashboard
+                </div>
+                <div class="c-sidebar-group-label">Yearly Tasks</div>
+                <div class="c-sub-wrap">
+                  <div class="c-sub-item active-sub">Budget Submission</div>
+                  <div class="c-sub-item">Expenditure Report</div>
+                  <div class="c-sub-item">Revenue Report</div>
+                  <div class="c-sub-item">Annual Summary</div>
+                </div>
+                <div class="c-sidebar-group-label">Modules</div>
+                <div class="c-nav-item">
+                  <div class="c-nav-icon home"></div>Fund Accounting
+                </div>
+                <div class="c-nav-item">
+                  <div class="c-nav-icon home"></div>Payroll
+                </div>
+                <div class="c-nav-item">
+                  <div class="c-nav-icon home"></div>Deposits
+                </div>
+                <div class="c-nav-item">
+                  <div class="c-nav-icon home"></div>Reports
+                </div>
+                <div class="c-sidebar-footer">
+                  <div><a href="#" style="color:#9CA3AF;text-decoration:none">Help Center</a> &middot; <a href="#" style="color:#9CA3AF;text-decoration:none">Privacy</a></div>
+                  <div style="margin-top:4px;color:#D1D5DB">v2.1.0 &middot; MO.gov</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAGE HEADER -->
+      <div class="ds-section" id="pageheader">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>PageHeader</em></h2>
+          <p class="ds-desc">Reusable top section for every page. Title and subtitle left, optional action slot right. Consistent across all 20+ page templates.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">PageHeader — with action button <span class="preview-tag">PageHeader.tsx</span></div>
+          <div class="preview-body white">
+            <div class="c-pageheader">
+              <div>
+                <div class="c-ph-title">District Budget Overview</div>
+                <div class="c-ph-sub">Fiscal Year 2024–2025 &middot; Kansas City School District</div>
+              </div>
+              <div class="c-ph-actions">
+                <button class="c-btn-outline">Print View</button>
+                <button class="c-btn-primary">&#8681; Export Report</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="ds-section" id="filterbar">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>FilterBar</em></h2>
+          <p class="ds-desc">White card used for page-level filters. Contains LabeledSelect and LabeledInput components. Read-only variant shows locked, pre-filled inputs for District role users.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">FilterBar — DESE role (all selects editable) <span class="preview-tag">FilterBar.tsx</span></div>
+          <div class="preview-body">
+            <div class="c-filterbar">
+              <div class="c-filter-group">
+                <div class="c-filter-label">District</div>
+                <select class="c-filter-select"><option>Kansas City SD</option><option>Springfield SD</option><option>St. Louis SD</option></select>
+              </div>
+              <div class="c-filter-group">
+                <div class="c-filter-label">Fiscal Year</div>
+                <select class="c-filter-select"><option>2024–2025</option><option>2023–2024</option><option>2022–2023</option></select>
+              </div>
+              <div class="c-filter-group">
+                <div class="c-filter-label">Fund</div>
+                <select class="c-filter-select"><option>All Funds</option><option>1 — General</option><option>2 — Special Revenue</option></select>
+              </div>
+              <div class="c-filter-group">
+                <div class="c-filter-label">Month</div>
+                <select class="c-filter-select"><option>June 2025</option><option>May 2025</option></select>
+              </div>
+              <button class="c-filter-btn">Apply</button>
+            </div>
+          </div>
+        </div>
+        <div class="preview" style="margin-top:12px">
+          <div class="preview-label">FilterBar — District role (pre-filled, locked) <span class="preview-tag">LabeledInput — readOnly</span></div>
+          <div class="preview-body">
+            <div class="c-filterbar">
+              <div class="c-filter-group">
+                <div class="c-filter-label">District</div>
+                <input class="c-filter-select" style="background:#F9FAFB;border-color:#E5E7EB;color:#6B7280;cursor:not-allowed" value="Kansas City SD" readonly>
+              </div>
+              <div class="c-filter-group">
+                <div class="c-filter-label">Fiscal Year</div>
+                <select class="c-filter-select"><option>2024–2025</option></select>
+              </div>
+              <div class="c-filter-group">
+                <div class="c-filter-label">Fund</div>
+                <select class="c-filter-select"><option>All Funds</option><option>1 — General</option></select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DATA TABLE -->
+      <div class="ds-section" id="datatable">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>DataTable</em></h2>
+          <p class="ds-desc">The global table style used across all pages. Navy header row, hover rows, optional total/footer row, linked cells. Wrapped in overflow-x-auto for narrow screens.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">DataTable — with total row, badges, linked cells <span class="preview-tag">DataTable.tsx</span></div>
+          <div class="preview-body" style="padding:16px">
+            <div class="c-table-wrap">
+              <table class="c-table">
+                <thead>
+                  <tr>
+                    <th>District Name</th>
+                    <th>Fund</th>
+                    <th>Category</th>
+                    <th class="r">Budget</th>
+                    <th class="r">Actual</th>
+                    <th class="r">Variance</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="lnk">Kansas City SD</td><td>1 — General</td><td>Instruction</td><td class="r">$4,218,350</td><td class="r">$3,940,210</td><td class="r" style="color:#15803D">+$278,140</td><td><span class="c-badge success">Submitted</span></td></tr>
+                  <tr><td class="lnk">Springfield SD</td><td>1 — General</td><td>Support Svc</td><td class="r">$2,640,000</td><td class="r">$2,701,580</td><td class="r" style="color:#B91C1C">($61,580)</td><td><span class="c-badge warning">Pending</span></td></tr>
+                  <tr><td class="lnk">St. Louis SD</td><td>2 — Special Rev</td><td>Instruction</td><td class="r">$5,100,000</td><td class="r">$4,988,300</td><td class="r" style="color:#15803D">+$111,700</td><td><span class="c-badge success">Submitted</span></td></tr>
+                  <tr><td class="lnk">Columbia SD</td><td>1 — General</td><td>Facilities</td><td class="r">$1,850,000</td><td class="r">$1,850,000</td><td class="r">$0</td><td><span class="c-badge neutral">Draft</span></td></tr>
+                  <tr><td class="lnk">Jefferson City SD</td><td>3 — Debt Svc</td><td>Debt Repay</td><td class="r">$920,000</td><td class="r">$920,000</td><td class="r">$0</td><td><span class="c-badge error">Rejected</span></td></tr>
+                </tbody>
+                <tfoot>
+                  <tr><td>TOTAL</td><td></td><td></td><td class="r">$14,728,350</td><td class="r">$14,400,090</td><td class="r" style="color:#15803D">+$328,260</td><td></td></tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BADGES -->
+      <div class="ds-section" id="badges">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>Badge</em></h2>
+          <p class="ds-desc">Status indicators. Four semantic variants — success, warning, error, neutral. Always paired with a text label; color is never the sole affordance.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">Badge — all 4 variants <span class="preview-tag">Badge.tsx</span></div>
+          <div class="preview-body white">
+            <div class="c-badge-row">
+              <div>
+                <span class="c-badge success">Submitted</span>
+                <div style="font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:6px">success</div>
+              </div>
+              <div>
+                <span class="c-badge warning">Pending Review</span>
+                <div style="font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:6px">warning</div>
+              </div>
+              <div>
+                <span class="c-badge error">Rejected</span>
+                <div style="font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:6px">error</div>
+              </div>
+              <div>
+                <span class="c-badge neutral">Draft</span>
+                <div style="font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:6px">neutral</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUTTONS -->
+      <div class="ds-section" id="buttons">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>Buttons</em></h2>
+          <p class="ds-desc">Three button variants covering all use cases. PrimaryButton for key actions, OutlineButton for secondary actions, LinkButton for inline and table contexts.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">PrimaryButton, OutlineButton, LinkButton <span class="preview-tag">Button.tsx</span></div>
+          <div class="preview-body white">
+            <div class="c-btn-row">
+              <button class="c-btn-primary">&#8681; Export Report</button>
+              <button class="c-btn-primary">Save &amp; Submit</button>
+              <button class="c-btn-outline">Cancel</button>
+              <button class="c-btn-outline">Print View</button>
+              <button class="c-btn-link">View Details</button>
+              <button class="c-btn-link">Clear filters</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ALERTS -->
+      <div class="ds-section" id="alerts">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>AlertBox &amp; InfoBox</em></h2>
+          <p class="ds-desc">AlertBox (yellow) is used for DESE-editable accounting notes visible to districts. InfoBox (blue) is used for contact information and resource links.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">AlertBox — DESE accounting note (editable textarea) <span class="preview-tag">AlertBox.tsx</span></div>
+          <div class="preview-body">
+            <div class="c-alert">
+              <div class="c-alert-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                DESE Accounting Note
+              </div>
+              <textarea class="c-alert" style="background:none;border:1px solid #FDE68A;border-radius:6px;background:#FFFDE7;padding:8px 10px;font-size:12px;font-family:var(--fd);color:#78350F;width:100%;min-height:52px;resize:vertical;outline:none" placeholder="Add a note visible to district administrators..."></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="preview" style="margin-top:12px">
+          <div class="preview-label">InfoBox — contact and resource links <span class="preview-tag">InfoBox.tsx</span></div>
+          <div class="preview-body">
+            <div class="c-info">
+              <div class="c-info-text">For questions about fund accounting submissions, contact <a href="#">DESE Finance Support</a>. Email <a href="mailto:finadmgov@dese.mo.gov">finadmgov@dese.mo.gov</a> or call (573) 751-0357. Resources available at <a href="#">MO.gov Financial Reporting</a>.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SUMMARY CARD -->
+      <div class="ds-section" id="summary">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>SummaryCard</em></h2>
+          <p class="ds-desc">White card for displaying labeled key-value pairs on detail pages. Uses CSS grid with fixed label column widths to align values across all rows consistently.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">SummaryCard — single-column layout <span class="preview-tag">SummaryCard.tsx</span></div>
+          <div class="preview-body">
+            <div class="c-summary">
+              <div class="c-summary-title">Submission Details</div>
+              <div class="c-summary-grid">
+                <div class="c-summary-label">District</div><div class="c-summary-value">Kansas City School District</div>
+                <div class="c-summary-label">County</div><div class="c-summary-value">Jackson County</div>
+                <div class="c-summary-label">Fiscal Year</div><div class="c-summary-value">2024–2025</div>
+                <div class="c-summary-label">Fund</div><div class="c-summary-value">1 — General Fund</div>
+                <div class="c-summary-label">Status</div><div class="c-summary-value"><span class="c-badge success">Submitted</span></div>
+                <div class="c-summary-label">Last Updated</div><div class="c-summary-value">June 1, 2026 at 9:42 AM</div>
+                <div class="c-summary-label">Submitted By</div><div class="c-summary-value">Jane Smith — Finance Director</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMPTY STATE + DESEFOOT -->
+      <div class="ds-section" id="empty">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>EmptyState &amp; DeseFoot</em></h2>
+          <p class="ds-desc">EmptyState is shown when no district or data is selected. DeseFoot appears at the bottom of every page — a persistent contact bar with left navy border accent.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">EmptyState — no district selected <span class="preview-tag">EmptyState.tsx</span></div>
+          <div class="preview-body">
+            <div class="c-empty">
+              <div class="c-empty-icon">&#128196;</div>
+              <div class="c-empty-title">No district selected</div>
+              <div class="c-empty-sub">Use the filter above to select a district and fiscal year to view data</div>
+            </div>
+          </div>
+        </div>
+        <div class="preview" style="margin-top:12px">
+          <div class="preview-label">DeseFoot — persistent page footer bar <span class="preview-tag">DeseFoot.tsx</span></div>
+          <div class="preview-body">
+            <div class="c-desefoot">Missouri Department of Elementary and Secondary Education &mdash; Send questions to: <a href="mailto:finadmgov@dese.mo.gov">finadmgov@dese.mo.gov</a> or call (573) 751-0357.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DROPDOWN -->
+      <div class="ds-section" id="dropdown">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Component</div>
+          <h2 class="ds-title"><em>DropdownMenu</em></h2>
+          <p class="ds-desc">Profile dropdown attached to the TopNavBar avatar. Closes on outside click via useRef + mousedown listener. Items use blue hover to reinforce the interactive affordance language.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">DropdownMenu — open state <span class="preview-tag">DropdownMenu.tsx</span></div>
+          <div class="preview-body white" style="min-height:180px;position:relative">
+            <div style="display:flex;justify-content:flex-end">
+              <div style="position:relative">
+                <button class="c-btn-primary" style="font-size:12px;padding:6px 14px">Jane Smith &#8964;</button>
+                <div class="c-dropdown" style="position:relative;top:6px;right:0">
+                  <div class="c-dropdown-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    My Profile
+                  </div>
+                  <div class="c-dropdown-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    Application Menu
+                  </div>
+                  <div class="c-dropdown-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                    Help Center
+                  </div>
+                  <div class="c-dropdown-div"></div>
+                  <div class="c-dropdown-item danger">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    Logout
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACCESSIBILITY -->
+      <div class="ds-section" id="accessibility">
+        <div class="ds-section-header">
+          <div class="ds-eyebrow">Standards</div>
+          <h2 class="ds-title"><em>Accessibility</em></h2>
+          <p class="ds-desc">WCAG 2.1 AA compliance is non-negotiable for a government application. Every interactive element has a visible focus ring. Color is never the sole affordance.</p>
+        </div>
+        <div class="preview">
+          <div class="preview-label">Focus states — keyboard navigation demo <span class="preview-tag">ring-2 ring-blue-600</span></div>
+          <div class="preview-body white">
+            <div class="c-focus-demo">
+              <div>
+                <div style="font-size:12px;font-family:var(--fm);color:var(--muted);margin-bottom:8px">Input — focused state</div>
+                <input class="c-focus-input focused" value="Kansas City School District" placeholder="Search district...">
+              </div>
+              <div>
+                <div style="font-size:12px;font-family:var(--fm);color:var(--muted);margin-bottom:8px">Button — focused state</div>
+                <button class="c-focus-btn focused">Export Report</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
+          <div style="padding:16px;border-radius:10px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">&#9989; Color + Underline for links</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">All links are both blue <em>and</em> underlined. Color is never the sole affordance — safe for color-blind users.</div>
+          </div>
+          <div style="padding:16px;border-radius:10px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">&#9989; Visible focus ring</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6"><code style="font-family:var(--fm);font-size:11px;background:#fff;padding:1px 5px;border-radius:3px">ring-2 ring-blue-600</code> on every interactive element. Keyboard users always know where they are.</div>
+          </div>
+          <div style="padding:16px;border-radius:10px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">&#9989; Contrast ratio &#8805; 4.5:1</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">All text/background combinations tested. Navy #2C4F7C on white passes at 8.2:1. Blue #2563EB on white passes at 5.1:1.</div>
+          </div>
+          <div style="padding:16px;border-radius:10px;background:var(--surface);border:1px solid var(--border)">
+            <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px">&#9989; ARIA labels &amp; roles</div>
+            <div style="font-size:13px;color:var(--muted);line-height:1.6">All icon-only buttons have <code style="font-family:var(--fm);font-size:11px;background:#fff;padding:1px 5px;border-radius:3px">aria-label</code>. Tables use proper <code style="font-family:var(--fm);font-size:11px;background:#fff;padding:1px 5px;border-radius:3px">scope</code> attributes on headers.</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /content-inner -->
+  </main>
+
+</div><!-- /layout -->
+
+<!-- FOOTER -->
+<footer>
+  <span class="foot-copy">&copy; 2026 Shivani Harode &middot; Missouri DESE Design System v1.0</span>
+  <div class="foot-links">
+    <a href="missouri-dese.html">&#8592; Case Study</a>
+    <a href="index.html">Portfolio</a>
+  </div>
+</footer>
+
+<script>
+  // Sidebar active link highlight on scroll
+  const links = document.querySelectorAll('.sidebar-link');
+  const sections = document.querySelectorAll('.ds-section[id], .page-hero[id]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector('.sidebar-link[href="#' + entry.target.id + '"]');
+        if (match) match.classList.add('active');
+      }
+    });
+  }, {rootMargin: '-30% 0px -60% 0px'});
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
