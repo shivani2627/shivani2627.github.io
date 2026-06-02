@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FedEx Office Product Category Landing Page — UX Case Study by Shivani Harode">
+  <title>FedEx Office — Product Category UX Case Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#ffffff;
+      --surface:#f7f4f0;
+      --surface2:#efe9e2;
+      --border:rgba(28,18,10,0.08);
+      --border-med:rgba(28,18,10,0.14);
+      --text:#1c1714;
+      --muted:#7a706a;
+      --soft:#b5ada7;
+      --accent:#7c5c36;
+      --fedex-purple:#4D148C;
+      --fedex-orange:#FF6600;
+      --fedex-blue:#0066CC;
+      --fs:'Fraunces',Georgia,serif;
+      --fd:'DM Sans',system-ui,sans-serif;
+      --fm:'DM Mono',monospace;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--fd);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,80px);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;font-family:var(--fm);transition:color .18s}
+    .nav-back:hover{color:var(--text)}
+    .nav-crumb{font-family:var(--fm);font-size:12px;color:var(--soft)}
+
+    /* ── HERO ── */
+    .hero{padding:116px clamp(20px,5vw,80px) 80px;background:var(--fedex-purple);position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-160px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,102,0,0.18) 0%,transparent 65%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-100px;left:-60px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.04) 0%,transparent 65%);pointer-events:none}
+    .hero-inner{max-width:900px;position:relative;z-index:1}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+    .hero-eyebrow::before{content:'';width:22px;height:1px;background:rgba(255,255,255,0.3)}
+    .hero-brand{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+    .hero-fedex-logo{display:inline-flex;align-items:center;gap:2px;font-size:clamp(36px,6vw,64px);font-weight:900;line-height:1;letter-spacing:-.02em}
+    .hero-fedex-logo span.fed{color:#fff}
+    .hero-fedex-logo span.ex{color:var(--fedex-orange)}
+    h1.hero-title{font-family:var(--fs);font-size:clamp(22px,3.5vw,38px);font-weight:300;line-height:1.2;letter-spacing:-.02em;color:rgba(255,255,255,0.85);margin-bottom:18px}
+    h1.hero-title em{font-style:italic;color:#ffa040}
+    .hero-desc{font-size:16px;color:rgba(255,255,255,0.62);max-width:560px;line-height:1.75;margin-bottom:44px}
+    .hero-role-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:100px;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.8);letter-spacing:.04em;margin-bottom:44px}
+    .role-arrow{color:var(--fedex-orange);font-size:14px}
+    .hero-metrics{display:flex;gap:44px;flex-wrap:wrap;padding-top:36px;border-top:1px solid rgba(255,255,255,0.1)}
+    .metric-val{font-family:var(--fs);font-size:36px;font-weight:300;color:#fff;letter-spacing:-.02em;line-height:1}
+    .metric-lbl{font-size:11px;color:rgba(255,255,255,0.45);font-family:var(--fm);letter-spacing:.05em;margin-top:5px}
+
+    /* ── META ROW ── */
+    .meta-row{background:var(--surface);border-bottom:1px solid var(--border);padding:22px clamp(20px,5vw,80px)}
+    .meta-inner{display:flex;gap:44px;flex-wrap:wrap;max-width:900px}
+    .meta-item{display:flex;flex-direction:column;gap:4px}
+    .meta-lbl{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase}
+    .meta-val{font-size:13px;color:var(--text);font-weight:500}
+
+    /* ── MAIN ── */
+    .main{max-width:900px;margin:0 auto;padding:68px clamp(20px,5vw,40px) 100px}
+
+    /* ── SECTIONS ── */
+    .cs-section{margin-bottom:76px}
+    .cs-eyebrow{font-family:var(--fm);font-size:11px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .cs-eyebrow::before{content:'';width:16px;height:1px;background:var(--soft)}
+    h2.cs-title{font-family:var(--fs);font-size:clamp(26px,4vw,40px);font-weight:300;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:16px}
+    h2.cs-title em{font-style:italic;color:var(--accent)}
+    .cs-body{font-size:15.5px;color:var(--muted);line-height:1.82;max-width:660px}
+    .cs-body p{margin-bottom:14px}
+    .cs-body p:last-child{margin-bottom:0}
+    .divider{height:1px;background:var(--border);margin:0 0 76px}
+
+    /* ── HMW CALLOUT ── */
+    .hmw{padding:32px 36px;border-radius:16px;background:var(--fedex-purple);margin-top:28px;margin-bottom:0}
+    .hmw-label{font-family:var(--fm);font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
+    .hmw-text{font-family:var(--fs);font-size:clamp(20px,3vw,28px);font-weight:300;font-style:italic;color:#fff;line-height:1.4}
+    .hmw-text em{color:#ffa040;font-style:normal}
+
+    /* ── PROBLEM / FINDING CARDS ── */
+    .finding-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+    .finding-card{padding:22px 24px;border-radius:12px;border:1px solid var(--border);background:var(--surface)}
+    .finding-card.highlight{background:#fff8f0;border-color:rgba(255,102,0,0.2)}
+    .finding-icon{font-size:20px;margin-bottom:10px}
+    .finding-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px}
+    .finding-text{font-size:13px;color:var(--muted);line-height:1.65}
+
+    /* ── ROLE SPLIT ── */
+    .role-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+    .role-card{padding:24px;border-radius:14px;border:1px solid var(--border)}
+    .role-card.dev{background:#f0f4ff;border-color:#c7d5f7}
+    .role-card.ux{background:#fff8f0;border-color:rgba(255,102,0,0.2)}
+    .role-card-label{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:14px}
+    .role-card.dev .role-card-label{background:#dce8ff;color:#1a3a8f}
+    .role-card.ux .role-card-label{background:#ffe8d6;color:#c04a00}
+    .role-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .role-list li{font-size:13px;color:var(--muted);line-height:1.6;display:flex;gap:8px;align-items:flex-start}
+    .role-list li::before{content:'→';color:var(--soft);flex-shrink:0;font-size:12px;margin-top:2px}
+
+    /* ── PROCESS DIAMOND ── */
+    .diamond-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:32px;position:relative}
+    .diamond-row::before{content:'';position:absolute;top:30px;left:10%;right:10%;height:1px;background:var(--border-med)}
+    .diamond-step{display:flex;flex-direction:column;align-items:center;text-align:center;padding:0 10px}
+    .diamond-circle{width:60px;height:60px;border-radius:50%;border:2px solid var(--border-med);background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px;position:relative;z-index:1}
+    .diamond-step.active .diamond-circle{border-color:var(--fedex-orange);background:#fff8f0}
+    .diamond-title{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px}
+    .diamond-desc{font-size:12px;color:var(--muted);line-height:1.6}
+    .diamond-tags{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;margin-top:8px}
+    .diamond-tag{padding:2px 8px;border-radius:100px;background:var(--surface);border:1px solid var(--border-med);font-size:10px;color:var(--muted);font-family:var(--fm)}
+    .diamond-step.active .diamond-tag{background:#fff8f0;border-color:rgba(255,102,0,0.25);color:#c04a00}
+
+    /* ── INSIGHTS ── */
+    .insight-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+    .insight{padding:20px 22px;background:var(--surface);border-radius:12px;border-left:3px solid var(--fedex-purple)}
+    .insight-quote{font-family:var(--fs);font-size:15px;font-style:italic;color:var(--text);line-height:1.65}
+    .insight-tag{display:inline-flex;padding:2px 9px;border-radius:100px;font-size:10px;font-family:var(--fm);background:#f0eaf8;color:var(--fedex-purple);margin-top:8px}
+
+    /* ── SURVEY DATA ── */
+    .survey-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:28px}
+    .survey-card{padding:20px;border-radius:12px;background:var(--surface);border:1px solid var(--border)}
+    .survey-q{font-size:12px;font-weight:600;color:var(--text);margin-bottom:14px;line-height:1.4}
+    .survey-bar-wrap{display:flex;flex-direction:column;gap:8px}
+    .survey-bar-row{display:flex;flex-direction:column;gap:3px}
+    .survey-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+    .survey-bar-label span:last-child{font-weight:600;color:var(--text);font-family:var(--fm)}
+    .survey-bar-track{height:7px;background:var(--surface2);border-radius:100px;overflow:hidden}
+    .survey-bar-fill{height:100%;border-radius:100px}
+
+    /* ── SCREENS ── */
+    .screen-stack{display:flex;flex-direction:column;gap:52px;margin-top:32px}
+    .screen-frame{border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,0,0,0.08)}
+    .screen-annotation{margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+    .screen-num-badge{width:28px;height:28px;border-radius:50%;background:var(--fedex-purple);color:#fff;font-family:var(--fm);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .screen-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+    .screen-desc{font-size:13px;color:var(--muted);line-height:1.7}
+    .screen-callouts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .screen-callout{padding:3px 10px;border-radius:100px;font-size:11px;font-family:var(--fm);background:var(--surface);border:1px solid var(--border-med);color:var(--muted)}
+    .screen-callout.hl{background:#f0eaf8;border-color:#c7b0e8;color:var(--fedex-purple)}
+    .screen-callout.ora{background:#fff3e8;border-color:#ffc899;color:#c04a00}
+
+    /* ── FEDEX OFFICE UI CHROME ── */
+    .fo{display:flex;flex-direction:column;font-family:'DM Sans',system-ui,sans-serif;background:#fff}
+    /* top utility bar */
+    .fo-util{background:#4D148C;height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;flex-shrink:0}
+    .fo-util-logo{display:flex;align-items:center;gap:2px;font-weight:900;font-size:17px}
+    .fo-util-logo .fe{color:#fff}.fo-util-logo .dex{color:#FF6600}
+    .fo-util-logo-sub{font-size:9px;color:rgba(255,255,255,0.5);font-family:var(--fm);margin-left:4px;letter-spacing:.04em}
+    .fo-util-nav{display:flex;gap:16px}
+    .fo-util-nav span{font-size:10px;color:rgba(255,255,255,0.7)}
+    /* promo bar */
+    .fo-promo{background:#fff;border-bottom:1px solid #e5e5e5;padding:6px 20px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+    .fo-promo-text{font-size:10px;font-weight:600;color:#111;letter-spacing:.02em}
+    .fo-promo-offer{font-size:10px;color:#666}
+    /* main nav */
+    .fo-nav{background:#fff;border-bottom:2px solid #4D148C;padding:0 20px;display:flex;gap:0;overflow:hidden;flex-shrink:0}
+    .fo-nav-item{padding:10px 12px;font-size:10px;font-weight:500;color:#333;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;cursor:pointer}
+    .fo-nav-item.active{color:#4D148C;border-bottom-color:#4D148C;font-weight:600}
+    /* breadcrumb */
+    .fo-bc{padding:6px 20px;font-size:10px;color:#0066CC;display:flex;align-items:center;gap:4px}
+    .fo-bc-sep{color:#999}
+    /* page content */
+    .fo-content{display:flex;flex:1;gap:0}
+
+    /* BEFORE screen: PDP with problem annotation */
+    .fo-pdp{display:flex;gap:0;padding:12px 20px;flex:1}
+    .fo-pdp-images{width:160px;flex-shrink:0;display:flex;flex-direction:column;gap:4px}
+    .fo-pdp-thumb{width:36px;height:36px;border-radius:4px;background:#f0f0f0;border:1px solid #ddd;overflow:hidden;flex-shrink:0}
+    .fo-pdp-main{flex:1;min-height:140px;border-radius:6px;background:#f5f5f5;border:1px solid #ddd;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+    .fo-pdp-right{width:220px;flex-shrink:0;padding-left:16px}
+    .fo-sel-title{font-size:13px;font-weight:600;color:#111;margin-bottom:4px}
+    .fo-canva-row{font-size:9px;color:#0066CC;margin-bottom:12px}
+    .fo-sel-row{border-bottom:1px solid #e5e5e5;padding:7px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+    .fo-sel-label{font-size:9px;font-weight:700;color:#333;letter-spacing:.04em;text-transform:uppercase}
+    .fo-sel-val{font-size:10px;color:#555;display:flex;align-items:center;gap:4px}
+    .fo-sel-arrow{color:#aaa;font-size:10px}
+    .fo-qty-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0}
+    .fo-qty-label{font-size:9px;font-weight:700;color:#333;letter-spacing:.04em;text-transform:uppercase}
+    .fo-qty-input{width:36px;height:22px;border:1px solid #ddd;border-radius:3px;font-size:10px;text-align:center;color:#111}
+    .fo-price{font-size:22px;font-weight:700;color:#4D148C;text-align:right;padding:6px 0 2px}
+    .fo-price-sub{font-size:9px;color:#666;text-align:right;margin-bottom:8px}
+    .fo-cta{width:100%;padding:8px;background:#FF6600;border:none;border-radius:4px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;letter-spacing:.04em}
+    .fo-pickup-row{display:flex;gap:8px;margin-top:6px;font-size:9px;color:#555}
+    /* Annotation box */
+    .fo-annotation{position:absolute;bottom:8px;left:8px;right:8px;background:rgba(255,255,255,0.95);border:2px solid #FF6600;border-radius:6px;padding:8px 10px;font-size:10px;font-weight:600;color:#c04a00;line-height:1.4;text-align:center}
+
+    /* AFTER screen: Category landing page */
+    .fo-cat-hero{background:linear-gradient(135deg,#4D148C 55%,#e8e0f5 55%);height:120px;display:flex;align-items:center;padding:0 20px;position:relative;overflow:hidden;flex-shrink:0}
+    .fo-cat-hero-text{color:#fff}
+    .fo-cat-hero-h{font-size:18px;font-weight:600;margin-bottom:4px}
+    .fo-cat-hero-sub{font-size:10px;opacity:.7}
+    .fo-cat-hero-cta{padding:6px 14px;background:#FF6600;border:none;border-radius:4px;font-size:10px;font-weight:700;color:#fff;cursor:pointer;margin-top:8px;display:block}
+    .fo-cat-section-title{font-size:12px;font-weight:600;color:#111;padding:12px 20px 8px;border-bottom:1px solid #e5e5e5}
+    .fo-type-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:12px 20px}
+    .fo-type-card{border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+    .fo-type-card:hover{border-color:#4D148C}
+    .fo-type-img{height:80px;background:linear-gradient(135deg,#f5f5f5,#e8e8e8);display:flex;align-items:center;justify-content:center;font-size:28px;position:relative}
+    .fo-type-badge{position:absolute;top:4px;left:4px;padding:2px 6px;background:#4D148C;border-radius:3px;font-size:7px;font-weight:700;color:#fff;letter-spacing:.04em}
+    .fo-type-body{padding:8px 10px}
+    .fo-type-name{font-size:11px;font-weight:600;color:#111;margin-bottom:2px}
+    .fo-type-price{font-size:10px;color:#555;margin-bottom:4px}
+    .fo-type-bullets{list-style:disc;padding-left:12px;font-size:9px;color:#777;line-height:1.6;margin-bottom:6px}
+    .fo-type-link{font-size:9px;font-weight:700;color:#0066CC;letter-spacing:.04em;text-transform:uppercase}
+
+    /* Pricing tabs screen */
+    .fo-pricing-wrap{padding:12px 20px;flex:1}
+    .fo-pricing-h{font-size:14px;font-weight:600;color:#111;margin-bottom:10px}
+    .fo-tabs{display:flex;border-bottom:2px solid #e5e5e5;margin-bottom:14px}
+    .fo-tab{padding:6px 14px;font-size:10px;color:#666;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px}
+    .fo-tab.active{color:#4D148C;font-weight:700;border-bottom-color:#4D148C}
+    .fo-pricing-content{display:flex;gap:20px;align-items:flex-start}
+    .fo-sign-illus{width:100px;flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+    .fo-sign-board{width:80px;height:56px;background:#e8e8e8;border:1px solid #ccc;border-radius:2px}
+    .fo-sign-stake{width:3px;height:32px;background:#555;margin:0 auto}
+    .fo-sign-base{display:flex;gap:8px;justify-content:center}
+    .fo-sign-leg{width:3px;height:20px;background:#555;transform:rotate(8deg)}
+    .fo-pricing-table{flex:1}
+    .fo-pt-header{display:grid;grid-template-columns:100px 80px 100px;gap:0;margin-bottom:4px}
+    .fo-pt-col{font-size:9px;font-weight:700;color:#111;letter-spacing:.04em}
+    .fo-pt-row{display:grid;grid-template-columns:100px 80px 100px;gap:0;padding:5px 0;border-bottom:1px solid #f0f0f0}
+    .fo-pt-cell{font-size:10px;color:#555}
+    .fo-pt-cell.price{color:#0066CC;font-weight:600}
+    .fo-shop-btn{margin-top:12px;padding:6px 18px;background:transparent;border:2px solid #4D148C;border-radius:20px;font-size:10px;font-weight:700;color:#4D148C;cursor:pointer;letter-spacing:.04em}
+    .fo-g7-row{display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid #e5e5e5}
+    .fo-g7-badge{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle,#e8d5f8,#c4a0e8);display:flex;align-items:center;justify-content:center;font-size:8px;font-weight:700;color:#4D148C;text-align:center;flex-shrink:0;line-height:1.2}
+    .fo-g7-text{font-size:10px;color:#555;line-height:1.5}
+
+    /* Tooltip comparison screen */
+    .fo-tooltip-pdp{display:flex;gap:0;padding:12px 20px;flex:1}
+    .fo-tooltip-images{width:120px;flex-shrink:0;display:flex;flex-direction:column;gap:4px}
+    .fo-tooltip-main{flex:1;min-height:120px;border-radius:4px;background:#f5f5f5;display:flex;align-items:center;justify-content:center;font-size:32px;border:1px solid #ddd}
+    .fo-tooltip-right{width:220px;flex-shrink:0;padding-left:14px}
+    .fo-tooltip-sel-row{border-bottom:1px solid #e5e5e5;padding:6px 0;display:flex;justify-content:space-between;align-items:center}
+    .fo-tooltip-label{font-size:9px;font-weight:700;color:#333;letter-spacing:.04em;text-transform:uppercase}
+    .fo-tooltip-val{font-size:10px;color:#4D148C;display:flex;align-items:center;gap:4px}
+    .fo-tooltip-info{width:12px;height:12px;border-radius:50%;background:#e8e0f5;border:1px solid #4D148C;display:flex;align-items:center;justify-content:center;font-size:7px;color:#4D148C;font-weight:700;flex-shrink:0;cursor:pointer}
+    .fo-tooltip-popup{background:#fff;border:1px solid #4D148C;border-radius:6px;padding:8px 10px;margin-top:4px;margin-bottom:6px}
+    .fo-tooltip-popup-title{font-size:9px;font-weight:700;color:#4D148C;margin-bottom:4px}
+    .fo-tooltip-popup-row{display:flex;gap:8px;margin-bottom:3px}
+    .fo-tp-opt{width:32px;height:22px;background:#f0f0f0;border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:600;color:#555;border:1px solid #ddd;flex-shrink:0}
+    .fo-tp-desc{font-size:8px;color:#555;line-height:1.4}
+
+    /* ── TESTING RESULTS ── */
+    .test-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+    .test-card{padding:24px;border-radius:14px;border:1px solid var(--border)}
+    .test-q{font-size:12px;font-weight:600;color:var(--text);margin-bottom:16px;line-height:1.4}
+    .test-result{display:flex;align-items:center;gap:14px}
+    .test-stat{font-family:var(--fs);font-size:40px;font-weight:300;color:var(--fedex-purple);line-height:1;flex-shrink:0}
+    .test-desc{font-size:13px;color:var(--muted);line-height:1.6}
+    .test-bar-row{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+    .test-bar{display:flex;align-items:center;gap:10px}
+    .test-bar-label{font-size:12px;color:var(--muted);width:100px;flex-shrink:0}
+    .test-bar-track{flex:1;height:8px;background:var(--surface2);border-radius:100px;overflow:hidden}
+    .test-bar-fill{height:100%;border-radius:100px;background:var(--fedex-purple)}
+    .test-bar-val{font-family:var(--fm);font-size:11px;color:var(--text);font-weight:600;width:36px;text-align:right;flex-shrink:0}
+
+    /* ── SWOT ── */
+    .swot-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+    .swot-card{padding:20px 22px;border-radius:12px;border:1px solid var(--border)}
+    .swot-label{font-family:var(--fm);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;padding:3px 10px;border-radius:100px;display:inline-flex}
+    .swot-list{list-style:none;display:flex;flex-direction:column;gap:6px}
+    .swot-list li{font-size:12.5px;color:var(--muted);line-height:1.6;display:flex;gap:7px}
+    .swot-list li::before{flex-shrink:0;margin-top:1px;font-size:11px}
+
+    /* ── REFLECTION ── */
+    .reflection-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:28px}
+    .reflection-card{padding:22px 20px;border-radius:12px;background:var(--surface);border:1px solid var(--border)}
+    .reflection-icon{font-size:22px;margin-bottom:10px}
+    .reflection-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:7px}
+    .reflection-text{font-size:12.5px;color:var(--muted);line-height:1.65}
+
+    /* ── OUTCOMES ── */
+    .outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+    .outcome-card{padding:24px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+    .outcome-val{font-family:var(--fs);font-size:36px;font-weight:300;color:var(--fedex-purple);letter-spacing:-.02em;line-height:1}
+    .outcome-lbl{font-size:13px;color:var(--text);font-weight:500;margin-top:7px}
+    .outcome-desc{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+
+    /* ── FOOTER ── */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:28px clamp(20px,5vw,80px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .foot-copy{font-family:var(--fm);font-size:12px;color:var(--soft)}
+    .foot-back{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:14px;font-weight:500}
+
+    @media(max-width:760px){
+      .finding-grid,.role-split,.diamond-row,.survey-grid,.swot-grid,.test-grid,.reflection-grid,.outcomes-grid{grid-template-columns:1fr}
+      .diamond-row::before{display:none}
+      .fo-type-grid{grid-template-columns:1fr 1fr}
+      .fo-pdp,.fo-tooltip-pdp{flex-direction:column}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-back">&#8592; Back to Portfolio</a>
+  <span class="nav-crumb">FedEx Office &middot; Case Study</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Case Study &middot; E-Commerce UX &middot; 2018 &ndash; 2022</div>
+    <div class="hero-brand">
+      <div class="hero-fedex-logo"><span class="fed">Fed</span><span class="ex">Ex</span></div>
+      <span style="color:rgba(255,255,255,0.3);font-size:28px;font-weight:100">|</span>
+      <span style="font-size:14px;color:rgba(255,255,255,0.55);font-family:var(--fm);letter-spacing:.04em">Office Print &amp; Ship</span>
+    </div>
+    <h1 class="hero-title"><em>Enhancing the Product Category</em><br>Landing Page Experience</h1>
+    <p class="hero-desc">My first professional project. At Atos Syntel, I started as a UI Developer and grew into UX design — contributing to FedEx Office&rsquo;s effort to simplify how customers discover, compare, and purchase print products online.</p>
+    <div class="hero-role-badge">
+      UI Developer <span class="role-arrow">→</span> UI/UX Designer
+      <span style="margin-left:4px;color:rgba(255,255,255,0.4)">&middot; Atos Syntel</span>
+    </div>
+    <div class="hero-metrics">
+      <div><div class="metric-val">8/10</div><div class="metric-lbl">Users preferred redesigned category page</div></div>
+      <div><div class="metric-val">6/10</div><div class="metric-lbl">Preferred visual dropdown menus</div></div>
+      <div><div class="metric-val">35</div><div class="metric-lbl">Survey respondents</div></div>
+      <div><div class="metric-val">4yr</div><div class="metric-lbl">Project engagement</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- META -->
+<div class="meta-row">
+  <div class="meta-inner">
+    <div class="meta-item"><div class="meta-lbl">Client</div><div class="meta-val">FedEx Office Print &amp; Ship</div></div>
+    <div class="meta-item"><div class="meta-lbl">Employer</div><div class="meta-val">Atos Syntel</div></div>
+    <div class="meta-item"><div class="meta-lbl">Timeline</div><div class="meta-val">2018 &ndash; 2022</div></div>
+    <div class="meta-item"><div class="meta-lbl">My Roles</div><div class="meta-val">UI Developer &rarr; UI/UX Designer</div></div>
+    <div class="meta-item"><div class="meta-lbl">Domain</div><div class="meta-val">E-Commerce &middot; Print &amp; Logistics</div></div>
+    <div class="meta-item"><div class="meta-lbl">Platform</div><div class="meta-val">Responsive Web</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- CONTEXT NOTE -->
+  <div style="padding:16px 20px;border-radius:10px;background:#f0f4ff;border:1px solid #c7d5f7;margin-bottom:64px;display:flex;gap:12px;align-items:flex-start">
+    <span style="font-size:16px;flex-shrink:0">&#128221;</span>
+    <div>
+      <div style="font-size:13px;font-weight:600;color:#1a3a8f;margin-bottom:4px">A note on scope &amp; my role</div>
+      <div style="font-size:13px;color:#4a5fa8;line-height:1.65">FedEx Office is a large enterprise product. This case study reflects my specific contribution as a junior UI Developer transitioning into UX design within an Atos Syntel project team. I contributed to UX research, wireframing, prototyping, and front-end implementation &mdash; not end-to-end product ownership. All research data and screens shown are from project work I participated in.</div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Background</div>
+    <h2 class="cs-title">The <em>Project</em></h2>
+    <div class="cs-body">
+      <p>FedEx Office provides print, ship, and business services both online and in-store across the US. The project goal was clear: <strong style="color:var(--text)">make online shipping and print ordering fast and easy for FedEx customers worldwide.</strong></p>
+      <p>The website was evolving toward a marketplace model with retail products from third-party suppliers. As part of the Atos Syntel team, we focused on a specific but high-impact problem: the product category landing page experience for FedEx Office&rsquo;s print products — things like yard signs, banners, and business cards.</p>
+      <p>This was my first professional project. I joined as a UI Developer and, over four years, grew into UX design contributions — moving from building interfaces to helping shape what those interfaces should be.</p>
+    </div>
+    <div class="hmw">
+      <div class="hmw-label">Central Design Question</div>
+      <div class="hmw-text">How might we make online <em>print ordering</em> fast, clear, and confidence-building<br>for FedEx customers around the world?</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Problem Statement</div>
+    <h2 class="cs-title">What Customers Were <em>Struggling With</em></h2>
+    <div class="cs-body">
+      <p>Voice of Customer surveys revealed that customers had significant difficulty understanding the print products FedEx Office offered. The problem was two-fold: they couldn&rsquo;t find all print options available, and when they did find them, they couldn&rsquo;t distinguish between the variations.</p>
+    </div>
+    <div class="finding-grid">
+      <div class="finding-card highlight">
+        <div class="finding-icon">&#128269;</div>
+        <div class="finding-title">Product discoverability failure</div>
+        <div class="finding-text">Customers couldn&rsquo;t find all print options supplied by FedEx Office through the existing navigation and product pages. Options were buried inside dropdowns with no visual differentiation.</div>
+      </div>
+      <div class="finding-card highlight">
+        <div class="finding-icon">&#129300;</div>
+        <div class="finding-title">Confusion between product types</div>
+        <div class="finding-text">Users struggled to understand the differences between similar products &mdash; for example, Corrugated H-Stake vs. Corrugated H-Frame vs. Aluminum H-Frame yard signs. Three different products, no clear explanation.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon">&#128178;</div>
+        <div class="finding-title">Pricing too late in the journey</div>
+        <div class="finding-text">Customers demanded pricing options much earlier in the customer journey. They were reaching the product details page before seeing any cost information, which eroded trust and caused drop-off.</div>
+      </div>
+      <div class="finding-card">
+        <div class="finding-icon">&#128218;</div>
+        <div class="finding-title">Poor information hierarchy on PDP</div>
+        <div class="finding-text">The product detail page had poor grid alignment, inconsistent spacing, both vertical and horizontal scrolling, and no explanatory visual content to help users understand what the product actually was.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MY ROLE -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">My Role</div>
+    <h2 class="cs-title">What I <em>Contributed</em></h2>
+    <div class="cs-body"><p>My role evolved significantly over four years. I started implementing what was designed, and gradually moved toward contributing to the design decisions themselves &mdash; participating in research, wireframing, and usability testing.</p></div>
+    <div class="role-split">
+      <div class="role-card dev">
+        <div class="role-card-label">&#128187;&ensp;As UI Developer</div>
+        <ul class="role-list">
+          <li>Built responsive front-end components for the FedEx Office e-commerce platform</li>
+          <li>Implemented product detail pages, category landing pages, and navigation modules</li>
+          <li>Collaborated with engineering teams on cross-browser compatibility and performance</li>
+          <li>Translated design specifications into clean, maintainable HTML/CSS/JS</li>
+          <li>Contributed to the front-end architecture for the evolving marketplace model</li>
+          <li>Supported agile sprints with iterative component delivery and QA</li>
+        </ul>
+      </div>
+      <div class="role-card ux">
+        <div class="role-card-label">&#127775;&ensp;Growing into UI/UX Design</div>
+        <ul class="role-list">
+          <li>Participated in Voice of Customer survey analysis and user research synthesis</li>
+          <li>Contributed to SWOT analysis and competitive review (UPS, DHL, BlueDart)</li>
+          <li>Helped design user flows for the product category and PDP experience</li>
+          <li>Created and iterated wireframes for category landing page alternatives</li>
+          <li>Built and tested hi-fi prototypes through 2 rounds of usability testing</li>
+          <li>Contributed to responsive design decisions for desktop and mobile</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROCESS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Process</div>
+    <h2 class="cs-title">Double Diamond <em>Approach</em></h2>
+    <div class="cs-body"><p>The team applied BDC&rsquo;s UX Double Diamond design thinking framework to ensure design decisions were backed by user research and feedback at every stage &mdash; not assumptions.</p></div>
+    <div class="diamond-row">
+      <div class="diamond-step active">
+        <div class="diamond-circle">&#128270;</div>
+        <div class="diamond-title">Discover</div>
+        <div class="diamond-desc">Voice of Customer surveys &middot; competitive analysis &middot; stakeholder discussions &middot; heuristic review of existing PDP</div>
+        <div class="diamond-tags"><span class="diamond-tag">35 Survey responses</span><span class="diamond-tag">VoC Analysis</span><span class="diamond-tag">SWOT</span></div>
+      </div>
+      <div class="diamond-step active">
+        <div class="diamond-circle">&#127919;</div>
+        <div class="diamond-title">Define</div>
+        <div class="diamond-desc">Synthesising findings into a clear problem statement &middot; brand vs. customer needs mapping &middot; identifying key opportunity areas</div>
+        <div class="diamond-tags"><span class="diamond-tag">Need mapping</span><span class="diamond-tag">HMW statements</span></div>
+      </div>
+      <div class="diamond-step active">
+        <div class="diamond-circle">&#9998;</div>
+        <div class="diamond-title">Develop</div>
+        <div class="diamond-desc">Category landing page ideation &middot; Shop by Type component &middot; pricing transparency designs &middot; two experimental PDP alternatives</div>
+        <div class="diamond-tags"><span class="diamond-tag">Wireframes</span><span class="diamond-tag">Hi-fi prototype</span><span class="diamond-tag">2 concepts</span></div>
+      </div>
+      <div class="diamond-step active">
+        <div class="diamond-circle">&#9989;</div>
+        <div class="diamond-title">Deliver</div>
+        <div class="diamond-desc">Usability testing with prototype &middot; preference testing &middot; validating designs against analytics &middot; front-end implementation</div>
+        <div class="diamond-tags"><span class="diamond-tag">10 participants</span><span class="diamond-tag">A/B concept test</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- RESEARCH -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Research &amp; Discovery</div>
+    <h2 class="cs-title">What the Data <em>Told Us</em></h2>
+    <div class="cs-body"><p>The team ran a customer survey with 35 respondents focused on courier service habits, platform preferences, and trust. This data shaped key decisions around the website experience, particularly around the tension between FedEx and its primary competitors.</p></div>
+    <div class="survey-grid">
+      <div class="survey-card">
+        <div class="survey-q">How often do you use courier services?</div>
+        <div class="survey-bar-wrap">
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Once a year</span><span>51.4%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:51.4%;background:#4D148C"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Once a month</span><span>25.7%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:25.7%;background:#7b4ec4"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Once in 3 months</span><span>20%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:20%;background:#a97ee0"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Once a week</span><span>2.9%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:2.9%;background:#d4b8f0"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--muted);font-style:italic">Most users are infrequent — meaning first impressions and clarity matter more than power-user features.</div>
+      </div>
+      <div class="survey-card">
+        <div class="survey-q">Which courier do you trust most for shipping?</div>
+        <div class="survey-bar-wrap">
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>FedEx</span><span>45.7%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:45.7%;background:#FF6600"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>BlueDart</span><span>42.9%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:42.9%;background:#e8a838"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>UPS</span><span>8.6%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:8.6%;background:#c8a060"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Ekart</span><span>2.9%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:2.9%;background:#e0cfa0"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--muted);font-style:italic">FedEx leads slightly over BlueDart — but the gap is narrow, reinforcing why user experience is a competitive differentiator.</div>
+      </div>
+      <div class="survey-card">
+        <div class="survey-q">Preferred method for using courier services?</div>
+        <div class="survey-bar-wrap">
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Website</span><span>42.9%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:42.9%;background:#4D148C"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Visit store</span><span>28.6%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:28.6%;background:#7b4ec4"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Email</span><span>20%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:20%;background:#a97ee0"></div></div>
+          </div>
+          <div class="survey-bar-row">
+            <div class="survey-bar-label"><span>Telephone</span><span>8.6%</span></div>
+            <div class="survey-bar-track"><div class="survey-bar-fill" style="width:8.6%;background:#d4b8f0"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:11px;color:var(--muted);font-style:italic">Web is the dominant channel. A confusing website directly impacts the majority of customers who prefer to self-serve.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:28px">
+      <h3 style="font-family:var(--fs);font-size:22px;font-weight:300;color:var(--text);margin-bottom:16px">Key <em>Insights</em></h3>
+      <div class="insight-list">
+        <div class="insight">
+          <div class="insight-quote">&ldquo;Customers required a better comprehension of available products, their options, and their specifications. Many had questions about why certain options weren&rsquo;t offered, or wanted to know more about the materials used in the products.&rdquo;</div>
+          <span class="insight-tag">Voice of Customer &middot; Survey synthesis</span>
+        </div>
+        <div class="insight">
+          <div class="insight-quote">&ldquo;Customers demanded pricing options much earlier in the customer journey.&rdquo; Arriving at a product page with no price visible &mdash; or having to configure first before seeing cost &mdash; created anxiety and drop-off.</div>
+          <span class="insight-tag">Key finding from VoC &middot; Journey analysis</span>
+        </div>
+        <div class="insight">
+          <div class="insight-quote">The website had both vertical and horizontal scrolling simultaneously, a glitch in video play buttons, poor grid alignment, repeated navigation options, and no explanatory visual content to help users understand what FedEx Office actually offers.</div>
+          <span class="insight-tag">Heuristic audit &middot; UX issues identified</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SWOT -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Competitive Context</div>
+    <h2 class="cs-title">Brand vs. Customer <em>Needs</em></h2>
+    <div class="cs-body"><p>We mapped the tension between what FedEx needed as a brand and what customers actually cared about &mdash; and also assessed the competitive landscape. This shaped our design priorities: the experience had to serve both sides.</p></div>
+    <div class="swot-grid">
+      <div class="swot-card" style="background:#f0f8ff;border-color:#bfdbfe">
+        <div class="swot-label" style="background:#dbeafe;color:#1e40af">&#127775;&ensp;Brand Needs</div>
+        <ul class="swot-list">
+          <li style="&::before{content:'→'}"><span style="color:var(--soft)">→</span> Fast, secure, and accurate delivery</li>
+          <li><span style="color:var(--soft)">→</span> Safety and product quality standards</li>
+          <li><span style="color:var(--soft)">→</span> Efficient routing and tracking infrastructure</li>
+          <li><span style="color:var(--soft)">→</span> Global network utilisation and team coordination</li>
+          <li><span style="color:var(--soft)">→</span> Technology and innovation investment</li>
+        </ul>
+      </div>
+      <div class="swot-card" style="background:#fff8f0;border-color:#ffc899">
+        <div class="swot-label" style="background:#ffe8d6;color:#c04a00">&#128100;&ensp;Customer Needs</div>
+        <ul class="swot-list">
+          <li><span style="color:var(--soft)">→</span> Safe and timely door delivery</li>
+          <li><span style="color:var(--soft)">→</span> Cost effectiveness &amp; pricing upfront</li>
+          <li><span style="color:var(--soft)">→</span> Real-time package tracking</li>
+          <li><span style="color:var(--soft)">→</span> User-friendly website &amp; clear product info</li>
+          <li><span style="color:var(--soft)">→</span> Multiple payment options &amp; responsive support</li>
+        </ul>
+      </div>
+      <div class="swot-card" style="background:#f0fdf4;border-color:#bbf7d0">
+        <div class="swot-label" style="background:#dcfce7;color:#15803d">&#9654;&ensp;Strengths</div>
+        <ul class="swot-list">
+          <li><span style="color:var(--soft)">→</span> World&rsquo;s largest logistics company — 220+ nations</li>
+          <li><span style="color:var(--soft)">→</span> Business-focused targeting with long-term partnerships</li>
+          <li><span style="color:var(--soft)">→</span> Single pickup/delivery network maximises efficiency</li>
+          <li><span style="color:var(--soft)">→</span> Heavy investment in technology and innovation</li>
+        </ul>
+      </div>
+      <div class="swot-card" style="background:#fff5f5;border-color:#fecaca">
+        <div class="swot-label" style="background:#fee2e2;color:#b91c1c">&#9650;&ensp;Key Challenges</div>
+        <ul class="swot-list">
+          <li><span style="color:var(--soft)">→</span> Narrow trust gap vs. competitors BlueDart &amp; UPS</li>
+          <li><span style="color:var(--soft)">→</span> Digital marketing and self-serve UX lagging behind</li>
+          <li><span style="color:var(--soft)">→</span> Managing traffic complexity in tracking and invoicing</li>
+          <li><span style="color:var(--soft)">→</span> Over-dependence on US market for revenue growth</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SCREENS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Key Screens</div>
+    <h2 class="cs-title">Before &amp; After — <em>Design Evolution</em></h2>
+    <div class="cs-body"><p>The work centred on three interconnected design questions: How do we help users choose between product types? How do we surface pricing earlier? And if a user lands directly on a product detail page, how do we give them the context they need without forcing them back to a category page?</p></div>
+
+    <div class="screen-stack">
+
+      <!-- SCREEN 1: Before — PDP Problem -->
+      <div>
+        <div class="screen-frame">
+          <div class="fo">
+            <div class="fo-util">
+              <div><div class="fo-util-logo"><span class="fe">Fed</span><span class="dex">Ex</span></div></div>
+              <div class="fo-util-nav">
+                <span>Business &amp; Career</span><span>Photo Gifts</span><span>Marketing Materials</span><span>Banners &amp; Signs</span><span>Cards</span><span>Design Templates</span><span>Services</span>
+              </div>
+            </div>
+            <div class="fo-promo">
+              <span class="fo-promo-text">FLASH SALE &nbsp;|&nbsp; SHOW YOUR ❤️ AND SAVE 30% ON CUSTOM GIFTS</span>
+              <span class="fo-promo-offer">Hurry · Offer ends 2/8 · Online and in-store</span>
+            </div>
+            <div class="fo-bc"><span>Home</span><span class="fo-bc-sep">›</span><span style="color:#333">Yard Signs</span></div>
+            <div style="padding:8px 20px;font-size:16px;font-weight:600;color:#111">Yard Signs</div>
+            <div class="fo-pdp">
+              <div class="fo-pdp-images">
+                <div style="display:flex;gap:4px;margin-bottom:8px">
+                  <div class="fo-pdp-thumb" style="font-size:18px;display:flex;align-items:center;justify-content:center">🏡</div>
+                  <div class="fo-pdp-thumb" style="font-size:18px;display:flex;align-items:center;justify-content:center">🏘</div>
+                  <div class="fo-pdp-thumb" style="font-size:18px;display:flex;align-items:center;justify-content:center">👩</div>
+                  <div class="fo-pdp-thumb" style="font-size:14px;display:flex;align-items:center;justify-content:center">TODAY</div>
+                </div>
+                <div class="fo-pdp-main" style="height:200px">
+                  <span style="font-size:44px">🏡</span>
+                  <div class="fo-annotation">Customers couldn&rsquo;t distinguish the differences between these 3 items</div>
+                </div>
+              </div>
+              <div class="fo-pdp-right">
+                <div class="fo-sel-title">Make your selections</div>
+                <div class="fo-canva-row">or <span style="color:#0066CC">use our design template powered by Canva</span></div>
+                <div class="fo-sel-row">
+                  <div><div class="fo-sel-label">SIZE</div><div class="fo-sel-val">12"&times;18" <span class="fo-sel-arrow">&#8964;</span></div></div>
+                </div>
+                <div class="fo-sel-row">
+                  <div><div class="fo-sel-label">PRINT COLOR</div><div class="fo-sel-val">Full Color <span class="fo-sel-arrow">&#8964;</span></div></div>
+                </div>
+                <div class="fo-sel-row" style="border-bottom:none">
+                  <div style="width:100%">
+                    <div class="fo-sel-label">YARD SIGN TYPE</div>
+                    <div class="fo-sel-val" style="margin-bottom:4px">Corrugated H-Stake <span class="fo-sel-arrow">&#8963;</span></div>
+                    <div style="background:#fff;border:1px solid #ddd;border-radius:4px;overflow:hidden">
+                      <div style="padding:7px 10px;font-size:10px;color:#555;border-bottom:1px solid #f0f0f0">Corrugated H-Frame</div>
+                      <div style="padding:7px 10px;font-size:10px;color:#111;background:#f5f5ff;font-weight:600;border-bottom:1px solid #f0f0f0">Corrugated H-Stake</div>
+                      <div style="padding:7px 10px;font-size:10px;color:#555">Aluminum H-Frame</div>
+                    </div>
+                  </div>
+                </div>
+                <div style="text-align:right;padding:8px 0 2px;font-size:18px;font-weight:700;color:#4D148C">$29.99</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge" style="background:#b91c1c">!</div>
+          <div>
+            <div class="screen-title">Before — Product Detail Page (The Problem)</div>
+            <div class="screen-desc">Users landing on the Yard Signs PDP were confronted with a dropdown containing three different product types with no visual distinction between them. Corrugated H-Stake, Corrugated H-Frame, and Aluminum H-Frame are meaningfully different products — different durability, material, price, and use case — but the UI offered no way to understand those differences before selecting. Users either guessed, or abandoned.</div>
+            <div class="screen-callouts">
+              <span class="screen-callout hl">Three options, no differentiation</span>
+              <span class="screen-callout hl">No pricing until after selection</span>
+              <span class="screen-callout">No material or use-case context</span>
+              <span class="screen-callout">VoC surveys confirmed confusion</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: Category Landing Page -->
+      <div>
+        <div class="screen-frame">
+          <div class="fo">
+            <div class="fo-util">
+              <div><div class="fo-util-logo"><span class="fe">Fed</span><span class="dex">Ex</span></div></div>
+              <div class="fo-util-nav">
+                <span>Business &amp; Career</span><span>Photo Gifts</span><span>Banners &amp; Signs</span><span>Cards</span><span>Templates</span>
+              </div>
+            </div>
+            <div class="fo-bc"><span>Home</span><span class="fo-bc-sep">›</span><span style="color:#333">Yard Signs</span></div>
+            <div class="fo-cat-hero">
+              <div class="fo-cat-hero-text">
+                <div class="fo-cat-hero-h">Create your own yard sign</div>
+                <div class="fo-cat-hero-sub">Durable, weather-resistant signs for every occasion</div>
+                <button class="fo-cat-hero-cta">BROWSE TEMPLATES</button>
+              </div>
+            </div>
+            <div class="fo-cat-section-title">Shop by Type</div>
+            <div class="fo-type-grid">
+              <div class="fo-type-card">
+                <div class="fo-type-img">
+                  🪧
+                  <span class="fo-type-badge">OUTDOOR</span>
+                </div>
+                <div class="fo-type-body">
+                  <div class="fo-type-name">Corrugated H-Stake</div>
+                  <div class="fo-type-price">Starting at <strong>$29.99</strong></div>
+                  <ul class="fo-type-bullets">
+                    <li>Corrugated plastic sign with wire H-stake display</li>
+                    <li>For outdoor use where severe environmental factors apply</li>
+                  </ul>
+                  <div class="fo-type-link">SHOP NOW</div>
+                </div>
+              </div>
+              <div class="fo-type-card" style="border-color:#4D148C">
+                <div class="fo-type-img" style="background:linear-gradient(135deg,#e8e0f5,#d4c4f0)">
+                  🖼
+                  <span class="fo-type-badge">DURABLE</span>
+                </div>
+                <div class="fo-type-body">
+                  <div class="fo-type-name">Corrugated H-Frame</div>
+                  <div class="fo-type-price">Starting at <strong>$113.99</strong></div>
+                  <ul class="fo-type-bullets">
+                    <li>Corrugated plastic sign with metal frame</li>
+                    <li>Stand is more durable than short-term</li>
+                    <li>Better withstands wind and traffic conditions</li>
+                  </ul>
+                  <div class="fo-type-link">SHOP NOW</div>
+                </div>
+              </div>
+              <div class="fo-type-card">
+                <div class="fo-type-img">
+                  🏗
+                  <span class="fo-type-badge" style="background:#FF6600">PREMIUM</span>
+                </div>
+                <div class="fo-type-body">
+                  <div class="fo-type-name">Aluminum H-Frame</div>
+                  <div class="fo-type-price">Starting at <strong>$87.99</strong></div>
+                  <ul class="fo-type-bullets">
+                    <li>Metal sign with metal frame</li>
+                    <li>Weather- and rust-resistant</li>
+                    <li>Recyclable</li>
+                  </ul>
+                  <div class="fo-type-link">SHOP NOW</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge">01</div>
+          <div>
+            <div class="screen-title">Redesigned Category Landing Page — Shop by Type</div>
+            <div class="screen-desc">The core design solution was a &ldquo;Shop by Type&rdquo; section on the category landing page. Instead of a dropdown of identical-looking text options, each product type got its own card with a photo, starting price, and bullet points explaining what makes it different. This directly addressed the two primary pain points: discoverability and product differentiation. Pricing is surfaced immediately on the card — no need to configure first.</div>
+            <div class="screen-callouts">
+              <span class="screen-callout hl">Pricing visible before any selection</span>
+              <span class="screen-callout hl">Visual cards differentiate product types</span>
+              <span class="screen-callout ora">Hero banner with clear CTA</span>
+              <span class="screen-callout">Material &amp; use-case bullets per type</span>
+              <span class="screen-callout">Consistent with FedEx brand system</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 3: Pricing Tabs -->
+      <div>
+        <div class="screen-frame">
+          <div class="fo" style="background:#f8f8f8">
+            <div class="fo-pricing-wrap" style="max-width:700px;margin:0 auto;background:#fff;padding:20px 24px;min-height:320px">
+              <div class="fo-pricing-h">Product Pricing</div>
+              <div class="fo-tabs">
+                <div class="fo-tab active">Corrugated H-Stake</div>
+                <div class="fo-tab">Corrugated H-Frame</div>
+                <div class="fo-tab">Aluminum H-Frame</div>
+              </div>
+              <div class="fo-pricing-content">
+                <div class="fo-sign-illus">
+                  <div class="fo-sign-board"></div>
+                  <div class="fo-sign-stake"></div>
+                  <div class="fo-sign-base">
+                    <div class="fo-sign-leg"></div>
+                    <div class="fo-sign-leg" style="transform:rotate(-8deg)"></div>
+                  </div>
+                </div>
+                <div class="fo-pricing-table">
+                  <div class="fo-pt-header">
+                    <div class="fo-pt-col">Sizes</div>
+                    <div class="fo-pt-col"># of Sides</div>
+                    <div class="fo-pt-col">Starting Cost</div>
+                  </div>
+                  <div class="fo-pt-row"><div class="fo-pt-cell">12" &times; 18"</div><div class="fo-pt-cell">Single</div><div class="fo-pt-cell price">$29.99</div></div>
+                  <div class="fo-pt-row"><div class="fo-pt-cell">12" &times; 18"</div><div class="fo-pt-cell">Double</div><div class="fo-pt-cell price">$34.99</div></div>
+                  <div class="fo-pt-row"><div class="fo-pt-cell">18" &times; 24"</div><div class="fo-pt-cell">Single</div><div class="fo-pt-cell price">$37.99</div></div>
+                  <div class="fo-pt-row"><div class="fo-pt-cell">18" &times; 24"</div><div class="fo-pt-cell">Double</div><div class="fo-pt-cell price">$42.99</div></div>
+                  <button class="fo-shop-btn">SHOP NOW</button>
+                  <div class="fo-g7-row">
+                    <div class="fo-g7-badge">G7<br>MASTER</div>
+                    <div class="fo-g7-text"><strong>G7 Master Qualified Printer</strong><br>Get consistent color that&rsquo;s earned the industry&rsquo;s premier designation for color management</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge">02</div>
+          <div>
+            <div class="screen-title">Tabbed Product Pricing Section</div>
+            <div class="screen-desc">Directly below the Shop by Type cards, the category landing page included a tabbed pricing section that let users compare all three product types&rsquo; size and pricing options side-by-side — without navigating away. Each tab showed a visual diagram of the sign type, a pricing table with all size/side combinations, and a contextual G7 quality badge. This addressed the VoC finding that customers wanted pricing much earlier in their journey.</div>
+            <div class="screen-callouts">
+              <span class="screen-callout hl">All pricing in one place, no form required</span>
+              <span class="screen-callout hl">Tabbed comparison between all 3 types</span>
+              <span class="screen-callout">Visual sign diagram per type</span>
+              <span class="screen-callout">Quality credential reinforces confidence</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCREEN 4: Tooltip PDP alternative -->
+      <div>
+        <div class="screen-frame">
+          <div class="fo">
+            <div class="fo-util">
+              <div><div class="fo-util-logo"><span class="fe">Fed</span><span class="dex">Ex</span></div></div>
+              <div class="fo-util-nav"><span>Business &amp; Career</span><span>Photo Gifts</span><span>Banners &amp; Signs</span></div>
+            </div>
+            <div class="fo-promo">
+              <span class="fo-promo-text">FLASH SALE &nbsp;|&nbsp; SHOW YOUR ❤️ AND SAVE 30% ON CUSTOM GIFTS</span>
+              <span class="fo-promo-offer">Hurry · Offer ends 2/8</span>
+            </div>
+            <div class="fo-bc"><span>Home</span><span class="fo-bc-sep">›</span><span style="color:#333">Yard Signs</span></div>
+            <div style="padding:8px 20px 0;font-size:15px;font-weight:600;color:#111">Yard Signs</div>
+            <div class="fo-tooltip-pdp">
+              <div class="fo-tooltip-images">
+                <div style="display:flex;flex-direction:column;gap:4px;width:48px">
+                  <div class="fo-pdp-thumb" style="font-size:14px;display:flex;align-items:center;justify-content:center">🏡</div>
+                  <div class="fo-pdp-thumb" style="font-size:14px;display:flex;align-items:center;justify-content:center">🏘</div>
+                  <div class="fo-pdp-thumb" style="font-size:14px;display:flex;align-items:center;justify-content:center">👩</div>
+                  <div class="fo-pdp-thumb" style="font-size:11px;display:flex;align-items:center;justify-content:center">TODAY</div>
+                </div>
+                <div class="fo-tooltip-main" style="margin-top:4px;height:140px;margin-left:8px">🏡</div>
+              </div>
+              <div class="fo-tooltip-right">
+                <div class="fo-sel-title" style="font-size:12px">Make your selections</div>
+                <div class="fo-canva-row" style="font-size:9px">or <span style="color:#0066CC">use our design template powered by Canva</span></div>
+                <div class="fo-tooltip-sel-row">
+                  <div><div class="fo-tooltip-label">SIZE</div><div class="fo-tooltip-val">12"&times;18" <span style="font-size:10px;color:#aaa">&#8964;</span></div></div>
+                </div>
+                <div class="fo-tooltip-sel-row">
+                  <div><div class="fo-tooltip-label">PRINT COLOR</div><div class="fo-tooltip-val">Full Color <span style="font-size:10px;color:#aaa">&#8964;</span></div></div>
+                </div>
+                <div class="fo-tooltip-sel-row" style="flex-direction:column;align-items:flex-start;border-bottom:none">
+                  <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+                    <div class="fo-tooltip-label">YARD SIGN TYPE</div>
+                    <div class="fo-tooltip-info">?</div>
+                  </div>
+                  <div class="fo-tooltip-popup">
+                    <div class="fo-tooltip-popup-title">Choose the right yard sign type:</div>
+                    <div class="fo-tooltip-popup-row">
+                      <div class="fo-tp-opt">H-Stake</div>
+                      <div class="fo-tp-desc"><strong>Corrugated H-Stake ($29.99)</strong> — Wire stake display, for outdoor use in soil. Lightweight, easy to install.</div>
+                    </div>
+                    <div class="fo-tooltip-popup-row">
+                      <div class="fo-tp-opt" style="border-color:#4D148C;background:#f0eaf8;color:#4D148C">H-Frame</div>
+                      <div class="fo-tp-desc"><strong>Corrugated H-Frame ($113.99)</strong> — Metal frame, more durable, better in wind and traffic. Long-term use.</div>
+                    </div>
+                    <div class="fo-tooltip-popup-row">
+                      <div class="fo-tp-opt" style="border-color:#FF6600;background:#fff3e8;color:#FF6600">Al. Frame</div>
+                      <div class="fo-tp-desc"><strong>Aluminum H-Frame ($87.99)</strong> — Metal sign + frame, weather/rust resistant, recyclable. Premium.</div>
+                    </div>
+                  </div>
+                  <div class="fo-tooltip-val" style="font-size:10px">Corrugated H-Stake <span style="font-size:10px;color:#aaa">&#8964;</span></div>
+                </div>
+                <div style="border-top:1px solid #e5e5e5;padding-top:6px">
+                  <div class="fo-qty-row">
+                    <div class="fo-qty-label">QUANTITY</div>
+                    <div class="fo-qty-input">1</div>
+                  </div>
+                  <div style="text-align:right;font-size:10px;color:#666;padding:2px 0">Printing cost:</div>
+                  <div class="fo-price">$29.99</div>
+                  <div class="fo-price-sub">1 for $29.99 &nbsp;&middot;&nbsp; Unit cost: $29.99</div>
+                  <button class="fo-cta">UPLOAD A FILE</button>
+                  <div class="fo-pickup-row">
+                    <span>&#127978; Pick up in-store</span><span>&#128666; Delivery</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge">03</div>
+          <div>
+            <div class="screen-title">Experimental Concept B — Tooltip Guide on PDP</div>
+            <div class="screen-desc">We recognised that many users land directly on a product detail page via organic search, bypassing the category page entirely. For these users, we tested two experimental designs. Concept B was closer to the existing PDP but added a tooltip-style guide on the &ldquo;Yard Sign Type&rdquo; dropdown — a &ldquo;?&rdquo; icon that expands to show all three options with prices, descriptions, and visual labels. This gives contextual help without forcing the user to navigate away.</div>
+            <div class="screen-callouts">
+              <span class="screen-callout hl">Contextual help without leaving the page</span>
+              <span class="screen-callout hl">All 3 types compared with prices inline</span>
+              <span class="screen-callout">Familiar PDP layout preserved</span>
+              <span class="screen-callout">6/10 users preferred this over visual menu</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- USABILITY TESTING -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Usability Testing &amp; Validation</div>
+    <h2 class="cs-title">Testing What <em>Actually Worked</em></h2>
+    <div class="cs-body"><p>We ran two rounds of usability testing. The first compared the redesigned category landing page against the existing PDP as the primary navigation destination. The second tested two experimental PDP concepts against each other for users who landed directly on a product page.</p></div>
+    <div class="test-grid">
+      <div class="test-card" style="background:#f0eaf8;border-color:#c7b0e8">
+        <div class="test-q">Round 1: &ldquo;When choosing a product from the nav — e.g. Yard Signs — which path do you prefer and why?&rdquo;</div>
+        <div class="test-result">
+          <div class="test-stat">8/10</div>
+          <div class="test-desc">Participants preferred navigating to the <strong>category landing page first</strong>, saying it gave them more options to choose from and was visually easier to make an informed decision.</div>
+        </div>
+        <div class="test-bar-row" style="margin-top:16px">
+          <div class="test-bar">
+            <div class="test-bar-label" style="font-size:11px">Category page first</div>
+            <div class="test-bar-track"><div class="test-bar-fill" style="width:80%"></div></div>
+            <div class="test-bar-val">80%</div>
+          </div>
+          <div class="test-bar">
+            <div class="test-bar-label" style="font-size:11px">Direct to PDP</div>
+            <div class="test-bar-track"><div class="test-bar-fill" style="width:20%;background:#c7b0e8"></div></div>
+            <div class="test-bar-val">20%</div>
+          </div>
+        </div>
+      </div>
+      <div class="test-card" style="background:#fff8f0;border-color:#ffc899">
+        <div class="test-q">Round 2: &ldquo;For users landing directly on PDP — which concept gives you more confidence and clarity when purchasing?&rdquo;</div>
+        <div class="test-result">
+          <div class="test-stat" style="color:var(--fedex-orange)">6/10</div>
+          <div class="test-desc">Participants preferred <strong>Concept B — the tooltip guide</strong> on the existing PDP layout. They found it more streamlined, requiring fewer steps to access the information they needed.</div>
+        </div>
+        <div class="test-bar-row" style="margin-top:16px">
+          <div class="test-bar">
+            <div class="test-bar-label" style="font-size:11px">Tooltip guide (Concept B)</div>
+            <div class="test-bar-track"><div class="test-bar-fill" style="width:60%;background:#FF6600"></div></div>
+            <div class="test-bar-val">60%</div>
+          </div>
+          <div class="test-bar">
+            <div class="test-bar-label" style="font-size:11px">Visual menu (Concept A)</div>
+            <div class="test-bar-track"><div class="test-bar-fill" style="width:40%;background:#ffc899"></div></div>
+            <div class="test-bar-val">40%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:20px 24px;border-radius:12px;background:var(--surface);border:1px solid var(--border);font-size:14px;color:var(--muted);line-height:1.7">
+      <strong style="color:var(--text)">What came next:</strong> Both experimental PDP concepts were placed under development following usability validation. The team committed to monitoring analytics and consumer surveys post-launch to measure whether these changes improved customer experience in production. These brand-new designs were intended to give buyers more confidence and clarity when making purchases.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- IMPACT -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Impact &amp; Outcomes</div>
+    <h2 class="cs-title">What the Work <em>Achieved</em></h2>
+    <div class="cs-body"><p>The outcomes from this project are measured through usability testing validation and qualitative improvement — as an early-career project, production analytics weren&rsquo;t available to me directly. The impact is described honestly based on what was tested and validated.</p></div>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-val">80%</div>
+        <div class="outcome-lbl">Preferred category-first navigation</div>
+        <div class="outcome-desc">8 out of 10 usability participants preferred the redesigned category landing page over landing directly on a PDP — validating the core design decision.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">60%</div>
+        <div class="outcome-lbl">Preferred tooltip guidance on PDP</div>
+        <div class="outcome-desc">6 out of 10 participants preferred the streamlined tooltip concept for direct-landing users — fewer steps, same contextual information.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">2</div>
+        <div class="outcome-lbl">Concepts validated and approved for development</div>
+        <div class="outcome-desc">Both experimental PDP designs were approved for development following usability testing. Analytics monitoring was planned post-launch.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">Early</div>
+        <div class="outcome-lbl">Pricing transparency achieved</div>
+        <div class="outcome-desc">Starting price information surfaced on category cards and in the tabbed pricing section — addressing the top VoC finding without requiring form completion.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">Clear</div>
+        <div class="outcome-lbl">Product differentiation on category page</div>
+        <div class="outcome-desc">The Shop by Type section gave each product type its own card with photo, price, bullets, and materials — replacing an undifferentiated dropdown.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">4 yr</div>
+        <div class="outcome-lbl">Project involvement &amp; role growth</div>
+        <div class="outcome-desc">From UI Developer implementing specs to contributing UX research, wireframes, and prototype testing — a genuine evolution in how I approached design problems.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- REFLECTION -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Reflection</div>
+    <h2 class="cs-title">What I <em>Learned</em></h2>
+    <div class="cs-body"><p>This was my first professional project — and the one that showed me the difference between building interfaces and understanding why they should be built a certain way. It planted the seed of design thinking that every project since has grown from.</p></div>
+    <div class="reflection-grid">
+      <div class="reflection-card">
+        <div class="reflection-icon">&#127744;</div>
+        <div class="reflection-title">Development fluency made me a better designer</div>
+        <div class="reflection-text">Starting as a UI Developer gave me an instinct for what&rsquo;s feasible and what creates technical debt. When I moved into UX, I designed with implementation in mind — which made handoff smoother and reduced back-and-forth with engineering.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">&#128202;</div>
+        <div class="reflection-title">Data changes the conversation</div>
+        <div class="reflection-text">Working with VoC survey data for the first time showed me how research reframes opinion into evidence. When we said &ldquo;pricing needs to be earlier,&rdquo; it landed differently because 35 survey respondents said it — not just us.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">&#128269;</div>
+        <div class="reflection-title">Testing reveals what you can&rsquo;t predict</div>
+        <div class="reflection-text">We built two PDP concepts expecting one to clearly win. 6:4 was closer than expected. The tooltip approach won because of fewer steps — something we hadn&rsquo;t weighted as the primary differentiator. Testing humbled my assumptions.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">&#127775;</div>
+        <div class="reflection-title">E-commerce UX is about confidence, not features</div>
+        <div class="reflection-text">Users didn&rsquo;t want more information — they wanted the right information at the right moment. Surfacing price on the category card, not after configuration, wasn&rsquo;t a feature change. It was a trust decision.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">&#128101;</div>
+        <div class="reflection-title">Transitioning roles takes intention</div>
+        <div class="reflection-text">Moving from developer to designer wasn&rsquo;t automatic. I had to proactively ask to be involved in research and wireframing, learn new tools, and earn trust by showing I understood both sides. That intentionality shaped who I am professionally.</div>
+      </div>
+      <div class="reflection-card">
+        <div class="reflection-icon">&#127758;</div>
+        <div class="reflection-title">Enterprise UX demands humility about scope</div>
+        <div class="reflection-text">FedEx Office is a complex, multi-team product. My contribution was real and meaningful — but it was one piece of a much larger system. Learning to do excellent work within a defined scope, rather than overreaching it, is a discipline I carry into every project.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span class="foot-copy">&copy; 2026 Shivani Harode &middot; Frisco, TX</span>
+  <a href="index.html" class="foot-back">&#8592; Back to Portfolio</a>
+</footer>
+
+</body>
+</html>
