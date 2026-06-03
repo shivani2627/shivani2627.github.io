@@ -21,7 +21,6 @@
       --soft:#96afc8;
       --accent:#0055b3;
       --accent-light:#e6f0ff;
-      --accent2:#0099d6;
       --hp-blue:#0096D6;
       --hp-dark:#005487;
       --hp-navy:#1a3a5c;
@@ -32,54 +31,53 @@
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--text);font-family:var(--fd);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
 
-    /* ── NAV ── */
+    /* NAV */
     nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,80px);background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
     .nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;font-family:var(--fm);transition:color .18s}
     .nav-back:hover{color:var(--text)}
+    .nav-right{display:flex;align-items:center;gap:10px}
     .nav-crumb{font-family:var(--fm);font-size:12px;color:var(--soft)}
-    .nav-proto-links{display:flex;gap:10px}
-    .nav-proto-link{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;border:1px solid var(--border-med);font-size:11px;font-family:var(--fm);color:var(--accent);text-decoration:none;transition:all .18s}
-    .nav-proto-link:hover{background:var(--accent-light);border-color:var(--accent)}
-    .nav-proto-link svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:2}
+    .nav-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:6px;border:1px solid var(--border-med);font-size:11px;font-family:var(--fm);color:var(--accent);text-decoration:none;transition:all .18s}
+    .nav-pill:hover{background:var(--accent-light)}
+    .nav-pill svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2}
 
-    /* ── HERO ── */
-    .hero{padding:116px clamp(20px,5vw,80px) 80px;background:linear-gradient(135deg,var(--hp-navy) 0%,#0d2e52 60%,#0a2440 100%);position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:-200px;right:-100px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,150,214,0.18) 0%,transparent 65%);pointer-events:none}
-    .hero::after{content:'';position:absolute;bottom:-80px;left:30%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,84,135,0.25) 0%,transparent 65%);pointer-events:none}
-    .hero-inner{max-width:900px;position:relative;z-index:1}
-    .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
-    .hero-eyebrow::before{content:'';width:22px;height:1px;background:rgba(255,255,255,0.28)}
-    .hero-brand{display:flex;align-items:center;gap:14px;margin-bottom:20px}
-    .hp-logo{width:48px;height:48px;border-radius:10px;background:var(--hp-blue);display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:20px;font-weight:400;color:#fff;letter-spacing:-.02em}
-    .hp-brand-text{color:#fff;font-size:15px;font-weight:500;font-family:var(--fd)}
-    .hp-brand-sub{color:rgba(255,255,255,.45);font-size:11px;font-family:var(--fm);letter-spacing:.04em}
-    h1.hero-title{font-family:var(--fs);font-size:clamp(32px,5.5vw,62px);font-weight:300;line-height:1.08;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+    /* HERO */
+    .hero{padding:112px clamp(20px,5vw,80px) 80px;background:linear-gradient(140deg,#0d2240 0%,#1a3a5c 50%,#0a2035 100%);position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-200px;right:-120px;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(0,150,214,0.2) 0%,transparent 65%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-60px;left:20%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,84,135,0.18) 0%,transparent 65%);pointer-events:none}
+    .hero-inner{max-width:920px;position:relative;z-index:1}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.42);letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+    .hero-eyebrow::before{content:'';width:22px;height:1px;background:rgba(255,255,255,0.25)}
+    .hero-brand{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+    .hp-logo{width:52px;height:52px;border-radius:10px;background:var(--hp-blue);display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:22px;font-weight:400;color:#fff}
+    .hp-brand-text{color:#fff;font-size:16px;font-weight:600}
+    .hp-brand-sub{color:rgba(255,255,255,.4);font-size:11px;font-family:var(--fm);letter-spacing:.05em;margin-top:2px}
+    h1.hero-title{font-family:var(--fs);font-size:clamp(30px,5vw,60px);font-weight:300;line-height:1.08;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
     h1.hero-title em{font-style:italic;color:#5bc8f5}
-    .hero-desc{font-size:16px;color:rgba(255,255,255,.62);max-width:580px;line-height:1.78;margin-bottom:36px}
-    /* Prototype CTA buttons */
-    .proto-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
-    .proto-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:500;font-family:var(--fd);transition:all .2s}
-    .proto-btn.primary{background:var(--hp-blue);color:#fff;border:1px solid var(--hp-blue)}
-    .proto-btn.primary:hover{background:#007fb5;border-color:#007fb5}
-    .proto-btn.secondary{background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2)}
-    .proto-btn.secondary:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.4)}
-    .proto-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
+    .hero-desc{font-size:16px;color:rgba(255,255,255,.6);max-width:600px;line-height:1.78;margin-bottom:32px}
+    .proto-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:48px}
+    .proto-btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:7px;text-decoration:none;font-size:13px;font-weight:500;font-family:var(--fd);transition:all .2s}
+    .proto-btn.p{background:var(--hp-blue);color:#fff;border:1px solid var(--hp-blue)}
+    .proto-btn.p:hover{background:#007fb5}
+    .proto-btn.s{background:rgba(255,255,255,.08);color:rgba(255,255,255,.85);border:1px solid rgba(255,255,255,.2)}
+    .proto-btn.s:hover{background:rgba(255,255,255,.15)}
+    .proto-btn svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2;flex-shrink:0}
     .hero-metrics{display:flex;gap:44px;flex-wrap:wrap;padding-top:36px;border-top:1px solid rgba(255,255,255,.1)}
     .metric-val{font-family:var(--fs);font-size:36px;font-weight:300;color:#fff;letter-spacing:-.02em;line-height:1}
-    .metric-lbl{font-size:11px;color:rgba(255,255,255,.42);font-family:var(--fm);letter-spacing:.05em;margin-top:5px}
+    .metric-lbl{font-size:11px;color:rgba(255,255,255,.4);font-family:var(--fm);letter-spacing:.05em;margin-top:5px}
 
-    /* ── META ── */
+    /* META */
     .meta-row{background:var(--surface);border-bottom:1px solid var(--border);padding:20px clamp(20px,5vw,80px)}
-    .meta-inner{display:flex;gap:44px;flex-wrap:wrap;max-width:900px}
+    .meta-inner{display:flex;gap:44px;flex-wrap:wrap;max-width:920px}
     .meta-item{display:flex;flex-direction:column;gap:4px}
     .meta-lbl{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase}
     .meta-val{font-size:13px;color:var(--text);font-weight:500}
 
-    /* ── MAIN ── */
-    .main{max-width:900px;margin:0 auto;padding:68px clamp(20px,5vw,40px) 100px}
+    /* MAIN */
+    .main{max-width:920px;margin:0 auto;padding:68px clamp(20px,5vw,40px) 100px}
 
-    /* ── SECTIONS ── */
-    .cs-section{margin-bottom:76px}
+    /* SECTIONS */
+    .cs-section{margin-bottom:80px}
     .cs-eyebrow{font-family:var(--fm);font-size:11px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
     .cs-eyebrow::before{content:'';width:16px;height:1px;background:var(--soft)}
     h2.cs-title{font-family:var(--fs);font-size:clamp(26px,4vw,40px);font-weight:300;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:16px}
@@ -87,65 +85,206 @@
     .cs-body{font-size:15.5px;color:var(--muted);line-height:1.82;max-width:660px}
     .cs-body p{margin-bottom:14px}
     .cs-body p:last-child{margin-bottom:0}
-    .divider{height:1px;background:var(--border);margin:0 0 76px}
+    .divider{height:1px;background:var(--border);margin:0 0 80px}
 
-    /* ── INSIGHT CALLOUTS ── */
+    /* CALLOUTS */
     .callout-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
-    .callout{padding:22px 24px;border-radius:12px;border:1px solid var(--border)}
+    .callout{padding:22px 24px;border-radius:12px;border:1px solid}
     .callout.problem{background:#fff5f5;border-color:#fecaca}
     .callout.solution{background:#f0f8ff;border-color:#bfdbfe}
-    .callout-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px}
+    .callout-head{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:7px}
     .callout-list{list-style:none;display:flex;flex-direction:column;gap:7px}
     .callout-list li{font-size:13px;color:var(--muted);line-height:1.6;display:flex;gap:8px;align-items:flex-start}
     .callout-list.bad li::before{content:'–';color:#f87171;flex-shrink:0}
-    .callout-list.good li::before{content:'✓';color:#4ade80;flex-shrink:0;font-size:11px;margin-top:2px}
+    .callout-list.good li::before{content:'✓';color:#4ade80;font-size:11px;flex-shrink:0;margin-top:2px}
 
-    /* ── IA DIAGRAM ── */
+    /* PERSONAS */
+    .persona-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+    .persona-card{padding:22px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+    .persona-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:16px;font-weight:400;color:#fff;margin-bottom:12px}
+    .persona-role{font-size:13px;font-weight:600;color:var(--text);margin-bottom:2px}
+    .persona-title{font-size:11px;color:var(--muted);font-family:var(--fm);margin-bottom:12px}
+    .persona-goals{font-size:12px;font-weight:600;color:var(--text);margin-bottom:6px}
+    .persona-list{list-style:none;display:flex;flex-direction:column;gap:5px}
+    .persona-list li{font-size:12px;color:var(--muted);line-height:1.55;display:flex;gap:6px}
+    .persona-list li::before{content:'→';color:var(--hp-blue);flex-shrink:0;font-size:11px;margin-top:1px}
+    .persona-pain{margin-top:12px;padding:10px 12px;background:#fff5f5;border-radius:7px;border-left:3px solid #fca5a5;font-size:12px;color:#b91c1c;line-height:1.5;font-style:italic}
+
+    /* PROCESS TIMELINE */
+    .process-timeline{display:flex;flex-direction:column;gap:0;margin-top:32px;position:relative}
+    .process-timeline::before{content:'';position:absolute;left:22px;top:24px;bottom:24px;width:2px;background:linear-gradient(to bottom,var(--hp-blue),rgba(0,150,214,0.2));border-radius:2px}
+    .pt-step{display:grid;grid-template-columns:48px 1fr;gap:20px;padding-bottom:36px;position:relative}
+    .pt-step:last-child{padding-bottom:0}
+    .pt-circle{width:48px;height:48px;border-radius:50%;border:2px solid var(--hp-blue);background:var(--bg);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:11px;font-weight:600;color:var(--hp-blue);flex-shrink:0;position:relative;z-index:1}
+    .pt-step.active .pt-circle{background:var(--hp-blue);color:#fff}
+    .pt-body{padding-top:10px}
+    .pt-phase{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+    .pt-title{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
+    .pt-desc{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:10px}
+    .pt-deliverables{display:flex;flex-wrap:wrap;gap:6px}
+    .pt-del{padding:3px 10px;border-radius:100px;font-size:11px;font-family:var(--fm);background:var(--accent-light);color:var(--accent);border:1px solid rgba(0,85,179,0.15)}
+    .pt-step.active .pt-del{background:#dcfce7;color:#15803d;border-color:#bbf7d0}
+
+    /* IA DIAGRAM */
     .ia-wrap{margin-top:28px;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--surface)}
     .ia-label{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.08em;text-transform:uppercase;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border)}
-    .ia-svg-wrap{padding:24px;overflow-x:auto}
+    .ia-svg-wrap{padding:24px;overflow-x:auto;background:#fff}
 
-    /* ── ROLE SPLIT ── */
-    .role-split{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
-    .role-card{padding:24px;border-radius:14px;border:1px solid var(--border)}
-    .role-card.pmps{background:#f0f8ff;border-color:#bfdbfe}
-    .role-card.cmps{background:#f0fdf4;border-color:#bbf7d0}
-    .role-card-label{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:14px}
-    .role-card.pmps .role-card-label{background:#dbeafe;color:#1e40af}
-    .role-card.cmps .role-card-label{background:#dcfce7;color:#15803d}
-    .role-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-    .role-list li{font-size:13px;color:var(--muted);line-height:1.6;display:flex;gap:8px;align-items:flex-start}
-    .role-list li::before{content:'→';color:var(--soft);flex-shrink:0;font-size:12px;margin-top:2px}
+    /* PLATFORM CARDS */
+    .platform-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+    .platform-card{border-radius:16px;overflow:hidden;border:1px solid var(--border)}
+    .platform-card-header{padding:20px 24px;display:flex;align-items:flex-start;justify-content:space-between}
+    .platform-card.pmps .platform-card-header{background:linear-gradient(135deg,#1e3a8a,#1e40af)}
+    .platform-card.cmps .platform-card-header{background:linear-gradient(135deg,#14532d,#166534)}
+    .platform-card-title{font-family:var(--fs);font-size:20px;font-weight:300;color:#fff;margin-bottom:4px}
+    .platform-card-sub{font-size:11px;color:rgba(255,255,255,.55);font-family:var(--fm);letter-spacing:.04em}
+    .platform-badge{padding:3px 10px;border-radius:100px;font-size:10px;font-family:var(--fm);font-weight:600;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.2)}
+    .platform-card-body{padding:20px 24px;background:var(--bg)}
+    .platform-users{font-size:12px;font-weight:600;color:var(--text);margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;font-family:var(--fm)}
+    .platform-feature-list{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+    .platform-feature-list li{font-size:13px;color:var(--muted);line-height:1.6;display:flex;gap:8px}
+    .platform-feature-list li::before{content:'↳';font-size:11px;margin-top:2px;flex-shrink:0}
+    .platform-card.pmps .platform-feature-list li::before{color:#1e40af}
+    .platform-card.cmps .platform-feature-list li::before{color:#15803d}
+    .platform-proto-link{display:inline-flex;align-items:center;gap:7px;padding:8px 16px;border-radius:7px;color:#fff;text-decoration:none;font-size:12px;font-weight:500;font-family:var(--fd);transition:opacity .18s}
+    .platform-proto-link:hover{opacity:.85}
+    .platform-proto-link svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
+    .platform-card.pmps .platform-proto-link{background:#1e40af}
+    .platform-card.cmps .platform-proto-link{background:#15803d}
 
-    /* ── PROTO EMBED CARDS ── */
-    .proto-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
-    .proto-card{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:var(--surface);display:flex;flex-direction:column}
-    .proto-card-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-    .proto-card-title{font-size:14px;font-weight:600;color:var(--text)}
-    .proto-card-sub{font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:2px}
-    .proto-badge{padding:3px 10px;border-radius:100px;font-size:10px;font-family:var(--fm);font-weight:600}
-    .proto-badge.pmps{background:#dbeafe;color:#1e40af}
-    .proto-badge.cmps{background:#dcfce7;color:#15803d}
-    .proto-card-body{padding:20px;flex:1}
-    .proto-feature-list{list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
-    .proto-feature-list li{font-size:13px;color:var(--muted);display:flex;gap:8px;align-items:flex-start}
-    .proto-feature-list li::before{content:'↳';color:var(--hp-blue);flex-shrink:0;font-size:11px;margin-top:2px}
-    .proto-link-btn{display:inline-flex;align-items:center;gap:7px;padding:9px 18px;border-radius:7px;background:var(--hp-blue);color:#fff;text-decoration:none;font-size:13px;font-weight:500;font-family:var(--fd);transition:background .18s}
-    .proto-link-btn:hover{background:var(--hp-dark)}
-    .proto-link-btn svg{width:13px;height:13px;stroke:#fff;fill:none;stroke-width:2;flex-shrink:0}
+    /* MODULE GRID */
+    .module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
+    .module-card{padding:20px 18px;border-radius:12px;background:var(--surface);border:1px solid var(--border);transition:border-color .18s,transform .15s}
+    .module-card:hover{border-color:var(--border-med);transform:translateY(-2px)}
+    .module-icon{font-size:22px;margin-bottom:10px}
+    .module-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:5px}
+    .module-platform{display:inline-flex;padding:2px 8px;border-radius:100px;font-size:9px;font-family:var(--fm);font-weight:600;margin-bottom:8px}
+    .module-platform.pmps{background:#dbeafe;color:#1e40af}
+    .module-platform.cmps{background:#dcfce7;color:#15803d}
+    .module-platform.both{background:#f0f0f0;color:#374151}
+    .module-desc{font-size:12px;color:var(--muted);line-height:1.65}
+    .module-pages{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+    .module-page{padding:2px 8px;border-radius:100px;font-size:10px;font-family:var(--fm);background:var(--accent-light);color:var(--accent);border:1px solid rgba(0,85,179,0.12)}
 
-    /* ── SCREEN PLACEHOLDER ── */
+    /* ── DESIGN COMPONENTS (rendered previews) ── */
+    .comp-section-intro{font-size:15.5px;color:var(--muted);line-height:1.82;max-width:660px;margin-bottom:32px}
+    .comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .comp-card{border-radius:14px;overflow:hidden;border:1px solid var(--border)}
+    .comp-card.full{grid-column:1/-1}
+    .comp-label{padding:9px 14px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .comp-label-text{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.07em;text-transform:uppercase}
+    .comp-label-tag{padding:2px 8px;border-radius:4px;font-size:9px;font-family:var(--fm);background:var(--accent-light);color:var(--accent)}
+    .comp-body{padding:20px;background:#F9FAFB}
+    .comp-body.white{background:#fff}
+
+    /* HP MPS UI Components — rendered */
+    /* Top Nav */
+    .mps-nav{background:#1a3a5c;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 16px}
+    .mps-nav-brand{display:flex;align-items:center;gap:8px}
+    .mps-nav-logo{width:28px;height:28px;border-radius:5px;background:#0096D6;display:flex;align-items:center;justify-content:center;font-family:var(--fs);font-size:12px;font-weight:400;color:#fff}
+    .mps-nav-name{font-size:13px;font-weight:600;color:#fff}
+    .mps-nav-sub{font-size:9px;color:rgba(255,255,255,.4);font-family:var(--fm)}
+    .mps-nav-tabs{display:flex;gap:2px}
+    .mps-nav-tab{padding:6px 12px;font-size:11px;color:rgba(255,255,255,.55);border-radius:5px;cursor:pointer}
+    .mps-nav-tab.active{background:rgba(255,255,255,.12);color:#fff;font-weight:600}
+    .mps-nav-right{display:flex;align-items:center;gap:10px}
+    .mps-nav-btn{padding:5px 12px;background:#0096D6;border:none;border-radius:5px;font-size:10px;font-weight:600;color:#fff;cursor:pointer}
+    .mps-nav-user{display:flex;align-items:center;gap:6px}
+    .mps-nav-av{width:26px;height:26px;border-radius:50%;background:#0055b3;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
+    .mps-nav-uname{font-size:11px;font-weight:600;color:#fff}
+
+    /* Sidebar */
+    .mps-sidebar{background:#fff;border-right:1px solid #e5e7eb;width:180px;padding:10px 0;font-family:var(--fd)}
+    .mps-sidebar-section{font-size:9px;font-family:var(--fm);color:#9CA3AF;letter-spacing:.08em;text-transform:uppercase;padding:8px 12px 3px}
+    .mps-ni{display:flex;align-items:center;gap:7px;padding:6px 10px;margin:1px 4px;border-radius:6px;font-size:11px;color:#374151;cursor:pointer}
+    .mps-ni.active{background:#0096D6;color:#fff;font-weight:600}
+    .mps-ni:not(.active):hover{background:#f3f4f6}
+    .mps-ni-dot{width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.5;flex-shrink:0}
+    .mps-ni.active .mps-ni-dot{opacity:1}
+
+    /* Status badges */
+    .badge-row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .mps-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:600;font-family:var(--fd)}
+    .mps-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.7}
+    .mps-badge.new{background:#dbeafe;color:#1d4ed8}
+    .mps-badge.active{background:#dcfce7;color:#15803d}
+    .mps-badge.pending{background:#fef9c3;color:#854d0e}
+    .mps-badge.closed{background:#f3f4f6;color:#374151}
+    .mps-badge.onboarding{background:#f0fdf4;color:#166534}
+    .mps-badge.contract{background:#ede9fe;color:#5b21b6}
+
+    /* Data table */
+    .mps-table-wrap{border-radius:8px;border:1px solid #E5E7EB;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    .mps-table{width:100%;border-collapse:collapse;font-family:var(--fd);font-size:11px}
+    .mps-table thead tr{background:#1a3a5c}
+    .mps-table thead th{padding:8px 12px;font-size:10px;font-weight:700;color:#fff;text-align:left;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap}
+    .mps-table thead th.r{text-align:right}
+    .mps-table tbody tr{background:#fff;border-bottom:1px solid #F3F4F6}
+    .mps-table tbody tr:hover{background:#F9FAFB}
+    .mps-table tbody td{padding:7px 12px;color:#111827}
+    .mps-table tbody td.r{text-align:right}
+    .mps-table tbody td.lnk{color:#0096D6;text-decoration:underline;cursor:pointer}
+    .mps-table tfoot tr{background:#F3F4F6;border-top:2px solid #D1D5DB}
+    .mps-table tfoot td{padding:7px 12px;font-weight:700;color:#111827;font-size:11px}
+
+    /* Filter bar */
+    .mps-filter{background:#fff;border-radius:8px;padding:12px 14px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.04);display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+    .mps-fg{display:flex;flex-direction:column;gap:4px}
+    .mps-fg-label{font-size:9px;font-weight:700;color:#111827;letter-spacing:.04em;text-transform:uppercase;font-family:var(--fd)}
+    .mps-fg-select{padding:5px 10px;border:1px solid #D1D5DB;border-radius:5px;font-size:11px;color:#111827;background:#fff;min-width:110px}
+    .mps-fg-btn{padding:5px 12px;background:#1a3a5c;color:#fff;border:none;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;align-self:flex-end}
+
+    /* KPI card */
+    .mps-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .mps-kpi{background:#fff;border-radius:7px;padding:12px 14px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+    .mps-kpi-label{font-size:9px;color:#6B7280;margin-bottom:4px;font-family:var(--fd);text-transform:uppercase;letter-spacing:.04em}
+    .mps-kpi-val{font-size:20px;font-weight:700;color:#111827;line-height:1;font-family:var(--fs)}
+    .mps-kpi-sub{font-size:9px;margin-top:3px;font-family:var(--fd)}
+
+    /* Form fields */
+    .mps-form-section{background:#fff;border-radius:8px;border:1px solid #F3F4F6;overflow:hidden}
+    .mps-form-title{font-size:11px;font-weight:600;color:#111827;padding:9px 14px;border-bottom:1px solid #F3F4F6;background:#F9FAFB}
+    .mps-form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:12px 14px}
+    .mps-field-label{font-size:9px;font-weight:600;color:#374151;margin-bottom:3px;letter-spacing:.03em;text-transform:uppercase;font-family:var(--fd)}
+    .mps-field-input{padding:5px 8px;border:1px solid #D1D5DB;border-radius:4px;font-size:10px;color:#111827;background:#fff;width:100%}
+    .mps-field-input.locked{background:#F9FAFB;color:#9CA3AF;border-color:#E5E7EB;cursor:not-allowed}
+    .mps-field-input.focused{border-color:#0096D6;box-shadow:0 0 0 2px rgba(0,150,214,.15)}
+
+    /* Stepper / progress */
+    .mps-stepper{display:flex;align-items:center;gap:0;margin-bottom:16px}
+    .mps-step{display:flex;align-items:center;gap:0;flex:1}
+    .mps-step-circle{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;font-family:var(--fd)}
+    .mps-step-circle.done{background:#15803d;color:#fff}
+    .mps-step-circle.current{background:#0096D6;color:#fff}
+    .mps-step-circle.todo{background:#F3F4F6;color:#9CA3AF;border:1px solid #D1D5DB}
+    .mps-step-line{flex:1;height:2px;background:#E5E7EB}
+    .mps-step-line.done{background:#15803d}
+    .mps-step-line.current{background:linear-gradient(to right,#15803d,#E5E7EB)}
+    .mps-step-labels{display:grid;grid-template-columns:repeat(5,1fr);margin-top:6px}
+    .mps-step-lbl{font-size:9px;text-align:center;color:#9CA3AF;font-family:var(--fd)}
+    .mps-step-lbl.done{color:#15803d;font-weight:600}
+    .mps-step-lbl.current{color:#0096D6;font-weight:600}
+
+    /* Summary card */
+    .mps-summary{background:#fff;border-radius:8px;border:1px solid #F3F4F6;overflow:hidden;font-size:11px}
+    .mps-summary-title{font-size:11px;font-weight:600;color:#111827;padding:8px 12px;border-bottom:1px solid #F3F4F6;background:#F9FAFB;font-family:var(--fd)}
+    .mps-summary-grid{display:grid;grid-template-columns:90px 1fr;gap:5px 10px;padding:10px 12px;font-family:var(--fd)}
+    .mps-sl{font-weight:600;color:#111827}
+    .mps-sv{color:#374151}
+
+    /* Alert / info */
+    .mps-alert{background:#FEF9C3;border-left:3px solid #FBBF24;border-radius:6px;padding:10px 12px;font-size:11px;color:#92400E;font-family:var(--fd)}
+    .mps-info{background:#EFF6FF;border:1px solid #BFDBFE;border-radius:6px;padding:10px 12px;font-size:11px;color:#1E40AF;line-height:1.55;font-family:var(--fd)}
+
+    /* Empty state */
+    .mps-empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 20px;background:#fff;border-radius:8px;border:1px solid #E5E7EB}
+    .mps-empty-icon{width:40px;height:40px;background:#EFF6FF;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:10px}
+    .mps-empty-title{font-size:13px;font-weight:600;color:#374151;margin-bottom:3px;font-family:var(--fd)}
+    .mps-empty-sub{font-size:11px;color:#6B7280;font-family:var(--fd)}
+
+    /* SCREENS */
     .screen-stack{display:flex;flex-direction:column;gap:48px;margin-top:32px}
-    .screen-wrap{}
-    .screen-frame{border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,80,160,0.08)}
-    /* Real screenshot slot */
-    .screen-slot{background:var(--surface);min-height:360px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;position:relative;overflow:hidden}
-    .screen-slot-img{width:100%;display:block;object-fit:cover}
-    .screen-slot-placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:48px 24px;text-align:center;width:100%}
-    .screen-slot-icon{width:48px;height:48px;border-radius:12px;background:var(--accent-light);border:1px solid var(--border-med);display:flex;align-items:center;justify-content:center;font-size:20px}
-    .screen-slot-label{font-size:13px;color:var(--muted);font-family:var(--fm)}
-    .screen-slot-sub{font-size:11px;color:var(--soft);font-family:var(--fm)}
-    .screen-annotation{margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+    .screen-annotation{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
     .screen-num{width:28px;height:28px;border-radius:50%;background:var(--hp-blue);color:#fff;font-family:var(--fm);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
     .screen-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
     .screen-desc{font-size:13px;color:var(--muted);line-height:1.7}
@@ -153,54 +292,52 @@
     .screen-tag{padding:3px 10px;border-radius:100px;font-size:11px;font-family:var(--fm);background:var(--surface);border:1px solid var(--border-med);color:var(--muted)}
     .screen-tag.hl{background:var(--accent-light);border-color:#bfdbfe;color:var(--accent)}
     .screen-tag.green{background:#f0fdf4;border-color:#bbf7d0;color:#15803d}
+    .screen-tag.blue{background:#dbeafe;border-color:#bfdbfe;color:#1e40af}
 
-    /* ── MODULE CARDS ── */
-    .module-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:28px}
-    .module-card{padding:20px 18px;border-radius:12px;background:var(--surface);border:1px solid var(--border);transition:border-color .18s}
-    .module-card:hover{border-color:var(--border-med)}
-    .module-icon{font-size:22px;margin-bottom:10px}
-    .module-name{font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px}
-    .module-desc{font-size:12px;color:var(--muted);line-height:1.65}
-    .module-pages{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
-    .module-page{padding:2px 8px;border-radius:100px;font-size:10px;font-family:var(--fm);background:var(--accent-light);color:var(--accent);border:1px solid rgba(0,85,179,0.15)}
-
-    /* ── OUTCOMES ── */
+    /* OUTCOMES */
     .outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
     .outcome-card{padding:24px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
     .outcome-val{font-family:var(--fs);font-size:38px;font-weight:300;color:var(--hp-blue);letter-spacing:-.02em;line-height:1}
     .outcome-lbl{font-size:13px;color:var(--text);font-weight:500;margin-top:7px}
     .outcome-desc{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
 
-    /* ── PHOTO GRID — for real screenshots ── */
-    .photo-note{padding:14px 18px;border-radius:10px;background:var(--accent-light);border:1px solid rgba(0,85,179,0.15);font-size:13px;color:var(--accent);margin-bottom:28px;display:flex;gap:10px;align-items:flex-start}
+    /* INSIGHTS */
+    .insight-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+    .insight{padding:18px 22px;background:var(--surface);border-radius:12px;border-left:3px solid var(--hp-blue)}
+    .insight-quote{font-family:var(--fs);font-size:15px;font-style:italic;color:var(--text);line-height:1.65}
+    .insight-source{font-family:var(--fm);font-size:11px;color:var(--soft);margin-top:7px;display:block}
 
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer{background:var(--surface);border-top:1px solid var(--border);padding:28px clamp(20px,5vw,80px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
     .foot-copy{font-family:var(--fm);font-size:12px;color:var(--soft)}
     .foot-back{display:inline-flex;align-items:center;gap:6px;color:var(--accent);text-decoration:none;font-size:14px;font-weight:500}
 
-    @media(max-width:760px){
-      .callout-grid,.role-split,.proto-cards,.module-grid,.outcomes-grid{grid-template-columns:1fr}
+    @media(max-width:900px){
+      .callout-grid,.platform-grid,.comp-grid,.outcomes-grid,.persona-grid{grid-template-columns:1fr}
+      .comp-card.full{grid-column:1}
+      .module-grid{grid-template-columns:1fr 1fr}
+      .mps-kpi-row{grid-template-columns:1fr 1fr}
+      .mps-form-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .module-grid,.mps-kpi-row{grid-template-columns:1fr}
       .proto-btns{flex-direction:column}
     }
   </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a href="index.html" class="nav-back">&#8592; Back to Portfolio</a>
-  <div style="display:flex;align-items:center;gap:16px">
+  <div class="nav-right">
     <span class="nav-crumb">HP MPS &middot; Case Study</span>
-    <div class="nav-proto-links">
-      <a href="https://xpeh7y.axshare.com//preview/3gu93y" target="_blank" rel="noopener" class="nav-proto-link">
-        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        PMPS Prototype
-      </a>
-      <a href="https://xpeh7y.axshare.com//preview/hw0vwx" target="_blank" rel="noopener" class="nav-proto-link">
-        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        CMPS Prototype
-      </a>
-    </div>
+    <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" class="nav-pill">
+      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>PMPS
+    </a>
+    <a href="https://app.axure.cloud/app/project/xpeh7y/preview/hw0vwx" target="_blank" rel="noopener" class="nav-pill">
+      <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>CMPS
+    </a>
   </div>
 </nav>
 
@@ -216,26 +353,23 @@
       </div>
     </div>
     <h1 class="hero-title">Print &amp; Shipping<br><em>Contract Management</em><br>Platform</h1>
-    <p class="hero-desc">Designed two interconnected enterprise platforms for HP&rsquo;s Managed Print Services division &mdash; a Prospective MPS (PMPS) sales tool for onboarding new accounts, and a Contract MPS (CMPS) dashboard for managing active fleet contracts, shipments, and supply workflows.</p>
+    <p class="hero-desc">Two interconnected enterprise platforms covering the full MPS lifecycle — a Prospective MPS (PMPS) sales tool for winning new accounts, and a Contract MPS (CMPS) operational dashboard for managing active fleet contracts, shipments, and supply workflows across 247 enterprise devices.</p>
     <div class="proto-btns">
-      <a href="https://xpeh7y.axshare.com//preview/3gu93y" target="_blank" rel="noopener" class="proto-btn primary">
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        View PMPS Prototype
+      <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" class="proto-btn p">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>View PMPS Prototype
       </a>
-      <a href="https://xpeh7y.axshare.com//preview/hw0vwx" target="_blank" rel="noopener" class="proto-btn secondary">
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        View CMPS Prototype
+      <a href="https://app.axure.cloud/app/project/xpeh7y/preview/hw0vwx" target="_blank" rel="noopener" class="proto-btn s">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>View CMPS Prototype
       </a>
-      <a href="https://xpeh7y.axshare.com/" target="_blank" rel="noopener" class="proto-btn secondary">
-        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        Full Axure Project
+      <a href="https://xpeh7y.axshare.com/" target="_blank" rel="noopener" class="proto-btn s">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Full Axure Project
       </a>
     </div>
     <div class="hero-metrics">
       <div><div class="metric-val">2</div><div class="metric-lbl">Platforms designed</div></div>
       <div><div class="metric-val">6</div><div class="metric-lbl">Core modules</div></div>
       <div><div class="metric-val">247</div><div class="metric-lbl">Devices managed</div></div>
-      <div><div class="metric-val">94%</div><div class="metric-lbl">On-time delivery rate</div></div>
+      <div><div class="metric-val">94%</div><div class="metric-lbl">On-time delivery</div></div>
     </div>
   </div>
 </div>
@@ -259,30 +393,30 @@
     <div class="cs-eyebrow">Overview</div>
     <h2 class="cs-title">Two Platforms, <em>One Ecosystem</em></h2>
     <div class="cs-body">
-      <p>HP&rsquo;s Managed Print Services business manages print fleets for enterprise clients — handling everything from hardware contracts and consumable supply chains to shipment logistics and on-site service. The challenge was that the sales and contract lifecycle existed across disconnected tools, creating friction for both HP sales teams and client account managers.</p>
-      <p>I designed two interconnected platforms that cover the complete MPS journey: <strong style="color:var(--text)">PMPS (Prospective MPS)</strong> — a sales and opportunity management tool for bringing new accounts onto HP contracts — and <strong style="color:var(--text)">CMPS (Contract MPS)</strong> — an operational dashboard for managing active contracts, fleet shipments, supply orders, and delivery performance once a client is on contract.</p>
+      <p>HP&rsquo;s Managed Print Services business manages enterprise print fleets for large corporate clients — handling hardware contracts, consumable supply chains, shipment logistics, and on-site service. The problem was that the complete sales-to-contract lifecycle was fragmented across disconnected tools: spreadsheets for opportunity tracking, email threads for proposals, and multiple portals for shipment status.</p>
+      <p>I designed two platforms from end to end: <strong style="color:var(--text)">PMPS</strong> covers the pre-contract sales journey — opportunity management, proposal building, and customer onboarding. <strong style="color:var(--text)">CMPS</strong> covers the operational reality once a client is on contract — live fleet management, shipment tracking, supply reorders, and delivery performance analytics. Together they form the MPC (Managed Print Contracts) ecosystem.</p>
     </div>
     <div class="callout-grid">
       <div class="callout problem">
         <div class="callout-head">&#9888;&ensp;Before — Key Pain Points</div>
         <ul class="callout-list bad">
-          <li>Sales teams managed opportunities in spreadsheets with no shared visibility</li>
-          <li>Proposal creation was manual, inconsistent, and disconnected from customer data</li>
+          <li>Sales teams managed opportunities in spreadsheets with no shared pipeline visibility</li>
+          <li>Proposals created ad-hoc — inconsistent format, disconnected from customer data</li>
           <li>Active contract managers had no real-time view of fleet shipment status</li>
-          <li>Supply reorders required multiple system logins and manual tracking</li>
-          <li>Fleet data was siloed — no single dashboard for device health + shipping + spend</li>
-          <li>No clear handoff between the sales (PMPS) and operational (CMPS) phases</li>
+          <li>Supply reorders required multiple system logins and manual tracking across portals</li>
+          <li>Fleet data siloed — no single dashboard for device health, shipping, and spend</li>
+          <li>No defined handoff between the sales (PMPS) and operational (CMPS) phases</li>
         </ul>
       </div>
       <div class="callout solution">
         <div class="callout-head">&#10003;&ensp;After — Design Outcomes</div>
         <ul class="callout-list good">
-          <li>Unified PMPS platform covers Opportunities → Proposals → Customer onboarding</li>
+          <li>PMPS unifies Opportunities → Proposals → Customer creation in one platform</li>
           <li>CMPS gives contract managers live shipment tracking, fleet data, and spend analytics</li>
-          <li>Single MPC Dashboard as the home for all active contract activity</li>
-          <li>Consistent IA and component language shared across both platforms</li>
-          <li>Shipping status, delivery performance, and supply workflows fully integrated</li>
-          <li>Axure RP prototypes used for stakeholder validation before development</li>
+          <li>Single MPC Dashboard home for all active contract and shipping activity</li>
+          <li>Consistent IA and shared component language across both platforms</li>
+          <li>Onboarding module creates a defined, visible PMPS → CMPS handoff path</li>
+          <li>Axure RP 10 prototypes used for stakeholder sign-off before development</li>
         </ul>
       </div>
     </div>
@@ -290,112 +424,238 @@
 
   <div class="divider"></div>
 
-  <!-- INFORMATION ARCHITECTURE -->
+  <!-- USER PERSONAS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Research &amp; Users</div>
+    <h2 class="cs-title">Who I Designed <em>For</em></h2>
+    <div class="cs-body"><p>Three distinct user types drive the platform — each with different goals, data needs, and points in the contract lifecycle. Understanding the tension between these roles shaped every major IA and interaction decision.</p></div>
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#1e40af">SA</div>
+        <div class="persona-role">Sales Account Manager</div>
+        <div class="persona-title">HP PMPS &middot; Primary User</div>
+        <div class="persona-goals">Goals</div>
+        <ul class="persona-list">
+          <li>Track and advance opportunities through the pipeline</li>
+          <li>Build and send proposals quickly and consistently</li>
+          <li>Win accounts and hand off to contract management</li>
+        </ul>
+        <div class="persona-pain">&ldquo;I manage 30 accounts in a spreadsheet. I never know which proposals are live.&rdquo;</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#15803d">CM</div>
+        <div class="persona-role">Contract Manager</div>
+        <div class="persona-title">HP CMPS &middot; Primary User</div>
+        <div class="persona-goals">Goals</div>
+        <ul class="persona-list">
+          <li>Monitor active fleet health and supply levels across client sites</li>
+          <li>Track shipments without switching between carrier portals</li>
+          <li>Manage exceptions and supply reorders proactively</li>
+        </ul>
+        <div class="persona-pain">&ldquo;I log into three different systems just to check if a toner shipment arrived.&rdquo;</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-avatar" style="background:#5b21b6">SM</div>
+        <div class="persona-role">Sales Manager</div>
+        <div class="persona-title">HP PMPS &middot; Secondary User</div>
+        <div class="persona-goals">Goals</div>
+        <ul class="persona-list">
+          <li>Team-wide pipeline visibility across all reps and accounts</li>
+          <li>Understand proposal conversion and opportunity value</li>
+          <li>Ensure onboarding accounts transition smoothly to CMPS</li>
+        </ul>
+        <div class="persona-pain">&ldquo;My team&rsquo;s pipeline is invisible to me until someone sends a report.&rdquo;</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DESIGN PROCESS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Design Process</div>
+    <h2 class="cs-title">How I <em>Approached</em> It</h2>
+    <div class="cs-body"><p>With two interconnected enterprise platforms to design, I needed a disciplined process. I worked sequentially — locking the IA and shared component foundations before designing module by module, validating with stakeholders using Axure prototypes at each stage.</p></div>
+    <div class="process-timeline">
+      <div class="pt-step">
+        <div class="pt-circle">01</div>
+        <div class="pt-body">
+          <div class="pt-phase">Discovery</div>
+          <div class="pt-title">Stakeholder Research &amp; Requirements</div>
+          <div class="pt-desc">Ran stakeholder interviews with HP sales reps, contract managers, and their managers to map current workflows, pain points, and must-have features. Documented the existing tools being replaced and the data flows between them. Created a requirements matrix mapping each user need to a platform feature.</div>
+          <div class="pt-deliverables">
+            <span class="pt-del">Stakeholder interviews</span>
+            <span class="pt-del">Workflow mapping</span>
+            <span class="pt-del">Requirements matrix</span>
+            <span class="pt-del">Pain point audit</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-circle">02</div>
+        <div class="pt-body">
+          <div class="pt-phase">Define</div>
+          <div class="pt-title">Information Architecture &amp; Platform Split</div>
+          <div class="pt-desc">The key structural decision was splitting the product into two distinct platforms with a shared entry point — rather than one monolithic tool. I mapped the full MPS contract lifecycle and defined which stages belonged to PMPS (pre-contract) and which to CMPS (active contract). The MPC Dashboard site map was designed in Draw.io and validated with stakeholders before any wireframing began.</div>
+          <div class="pt-deliverables">
+            <span class="pt-del">MPC site map</span>
+            <span class="pt-del">User journey maps</span>
+            <span class="pt-del">Platform split decision</span>
+            <span class="pt-del">Navigation structure</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-step active">
+        <div class="pt-circle">03</div>
+        <div class="pt-body">
+          <div class="pt-phase">Design</div>
+          <div class="pt-title">Component System &amp; Module Design</div>
+          <div class="pt-desc">Before designing individual screens I established the shared component language — the same nav chrome, table style, badge system, form inputs, and filter bar used across both platforms. Then I designed module by module: Opportunities and Proposals in PMPS first, followed by Fleet Data Management and Dashboard in CMPS. This order ensured the most complex screens (fleet + shipment tracking) were built on a proven foundation. All designs produced as interactive Axure RP 10 prototypes.</div>
+          <div class="pt-deliverables">
+            <span class="pt-del">Component system</span>
+            <span class="pt-del">Axure RP prototypes</span>
+            <span class="pt-del">Module wireframes</span>
+            <span class="pt-del">Interaction flows</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-circle">04</div>
+        <div class="pt-body">
+          <div class="pt-phase">Validate</div>
+          <div class="pt-title">Stakeholder Reviews &amp; Iteration</div>
+          <div class="pt-desc">Each module was reviewed with HP stakeholders using the clickable Axure prototypes. Feedback was collected, prioritised, and iterated in-file before moving to the next module. The Onboarding module required the most iteration — the handoff between PMPS and CMPS was a new concept for users and required two rounds of revision to get the mental model right.</div>
+          <div class="pt-deliverables">
+            <span class="pt-del">Prototype walkthroughs</span>
+            <span class="pt-del">Stakeholder sign-off</span>
+            <span class="pt-del">Revision tracking</span>
+          </div>
+        </div>
+      </div>
+      <div class="pt-step">
+        <div class="pt-circle">05</div>
+        <div class="pt-body">
+          <div class="pt-phase">Deliver</div>
+          <div class="pt-title">Handoff &amp; Development Support</div>
+          <div class="pt-desc">Delivered annotated Axure prototypes as the primary handoff artefact — fully clickable with all states, interactions, and edge cases documented. Supported the development team through build, answering design questions and reviewing implementations against the prototype. The Axure Cloud share link was used as the living spec.</div>
+          <div class="pt-deliverables">
+            <span class="pt-del">Annotated prototypes</span>
+            <span class="pt-del">Dev handoff docs</span>
+            <span class="pt-del">Build QA review</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- IA DIAGRAM -->
   <div class="cs-section">
     <div class="cs-eyebrow">Information Architecture</div>
-    <h2 class="cs-title">MPC Dashboard <em>Structure</em></h2>
-    <div class="cs-body"><p>The MPC (Managed Print Contracts) Dashboard is the home page for the entire platform. From here, users navigate across six primary modules spanning the full contract lifecycle — from initial opportunity capture through to active fleet management and shipping operations.</p></div>
-
+    <h2 class="cs-title">MPC Dashboard <em>Site Map</em></h2>
+    <div class="cs-body"><p>The MPC Dashboard is the home page for the entire ecosystem. Six primary modules span the full contract lifecycle — from first opportunity through to active fleet and shipping management. The IA was designed to mirror the real workflow sequence, so navigation felt natural rather than arbitrary.</p></div>
     <div class="ia-wrap">
-      <div class="ia-label">Site Map &mdash; MPC Dashboard navigation hierarchy</div>
+      <div class="ia-label">MPC Dashboard — full navigation hierarchy (as designed in Draw.io)</div>
       <div class="ia-svg-wrap">
-        <svg viewBox="0 0 920 260" width="100%" style="min-width:700px">
-          <!-- Root node -->
-          <rect x="16" y="8" width="120" height="52" rx="6" fill="#1a3a5c" stroke="#0096D6" stroke-width="1.5"/>
-          <text x="76" y="30" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" fill="rgba(255,255,255,0.7)">Home Page</text>
-          <text x="76" y="46" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="600" fill="white">MPC Dashboard</text>
-
-          <!-- Connector line down from root -->
-          <line x1="76" y1="60" x2="76" y2="100" stroke="#1a3a5c" stroke-width="2"/>
-          <!-- Horizontal connector -->
-          <line x1="76" y1="100" x2="876" y2="100" stroke="#1a3a5c" stroke-width="2"/>
-
-          <!-- Level 1 nodes — 6 modules -->
-          <!-- Dashboard -->
-          <line x1="76" y1="100" x2="76" y2="126" stroke="#0096D6" stroke-width="2"/>
-          <rect x="28" y="126" width="96" height="34" rx="5" fill="#fff" stroke="#0096D6" stroke-width="1.5"/>
-          <text x="76" y="147" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="500" fill="#0d1f35">Dashboard</text>
-
+        <svg viewBox="0 0 960 270" width="100%" style="min-width:720px">
+          <defs>
+            <marker id="arr" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="#0096D6" opacity="0.5"/>
+            </marker>
+          </defs>
+          <!-- Root -->
+          <rect x="20" y="10" width="130" height="54" rx="7" fill="#1a3a5c" stroke="#0096D6" stroke-width="1.5"/>
+          <text x="85" y="32" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="10" fill="rgba(255,255,255,0.6)">Home Page</text>
+          <text x="85" y="49" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="12" font-weight="700" fill="white">MPC Dashboard</text>
+          <!-- Trunk -->
+          <line x1="85" y1="64" x2="85" y2="108" stroke="#1a3a5c" stroke-width="2"/>
+          <line x1="85" y1="108" x2="920" y2="108" stroke="#1a3a5c" stroke-width="2"/>
+          <!-- Drops to L1 -->
+          <line x1="85" y1="108" x2="85" y2="132" stroke="#0096D6" stroke-width="2"/>
+          <line x1="220" y1="108" x2="220" y2="132" stroke="#0096D6" stroke-width="2"/>
+          <line x1="390" y1="108" x2="390" y2="132" stroke="#0096D6" stroke-width="2"/>
+          <line x1="575" y1="108" x2="575" y2="132" stroke="#0096D6" stroke-width="2"/>
+          <line x1="760" y1="108" x2="760" y2="132" stroke="#0096D6" stroke-width="2"/>
+          <line x1="920" y1="108" x2="920" y2="132" stroke="#0096D6" stroke-width="2"/>
+          <!-- L1 nodes -->
+          <!-- Dashboard (white) -->
+          <rect x="36" y="132" width="98" height="30" rx="5" fill="#fff" stroke="#0096D6" stroke-width="1.5"/>
+          <text x="85" y="151" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="#1a3a5c">Dashboard</text>
           <!-- Opportunities -->
-          <line x1="210" y1="100" x2="210" y2="126" stroke="#0096D6" stroke-width="2"/>
-          <polygon points="160,126 260,126 272,148 148,148" fill="#0096D6"/>
-          <text x="210" y="141" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="white">Opportunities</text>
-          <!-- Opportunities children -->
-          <line x1="185" y1="148" x2="185" y2="175" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="235" y1="148" x2="235" y2="175" stroke="#1a3a5c" stroke-width="1.5"/>
-          <line x1="155" y1="175" x2="265" y2="175" stroke="#ccc" stroke-width="1"/>
-          <line x1="185" y1="175" x2="185" y2="190" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="235" y1="175" x2="235" y2="190" stroke="#1a3a5c" stroke-width="1.5"/>
-          <polygon points="145,190 225,190 233,210 137,210" fill="#b3dff0"/>
-          <text x="185" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#0d2e52">Create Opportunity</text>
-          <polygon points="202,190 268,190 278,210 192,210" fill="#5ab3d8"/>
-          <text x="235" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">Existing Opps</text>
-
+          <polygon points="160,132 280,132 292,154 148,154" fill="#0096D6"/>
+          <text x="220" y="147" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="white">Opportunities</text>
           <!-- Proposals -->
-          <line x1="360" y1="100" x2="360" y2="126" stroke="#0096D6" stroke-width="2"/>
-          <polygon points="310,126 410,126 422,148 298,148" fill="#0096D6"/>
-          <text x="360" y="141" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="white">Proposals</text>
-          <!-- Proposals children -->
-          <line x1="335" y1="148" x2="335" y2="175" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="385" y1="148" x2="385" y2="175" stroke="#1a3a5c" stroke-width="1.5"/>
-          <line x1="305" y1="175" x2="415" y2="175" stroke="#ccc" stroke-width="1"/>
-          <line x1="335" y1="175" x2="335" y2="190" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="385" y1="175" x2="385" y2="190" stroke="#1a3a5c" stroke-width="1.5"/>
-          <polygon points="295,190 375,190 383,210 287,210" fill="#b3dff0"/>
-          <text x="335" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#0d2e52">Create Proposal</text>
-          <polygon points="352,190 418,190 428,210 342,210" fill="#5ab3d8"/>
-          <text x="385" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">Existing Proposals</text>
-
+          <polygon points="328,132 452,132 464,154 316,154" fill="#0096D6"/>
+          <text x="390" y="147" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="white">Proposals</text>
           <!-- Customers -->
-          <line x1="540" y1="100" x2="540" y2="126" stroke="#0096D6" stroke-width="2"/>
-          <polygon points="490,126 590,126 602,148 478,148" fill="#0096D6"/>
-          <text x="540" y="141" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="white">Customers</text>
-          <!-- Customers children — 3 -->
-          <line x1="502" y1="148" x2="502" y2="175" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="540" y1="148" x2="540" y2="175" stroke="#1a3a5c" stroke-width="1.5"/>
-          <line x1="578" y1="148" x2="578" y2="175" stroke="#1a3a5c" stroke-width="1.5"/>
-          <line x1="462" y1="175" x2="608" y2="175" stroke="#ccc" stroke-width="1"/>
-          <line x1="502" y1="175" x2="502" y2="190" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="540" y1="175" x2="540" y2="190" stroke="#1a3a5c" stroke-width="1.5"/>
-          <line x1="578" y1="175" x2="578" y2="190" stroke="#1a3a5c" stroke-width="1.5"/>
-          <polygon points="462,190 542,190 550,210 454,210" fill="#b3dff0"/>
-          <text x="502" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#0d2e52">Existing Customers</text>
-          <polygon points="500,190 580,190 588,210 492,210" fill="#5ab3d8"/>
-          <text x="540" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">Create Customer</text>
-          <polygon points="536,190 620,190 630,210 526,210" fill="#5ab3d8"/>
-          <text x="578" y="202" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="white">Cust. Opp. Mgmt</text>
-
+          <polygon points="500,132 650,132 662,154 488,154" fill="#0096D6"/>
+          <text x="575" y="147" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="white">Customers</text>
           <!-- Onboarding -->
-          <line x1="714" y1="100" x2="714" y2="126" stroke="#0096D6" stroke-width="2"/>
-          <polygon points="664,126 764,126 776,148 652,148" fill="#0096D6"/>
-          <text x="714" y="141" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="white">Onboarding</text>
-          <!-- Onboarding children -->
-          <line x1="689" y1="148" x2="689" y2="175" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="739" y1="148" x2="739" y2="175" stroke="#1a3a5c" stroke-width="1.5"/>
-          <line x1="659" y1="175" x2="769" y2="175" stroke="#ccc" stroke-width="1"/>
-          <line x1="689" y1="175" x2="689" y2="190" stroke="#7ec8e3" stroke-width="1.5"/>
-          <line x1="739" y1="175" x2="739" y2="190" stroke="#1a3a5c" stroke-width="1.5"/>
-          <polygon points="649,190 729,190 737,210 641,210" fill="#b3dff0"/>
-          <text x="689" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#0d2e52">My Customers</text>
-          <polygon points="706,190 772,190 780,210 698,210" fill="#5ab3d8"/>
-          <text x="739" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">All Customers</text>
-
+          <polygon points="688,132 832,132 844,154 676,154" fill="#0096D6"/>
+          <text x="760" y="147" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="white">Onboarding</text>
           <!-- On Contract -->
-          <line x1="876" y1="100" x2="876" y2="126" stroke="#0096D6" stroke-width="2"/>
-          <polygon points="826,126 926,126 920,148 820,148" fill="#0096D6" opacity="0.85"/>
-          <text x="876" y="141" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="600" fill="white">On Contract</text>
-          <!-- On Contract child -->
-          <line x1="876" y1="148" x2="876" y2="190" stroke="#1a3a5c" stroke-width="1.5"/>
-          <polygon points="830,190 920,190 920,210 820,210" fill="#5ab3d8"/>
-          <text x="876" y="203" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="white">Fleet Data Mgmt</text>
+          <polygon points="860,132 960,132 960,154 848,154" fill="#0096D6" opacity="0.85"/>
+          <text x="912" y="147" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="11" font-weight="700" fill="white">On Contract</text>
+
+          <!-- L2 children: Opportunities -->
+          <line x1="200" y1="154" x2="200" y2="184" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="245" y1="154" x2="245" y2="184" stroke="#1a3a5c" stroke-width="1.5"/>
+          <line x1="170" y1="184" x2="275" y2="184" stroke="#ddd" stroke-width="1"/>
+          <line x1="200" y1="184" x2="200" y2="196" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="245" y1="184" x2="245" y2="196" stroke="#1a3a5c" stroke-width="1.5"/>
+          <polygon points="158,196 240,196 248,215 150,215" fill="#b3dff0"/>
+          <text x="199" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#0d2e52">Create Opportunity</text>
+          <polygon points="218,196 278,196 288,215 208,215" fill="#5ab3d8"/>
+          <text x="248" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="white">Existing Opps</text>
+
+          <!-- L2: Proposals -->
+          <line x1="368" y1="154" x2="368" y2="184" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="415" y1="154" x2="415" y2="184" stroke="#1a3a5c" stroke-width="1.5"/>
+          <line x1="338" y1="184" x2="445" y2="184" stroke="#ddd" stroke-width="1"/>
+          <line x1="368" y1="184" x2="368" y2="196" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="415" y1="184" x2="415" y2="196" stroke="#1a3a5c" stroke-width="1.5"/>
+          <polygon points="328,196 406,196 414,215 320,215" fill="#b3dff0"/>
+          <text x="367" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#0d2e52">Create Proposal</text>
+          <polygon points="384,196 448,196 458,215 374,215" fill="#5ab3d8"/>
+          <text x="416" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="white">Existing Props</text>
+
+          <!-- L2: Customers (3) -->
+          <line x1="540" y1="154" x2="540" y2="184" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="575" y1="154" x2="575" y2="184" stroke="#1a3a5c" stroke-width="1.5"/>
+          <line x1="618" y1="154" x2="618" y2="184" stroke="#1a3a5c" stroke-width="1.5"/>
+          <line x1="500" y1="184" x2="648" y2="184" stroke="#ddd" stroke-width="1"/>
+          <line x1="540" y1="184" x2="540" y2="196" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="575" y1="184" x2="575" y2="196" stroke="#1a3a5c" stroke-width="1.5"/>
+          <line x1="618" y1="184" x2="618" y2="196" stroke="#1a3a5c" stroke-width="1.5"/>
+          <polygon points="496,196 578,196 585,215 489,215" fill="#b3dff0"/>
+          <text x="537" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#0d2e52">Existing Customers</text>
+          <polygon points="548,196 608,196 617,215 539,215" fill="#5ab3d8"/>
+          <text x="578" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="white">Create Customer</text>
+          <polygon points="578,196 658,196 668,215 568,215" fill="#5ab3d8"/>
+          <text x="618" y="207" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8" fill="white">Cust. Opp. Mgmt</text>
+
+          <!-- L2: Onboarding -->
+          <line x1="738" y1="154" x2="738" y2="184" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="790" y1="154" x2="790" y2="184" stroke="#1a3a5c" stroke-width="1.5"/>
+          <line x1="710" y1="184" x2="818" y2="184" stroke="#ddd" stroke-width="1"/>
+          <line x1="738" y1="184" x2="738" y2="196" stroke="#7ec8e3" stroke-width="1.5"/>
+          <line x1="790" y1="184" x2="790" y2="196" stroke="#1a3a5c" stroke-width="1.5"/>
+          <polygon points="698,196 776,196 784,215 690,215" fill="#b3dff0"/>
+          <text x="737" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="#0d2e52">My Customers</text>
+          <polygon points="758,196 826,196 834,215 750,215" fill="#5ab3d8"/>
+          <text x="792" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="white">All Customers</text>
+
+          <!-- L2: On Contract -->
+          <line x1="912" y1="154" x2="912" y2="196" stroke="#1a3a5c" stroke-width="1.5"/>
+          <polygon points="858,196 960,196 960,215 848,215" fill="#5ab3d8"/>
+          <text x="908" y="208" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="8.5" fill="white">Fleet Data Mgmt</text>
 
           <!-- Legend -->
-          <rect x="16" y="226" width="10" height="10" rx="2" fill="#0096D6"/>
-          <text x="30" y="235" font-family="DM Mono,monospace" font-size="9" fill="#5a7090">Primary navigation</text>
-          <rect x="130" y="226" width="10" height="10" rx="2" fill="#5ab3d8"/>
-          <text x="144" y="235" font-family="DM Mono,monospace" font-size="9" fill="#5a7090">Active page (CMPS)</text>
-          <rect x="258" y="226" width="10" height="10" rx="2" fill="#b3dff0"/>
-          <text x="272" y="235" font-family="DM Mono,monospace" font-size="9" fill="#5a7090">Secondary page</text>
+          <rect x="20" y="238" width="10" height="10" rx="2" fill="#0096D6"/><text x="34" y="247" font-family="DM Mono,monospace" font-size="9" fill="#5a7090">Primary nav module</text>
+          <rect x="150" y="238" width="10" height="10" rx="2" fill="#5ab3d8"/><text x="164" y="247" font-family="DM Mono,monospace" font-size="9" fill="#5a7090">Active / selected page</text>
+          <rect x="300" y="238" width="10" height="10" rx="2" fill="#b3dff0"/><text x="314" y="247" font-family="DM Mono,monospace" font-size="9" fill="#5a7090">Secondary page</text>
+          <rect x="420" y="238" width="10" height="10" rx="2" fill="#fff" stroke="#0096D6" stroke-width="1.5"/><text x="434" y="247" font-family="DM Mono,monospace" font-size="9" fill="#5a7090">Dashboard (white = home)</text>
         </svg>
       </div>
     </div>
@@ -403,46 +663,321 @@
 
   <div class="divider"></div>
 
-  <!-- THE TWO PLATFORMS -->
+  <!-- PLATFORM OVERVIEW -->
   <div class="cs-section">
     <div class="cs-eyebrow">Platform Overview</div>
     <h2 class="cs-title">PMPS &amp; CMPS — <em>What I Designed</em></h2>
-    <div class="cs-body"><p>The two platforms are distinct but connected. PMPS handles the pre-contract sales journey; CMPS handles the operational reality of managing an active print fleet contract — including shipment logistics, fleet health, and supply management.</p></div>
-    <div class="role-split">
-      <div class="role-card pmps">
-        <div class="role-card-label">&#128200;&ensp;PMPS &mdash; Prospective MPS</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px">The sales-side platform. Used by HP account managers to manage the full opportunity-to-contract pipeline for prospective enterprise print customers.</div>
-        <ul class="role-list">
-          <li>Opportunity creation and pipeline management</li>
-          <li>Proposal builder with product and service configuration</li>
-          <li>Customer profile creation and data management</li>
-          <li>Customer Opportunity Management linking accounts to deals</li>
-          <li>Onboarding workflows to transition won accounts to CMPS</li>
-        </ul>
-        <div style="margin-top:16px">
-          <a href="https://xpeh7y.axshare.com//preview/3gu93y" target="_blank" rel="noopener" class="proto-link-btn">
-            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Open PMPS Prototype
+    <div class="cs-body"><p>The two platforms are distinct in purpose but connected through data and the Onboarding handoff. Every design decision had to work for both — the same component language, the same interaction patterns, the same nav chrome — while the content and workflows inside each module differ significantly.</p></div>
+    <div class="platform-grid">
+      <div class="platform-card pmps">
+        <div class="platform-card-header">
+          <div>
+            <div class="platform-card-title">PMPS</div>
+            <div class="platform-card-sub">Prospective MPS &middot; Sales Platform</div>
+          </div>
+          <span class="platform-badge">Pre-Contract</span>
+        </div>
+        <div class="platform-card-body">
+          <div class="platform-users">Primary users: Sales Account Managers, Sales Managers</div>
+          <ul class="platform-feature-list">
+            <li>Opportunity creation and pipeline management with stage tracking</li>
+            <li>Proposal builder — configure devices, service levels, and contract terms</li>
+            <li>Existing Proposals library — duplicate and modify for similar accounts</li>
+            <li>Customer profile creation and account data management</li>
+            <li>Customer Opportunity Management — link accounts to active deals</li>
+            <li>Onboarding workflows — transition won accounts into CMPS</li>
+          </ul>
+          <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" class="platform-proto-link">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Open PMPS Prototype
           </a>
         </div>
       </div>
-      <div class="role-card cmps">
-        <div class="role-card-label">&#128666;&ensp;CMPS &mdash; Contract MPS</div>
-        <div style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:14px">The operational platform. Used by contract managers and logistics coordinators to manage active HP print fleet accounts — tracking shipments, device health, and supply orders.</div>
-        <ul class="role-list">
-          <li>MPC Dashboard — live view of all active contracts and fleet status</li>
-          <li>Shipment tracking with route visibility and delivery performance</li>
-          <li>Fleet Data Management — device inventory and health across sites</li>
-          <li>Supply reorder workflows triggered by usage thresholds</li>
-          <li>Monthly shipping spend analytics and SLA monitoring</li>
-        </ul>
-        <div style="margin-top:16px">
-          <a href="https://xpeh7y.axshare.com//preview/hw0vwx" target="_blank" rel="noopener" class="proto-link-btn" style="background:#15803d">
-            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Open CMPS Prototype
+      <div class="platform-card cmps">
+        <div class="platform-card-header">
+          <div>
+            <div class="platform-card-title">CMPS</div>
+            <div class="platform-card-sub">Contract MPS &middot; Operations Platform</div>
+          </div>
+          <span class="platform-badge">Active Contract</span>
+        </div>
+        <div class="platform-card-body">
+          <div class="platform-users">Primary users: Contract Managers, Logistics Coordinators</div>
+          <ul class="platform-feature-list">
+            <li>MPC Dashboard — live KPIs, shipment alerts, and pending actions</li>
+            <li>Fleet Data Management — device inventory and health across all client sites</li>
+            <li>Real-time shipment tracking — status, ETA, exceptions per order</li>
+            <li>Supply reorder workflows — triggered by usage thresholds and alerts</li>
+            <li>Delivery performance analytics — on-time rate, exception trends</li>
+            <li>Monthly shipping spend reporting and trend visualisation</li>
+          </ul>
+          <a href="https://app.axure.cloud/app/project/xpeh7y/preview/hw0vwx" target="_blank" rel="noopener" class="platform-proto-link">
+            <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>Open CMPS Prototype
           </a>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DESIGN COMPONENTS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Design System</div>
+    <h2 class="cs-title">Shared Component <em>Library</em></h2>
+    <p class="comp-section-intro">Before designing any module screens, I established a shared component language used across both PMPS and CMPS. The same nav chrome, table style, badge system, and form inputs appear on every page — so users switching between platforms experience zero relearning. Below are live renders of the core components.</p>
+
+    <div class="comp-grid">
+
+      <!-- Top Nav -->
+      <div class="comp-card full">
+        <div class="comp-label">
+          <span class="comp-label-text">Top Navigation Bar — shared across PMPS &amp; CMPS</span>
+          <span class="comp-label-tag">TopNav</span>
+        </div>
+        <div class="comp-body" style="padding:0">
+          <div class="mps-nav">
+            <div class="mps-nav-brand">
+              <div class="mps-nav-logo">hp</div>
+              <div><div class="mps-nav-name">Managed Print Services</div><div class="mps-nav-sub">MPC Dashboard</div></div>
+            </div>
+            <div class="mps-nav-tabs">
+              <div class="mps-nav-tab active">Dashboard</div>
+              <div class="mps-nav-tab">Opportunities</div>
+              <div class="mps-nav-tab">Proposals</div>
+              <div class="mps-nav-tab">Customers</div>
+              <div class="mps-nav-tab">Onboarding</div>
+              <div class="mps-nav-tab">On Contract</div>
+            </div>
+            <div class="mps-nav-right">
+              <button class="mps-nav-btn">+ New Deal</button>
+              <div class="mps-nav-user">
+                <div class="mps-nav-av">SH</div>
+                <div class="mps-nav-uname">S. Harode</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Nav -->
+      <div class="comp-card">
+        <div class="comp-label">
+          <span class="comp-label-text">Sidebar Navigation</span>
+          <span class="comp-label-tag">SidebarNav</span>
+        </div>
+        <div class="comp-body" style="padding:0;background:#fff">
+          <div style="display:flex">
+            <div class="mps-sidebar" style="width:100%">
+              <div class="mps-sidebar-section">Main</div>
+              <div class="mps-ni active"><div class="mps-ni-dot" style="background:#fff"></div>Dashboard</div>
+              <div class="mps-sidebar-section">Sales</div>
+              <div class="mps-ni"><div class="mps-ni-dot"></div>Opportunities</div>
+              <div class="mps-ni"><div class="mps-ni-dot"></div>Proposals</div>
+              <div class="mps-ni"><div class="mps-ni-dot"></div>Customers</div>
+              <div class="mps-sidebar-section">Contract</div>
+              <div class="mps-ni"><div class="mps-ni-dot"></div>Onboarding</div>
+              <div class="mps-ni"><div class="mps-ni-dot"></div>Fleet Data</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Badges -->
+      <div class="comp-card">
+        <div class="comp-label">
+          <span class="comp-label-text">Status Badges — opportunity &amp; contract lifecycle</span>
+          <span class="comp-label-tag">Badge</span>
+        </div>
+        <div class="comp-body white">
+          <div class="badge-row" style="margin-bottom:16px">
+            <span class="mps-badge new">New</span>
+            <span class="mps-badge active">Active</span>
+            <span class="mps-badge pending">Pending</span>
+            <span class="mps-badge closed">Closed</span>
+          </div>
+          <div class="badge-row">
+            <span class="mps-badge onboarding">Onboarding</span>
+            <span class="mps-badge contract">On Contract</span>
+          </div>
+          <div style="margin-top:14px;font-size:11px;color:var(--soft);font-family:var(--fm)">Each badge maps to a stage in the MPS contract lifecycle — used consistently across Opportunities, Customers, and Onboarding views.</div>
+        </div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="comp-card full">
+        <div class="comp-label">
+          <span class="comp-label-text">KPI Card Row — MPC Dashboard home</span>
+          <span class="comp-label-tag">KPICard</span>
+        </div>
+        <div class="comp-body">
+          <div class="mps-kpi-row">
+            <div class="mps-kpi">
+              <div class="mps-kpi-label">Active Shipments</div>
+              <div class="mps-kpi-val" style="color:#0096D6">34</div>
+              <div class="mps-kpi-sub" style="color:#16a34a">&#9650; 6 today</div>
+            </div>
+            <div class="mps-kpi">
+              <div class="mps-kpi-label">Pending Dispatch</div>
+              <div class="mps-kpi-val" style="color:#b45309">8</div>
+              <div class="mps-kpi-sub" style="color:#6B7280">awaiting pickup</div>
+            </div>
+            <div class="mps-kpi">
+              <div class="mps-kpi-label">Delivered Today</div>
+              <div class="mps-kpi-val" style="color:#15803d">19</div>
+              <div class="mps-kpi-sub" style="color:#6B7280">on time</div>
+            </div>
+            <div class="mps-kpi">
+              <div class="mps-kpi-label">Monthly Spend</div>
+              <div class="mps-kpi-val" style="font-size:18px">$12,480</div>
+              <div class="mps-kpi-sub" style="color:#16a34a">&#9650; 3% vs last month</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Table -->
+      <div class="comp-card full">
+        <div class="comp-label">
+          <span class="comp-label-text">DataTable — Opportunities list view (PMPS)</span>
+          <span class="comp-label-tag">DataTable</span>
+        </div>
+        <div class="comp-body" style="padding:14px">
+          <div class="mps-filter" style="margin-bottom:12px">
+            <div class="mps-fg"><div class="mps-fg-label">Account</div><select class="mps-fg-select"><option>All Accounts</option><option>Accenture</option></select></div>
+            <div class="mps-fg"><div class="mps-fg-label">Stage</div><select class="mps-fg-select"><option>All Stages</option><option>Proposal</option></select></div>
+            <div class="mps-fg"><div class="mps-fg-label">Assigned To</div><select class="mps-fg-select"><option>All Reps</option><option>Me</option></select></div>
+            <button class="mps-fg-btn">Apply</button>
+          </div>
+          <div class="mps-table-wrap">
+            <table class="mps-table">
+              <thead>
+                <tr>
+                  <th>Account Name</th>
+                  <th>Opportunity</th>
+                  <th>Stage</th>
+                  <th>Assigned Rep</th>
+                  <th>Proposal</th>
+                  <th class="r">Est. Value</th>
+                  <th>Close Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="lnk">Accenture UK</td><td>MPS Fleet — 120 devices</td><td>Proposal Sent</td><td>J. Smith</td><td class="lnk">View</td><td class="r">£84,000</td><td>Jul 15, 2025</td><td><span class="mps-badge pending">Pending</span></td></tr>
+                <tr><td class="lnk">KPMG Ireland</td><td>A3/A4 Refresh — 60 devices</td><td>Negotiation</td><td>A. Kumar</td><td class="lnk">View</td><td class="r">£42,500</td><td>Jun 30, 2025</td><td><span class="mps-badge active">Active</span></td></tr>
+                <tr><td class="lnk">Deloitte US</td><td>Enterprise Print — 300 devices</td><td>Discovery</td><td>M. Chen</td><td>—</td><td class="r">£210,000</td><td>Sep 01, 2025</td><td><span class="mps-badge new">New</span></td></tr>
+                <tr><td class="lnk">Barclays</td><td>Branch Network — 180 devices</td><td>Onboarding</td><td>J. Smith</td><td class="lnk">View</td><td class="r">£126,000</td><td>Closed</td><td><span class="mps-badge onboarding">Onboarding</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Proposal Stepper + Form -->
+      <div class="comp-card full">
+        <div class="comp-label">
+          <span class="comp-label-text">Create Proposal — multi-step flow with form fields (PMPS)</span>
+          <span class="comp-label-tag">Stepper &middot; Form</span>
+        </div>
+        <div class="comp-body">
+          <div class="mps-stepper">
+            <div class="mps-step" style="flex:none">
+              <div class="mps-step-circle done">&#10003;</div>
+              <div class="mps-step-line done"></div>
+            </div>
+            <div class="mps-step" style="flex:none">
+              <div class="mps-step-circle done">&#10003;</div>
+              <div class="mps-step-line done"></div>
+            </div>
+            <div class="mps-step" style="flex:none">
+              <div class="mps-step-circle current">3</div>
+              <div class="mps-step-line current"></div>
+            </div>
+            <div class="mps-step" style="flex:none">
+              <div class="mps-step-circle todo">4</div>
+              <div class="mps-step-line"></div>
+            </div>
+            <div class="mps-step" style="flex:none">
+              <div class="mps-step-circle todo">5</div>
+            </div>
+          </div>
+          <div class="mps-step-labels">
+            <div class="mps-step-lbl done">Account</div>
+            <div class="mps-step-lbl done">Devices</div>
+            <div class="mps-step-lbl current">Services</div>
+            <div class="mps-step-lbl">Contract</div>
+            <div class="mps-step-lbl">Review</div>
+          </div>
+          <div style="margin-top:14px">
+            <div class="mps-form-section">
+              <div class="mps-form-title">Step 3 &mdash; Service Configuration</div>
+              <div class="mps-form-grid">
+                <div><div class="mps-field-label">Account</div><input class="mps-field-input locked" value="Accenture UK" readonly></div>
+                <div><div class="mps-field-label">Device Count</div><input class="mps-field-input locked" value="120 devices" readonly></div>
+                <div><div class="mps-field-label">Contract Length</div><select class="mps-field-input"><option>36 months</option><option>24 months</option><option>12 months</option></select></div>
+                <div><div class="mps-field-label">Service Level</div><select class="mps-field-input"><option>Full Service</option><option>Parts Only</option></select></div>
+                <div><div class="mps-field-label">Supply Coverage</div><select class="mps-field-input"><option>All Consumables</option><option>Toner Only</option></select></div>
+                <div><div class="mps-field-label">Response Time</div><select class="mps-field-input"><option>Next Business Day</option><option>4 Hours</option></select></div>
+                <div style="grid-column:1/-1"><div class="mps-field-label">Special Requirements</div><input class="mps-field-input focused" placeholder="e.g. secure print only, GDPR data handling"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary Card + Alert -->
+      <div class="comp-card">
+        <div class="comp-label">
+          <span class="comp-label-text">SummaryCard — contract detail (CMPS)</span>
+          <span class="comp-label-tag">SummaryCard</span>
+        </div>
+        <div class="comp-body">
+          <div class="mps-summary" style="margin-bottom:12px">
+            <div class="mps-summary-title">Contract Summary — Accenture UK</div>
+            <div class="mps-summary-grid">
+              <div class="mps-sl">Account</div><div class="mps-sv">Accenture UK</div>
+              <div class="mps-sl">Contract ID</div><div class="mps-sv">MPS-2024-UK-0042</div>
+              <div class="mps-sl">Devices</div><div class="mps-sv">120 &middot; A3/A4 Mix</div>
+              <div class="mps-sl">Contract</div><div class="mps-sv">36 months &middot; Full Service</div>
+              <div class="mps-sl">Status</div><div class="mps-sv"><span class="mps-badge contract">On Contract</span></div>
+              <div class="mps-sl">Start Date</div><div class="mps-sv">Jan 1, 2024</div>
+              <div class="mps-sl">Manager</div><div class="mps-sv">J. Smith</div>
+            </div>
+          </div>
+          <div class="mps-info">Next supply review due <strong>Jul 15, 2025</strong>. 3 devices flagged for maintenance. <span style="color:#1e40af;text-decoration:underline;cursor:pointer">View fleet report</span></div>
+        </div>
+      </div>
+
+      <!-- Shipment Tracking Row -->
+      <div class="comp-card">
+        <div class="comp-label">
+          <span class="comp-label-text">Shipment Tracking — Fleet Data Management (CMPS)</span>
+          <span class="comp-label-tag">ShipmentRow</span>
+        </div>
+        <div class="comp-body" style="padding:14px">
+          <div class="mps-table-wrap">
+            <table class="mps-table">
+              <thead>
+                <tr>
+                  <th>Tracking #</th>
+                  <th>Contents</th>
+                  <th>Destination</th>
+                  <th>ETA</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="lnk" style="font-family:var(--fm)">794644782458</td><td>Toner Carts ×4</td><td>Dallas TX HQ</td><td style="color:#b45309;font-weight:600">Tomorrow</td><td><span class="mps-badge pending">At Hub</span></td></tr>
+                <tr><td class="lnk" style="font-family:var(--fm)">761098827341</td><td>Paper Stock ×10</td><td>Austin TX Office</td><td style="color:#15803d">Delivered</td><td><span class="mps-badge active">Delivered</span></td></tr>
+                <tr><td class="lnk" style="font-family:var(--fm)">789012374650</td><td>Drum Unit ×2</td><td>Chicago IL Site</td><td style="color:#0096D6">Jun 10</td><td><span class="mps-badge new">In Transit</span></td></tr>
+                <tr><td class="lnk" style="font-family:var(--fm)">732901887234</td><td>Maintenance Kit</td><td>Seattle WA</td><td style="color:#b91c1c">Exception</td><td><span class="mps-badge" style="background:#fee2e2;color:#b91c1c">Exception</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mps-alert" style="margin-top:10px">&#9889; 1 shipment has an exception &mdash; action required. <span style="text-decoration:underline;cursor:pointer;font-weight:600">Resolve now</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -452,42 +987,48 @@
   <div class="cs-section">
     <div class="cs-eyebrow">Key Modules</div>
     <h2 class="cs-title">Six Modules, <em>One Journey</em></h2>
-    <div class="cs-body"><p>Each module represents a stage in the MPS contract lifecycle. The design challenge was maintaining a consistent component language across all six while respecting the very different contexts — sales vs. operations, prospecting vs. active fleet management.</p></div>
+    <div class="cs-body"><p>Each module maps to a real stage in the MPS contract lifecycle. The design challenge was keeping the component language consistent while the content, data, and user needs shift significantly between the sales-side modules (PMPS) and the operational modules (CMPS).</p></div>
     <div class="module-grid">
       <div class="module-card">
         <div class="module-icon">&#128200;</div>
         <div class="module-name">Dashboard</div>
-        <div class="module-desc">The home page. Gives users an at-a-glance view of active contracts, pending actions, shipment alerts, and key KPIs across the full fleet.</div>
-        <div class="module-pages"><span class="module-page">MPC Home</span><span class="module-page">KPI Cards</span><span class="module-page">Alerts</span></div>
+        <span class="module-platform both">Both Platforms</span>
+        <div class="module-desc">The shared home page. KPI cards surface active shipments, pending actions, delivery performance rate, and monthly spend. Exception alerts are surfaced immediately so contract managers see what needs attention without searching.</div>
+        <div class="module-pages"><span class="module-page">KPI Cards</span><span class="module-page">Alert Feed</span><span class="module-page">Quick Actions</span></div>
       </div>
       <div class="module-card">
         <div class="module-icon">&#127919;</div>
         <div class="module-name">Opportunities</div>
-        <div class="module-desc">Sales pipeline management. Account managers create and track opportunities from initial contact through to proposal stage.</div>
+        <span class="module-platform pmps">PMPS</span>
+        <div class="module-desc">Sales pipeline management. Account managers create qualified opportunities and track them from first contact through to proposal stage. Replaces fragmented spreadsheet tracking with a shared, filterable pipeline view.</div>
         <div class="module-pages"><span class="module-page">Create Opportunity</span><span class="module-page">Existing Opps</span></div>
       </div>
       <div class="module-card">
         <div class="module-icon">&#128196;</div>
         <div class="module-name">Proposals</div>
-        <div class="module-desc">Proposal builder and management. Configure HP print solutions, pricing, and service terms for prospective clients.</div>
+        <span class="module-platform pmps">PMPS</span>
+        <div class="module-desc">Structured proposal builder with a 5-step guided flow: Account → Devices → Services → Contract → Review. Existing Proposals library lets reps duplicate and modify past proposals for similar accounts, cutting creation time significantly.</div>
         <div class="module-pages"><span class="module-page">Create Proposal</span><span class="module-page">Existing Proposals</span></div>
       </div>
       <div class="module-card">
         <div class="module-icon">&#128101;</div>
         <div class="module-name">Customers</div>
-        <div class="module-desc">Customer data management and opportunity linking. Create new customer profiles and associate them with active deals.</div>
+        <span class="module-platform pmps">PMPS</span>
+        <div class="module-desc">Customer data management hub. Create new customer profiles, manage existing account data, and use Customer Opportunity Management to link accounts to their active deals — creating the data relationship that powers the PMPS → CMPS handoff.</div>
         <div class="module-pages"><span class="module-page">Existing Customers</span><span class="module-page">Create Customer</span><span class="module-page">Cust. Opp. Mgmt</span></div>
       </div>
       <div class="module-card">
         <div class="module-icon">&#128640;</div>
         <div class="module-name">Onboarding</div>
-        <div class="module-desc">The handoff from PMPS to CMPS. Manages the transition of won accounts onto active contracts with My Customers and All Customers views.</div>
+        <span class="module-platform both">Handoff Module</span>
+        <div class="module-desc">The bridge between PMPS and CMPS. Won accounts transition from the sales pipeline into active contract management. My Customers gives reps a personal onboarding view; All Customers gives managers team-wide visibility. The critical UX challenge: making the &ldquo;prospect to client&rdquo; mindset shift visible in the UI.</div>
         <div class="module-pages"><span class="module-page">My Customers</span><span class="module-page">All Customers</span></div>
       </div>
       <div class="module-card">
         <div class="module-icon">&#128666;</div>
         <div class="module-name">On Contract</div>
-        <div class="module-desc">The operational heart of CMPS. Fleet Data Management gives contract managers live device inventory, shipment status, supply levels, and spend analytics.</div>
+        <span class="module-platform cmps">CMPS</span>
+        <div class="module-desc">Fleet Data Management — the operational heart of CMPS. Live device inventory, real-time shipment tracking with status and ETA, delivery performance metrics, supply reorder workflows, and monthly spend analytics. Replaces the multi-portal login that was the top pain point for contract managers.</div>
         <div class="module-pages"><span class="module-page">Fleet Data Mgmt</span><span class="module-page">Shipment Tracking</span><span class="module-page">Supply Orders</span></div>
       </div>
     </div>
@@ -498,122 +1039,113 @@
   <!-- KEY SCREENS -->
   <div class="cs-section">
     <div class="cs-eyebrow">Key Screens</div>
-    <h2 class="cs-title">Designed <em>Screens</em></h2>
-    <div class="cs-body"><p>The interactive Axure prototypes are the primary artefact for both platforms. Each screen below describes the design decisions and UX rationale — open the live prototype to explore the full interaction.</p></div>
-
+    <h2 class="cs-title">Real <em>Wireframes</em></h2>
+    <div class="cs-body"><p>These are the actual Axure RP wireframes from the project — the artefacts used for stakeholder reviews, development briefings, and sign-off. Each screen reflects a specific design decision explained below.</p></div>
     <div class="screen-stack">
 
-      <!-- Screen 1: MPC Dashboard -->
+      <!-- Screen 1: Dashboard -->
       <div class="screen-wrap">
-        <div class="screen-annotation" style="grid-template-columns:auto 1fr;gap:14px">
+        <div class="screen-frame" style="border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,80,160,0.08)">
+          <img src="hp-screen-dashboard.png" alt="HP Managed Print Central — Dashboard" style="width:100%;display:block">
+        </div>
+        <div class="screen-annotation" style="margin-top:14px">
           <div class="screen-num">01</div>
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px">
-              <div class="screen-title">MPC Dashboard — The Command Centre</div>
-              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/hw0vwx" target="_blank" rel="noopener" class="proto-link-btn" style="font-size:11px;padding:5px 12px">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                Open in CMPS
+              <div class="screen-title">Dashboard — Managed Print Central Home</div>
+              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/hw0vwx" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:var(--hp-blue);color:#fff;text-decoration:none;font-size:11px;font-family:var(--fm)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Open Prototype
               </a>
             </div>
-            <div class="screen-desc">The home page surfaces everything a contract manager needs at a glance: active shipments count, pending dispatch alerts, delivery performance rate, and monthly spend — all without navigating away. The dashboard acts as a coordination hub, surfacing urgent actions (exceptions, low-stock alerts) alongside steady-state metrics. Navigation to all six modules flows from this single entry point, creating a consistent mental model for users across both PMPS and CMPS workflows.</div>
+            <div class="screen-desc">The Dashboard is the command centre for the entire MPS platform. The design surfaces six distinct data widgets simultaneously — Customer Lookup, Active Proposals bar chart, Recent Proposals, Recent Opportunities, Alternate Proposals, In Progress Proposals, and Approved Proposals — giving account managers a full picture of their pipeline without navigating away. The Active Proposals chart (In Progress / Approved / Alternative / Declined) is the most prominent element, giving instant visual feedback on proposal health. The &ldquo;Customize&rdquo; control allows users to personalise their widget layout — a direct response to the research finding that different roles needed different information prioritised. The top navigation bar (Account, Customer, History, Go To, Regions) reflects the enterprise context: users operate across multiple customers and regions simultaneously.</div>
             <div class="screen-tags">
-              <span class="screen-tag hl">KPI cards — live data</span>
-              <span class="screen-tag hl">Exception alerts surfaced</span>
-              <span class="screen-tag">Single entry point for all 6 modules</span>
-              <span class="screen-tag green">CMPS Platform</span>
+              <span class="screen-tag hl">6 dashboard widgets — full pipeline at a glance</span>
+              <span class="screen-tag hl">Active Proposals bar chart — proposal health signal</span>
+              <span class="screen-tag">Customisable widget layout per user role</span>
+              <span class="screen-tag">Customer Lookup — direct account access</span>
+              <span class="screen-tag green">PMPS &amp; CMPS shared home</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Screen 2: Opportunities -->
+      <!-- Screen 2: Archived Opportunities -->
       <div class="screen-wrap">
-        <div class="screen-annotation">
+        <div class="screen-frame" style="border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,80,160,0.08)">
+          <img src="hp-screen-opportunities.png" alt="HP MPS — Archived Opportunities" style="width:100%;display:block">
+        </div>
+        <div class="screen-annotation" style="margin-top:14px">
           <div class="screen-num">02</div>
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px">
-              <div class="screen-title">Opportunities — Sales Pipeline Management</div>
-              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" class="proto-link-btn" style="font-size:11px;padding:5px 12px;background:#1e40af">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                Open in PMPS
+              <div class="screen-title">Opportunities — Archived Opportunities View</div>
+              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#1e40af;color:#fff;text-decoration:none;font-size:11px;font-family:var(--fm)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                PMPS Prototype
               </a>
             </div>
-            <div class="screen-desc">The Existing Opportunities view gives HP account managers a filterable, sortable list of all active and historical opportunities. Each row shows the account name, stage, assigned rep, proposal status, and expected close date — giving sales managers the visibility they previously managed in spreadsheets. The Create Opportunity flow walks reps through account selection, service configuration, and estimated fleet size to generate a qualified lead record.</div>
+            <div class="screen-desc">The Opportunities module uses a three-tab structure: Create Opportunity, Existing Opportunities, and Archived Opportunities. This screen shows the Archived view — showing historical opportunities with statuses of Active, Lost, and Abandoned. Several key UX decisions are visible here: the &ldquo;Won / All&rdquo; toggle filter at the top lets users instantly switch between won-only and all archived records — a high-frequency filter that warranted a toggle rather than a dropdown. Page size control and global search are positioned consistently across all list views. The data table columns (Opportunity ID, Description, Status, Customer Name, Validity Expiration Date, Number of Proposals, Migration Date) are horizontally scrollable — the right-side scroll indicator signals more columns are available without cluttering the visible area. Pagination (&ldquo;Page 1 of 20&rdquo;) keeps the interface performant at scale.</div>
             <div class="screen-tags">
-              <span class="screen-tag hl">Replaces spreadsheet tracking</span>
-              <span class="screen-tag">Pipeline stage visibility</span>
-              <span class="screen-tag">Filter by rep, stage, date</span>
-              <span class="screen-tag" style="background:#dbeafe;color:#1e40af;border-color:#bfdbfe">PMPS Platform</span>
+              <span class="screen-tag hl">Won/All toggle — high-frequency filter as toggle not dropdown</span>
+              <span class="screen-tag hl">Horizontal scroll for dense column data</span>
+              <span class="screen-tag">3-tab structure: Create / Existing / Archived</span>
+              <span class="screen-tag">Pagination for enterprise-scale data</span>
+              <span class="screen-tag blue">PMPS Platform</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Screen 3: Proposals -->
+      <!-- Screen 3: Create Proposal -->
       <div class="screen-wrap">
-        <div class="screen-annotation">
+        <div class="screen-frame" style="border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,80,160,0.08)">
+          <img src="hp-screen-create-proposal.png" alt="HP MPS — Create Proposal form" style="width:100%;display:block">
+        </div>
+        <div class="screen-annotation" style="margin-top:14px">
           <div class="screen-num">03</div>
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px">
-              <div class="screen-title">Proposals — Structured Proposal Builder</div>
-              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" class="proto-link-btn" style="font-size:11px;padding:5px 12px;background:#1e40af">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                Open in PMPS
+              <div class="screen-title">Proposals — Create Proposal Form</div>
+              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#1e40af;color:#fff;text-decoration:none;font-size:11px;font-family:var(--fm)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                PMPS Prototype
               </a>
             </div>
-            <div class="screen-desc">The proposal builder standardises what was previously an ad-hoc, inconsistent process. Reps configure device types, service levels, contract length, and supply terms within a guided multi-step flow. Existing Proposals provides a library of past proposals that can be duplicated and modified for similar accounts — significantly reducing creation time. Every proposal links back to its parent opportunity and customer record.</div>
+            <div class="screen-desc">The Create Proposal form is intentionally minimal — six fields that capture everything needed to create a proposal record: Customer, Opportunity (linked), Program Type, Contract Type, Proposal Description, and a Coterminous checkbox. The design decision to keep this form short was deliberate: the research showed that a bloated creation form was the primary reason reps abandoned proposal creation mid-way and reverted to email. By stripping it to the essential identifiers only, and linking Customer and Opportunity via inline edit controls (pencil icon), the form becomes a fast intake screen — additional detail is added in subsequent steps after the record exists. The blue &ldquo;Create Proposal&rdquo; CTA is the only action on the page, making the intent unambiguous. The three-tab structure (Create Proposal active, Existing Proposals, Archived Proposals) maintains context without requiring navigation away.</div>
             <div class="screen-tags">
-              <span class="screen-tag hl">Guided multi-step flow</span>
-              <span class="screen-tag">Duplicate &amp; modify existing</span>
-              <span class="screen-tag">Linked to opportunity + customer</span>
-              <span class="screen-tag" style="background:#dbeafe;color:#1e40af;border-color:#bfdbfe">PMPS Platform</span>
+              <span class="screen-tag hl">Minimal 6-field form — intentional to reduce abandonment</span>
+              <span class="screen-tag hl">Inline edit controls link Customer + Opportunity</span>
+              <span class="screen-tag">Single CTA — no ambiguity about next action</span>
+              <span class="screen-tag">Coterminous checkbox — enterprise-specific requirement</span>
+              <span class="screen-tag blue">PMPS Platform</span>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Screen 4: Fleet Data Management -->
+      <!-- Screen 4: Existing Proposals -->
       <div class="screen-wrap">
-        <div class="screen-annotation">
+        <div class="screen-frame" style="border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 28px rgba(0,80,160,0.08)">
+          <img src="hp-screen-existing-proposals.png" alt="HP MPS — Existing Proposals list" style="width:100%;display:block">
+        </div>
+        <div class="screen-annotation" style="margin-top:14px">
           <div class="screen-num">04</div>
           <div>
             <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px">
-              <div class="screen-title">Fleet Data Management — The Logistics Core</div>
-              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/hw0vwx" target="_blank" rel="noopener" class="proto-link-btn" style="font-size:11px;padding:5px 12px">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                Open in CMPS
+              <div class="screen-title">Proposals — Existing Proposals with Status Filters</div>
+              <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:6px;background:#1e40af;color:#fff;text-decoration:none;font-size:11px;font-family:var(--fm)">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                PMPS Prototype
               </a>
             </div>
-            <div class="screen-desc">Fleet Data Management is the operational centrepiece of CMPS and the most logistics-intensive screen in the system. Contract managers see live device inventory across all client sites, real-time shipment status for toner and consumable orders, delivery performance metrics (on-time rate, exceptions), and a monthly shipping spend breakdown. Shipment rows show tracking numbers, contents, destination, ETA, and status — replacing the multi-system login that previously required contract managers to context-switch between HP tools and carrier portals.</div>
+            <div class="screen-desc">The Existing Proposals view is the most filter-rich screen in PMPS. Two filter tiers sit above the table: an &ldquo;Active / All&rdquo; opportunity filter toggle (consistent with the Opportunities module), and a multi-select Proposal Status row with checkboxes for Approved, Alternate, In Progress, Rejected, Won, Archived, and All. This two-tier approach was a deliberate design choice — the toggle addresses the most common filter (active vs. all), while the checkboxes enable power users to construct precise multi-status views without the overhead of a full filter panel. The data table exposes 10 columns including Proposal Number, Description, Status, Customer Name, Date Created, Program, Proposal Content, Contract Type, Price Validity End Date, and Opportunity Status — all relevant to the enterprise review workflow. Horizontal scrolling handles column density without sacrificing data. The green-starred bookmark icons on Proposals and Opportunities in the nav are a consistent favourite/shortcut affordance visible across the platform.</div>
             <div class="screen-tags">
-              <span class="screen-tag hl">Live shipment tracking</span>
-              <span class="screen-tag hl">Delivery performance metrics</span>
-              <span class="screen-tag">Device inventory across sites</span>
-              <span class="screen-tag">Monthly spend analytics</span>
-              <span class="screen-tag green">CMPS Platform</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Screen 5: Onboarding -->
-      <div class="screen-wrap">
-        <div class="screen-annotation">
-          <div class="screen-num">05</div>
-          <div>
-            <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:6px">
-              <div class="screen-title">Onboarding — PMPS to CMPS Handoff</div>
-              <a href="https://xpeh7y.axshare.com/" target="_blank" rel="noopener" class="proto-link-btn" style="font-size:11px;padding:5px 12px;background:#374151">
-                <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Full Project
-              </a>
-            </div>
-            <div class="screen-desc">The Onboarding module is the bridge between the two platforms — where a won opportunity transitions from the PMPS sales pipeline into an active CMPS contract. My Customers gives each rep a personal view of their accounts in onboarding; All Customers gives managers a team-wide view. This handoff was a critical UX design challenge: the data, terminology, and user mental model shifts from &ldquo;prospect&rdquo; to &ldquo;client&rdquo; at this point, and the design needed to reflect that transition without creating confusion.</div>
-            <div class="screen-tags">
-              <span class="screen-tag hl">PMPS &rarr; CMPS handoff point</span>
-              <span class="screen-tag">My Customers (rep view)</span>
-              <span class="screen-tag">All Customers (manager view)</span>
-              <span class="screen-tag">Shared across both platforms</span>
+              <span class="screen-tag hl">Two-tier filtering: toggle + multi-select checkboxes</span>
+              <span class="screen-tag hl">7 proposal status filters — Approved, Alternate, In Progress, Rejected, Won, Archived, All</span>
+              <span class="screen-tag">10 data columns — horizontal scroll for density</span>
+              <span class="screen-tag">Bookmark star — favourites shortcut in nav</span>
+              <span class="screen-tag blue">PMPS Platform</span>
             </div>
           </div>
         </div>
@@ -628,59 +1160,56 @@
   <div class="cs-section">
     <div class="cs-eyebrow">Outcomes</div>
     <h2 class="cs-title">What the Work <em>Achieved</em></h2>
-    <div class="cs-body"><p>Both platforms were validated through stakeholder reviews using the Axure RP prototypes before development. The outcomes below reflect design validation findings and qualitative improvements over the previous toolset.</p></div>
+    <div class="cs-body"><p>Both platforms were validated through stakeholder reviews using Axure RP prototypes before development. Outcomes reflect design validation findings and qualitative improvements over the previous disconnected toolset.</p></div>
     <div class="outcomes-grid">
       <div class="outcome-card">
         <div class="outcome-val">2</div>
         <div class="outcome-lbl">Platforms designed end-to-end</div>
-        <div class="outcome-desc">PMPS and CMPS designed as a connected ecosystem with shared IA, component language, and consistent interaction patterns.</div>
+        <div class="outcome-desc">PMPS and CMPS designed as a connected ecosystem with shared IA, component language, and consistent interaction patterns across both.</div>
       </div>
       <div class="outcome-card">
         <div class="outcome-val">6</div>
         <div class="outcome-lbl">Core modules delivered</div>
-        <div class="outcome-desc">Dashboard, Opportunities, Proposals, Customers, Onboarding, and On Contract — covering the full MPS contract lifecycle.</div>
+        <div class="outcome-desc">Dashboard, Opportunities, Proposals, Customers, Onboarding, and On Contract — covering the full MPS contract lifecycle from first prospect to active fleet management.</div>
       </div>
       <div class="outcome-card">
         <div class="outcome-val">1</div>
         <div class="outcome-lbl">Unified entry point</div>
-        <div class="outcome-desc">The MPC Dashboard replaced multiple disconnected tools and system logins with a single home for all contract and shipping activity.</div>
+        <div class="outcome-desc">MPC Dashboard replaced multiple disconnected tools and carrier portal logins with a single home for all contract, shipment, and supply activity.</div>
       </div>
       <div class="outcome-card">
-        <div class="outcome-val">Live</div>
-        <div class="outcome-lbl">Shipment tracking in CMPS</div>
-        <div class="outcome-desc">Fleet Data Management gives contract managers real-time shipment status, delivery performance, and supply levels — previously requiring manual checks across carrier portals.</div>
+        <div class="outcome-val">0</div>
+        <div class="outcome-lbl">External portals needed for shipment tracking</div>
+        <div class="outcome-desc">Fleet Data Management brings all shipment status, ETAs, and exceptions into CMPS — eliminating the multi-login workflow that was the top contract manager pain point.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">5-step</div>
+        <div class="outcome-lbl">Proposal builder replaces ad-hoc process</div>
+        <div class="outcome-desc">Guided flow with pre-filled locked fields standardises what was previously done in Word documents and email threads — ensuring consistency and accountability.</div>
       </div>
       <div class="outcome-card">
         <div class="outcome-val">Axure</div>
-        <div class="outcome-lbl">Interactive prototypes for validation</div>
-        <div class="outcome-desc">Full clickable prototypes in Axure RP 10 used for stakeholder reviews, development briefings, and usability walkthroughs before build.</div>
-      </div>
-      <div class="outcome-card">
-        <div class="outcome-val">Clear</div>
-        <div class="outcome-lbl">PMPS → CMPS handoff designed</div>
-        <div class="outcome-desc">The Onboarding module solved the platform transition problem — giving won opportunities a defined, visible path from sales pipeline to active contract management.</div>
+        <div class="outcome-lbl">Full interactive prototypes for validation</div>
+        <div class="outcome-desc">Both platforms delivered as fully clickable Axure RP 10 prototypes — used for stakeholder reviews, development briefings, and ongoing spec reference throughout build.</div>
       </div>
     </div>
   </div>
 
-  <!-- PROTO LINKS FOOTER -->
-  <div style="padding:32px 36px;border-radius:16px;background:linear-gradient(135deg,var(--hp-navy),#0d2e52);display:flex;flex-direction:column;gap:20px">
+  <!-- PROTO CTA -->
+  <div style="padding:36px 40px;border-radius:16px;background:linear-gradient(140deg,#0d2240,#1a3a5c);display:flex;flex-direction:column;gap:20px">
     <div>
-      <div style="font-family:var(--fs);font-size:24px;font-weight:300;color:#fff;margin-bottom:8px">Explore the <em style="font-style:italic;color:#5bc8f5">live prototypes</em></div>
-      <div style="font-size:14px;color:rgba(255,255,255,0.55);max-width:480px;line-height:1.7">Both platforms are fully clickable in Axure Cloud. You can navigate all modules, explore the complete IA, and review every screen and interaction.</div>
+      <div style="font-family:var(--fs);font-size:26px;font-weight:300;color:#fff;margin-bottom:8px">Explore the <em style="font-style:italic;color:#5bc8f5">live prototypes</em></div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.52);max-width:500px;line-height:1.7">Both platforms are fully interactive in Axure Cloud — every module, every flow, every state. Navigate the complete MPS contract lifecycle end-to-end.</div>
     </div>
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="https://xpeh7y.axshare.com//preview/3gu93y" target="_blank" rel="noopener" class="proto-btn primary" style="font-size:14px;padding:12px 24px">
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        PMPS — Prospective MPS
+      <a href="https://app.axure.cloud/app/project/xpeh7y/preview/3gu93y" target="_blank" rel="noopener" class="proto-btn p" style="font-size:14px;padding:12px 24px">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>PMPS — Prospective MPS
       </a>
-      <a href="https://xpeh7y.axshare.com//preview/hw0vwx" target="_blank" rel="noopener" class="proto-btn secondary" style="font-size:14px;padding:12px 24px">
-        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-        CMPS — Contract MPS
+      <a href="https://app.axure.cloud/app/project/xpeh7y/preview/hw0vwx" target="_blank" rel="noopener" class="proto-btn s" style="font-size:14px;padding:12px 24px">
+        <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>CMPS — Contract MPS
       </a>
-      <a href="https://xpeh7y.axshare.com/" target="_blank" rel="noopener" class="proto-btn secondary" style="font-size:14px;padding:12px 24px">
-        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-        Full Axure Project
+      <a href="https://xpeh7y.axshare.com/" target="_blank" rel="noopener" class="proto-btn s" style="font-size:14px;padding:12px 24px">
+        <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Full Axure Project
       </a>
     </div>
   </div>
