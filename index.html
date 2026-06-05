@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Shivani Harode · Design Universe</title>
+<title>Shivani's Design World</title>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;1,200;1,300&family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;overflow:hidden;background:#020408;font-family:'DM Mono',monospace;color:#eef0f8;user-select:none}
 canvas{position:fixed;inset:0;display:block}
+
 /* NAV */
 #nav{position:fixed;top:0;left:0;right:0;z-index:100;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;background:rgba(2,4,8,.88);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06)}
 .nbrand{font-family:'Fraunces',serif;font-size:14px;font-weight:200;display:flex;align-items:center;gap:8px}
@@ -16,7 +17,11 @@ canvas{position:fixed;inset:0;display:block}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(27,196,125,.5)}50%{box-shadow:0 0 0 6px rgba(27,196,125,0)}}
 .nscore{font-size:10px;color:rgba(238,240,248,.45);letter-spacing:.08em}
 .nscore b{color:#e8c060;font-size:12px}
+.nlinks{display:flex;gap:6px;align-items:center}
+.nlink{padding:4px 10px;font-size:9px;color:rgba(238,240,248,.4);border:1px solid rgba(255,255,255,.08);border-radius:6px;cursor:pointer;letter-spacing:.05em;text-transform:uppercase;background:none;transition:all .18s;font-family:'DM Mono',monospace}
+.nlink:hover{color:#18a0fb;border-color:rgba(24,160,251,.3);background:rgba(24,160,251,.07)}
 .nresume{padding:5px 14px;background:#18a0fb;color:#fff;border-radius:6px;font-size:10px;font-weight:600;border:none;cursor:pointer;text-decoration:none;font-family:'DM Sans',sans-serif}
+
 /* PROGRESS */
 #progress{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:100;display:none;flex-direction:column;align-items:center;gap:4px}
 #progress.show{display:flex}
@@ -25,25 +30,94 @@ canvas{position:fixed;inset:0;display:block}
 .pdot.done{background:#1bc47d;border-color:#1bc47d;box-shadow:0 0 8px #1bc47d}
 .pdot.active{background:#18a0fb;border-color:#18a0fb;box-shadow:0 0 10px #18a0fb;width:22px;border-radius:4px}
 .plbl{font-size:8px;color:rgba(238,240,248,.28);letter-spacing:.1em;text-transform:uppercase}
+
 /* SCREENS */
 @keyframes fup{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.scr{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(2,4,8,.96);padding:24px;text-align:center}
+.scr{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(2,4,8,.97);padding:24px;text-align:center;overflow-y:auto}
 .scr.off{display:none}
-.ring{width:80px;height:80px;border-radius:50%;border:1.5px solid rgba(24,160,251,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;animation:spin 8s linear infinite;position:relative}
+.ring{width:80px;height:80px;border-radius:50%;border:1.5px solid rgba(24,160,251,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;animation:spin 8s linear infinite;position:relative;flex-shrink:0}
 .ring::before{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px dashed rgba(162,89,255,.2);animation:spin 12s linear infinite reverse}
 @keyframes spin{to{transform:rotate(360deg)}}
-h1.sh{font-family:'Fraunces',serif;font-size:clamp(32px,6vw,58px);font-weight:200;letter-spacing:-.04em;line-height:.94;margin-bottom:10px;animation:fup .7s .3s ease both;opacity:0}
+h1.sh{font-family:'Fraunces',serif;font-size:clamp(28px,5vw,52px);font-weight:200;letter-spacing:-.04em;line-height:.94;margin-bottom:8px;animation:fup .7s .3s ease both;opacity:0}
 h1.sh em{font-style:italic;color:#18a0fb;display:block}
-.sp{font-size:13px;color:rgba(238,240,248,.5);line-height:1.7;max-width:400px;margin-bottom:20px;animation:fup .6s .5s ease both;opacity:0}
-/* MECHANIC BOX */
-.mechbox{display:flex;align-items:flex-start;gap:20px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:18px 22px;max-width:440px;margin-bottom:24px;animation:fup .6s .65s ease both;opacity:0;text-align:left}
-.micon{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:22px;background:rgba(24,160,251,.1);border:1px solid rgba(24,160,251,.2)}
-.mtext .mt{font-family:'Fraunces',serif;font-size:14px;font-weight:300;color:#eef0f8;margin-bottom:5px}
+.sh-sub{font-family:'Fraunces',serif;font-size:clamp(13px,2vw,16px);font-weight:300;font-style:italic;color:#e8c060;margin-bottom:14px;animation:fup .6s .5s ease both;opacity:0;letter-spacing:.02em}
+.sp{font-size:12px;color:rgba(238,240,248,.5);line-height:1.7;max-width:400px;margin-bottom:18px;animation:fup .6s .55s ease both;opacity:0}
+.mechbox{display:flex;align-items:flex-start;gap:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:14px 18px;max-width:420px;margin-bottom:20px;animation:fup .6s .65s ease both;opacity:0;text-align:left}
+.micon{width:42px;height:42px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;background:rgba(24,160,251,.1);border:1px solid rgba(24,160,251,.2)}
+.mtext .mt{font-family:'Fraunces',serif;font-size:13px;font-weight:300;color:#eef0f8;margin-bottom:4px}
 .mtext .ms{font-size:11px;color:rgba(238,240,248,.45);line-height:1.6}
-.bigbtn{padding:13px 34px;background:linear-gradient(135deg,#18a0fb,#7060f8);color:#fff;border-radius:10px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .25s;animation:fup .6s .85s ease both;opacity:0;font-family:'DM Sans',sans-serif}
+.bigbtn{padding:12px 30px;background:linear-gradient(135deg,#18a0fb,#7060f8);color:#fff;border-radius:10px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:all .25s;animation:fup .6s .85s ease both;opacity:0;font-family:'DM Sans',sans-serif}
 .bigbtn:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(24,160,251,.4)}
 .bigbtn.solid{animation:none;opacity:1}
-.hint{font-size:10px;color:rgba(238,240,248,.22);margin-top:12px;animation:fup .5s 1.1s ease both;opacity:0}
+.hint{font-size:10px;color:rgba(238,240,248,.22);margin-top:10px;animation:fup .5s 1.1s ease both;opacity:0}
+
+/* PANEL (slide-over) */
+.panel{position:fixed;inset:0;z-index:200;display:flex;align-items:stretch;pointer-events:none;opacity:0;transition:opacity .3s}
+.panel.open{pointer-events:auto;opacity:1}
+.panel-overlay{flex:1;background:rgba(2,4,8,.6);backdrop-filter:blur(4px)}
+.panel-body{width:min(480px,95vw);background:rgba(6,10,22,.98);border-left:1px solid rgba(255,255,255,.08);overflow-y:auto;padding:28px 26px;transform:translateX(100%);transition:transform .35s cubic-bezier(.25,.46,.45,.94)}
+.panel.open .panel-body{transform:translateX(0)}
+.panel-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .2s}
+.panel-close:hover{background:rgba(255,255,255,.14)}
+.panel-ey{font-size:9px;color:#18a0fb;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.panel-ey::before{content:'';width:16px;height:1px;background:rgba(24,160,251,.5)}
+.panel-h{font-family:'Fraunces',serif;font-size:26px;font-weight:300;letter-spacing:-.02em;margin-bottom:20px}
+.panel-h em{font-style:italic;color:#18a0fb}
+
+/* TESTIMONIAL CARD */
+.tcard{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:18px;margin-bottom:14px;position:relative}
+.tcard::before{content:'"';position:absolute;top:12px;left:14px;font-family:'Fraunces',serif;font-size:48px;font-style:italic;color:rgba(24,160,251,.2);line-height:1}
+.tq{font-size:12px;color:rgba(238,240,248,.72);line-height:1.75;padding-left:28px;margin-bottom:14px}
+.tsrc{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06)}
+.tav{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:11px;color:#fff;flex-shrink:0}
+.tnm{font-size:11px;font-weight:600;color:#eef0f8;font-family:'DM Sans',sans-serif}
+.trl{font-size:9px;color:rgba(238,240,248,.36);margin-top:1px}
+
+/* FREELANCE GRID */
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.fcard{border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);cursor:pointer;transition:all .22s}
+.fcard:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.06);transform:translateY(-2px)}
+.fvis{height:80px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.fbody{padding:10px 12px}
+.fcat{font-size:7px;color:rgba(238,240,248,.3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.ftit{font-family:'Fraunces',serif;font-size:13px;font-weight:300}
+.ftit em{font-style:italic}
+.fdesc{font-size:10px;color:rgba(238,240,248,.4);line-height:1.55;margin-top:3px}
+
+/* CONTACT GRID */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:420px;margin:14px auto}
+.clink{padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);text-decoration:none;color:inherit;transition:all .22s;display:block}
+.clink:hover{border-color:rgba(24,160,251,.35);background:rgba(24,160,251,.07);transform:translateY(-2px)}
+.cli{font-size:13px;margin-bottom:4px}
+.cll{font-size:8px;color:rgba(238,240,248,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
+.clv{font-size:12px}
+.avail{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;border:1px solid rgba(27,196,125,.25);font-size:10px;color:rgba(27,196,125,.8);margin-bottom:12px}
+.avd{width:5px;height:5px;border-radius:50%;background:#1bc47d;animation:pulse 2s infinite}
+
+/* ABOUT MODAL (fun secret level) */
+#about-modal{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s}
+#about-modal.open{opacity:1;pointer-events:auto}
+#about-modal .overlay{position:absolute;inset:0;background:rgba(2,4,8,.85);backdrop-filter:blur(8px)}
+.about-box{position:relative;z-index:1;width:min(540px,92vw);background:rgba(6,10,22,.98);border:1px solid rgba(232,192,96,.2);border-radius:20px;overflow:hidden;animation:fup .35s ease both}
+.about-top{height:4px;background:linear-gradient(90deg,#e8c060,#18a0fb,#1bc47d,#a259ff)}
+.about-inner{padding:28px 28px 24px}
+.about-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;transition:all .2s}
+.about-close:hover{background:rgba(255,255,255,.14)}
+.about-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;background:rgba(232,192,96,.1);border:1px solid rgba(232,192,96,.25);font-size:9px;color:#e8c060;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+.about-badge::before{content:'🎮';font-size:11px}
+.about-h{font-family:'Fraunces',serif;font-size:24px;font-weight:300;letter-spacing:-.02em;margin-bottom:6px}
+.about-h em{font-style:italic;color:#e8c060}
+.about-sub{font-size:11px;color:rgba(238,240,248,.4);margin-bottom:18px;line-height:1.6}
+.about-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:18px}
+.astat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px 8px;text-align:center}
+.astat-v{font-family:'Fraunces',serif;font-size:20px;font-weight:300;color:#e8c060;line-height:1}
+.astat-l{font-size:8px;color:rgba(238,240,248,.3);letter-spacing:.06em;margin-top:3px}
+.about-bio{font-size:12px;color:rgba(238,240,248,.6);line-height:1.78;margin-bottom:18px}
+.about-skills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:18px}
+.askill{padding:3px 9px;border-radius:100px;font-size:9px;border:1px solid rgba(255,255,255,.1);color:rgba(238,240,248,.5)}
+.about-secret{background:rgba(232,192,96,.06);border:1px solid rgba(232,192,96,.15);border-radius:10px;padding:12px 14px;font-size:11px;color:rgba(238,240,248,.55);line-height:1.65}
+.about-secret strong{color:#e8c060}
+
 /* PLANET CARD */
 #card{position:fixed;z-index:60;width:330px;background:rgba(6,10,20,.97);border-radius:16px;border:1px solid rgba(255,255,255,.1);overflow:hidden;display:none;backdrop-filter:blur(20px)}
 #card.show{display:block;animation:fup .28s ease both}
@@ -61,37 +135,54 @@ h1.sh em{font-style:italic;color:#18a0fb;display:block}
 .cacts{display:flex;gap:8px}
 .cbtn{padding:8px 16px;border-radius:8px;font-size:11px;font-weight:600;border:none;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
 .cbtn.p{color:#fff}.cbtn.p:hover{opacity:.85;transform:translateY(-1px)}
-.cbtn.s{background:rgba(255,255,255,.06);color:rgba(238,240,248,.65);border:1px solid rgba(255,255,255,.1)}
-.cbtn.s:hover{background:rgba(255,255,255,.1)}
+.cbtn.s{background:rgba(255,255,255,.06);color:rgba(238,240,248,.65);border:1px solid rgba(255,255,255,.1)}.cbtn.s:hover{background:rgba(255,255,255,.1)}
+
 /* TOAST */
 #toast{position:fixed;bottom:70px;left:50%;transform:translateX(-50%);z-index:200;background:rgba(27,196,125,.15);border:1px solid rgba(27,196,125,.3);border-radius:10px;padding:9px 18px;font-size:11px;color:#1bc47d;pointer-events:none;opacity:0;transition:opacity .3s;white-space:nowrap}
 #toast.on{opacity:1}
+
+/* HINT ARROW */
+#hint-arrow{position:fixed;z-index:90;pointer-events:none;display:none;flex-direction:column;align-items:center;gap:3px}
+#ha-inner{display:flex;flex-direction:column;align-items:center;gap:3px}
+#ha-label{font-size:9px;color:#e8c060;letter-spacing:.1em;font-family:'DM Mono',monospace;text-shadow:0 0 8px rgba(232,192,96,.8)}
+#ha-dist{font-size:8px;color:rgba(238,240,248,.4);font-family:'DM Mono',monospace}
+
+/* MINI MAP */
+#minimap{position:fixed;bottom:70px;right:16px;z-index:90;width:110px;height:84px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(2,4,8,.75);backdrop-filter:blur(10px);overflow:hidden;display:none}
+#minimap.show{display:block}
+
 /* CONTROLS HUD */
 #hud{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);z-index:100;display:none;gap:8px}
 #hud.show{display:flex}
 .hk{padding:5px 11px;border-radius:8px;border:1px solid rgba(255,255,255,.09);background:rgba(2,4,8,.85);font-size:10px;color:rgba(238,240,248,.45);letter-spacing:.04em}
 kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:9px;color:#eef0f8;margin:0 1px}
-/* CONTACT */
-.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:420px;margin:16px auto;text-align:left}
-.clink{padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);text-decoration:none;color:inherit;transition:all .22s;display:block}
-.clink:hover{border-color:rgba(24,160,251,.35);background:rgba(24,160,251,.07);transform:translateY(-2px)}
-.cli{font-size:13px;margin-bottom:4px}
-.cll{font-size:8px;color:rgba(238,240,248,.3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px}
-.clv{font-size:12px}
-.avail{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:100px;border:1px solid rgba(27,196,125,.25);font-size:10px;color:rgba(27,196,125,.8);margin-bottom:14px}
-.avd{width:5px;height:5px;border-radius:50%;background:#1bc47d;animation:pulse 2s infinite}
-@media(max-width:600px){#card{width:calc(100vw - 32px);left:16px!important;top:auto!important;bottom:80px!important}}
+
+/* COMPLETE SCREEN */
+#complete-scr .sh{animation:none;opacity:1}
+.complete-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:420px;margin:14px auto;text-align:left}
+
+@media(max-width:600px){#card{width:calc(100vw - 32px);left:16px!important;top:auto!important;bottom:80px!important}#about-modal .about-stats{grid-template-columns:repeat(2,1fr)}.fgrid{grid-template-columns:1fr}.panel-body{width:100%}.nlinks{display:none}}
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
 
+<!-- NAV -->
 <nav id="nav">
-  <div class="nbrand"><div class="nld"></div>Shivani Harode</div>
-  <div class="nscore">Unlocked: <b id="sc">0</b>/4</div>
-  <a href="resume.pdf" target="_blank" class="nresume">Resume ↓</a>
+  <div class="nbrand"><div class="nld"></div>Shivani's Design World</div>
+  <div class="nlinks">
+    <button class="nlink" onclick="openPanel('testi')">Clients</button>
+    <button class="nlink" onclick="openPanel('freelance')">Freelance</button>
+    <button class="nlink" onclick="openPanel('contact')">Contact</button>
+    <button class="nlink" onclick="openAbout()" style="border-color:rgba(232,192,96,.25);color:rgba(232,192,96,.7)">About ✦</button>
+  </div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <div class="nscore">Discovered: <b id="sc">0</b>/4</div>
+    <a href="resume.pdf" target="_blank" class="nresume">Resume ↓</a>
+  </div>
 </nav>
 
+<!-- PROGRESS -->
 <div id="progress">
   <div class="prow">
     <div class="pdot active" id="p0"></div>
@@ -102,7 +193,13 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
   <div class="plbl" id="plbl">Find all 4 planets</div>
 </div>
 
-<!-- INTRO -->
+<!-- HINT ARROW -->
+<div id="hint-arrow"><div id="ha-inner"><div id="ha-label"></div><svg width="24" height="24" viewBox="0 0 28 28"><polygon points="14,2 24,22 14,17 4,22" fill="#e8c060" opacity=".9"/></svg><div id="ha-dist"></div></div></div>
+
+<!-- MINI MAP -->
+<div id="minimap"><canvas id="mm" width="110" height="84"></canvas></div>
+
+<!-- INTRO SCREEN -->
 <div class="scr" id="intro">
   <div class="ring">
     <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
@@ -113,34 +210,39 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
       <circle cx="10" cy="21" r="2.5" fill="#1bc47d"/>
     </svg>
   </div>
-  <h1 class="sh">Design Universe<br><em>Explorer</em></h1>
-  <p class="sp">4 project planets are hidden in the cosmos. Roll your ball along the glowing trails to reach them — each one reveals a real case study.</p>
+  <h1 class="sh">Shivani's<br><em>Design World</em></h1>
+  <div class="sh-sub">✦ Let's Play to Explore Projects ✦</div>
+  <p class="sp">4 project planets orbit the Design Sun. Roll your ball across the cosmos to reach them — each one unlocks a real case study from Shivani's career.</p>
   <div class="mechbox">
-    <div class="micon">&#9898;</div>
+    <div class="micon">🪐</div>
     <div class="mtext">
-      <div class="mt">Follow the light trails</div>
-      <div class="ms">Glowing orbit paths connect to planets. Roll your ball by clicking &amp; dragging or using arrow keys. Reach a planet to unlock its story. Find all 4 to complete the mission.</div>
+      <div class="mt">Navigate the universe</div>
+      <div class="ms">Use <kbd>←↑↓→</kbd> arrow keys or click &amp; drag to roll your glowing ball. The golden arrow always points to the nearest undiscovered planet. Find all 4 to complete your mission!</div>
     </div>
   </div>
-  <button class="bigbtn" id="launchbtn">Launch Mission &#9658;</button>
-  <div class="hint">Click &amp; drag to roll &nbsp;·&nbsp; Arrow keys to move &nbsp;·&nbsp; Find all 4 planets</div>
+  <button class="bigbtn" id="launchbtn">Launch Mission ▶</button>
+  <div class="hint">Arrow keys or drag to move · Reach planets to unlock case studies</div>
+  <div style="margin-top:18px;font-size:10px;color:rgba(238,240,248,.2)">💡 Tip: Check the <span style="color:#e8c060;cursor:pointer" onclick="openAbout()">About ✦</span> section for a secret!</div>
 </div>
 
-<!-- CONTACT -->
-<div class="scr off" id="contact">
+<!-- MISSION COMPLETE SCREEN -->
+<div class="scr off" id="complete-scr">
   <div style="animation:fup .6s ease both">
-    <div style="font-size:9px;color:#18a0fb;letter-spacing:.14em;text-transform:uppercase;margin-bottom:10px">Mission Complete ✦</div>
-    <h1 class="sh" style="animation:none;opacity:1;margin-bottom:10px">All planets<br><em>discovered</em></h1>
-    <p class="sp" style="animation:none;opacity:1;margin-bottom:8px">You navigated the entire Design Universe.<br>Let's build something great together.</p>
+    <div style="font-size:9px;color:#e8c060;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px">🏆 Mission Complete</div>
+    <h1 class="sh" style="animation:none;opacity:1;margin-bottom:8px">All planets<br><em>discovered!</em></h1>
+    <p style="font-size:12px;color:rgba(238,240,248,.5);line-height:1.7;max-width:360px;margin:0 auto 16px">You've navigated the entire Design Universe.<br>Now let's build something great together.</p>
   </div>
   <div class="avail"><div class="avd"></div>Available · Frisco TX · Open to remote</div>
-  <div class="cgrid">
-    <a href="mailto:Shivaniharode@gmail.com" class="clink"><div class="cli">&#9993;</div><div class="cll">Email</div><div class="clv">Shivaniharode@gmail.com</div></a>
-    <a href="tel:6089823299" class="clink"><div class="cli">&#128222;</div><div class="cll">Phone</div><div class="clv">(608) 982-3299</div></a>
+  <div class="complete-grid">
+    <a href="mailto:Shivaniharode@gmail.com" class="clink"><div class="cli">✉</div><div class="cll">Email</div><div class="clv">Shivaniharode@gmail.com</div></a>
+    <a href="tel:6089823299" class="clink"><div class="cli">📞</div><div class="cll">Phone</div><div class="clv">(608) 982-3299</div></a>
     <a href="https://linkedin.com/in/shivani-harode-b00625147" target="_blank" class="clink"><div class="cli" style="font-weight:900;color:#18a0fb;font-size:14px">in</div><div class="cll">LinkedIn</div><div class="clv">shivani-harode</div></a>
-    <a href="resume.pdf" target="_blank" class="clink"><div class="cli">&#128196;</div><div class="cll">Resume</div><div class="clv">Download PDF</div></a>
+    <a href="resume.pdf" target="_blank" class="clink"><div class="cli">📄</div><div class="cll">Resume</div><div class="clv">Download PDF</div></a>
   </div>
-  <button class="bigbtn solid" onclick="restart()">Play Again &#8635;</button>
+  <div style="display:flex;gap:10px;margin-top:4px;flex-wrap:wrap;justify-content:center">
+    <button class="bigbtn solid" onclick="restart()">Play Again ↺</button>
+    <button class="bigbtn solid" onclick="openPanel('testi')" style="background:linear-gradient(135deg,#1bc47d,#0ea5e9)">Client Reviews 🌟</button>
+  </div>
 </div>
 
 <!-- PROJECT CARD -->
@@ -153,7 +255,7 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
     <div class="cmets" id="cmets"></div>
     <div class="ctags" id="ctags"></div>
     <div class="cacts">
-      <button class="cbtn p" id="clink">View Case Study &#8594;</button>
+      <button class="cbtn p" id="clink">View Case Study →</button>
       <button class="cbtn s" onclick="closeCard()">Keep Exploring</button>
     </div>
   </div>
@@ -162,421 +264,528 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
 <div id="toast"></div>
 
 <div id="hud">
-  <div class="hk"><kbd>&#8592;</kbd><kbd>&#8593;</kbd><kbd>&#8594;</kbd><kbd>&#8595;</kbd> or drag to roll</div>
-  <div class="hk">Reach a planet to <kbd>unlock</kbd> it</div>
+  <div class="hk"><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> or drag to roll</div>
+  <div class="hk">Reach a planet to <kbd>unlock</kbd></div>
+</div>
+
+<!-- ═══ TESTIMONIALS PANEL ═══ -->
+<div class="panel" id="panel-testi">
+  <div class="panel-overlay" onclick="closePanel('testi')"></div>
+  <div class="panel-body">
+    <button class="panel-close" onclick="closePanel('testi')">✕</button>
+    <div class="panel-ey">Mission Debrief · Client Voices</div>
+    <div class="panel-h">What <em>clients say</em></div>
+
+    <div class="tcard">
+      <div class="tq">Working with Shivani on the PROTECT modernization project has been a rewarding experience. Over 1.5 years, she delivered thoughtful, user-centered design across 50+ screens — both web and desktop. She rose to every challenge with professionalism and curiosity.</div>
+      <div class="tsrc">
+        <div class="tav" style="background:#3C3489">LF</div>
+        <div><div class="tnm">Lisa Fangmann</div><div class="trl">Business Analyst · DAIT Wisconsin · Dept of Administration</div></div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tq">What stood out most was Shivani's ability to adapt across a wide range of design challenges — from UI/UX for multiple platforms to logos and custom icons. Her creativity, versatility, and collaboration were critical to the project's success.</div>
+      <div class="tsrc">
+        <div class="tav" style="background:#3C3489">LF</div>
+        <div><div class="tnm">Lisa Fangmann</div><div class="trl">Business Analyst · Division of Enterprise Technology · Wisconsin</div></div>
+      </div>
+    </div>
+
+    <div class="tcard">
+      <div class="tq">It was good that you were willing to adjust from designing web pages to desktop forms. You took the team's input and put together a nice design scheme. Drawing patterns from other products and applying them to our XCQ design is one of your real strengths.</div>
+      <div class="tsrc">
+        <div class="tav" style="background:#3d7260">JM</div>
+        <div><div class="tnm">Jenn Macainag</div><div class="trl">Project Lead · PROTECT Modernization · State of Wisconsin</div></div>
+      </div>
+    </div>
+
+    <div style="padding:14px;background:rgba(232,192,96,.06);border:1px dashed rgba(232,192,96,.2);border-radius:12px;font-size:11px;color:rgba(238,240,248,.4);text-align:center">
+      ✦ More testimonials from Missouri DESE &amp; HP Inc. coming soon
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FREELANCE PANEL ═══ -->
+<div class="panel" id="panel-freelance">
+  <div class="panel-overlay" onclick="closePanel('freelance')"></div>
+  <div class="panel-body">
+    <button class="panel-close" onclick="closePanel('freelance')">✕</button>
+    <div class="panel-ey">Side Quests · Creative Work</div>
+    <div class="panel-h">Freelance <em>Studio</em></div>
+
+    <div class="fgrid">
+      <div class="fcard" onclick="window.location.href='freelance-work.html'">
+        <div class="fvis" style="background:linear-gradient(135deg,#1a472a,#2d6a4f)">
+          <div style="text-align:center"><div style="font-family:'Fraunces',serif;font-size:28px;font-weight:700;color:#ffd700;line-height:1">40%</div><div style="font-size:8px;color:rgba(255,255,255,.6);letter-spacing:.1em;margin-top:2px">OFF · GROCERY</div></div>
+        </div>
+        <div class="fbody"><div class="fcat">Marketing · Print</div><div class="ftit">Grocery <em>Campaigns</em></div><div class="fdesc">Promotional flyers and social media ads for grocery chains.</div></div>
+      </div>
+      <div class="fcard" onclick="window.location.href='freelance-work.html'">
+        <div class="fvis" style="background:linear-gradient(135deg,#2d1b2e,#6b2d82)">
+          <div style="text-align:center"><div style="font-family:'Fraunces',serif;font-size:18px;font-style:italic;color:#ffd700">Glow Up.</div><div style="font-size:8px;color:rgba(255,255,255,.5);margin-top:4px;letter-spacing:.1em">BEAUTY · MPL</div></div>
+        </div>
+        <div class="fbody"><div class="fcat">Brand Identity</div><div class="ftit">Beauty Salon <em>MPL</em></div><div class="fdesc">Logo, color palette, social templates and print.</div></div>
+      </div>
+      <div class="fcard" onclick="window.location.href='freelance-work.html'">
+        <div class="fvis" style="background:linear-gradient(135deg,#0d0d0d,#1a1a1a)">
+          <div style="text-align:center"><div style="font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:#fff;letter-spacing:.14em">CAPELLO</div><div style="font-size:7px;color:#c4a882;letter-spacing:.2em;margin-top:5px">BEAUTY</div><div style="width:24px;height:1px;background:#c4a882;margin:6px auto 0"></div></div>
+        </div>
+        <div class="fbody"><div class="fcat">Logo Design</div><div class="ftit">Capello <em>Logo</em></div><div class="fdesc">Minimalist luxury wordmark with custom letterforms.</div></div>
+      </div>
+      <div class="fcard" onclick="window.location.href='freelance-work.html'">
+        <div class="fvis" style="background:linear-gradient(135deg,#1a0a2e,#2d1b4e)">
+          <div style="text-align:center"><div style="font-family:'Fraunces',serif;font-size:13px;color:#e8c060;margin-bottom:3px">Annapurna</div><div style="font-size:7px;color:rgba(255,255,255,.5);letter-spacing:.1em">FESTIVAL · 2024</div><div style="display:flex;gap:3px;justify-content:center;margin-top:7px"><div style="width:7px;height:7px;border-radius:50%;background:#f24e1e"></div><div style="width:7px;height:7px;border-radius:50%;background:#e8c060"></div><div style="width:7px;height:7px;border-radius:50%;background:#1bc47d"></div></div></div>
+        </div>
+        <div class="fbody"><div class="fcat">Event Design</div><div class="ftit">Annapurna <em>Festival</em></div><div class="fdesc">Festival branding and promotional ads.</div></div>
+      </div>
+      <div class="fcard" onclick="window.location.href='freelance-work.html'">
+        <div class="fvis" style="background:linear-gradient(135deg,#1a0d15,#3d1a2e)">
+          <div style="text-align:center"><div style="font-family:'Fraunces',serif;font-size:12px;font-style:italic;color:#f8a0c8">Shweta &amp; Ankit</div><div style="font-size:7px;color:rgba(255,255,255,.4);letter-spacing:.1em;margin-top:3px">WEDDING · 2024</div><div style="font-size:16px;margin-top:5px">💍</div></div>
+        </div>
+        <div class="fbody"><div class="fcat">Wedding Stationery</div><div class="ftit">Wedding <em>Suite</em></div><div class="fdesc">Invites, save-the-dates and digital assets.</div></div>
+      </div>
+      <div class="fcard" onclick="window.location.href='freelance-work.html'" style="border-style:dashed;background:transparent">
+        <div class="fvis" style="background:transparent;flex-direction:column;gap:5px"><div style="font-size:22px;opacity:.2">→</div><div style="font-size:9px;color:rgba(24,160,251,.6);letter-spacing:.06em">VIEW ALL</div></div>
+        <div class="fbody"><div class="fcat">Full Portfolio</div><div class="ftit">More <em>work</em></div><div class="fdesc">All freelance projects with details.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT PANEL ═══ -->
+<div class="panel" id="panel-contact">
+  <div class="panel-overlay" onclick="closePanel('contact')"></div>
+  <div class="panel-body" style="display:flex;flex-direction:column;justify-content:center">
+    <button class="panel-close" onclick="closePanel('contact')">✕</button>
+    <div class="panel-ey">Mission Control · Get In Touch</div>
+    <div class="panel-h">Let's <em>build</em><br>something great</div>
+    <p style="font-size:12px;color:rgba(238,240,248,.5);line-height:1.75;margin-bottom:16px">Senior UI/UX Designer open to full-time roles, contract projects, and collaboration. Especially excited about work where design creates real human impact.</p>
+    <div class="avail"><div class="avd"></div>Available · Frisco TX · Open to remote</div>
+    <div class="cgrid" style="max-width:none;margin:0 0 20px">
+      <a href="mailto:Shivaniharode@gmail.com" class="clink"><div class="cli">✉</div><div class="cll">Email</div><div class="clv">Shivaniharode@gmail.com</div></a>
+      <a href="tel:6089823299" class="clink"><div class="cli">📞</div><div class="cll">Phone</div><div class="clv">(608) 982-3299</div></a>
+      <a href="https://linkedin.com/in/shivani-harode-b00625147" target="_blank" class="clink"><div class="cli" style="font-weight:900;color:#18a0fb;font-size:14px">in</div><div class="cll">LinkedIn</div><div class="clv">shivani-harode</div></a>
+      <a href="resume.pdf" target="_blank" class="clink"><div class="cli">📄</div><div class="cll">Resume</div><div class="clv">Download PDF</div></a>
+    </div>
+    <div style="background:rgba(232,192,96,.06);border:1px solid rgba(232,192,96,.15);border-radius:12px;padding:14px;font-size:11px;color:rgba(238,240,248,.5);line-height:1.7">
+      📍 Based in <strong style="color:#e8c060">Frisco, TX</strong> — available for on-site in DFW area or remote globally.<br>Response time: usually within 24 hours.
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT MODAL — Secret Level ═══ -->
+<div id="about-modal">
+  <div class="overlay" onclick="closeAbout()"></div>
+  <div class="about-box">
+    <div class="about-top"></div>
+    <div class="about-inner">
+      <button class="about-close" onclick="closeAbout()">✕</button>
+      <div class="about-badge">Secret Level Unlocked!</div>
+      <div class="about-h">Meet the <em>Designer</em></div>
+      <div class="about-sub">8+ years of turning complex problems into clean, human-centered experiences.</div>
+      <div class="about-stats">
+        <div class="astat"><div class="astat-v">8+</div><div class="astat-l">Years exp</div></div>
+        <div class="astat"><div class="astat-v">50+</div><div class="astat-l">Screens</div></div>
+        <div class="astat"><div class="astat-v">5+</div><div class="astat-l">Industries</div></div>
+        <div class="astat"><div class="astat-v">4</div><div class="astat-l">Case studies</div></div>
+      </div>
+      <div class="about-bio">
+        Shivani Harode is a Senior UI/UX Designer based in <strong style="color:#eef0f8">Frisco, Texas</strong>. She specializes in enterprise UX, design systems, and accessibility — with a deep love for making complex government and healthcare software feel genuinely human.
+        <br><br>
+        Her background spans front-end development (she started as a UI Developer) which means she doesn't just design — she understands the code that brings it to life. This rare hybrid perspective shapes every decision she makes.
+      </div>
+      <div class="about-skills">
+        <span class="askill" style="border-color:rgba(24,160,251,.3);color:rgba(24,160,251,.8)">Figma</span>
+        <span class="askill" style="border-color:rgba(162,89,255,.3);color:rgba(162,89,255,.8)">Axure RP</span>
+        <span class="askill" style="border-color:rgba(27,196,125,.3);color:rgba(27,196,125,.8)">Design Systems</span>
+        <span class="askill" style="border-color:rgba(249,115,22,.3);color:rgba(249,115,22,.8)">WCAG 2.1</span>
+        <span class="askill">UX Research</span>
+        <span class="askill">Usability Testing</span>
+        <span class="askill">Prototyping</span>
+        <span class="askill">React (frontend)</span>
+      </div>
+      <div class="about-secret">
+        <strong>🎮 Fun fact:</strong> This entire portfolio is a game! You just found the hidden About section. That's not a coincidence — Shivani believes the best design creates <em>delight in unexpected places</em>. That's exactly what she brings to every project.
+        <br><br>
+        <strong>Easter egg:</strong> Unlock all 4 planets in the game to see the full contact screen. Go explore! 🪐
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-var cv = document.getElementById('c');
-var ctx = cv.getContext('2d');
-var W, H;
-function resize(){ W = cv.width = innerWidth; H = cv.height = innerHeight; }
-resize(); window.addEventListener('resize', resize);
+var cv=document.getElementById('c'),ctx=cv.getContext('2d');
+var W,H;
+function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
+resize();window.addEventListener('resize',resize);
 
-// === PROJECTS ===
-var PROJ = [
-  { id:0, label:'DESE', col:'#3b82f6', gcol:'rgba(59,130,246,', sz:46,
-    angle:0.5, orbitR:0.26, orbitSpd:0.00022,
-    ey:'Government · Public Sector',
-    title:'Missouri DESE <em>School Finance</em>',
-    desc:'End-to-end UX redesign for 500+ school districts. A 40+ component design system cut submission time nearly in half.',
-    mets:[{v:'40-50%',l:'Faster tasks'},{v:'60%',l:'Fewer errors'},{v:'+36',l:'NPS'}],
-    tags:['UX Research','Design System','React','WCAG 2.1'], link:'missouri-dese.html' },
-  { id:1, label:'PROTECT', col:'#8b5cf6', gcol:'rgba(139,92,246,', sz:40,
-    angle:2.1, orbitR:0.36, orbitSpd:0.00016,
-    ey:'Healthcare · Social Services',
-    title:'PROTECT <em>Case Management</em>',
-    desc:"Wisconsin's statewide platform — brand identity, 50+ screens across web and desktop, eFiling and XCQ querying.",
-    mets:[{v:'50+',l:'Screens'},{v:'5',l:'Modules'},{v:'1.5yr',l:'Engagement'}],
-    tags:['Logo Design','Desktop UX','eFiling','Axure'], link:'protect.html' },
-  { id:2, label:'HP MPS', col:'#0ea5e9', gcol:'rgba(14,165,233,', sz:44,
-    angle:3.8, orbitR:0.47, orbitSpd:0.00011,
-    ey:'Enterprise · Shipping',
-    title:'HP MPS <em>Shipping Dashboard</em>',
-    desc:'Two enterprise platforms — PMPS for sales pipeline, CMPS for contract management. Live tracking across 247 devices.',
-    mets:[{v:'94%',l:'On-time'},{v:'247',l:'Devices'},{v:'2',l:'Platforms'}],
-    tags:['Dashboard','Axure RP','PMPS','Data Viz'], link:'hp-mps.html' },
-  { id:3, label:'FedEx', col:'#f97316', gcol:'rgba(249,115,22,', sz:36,
-    angle:5.2, orbitR:0.58, orbitSpd:0.00008,
-    ey:'Logistics · E-Commerce',
-    title:'FedEx Office <em>Category UX</em>',
-    desc:'Product category redesign — two PDP concepts tested with 10 usability participants. Better discoverability and pricing.',
-    mets:[{v:'10',l:'Participants'},{v:'2',l:'PDP Concepts'},{v:'1st',l:'Pro Project'}],
-    tags:['E-Commerce','Usability','Responsive'], link:'fedex-shipping.html' }
+// ═══ PROJECTS (PROTECT fixed: Case Management for DAs, not healthcare) ═══
+var PROJ=[
+  {id:0,label:'DESE',col:'#3b82f6',gcol:'rgba(59,130,246,',sz:46,
+   angle:0.5,orbitR:0.26,orbitSpd:0.00022,
+   ey:'Government · Public Sector',
+   title:'Missouri DESE <em>School Finance</em>',
+   desc:'End-to-end UX redesign for 500+ school districts. A 40+ component design system cut submission time nearly in half.',
+   mets:[{v:'40-50%',l:'Faster tasks'},{v:'60%',l:'Fewer errors'},{v:'+36',l:'NPS'}],
+   tags:['UX Research','Design System','React','WCAG 2.1'],link:'missouri-dese.html'},
+  {id:1,label:'PROTECT',col:'#8b5cf6',gcol:'rgba(139,92,246,',sz:40,
+   angle:2.1,orbitR:0.36,orbitSpd:0.00016,
+   ey:'Case Management · District Attorneys',
+   title:'PROTECT <em>Case Management</em>',
+   desc:"Wisconsin's statewide case management system for District Attorneys — brand identity, 50+ screens across web and desktop, eFiling and XCQ querying.",
+   mets:[{v:'50+',l:'Screens'},{v:'5',l:'Modules'},{v:'1.5yr',l:'Engagement'}],
+   tags:['Logo Design','Desktop UX','eFiling','Axure'],link:'protect.html'},
+  {id:2,label:'HP MPS',col:'#0ea5e9',gcol:'rgba(14,165,233,',sz:44,
+   angle:3.8,orbitR:0.47,orbitSpd:0.00011,
+   ey:'Enterprise · Shipping',
+   title:'HP MPS <em>Shipping Dashboard</em>',
+   desc:'Two enterprise platforms — PMPS for sales pipeline, CMPS for contract management. Live tracking across 247 devices.',
+   mets:[{v:'94%',l:'On-time'},{v:'247',l:'Devices'},{v:'2',l:'Platforms'}],
+   tags:['Dashboard','Axure RP','PMPS','Data Viz'],link:'hp-mps.html'},
+  {id:3,label:'FedEx',col:'#f97316',gcol:'rgba(249,115,22,',sz:36,
+   angle:5.2,orbitR:0.58,orbitSpd:0.00008,
+   ey:'Logistics · E-Commerce',
+   title:'FedEx Office <em>Category UX</em>',
+   desc:'Product category redesign — two PDP concepts tested with 10 usability participants. Better discoverability and pricing.',
+   mets:[{v:'10',l:'Participants'},{v:'2',l:'PDP Concepts'},{v:'1st',l:'Pro Project'}],
+   tags:['E-Commerce','Usability','Responsive'],link:'fedex-shipping.html'}
 ];
 
-// === STARS & PARTICLES ===
-var stars = [];
+// ═══ STARS & PARTICLES ═══
+var stars=[];
 for(var i=0;i<700;i++) stars.push({x:Math.random(),y:Math.random(),r:.15+Math.random()*.85,a:.07+Math.random()*.42,tw:Math.random()*Math.PI*2});
-var parts = [];
+var parts=[];
 for(var i=0;i<100;i++) parts.push({x:Math.random(),y:Math.random(),vx:(Math.random()-.5)*.0003,vy:(Math.random()-.5)*.00025,c:i%3===0?'rgba(24,160,251,':i%3===1?'rgba(162,89,255,':'rgba(27,196,125,',a:.04+Math.random()*.18,r:.4+Math.random()*1.2});
 
-// === BALL ===
-var BALL = {
-  x: 0, y: 0,
-  vx: 0, vy: 0,
-  r: 11,
-  trail: [],
-  glow: 0
-};
+// ═══ BALL ═══
+var BALL={x:0,y:0,vx:0,vy:0,r:11,trail:[],glow:0};
 
-// === GAME STATE ===
-var active = false;
-var T = 0;
-var unlocked = [false,false,false,false];
-var score = 0;
-var cooldown = 0;
-var openId = -1;
-var K = {};
+// ═══ GAME STATE ═══
+var active=false,T=0,unlocked=[false,false,false,false],score=0,cooldown=0,openId=-1,K={};
+var dragging=false,dragX=0,dragY=0,lastDragX=0,lastDragY=0;
 
-// Mouse/touch drag
-var dragging = false, dragX = 0, dragY = 0, lastDragX = 0, lastDragY = 0;
-
-// Planet position helper
-function ppos(p, t) {
-  var cx = W*0.5, cy = H*0.5;
-  var rx = Math.min(W,H) * p.orbitR;
-  var ry = rx * 0.58;
-  return { x: cx + Math.cos(p.angle + t*p.orbitSpd)*rx, y: cy + Math.sin(p.angle + t*p.orbitSpd)*ry };
+function ppos(p,t){
+  var cx=W*.5,cy=H*.5,rx=Math.min(W,H)*p.orbitR,ry=rx*.58;
+  return{x:cx+Math.cos(p.angle+t*p.orbitSpd)*rx,y:cy+Math.sin(p.angle+t*p.orbitSpd)*ry};
 }
 
-// === START ===
-document.getElementById('launchbtn').onclick = startGame;
-document.addEventListener('keydown', function(e){
-  K[e.key] = true;
-  if(e.key==='Enter' && !active) startGame();
-  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].indexOf(e.key) >= 0) e.preventDefault();
-});
-document.addEventListener('keyup', function(e){ K[e.key] = false; });
+// ═══ INPUT ═══
+document.getElementById('launchbtn').onclick=startGame;
+document.addEventListener('keydown',function(e){K[e.key]=true;if(e.key==='Enter'&&!active)startGame();if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight',' '].indexOf(e.key)>=0)e.preventDefault();});
+document.addEventListener('keyup',function(e){K[e.key]=false;});
+cv.addEventListener('mousedown',function(e){dragging=true;dragX=lastDragX=e.clientX;dragY=lastDragY=e.clientY;});
+document.addEventListener('mousemove',function(e){if(!dragging)return;lastDragX=dragX;lastDragY=dragY;dragX=e.clientX;dragY=e.clientY;if(active){BALL.vx+=(dragX-lastDragX)*0.06;BALL.vy+=(dragY-lastDragY)*0.06;}});
+document.addEventListener('mouseup',function(){dragging=false;});
+cv.addEventListener('touchstart',function(e){var t=e.touches[0];dragging=true;dragX=lastDragX=t.clientX;dragY=lastDragY=t.clientY;e.preventDefault();},{passive:false});
+document.addEventListener('touchmove',function(e){if(!dragging)return;var t=e.touches[0];lastDragX=dragX;lastDragY=dragY;dragX=t.clientX;dragY=t.clientY;if(active){BALL.vx+=(dragX-lastDragX)*0.06;BALL.vy+=(dragY-lastDragY)*0.06;}e.preventDefault();},{passive:false});
+document.addEventListener('touchend',function(){dragging=false;});
 
-// Canvas drag
-cv.addEventListener('mousedown', function(e){ dragging=true; dragX=lastDragX=e.clientX; dragY=lastDragY=e.clientY; });
-document.addEventListener('mousemove', function(e){
-  if(!dragging) return;
-  lastDragX=dragX; lastDragY=dragY; dragX=e.clientX; dragY=e.clientY;
-  if(active){ BALL.vx+=(dragX-lastDragX)*0.06; BALL.vy+=(dragY-lastDragY)*0.06; }
-});
-document.addEventListener('mouseup', function(){ dragging=false; });
-cv.addEventListener('touchstart', function(e){ var t=e.touches[0]; dragging=true; dragX=lastDragX=t.clientX; dragY=lastDragY=t.clientY; e.preventDefault(); },{passive:false});
-document.addEventListener('touchmove', function(e){ if(!dragging) return; var t=e.touches[0]; lastDragX=dragX; lastDragY=dragY; dragX=t.clientX; dragY=t.clientY; if(active){ BALL.vx+=(dragX-lastDragX)*0.06; BALL.vy+=(dragY-lastDragY)*0.06; } e.preventDefault(); },{passive:false});
-document.addEventListener('touchend', function(){ dragging=false; });
-
-function startGame() {
+function startGame(){
   document.getElementById('intro').classList.add('off');
   document.getElementById('progress').classList.add('show');
   document.getElementById('hud').classList.add('show');
-  BALL.x = W/2; BALL.y = H/2 + 80;
-  BALL.vx = 1.5; BALL.vy = -1;
-  active = true;
+  document.getElementById('minimap').classList.add('show');
+  BALL.x=W/2;BALL.y=H/2+80;BALL.vx=1.5;BALL.vy=-1;
+  active=true;
+  // Show hint arrow
+  document.getElementById('hint-arrow').style.display='flex';
 }
 
-function restart() {
-  document.getElementById('contact').classList.add('off');
+function restart(){
+  document.getElementById('complete-scr').classList.add('off');
   document.getElementById('progress').classList.add('show');
   document.getElementById('hud').classList.add('show');
-  unlocked=[false,false,false,false]; score=0;
+  document.getElementById('minimap').classList.add('show');
+  unlocked=[false,false,false,false];score=0;
   document.getElementById('sc').textContent='0';
   document.getElementById('plbl').textContent='Find all 4 planets';
   for(var i=0;i<4;i++) document.getElementById('p'+i).className='pdot'+(i===0?' active':'');
-  BALL.x=W/2; BALL.y=H/2+80; BALL.vx=1.5; BALL.vy=-1; BALL.trail=[];
-  openId=-1; closeCard(); active=true;
+  BALL.x=W/2;BALL.y=H/2+80;BALL.vx=1.5;BALL.vy=-1;BALL.trail=[];
+  openId=-1;closeCard();active=true;
+  document.getElementById('hint-arrow').style.display='flex';
 }
 
-function showToast(msg) {
+function showToast(msg){
   var t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('on');
-  setTimeout(function(){ t.classList.remove('on'); }, 3000);
+  t.innerHTML=msg;t.classList.add('on');
+  setTimeout(function(){t.classList.remove('on');},3000);
 }
 
-function unlock(idx) {
-  if(unlocked[idx]) return;
-  unlocked[idx]=true; score++;
+function unlock(idx){
+  if(unlocked[idx])return;
+  unlocked[idx]=true;score++;
   document.getElementById('sc').textContent=score;
   var names=['DESE','PROTECT','HP MPS','FedEx'];
-  showToast('&#10022; Unlocked: '+names[idx]+' \u2014 '+score+'/4 discovered');
+  showToast('✦ Unlocked: '+names[idx]+' — '+score+'/4 discovered');
   for(var i=0;i<4;i++){
     var d=document.getElementById('p'+i);
-    if(i<score) d.className='pdot done';
-    else if(i===score) d.className='pdot active';
+    if(i<score)d.className='pdot done';
+    else if(i===score)d.className='pdot active';
     else d.className='pdot';
   }
   if(score===4){
-    document.getElementById('plbl').textContent='Mission complete!';
+    document.getElementById('plbl').textContent='Mission complete! 🏆';
     setTimeout(function(){
-      active=false; closeCard();
+      active=false;closeCard();
       document.getElementById('progress').classList.remove('show');
       document.getElementById('hud').classList.remove('show');
-      document.getElementById('contact').classList.remove('off');
-    }, 1800);
+      document.getElementById('minimap').classList.remove('show');
+      document.getElementById('hint-arrow').style.display='none';
+      document.getElementById('complete-scr').classList.remove('off');
+    },1800);
   } else {
-    var left = 4-score;
-    document.getElementById('plbl').textContent = left+' planet'+(left>1?'s':'')+' remaining';
+    var left=4-score;
+    document.getElementById('plbl').textContent=left+' planet'+(left>1?'s':'')+' remaining';
   }
 }
 
-function openCard(idx) {
-  var p=PROJ[idx]; openId=idx;
+function openCard(idx){
+  var p=PROJ[idx];openId=idx;
   var card=document.getElementById('card');
   document.getElementById('ctop').style.background=p.col;
   document.getElementById('cey').textContent=p.ey;
   document.getElementById('cey').style.color=p.col;
   document.getElementById('ctitle').innerHTML=p.title;
   document.getElementById('cdesc').textContent=p.desc;
-  var mh=document.getElementById('cmets');
-  mh.innerHTML=p.mets.map(function(m){ return '<div><div class="cmv" style="color:'+p.col+'">'+m.v+'</div><div class="cml">'+m.l+'</div></div>'; }).join('');
-  document.getElementById('ctags').innerHTML=p.tags.map(function(t){ return '<span class="ctag">'+t+'</span>'; }).join('');
+  document.getElementById('cmets').innerHTML=p.mets.map(function(m){return '<div><div class="cmv" style="color:'+p.col+'">'+m.v+'</div><div class="cml">'+m.l+'</div></div>';}).join('');
+  document.getElementById('ctags').innerHTML=p.tags.map(function(t){return '<span class="ctag">'+t+'</span>';}).join('');
   var cl=document.getElementById('clink');
   cl.style.background=p.col;
-  cl.onclick=function(){ window.location.href=p.link; };
+  cl.onclick=function(){window.location.href=p.link;};
   var pos=ppos(p,T);
-  var cx=pos.x<W/2 ? pos.x+p.sz+22 : pos.x-354;
-  var cy=Math.max(58,Math.min(H-300,pos.y-130));
-  cx=Math.max(8,Math.min(W-346,cx));
-  card.style.left=cx+'px'; card.style.top=cy+'px';
+  var cx2=pos.x<W/2?pos.x+p.sz+22:pos.x-354;
+  var cy2=Math.max(58,Math.min(H-300,pos.y-130));
+  cx2=Math.max(8,Math.min(W-346,cx2));
+  card.style.left=cx2+'px';card.style.top=cy2+'px';
   card.classList.add('show');
-  unlock(idx);
-  cooldown=240;
-  BALL.vx*=0.1; BALL.vy*=0.1;
-  BALL.glow=60;
+  unlock(idx);cooldown=240;
+  BALL.vx*=.1;BALL.vy*=.1;BALL.glow=60;
 }
 
-function closeCard() {
-  document.getElementById('card').classList.remove('show');
-  openId=-1;
+function closeCard(){document.getElementById('card').classList.remove('show');openId=-1;}
+
+// ═══ PANELS ═══
+function openPanel(id){
+  document.getElementById('panel-'+id).classList.add('open');
+}
+function closePanel(id){
+  document.getElementById('panel-'+id).classList.remove('open');
 }
 
-// === MAIN LOOP ===
-function loop() {
-  requestAnimationFrame(loop);
-  T++;
-  if(cooldown>0) cooldown--;
+// ═══ ABOUT MODAL ═══
+function openAbout(){document.getElementById('about-modal').classList.add('open');}
+function closeAbout(){document.getElementById('about-modal').classList.remove('open');}
 
+// ═══ HINT ARROW & MINI MAP ═══
+function updateHints(){
+  if(!active)return;
+  var best=null,bestDist=Infinity;
+  for(var i=0;i<PROJ.length;i++){
+    if(unlocked[PROJ[i].id])continue;
+    var pos=ppos(PROJ[i],T);
+    var dx=BALL.x-pos.x,dy=BALL.y-pos.y,d=Math.sqrt(dx*dx+dy*dy);
+    if(d<bestDist){bestDist=d;best=PROJ[i];}
+  }
+  var arrow=document.getElementById('hint-arrow');
+  if(!best){arrow.style.display='none';return;}
+  arrow.style.display='flex';
+  var pos=ppos(best,T);
+  var angle=Math.atan2(pos.y-BALL.y,pos.x-BALL.x);
+  var edgeR=90;
+  var ax=BALL.x+Math.cos(angle)*edgeR,ay=BALL.y+Math.sin(angle)*edgeR;
+  ax=Math.max(40,Math.min(W-40,ax));ay=Math.max(60,Math.min(H-60,ay));
+  arrow.style.left=(ax-14)+'px';arrow.style.top=(ay-26)+'px';
+  var deg=angle*180/Math.PI+90;
+  document.getElementById('ha-inner').style.transform='rotate('+deg+'deg)';
+  document.getElementById('ha-label').textContent=best.label;
+  document.getElementById('ha-dist').textContent=bestDist<120?'CLOSE!':Math.round(bestDist/80)+' units';
+  var pulse=bestDist<120?1:.55+.45*Math.sin(T*.12);
+  arrow.style.opacity=pulse;
+
+  // Mini map
+  var mc=document.getElementById('mm'),mctx=mc.getContext('2d');
+  var MW=110,MH=84;
+  mctx.clearRect(0,0,MW,MH);
+  var scx=MW/W,scy=MH/H;
+  // Sun
+  mctx.fillStyle='#e8c060';mctx.shadowColor='#e8c060';mctx.shadowBlur=6;
+  mctx.beginPath();mctx.arc(W/2*scx,H/2*scy,4,0,Math.PI*2);mctx.fill();mctx.shadowBlur=0;
+  // Planets
+  for(var i=0;i<PROJ.length;i++){
+    var p=PROJ[i],pp=ppos(p,T);
+    mctx.fillStyle=unlocked[p.id]?'#1bc47d':p.col;
+    mctx.shadowColor=mctx.fillStyle;mctx.shadowBlur=4;
+    mctx.beginPath();mctx.arc(pp.x*scx,pp.y*scy,4,0,Math.PI*2);mctx.fill();mctx.shadowBlur=0;
+    mctx.fillStyle='rgba(238,240,248,.45)';mctx.font='6px DM Mono,monospace';mctx.textAlign='center';
+    mctx.fillText(p.label,pp.x*scx,pp.y*scy-6);
+  }
+  // Ball
+  mctx.fillStyle='#fff';mctx.shadowColor='#18a0fb';mctx.shadowBlur=8;
+  mctx.beginPath();mctx.arc(BALL.x*scx,BALL.y*scy,3.5,0,Math.PI*2);mctx.fill();mctx.shadowBlur=0;
+}
+
+// ═══ MAIN LOOP ═══
+function loop(){
+  requestAnimationFrame(loop);T++;
+  if(cooldown>0)cooldown--;
   ctx.clearRect(0,0,W,H);
-  ctx.fillStyle='#020408'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#020408';ctx.fillRect(0,0,W,H);
 
   // Grid
-  ctx.save(); ctx.globalAlpha=.02; ctx.strokeStyle='#18a0fb'; ctx.lineWidth=1;
+  ctx.save();ctx.globalAlpha=.02;ctx.strokeStyle='#18a0fb';ctx.lineWidth=1;
   var gs=54;
   for(var x=0;x<W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
   for(var y=0;y<H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
   ctx.restore();
 
-  // Stars (twinkling)
+  // Stars
   for(var i=0;i<stars.length;i++){
-    var s=stars[i];
-    s.tw+=.008;
+    var s=stars[i];s.tw+=.008;
     var ta=s.a*(0.6+0.4*Math.sin(s.tw));
     ctx.fillStyle='rgba(255,255,255,'+ta+')';
-    ctx.beginPath(); ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2); ctx.fill();
+    ctx.beginPath();ctx.arc(s.x*W,s.y*H,s.r,0,Math.PI*2);ctx.fill();
   }
 
   // Particles
   for(var i=0;i<parts.length;i++){
-    var p=parts[i]; p.x=(p.x+p.vx+1)%1; p.y=(p.y+p.vy+1)%1;
+    var p=parts[i];p.x=(p.x+p.vx+1)%1;p.y=(p.y+p.vy+1)%1;
     ctx.fillStyle=p.c+p.a+')';
-    ctx.beginPath(); ctx.arc(p.x*W,p.y*H,p.r,0,Math.PI*2); ctx.fill();
+    ctx.beginPath();ctx.arc(p.x*W,p.y*H,p.r,0,Math.PI*2);ctx.fill();
   }
 
-  var cx=W/2, cy=H/2;
+  var cx=W/2,cy=H/2;
 
-  // SUN glow
+  // SUN
   ctx.save();
-  ctx.shadowColor='#e8c060'; ctx.shadowBlur=50;
+  ctx.shadowColor='#e8c060';ctx.shadowBlur=50;
   ctx.fillStyle='rgba(232,192,96,0.10)';
-  ctx.beginPath(); ctx.arc(cx,cy,90,0,Math.PI*2); ctx.fill();
-  ctx.fillStyle='#e8c060'; ctx.shadowBlur=30;
-  ctx.beginPath(); ctx.arc(cx,cy,20,0,Math.PI*2); ctx.fill();
-  // Sun pulse rings
+  ctx.beginPath();ctx.arc(cx,cy,90,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#e8c060';ctx.shadowBlur=30;
+  ctx.beginPath();ctx.arc(cx,cy,20,0,Math.PI*2);ctx.fill();
   for(var ri=0;ri<3;ri++){
     var ph=(T*.018+ri*2.1)%(Math.PI*2);
-    var pr=22+ph/(Math.PI*2)*60;
-    var oa=.35*(1-ph/(Math.PI*2));
-    ctx.globalAlpha=oa; ctx.strokeStyle='#e8c060'; ctx.lineWidth=1.2; ctx.shadowBlur=8;
-    ctx.beginPath(); ctx.arc(cx,cy,pr,0,Math.PI*2); ctx.stroke();
+    var pr=22+ph/(Math.PI*2)*60,oa=.35*(1-ph/(Math.PI*2));
+    ctx.globalAlpha=oa;ctx.strokeStyle='#e8c060';ctx.lineWidth=1.2;ctx.shadowBlur=8;
+    ctx.beginPath();ctx.arc(cx,cy,pr,0,Math.PI*2);ctx.stroke();
   }
-  ctx.globalAlpha=1; ctx.shadowBlur=0;
-  ctx.restore();
-  ctx.fillStyle='rgba(238,240,248,.4)'; ctx.font='500 9px DM Mono,monospace'; ctx.textAlign='center';
-  ctx.fillText('DESIGN SUN', cx, cy+34);
+  ctx.globalAlpha=1;ctx.shadowBlur=0;ctx.restore();
+  ctx.fillStyle='rgba(238,240,248,.4)';ctx.font='500 9px DM Mono,monospace';ctx.textAlign='center';
+  ctx.fillText('DESIGN SUN',cx,cy+34);
 
-  // ORBIT PATHS — glowing trails for the ball to follow
+  // ORBIT PATHS
   for(var i=0;i<PROJ.length;i++){
     var p=PROJ[i];
-    var orx=Math.min(W,H)*p.orbitR, ory=orx*.58;
-    // Dashed dim orbit
-    ctx.beginPath(); ctx.ellipse(cx,cy,orx,ory,0,0,Math.PI*2);
-    ctx.strokeStyle='rgba(255,255,255,.04)'; ctx.lineWidth=1; ctx.setLineDash([3,8]); ctx.stroke(); ctx.setLineDash([]);
-    // Glowing animated segment on orbit — acts as a "trail hint"
-    var segLen = Math.PI*.55;
-    var segStart = p.angle + T*p.orbitSpd - segLen*.35;
-    // Draw the glowing segment
-    ctx.save();
-    ctx.shadowColor=p.col; ctx.shadowBlur=12;
-    ctx.strokeStyle=p.gcol+'0.55)'; ctx.lineWidth=2.5;
+    var orx=Math.min(W,H)*p.orbitR,ory=orx*.58;
+    ctx.beginPath();ctx.ellipse(cx,cy,orx,ory,0,0,Math.PI*2);
+    ctx.strokeStyle='rgba(255,255,255,.04)';ctx.lineWidth=1;ctx.setLineDash([3,8]);ctx.stroke();ctx.setLineDash([]);
+    var segLen=Math.PI*.55,segStart=p.angle+T*p.orbitSpd-segLen*.35;
+    ctx.save();ctx.shadowColor=p.col;ctx.shadowBlur=12;
+    ctx.strokeStyle=p.gcol+'0.55)';ctx.lineWidth=2.5;
     ctx.beginPath();
     for(var a=segStart;a<segStart+segLen;a+=0.04){
-      var ex=cx+Math.cos(a)*orx, ey=cy+Math.sin(a)*ory;
-      if(a===segStart) ctx.moveTo(ex,ey); else ctx.lineTo(ex,ey);
+      var ex=cx+Math.cos(a)*orx,ey=cy+Math.sin(a)*ory;
+      if(a===segStart)ctx.moveTo(ex,ey);else ctx.lineTo(ex,ey);
     }
-    ctx.stroke(); ctx.shadowBlur=0; ctx.restore();
-    // Moving dot pulse on path
+    ctx.stroke();ctx.shadowBlur=0;ctx.restore();
     var dotA=p.angle+T*p.orbitSpd+Math.PI*.6;
-    var dx=cx+Math.cos(dotA)*orx, dy=cy+Math.sin(dotA)*ory;
-    ctx.save(); ctx.globalAlpha=.65+.3*Math.sin(T*.08+i);
-    ctx.shadowColor=p.col; ctx.shadowBlur=14;
+    var dx=cx+Math.cos(dotA)*orx,dy=cy+Math.sin(dotA)*ory;
+    ctx.save();ctx.globalAlpha=.65+.3*Math.sin(T*.08+i);
+    ctx.shadowColor=p.col;ctx.shadowBlur=14;
     ctx.fillStyle=p.gcol+'0.8)';
-    ctx.beginPath(); ctx.arc(dx,dy,3.5,0,Math.PI*2); ctx.fill();
-    ctx.globalAlpha=.25; ctx.beginPath(); ctx.arc(dx,dy,8,0,Math.PI*2); ctx.fill();
+    ctx.beginPath();ctx.arc(dx,dy,3.5,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=.25;ctx.beginPath();ctx.arc(dx,dy,8,0,Math.PI*2);ctx.fill();
     ctx.restore();
   }
 
   // PLANETS
   for(var i=0;i<PROJ.length;i++){
-    var p=PROJ[i];
-    var pos=ppos(p,T);
-    var px=pos.x, py=pos.y;
-
-    var distBall = 9999;
+    var p=PROJ[i],pos=ppos(p,T),px=pos.x,py=pos.y;
+    var distBall=9999;
     if(active){
-      var bdx=BALL.x-px, bdy=BALL.y-py;
+      var bdx=BALL.x-px,bdy=BALL.y-py;
       distBall=Math.sqrt(bdx*bdx+bdy*bdy);
-      // Auto-collect when ball touches planet
-      if(distBall < p.sz+BALL.r && cooldown===0 && openId===-1){
+      if(distBall<p.sz+BALL.r&&cooldown===0&&openId===-1){
         openCard(p.id);
-        // Bounce ball away
-        var nx=bdx/distBall, ny=bdy/distBall;
-        BALL.vx=nx*4; BALL.vy=ny*4;
+        var nx=bdx/distBall,ny=bdy/distBall;
+        BALL.vx=nx*4;BALL.vy=ny*4;
       }
     }
-
-    var near=distBall < p.sz+80;
-
-    // Planet glow
-    ctx.save();
-    ctx.globalAlpha=near?.35:.14;
-    ctx.shadowColor=p.col; ctx.shadowBlur=near?40:20;
+    var near=distBall<p.sz+80;
+    ctx.save();ctx.globalAlpha=near?.35:.14;ctx.shadowColor=p.col;ctx.shadowBlur=near?40:20;
     ctx.fillStyle=p.gcol+'0.35)';
-    ctx.beginPath(); ctx.arc(px,py,p.sz*2,0,Math.PI*2); ctx.fill();
-    ctx.restore();
-
-    // Planet body
-    ctx.save();
-    ctx.shadowColor=p.col; ctx.shadowBlur=near?18:9;
-    ctx.fillStyle=p.col;
-    ctx.globalAlpha=unlocked[p.id]?1:.82;
-    ctx.beginPath(); ctx.arc(px,py,p.sz,0,Math.PI*2); ctx.fill();
-    // Highlight
-    ctx.globalAlpha=.2; ctx.fillStyle='#fff';
-    ctx.beginPath(); ctx.arc(px-p.sz*.25,py-p.sz*.25,p.sz*.38,0,Math.PI*2); ctx.fill();
-    ctx.shadowBlur=0; ctx.restore();
-
-    // Unlocked ring
+    ctx.beginPath();ctx.arc(px,py,p.sz*2,0,Math.PI*2);ctx.fill();ctx.restore();
+    ctx.save();ctx.shadowColor=p.col;ctx.shadowBlur=near?18:9;
+    ctx.fillStyle=p.col;ctx.globalAlpha=unlocked[p.id]?1:.82;
+    ctx.beginPath();ctx.arc(px,py,p.sz,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=.2;ctx.fillStyle='#fff';
+    ctx.beginPath();ctx.arc(px-p.sz*.25,py-p.sz*.25,p.sz*.38,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=0;ctx.restore();
     if(unlocked[p.id]){
-      ctx.save(); ctx.strokeStyle='#1bc47d'; ctx.lineWidth=2.5;
-      ctx.globalAlpha=.7; ctx.shadowColor='#1bc47d'; ctx.shadowBlur=10;
-      ctx.beginPath(); ctx.arc(px,py,p.sz+9,0,Math.PI*2); ctx.stroke();
-      ctx.restore();
+      ctx.save();ctx.strokeStyle='#1bc47d';ctx.lineWidth=2.5;
+      ctx.globalAlpha=.7;ctx.shadowColor='#1bc47d';ctx.shadowBlur=10;
+      ctx.beginPath();ctx.arc(px,py,p.sz+9,0,Math.PI*2);ctx.stroke();ctx.restore();
     }
-
-    // Attraction field ring (pulsing when ball nearby)
-    if(near && !unlocked[p.id] && cooldown===0){
+    if(near&&!unlocked[p.id]&&cooldown===0){
       var pls=.45+.45*Math.sin(T*.14);
-      ctx.save(); ctx.strokeStyle=p.col; ctx.lineWidth=1.5;
-      ctx.globalAlpha=pls*.6; ctx.setLineDash([6,5]);
-      ctx.shadowColor=p.col; ctx.shadowBlur=12;
-      ctx.beginPath(); ctx.arc(px,py,p.sz+16+pls*6,0,Math.PI*2); ctx.stroke();
-      ctx.setLineDash([]); ctx.restore();
-      // Arrow indicator pointing toward planet from ball
-      if(active){
-        var ang=Math.atan2(py-BALL.y, px-BALL.x);
-        var ax=BALL.x+Math.cos(ang)*28, ay=BALL.y+Math.sin(ang)*28;
-        ctx.save(); ctx.globalAlpha=.55*pls; ctx.fillStyle=p.col;
-        ctx.shadowColor=p.col; ctx.shadowBlur=8;
-        ctx.translate(ax,ay); ctx.rotate(ang);
-        ctx.beginPath(); ctx.moveTo(6,0); ctx.lineTo(-4,-4); ctx.lineTo(-4,4); ctx.closePath(); ctx.fill();
-        ctx.restore();
-      }
+      ctx.save();ctx.strokeStyle=p.col;ctx.lineWidth=1.5;
+      ctx.globalAlpha=pls*.6;ctx.setLineDash([6,5]);
+      ctx.shadowColor=p.col;ctx.shadowBlur=12;
+      ctx.beginPath();ctx.arc(px,py,p.sz+16+pls*6,0,Math.PI*2);ctx.stroke();
+      ctx.setLineDash([]);ctx.restore();
     }
-
-    // Label
     ctx.textAlign='center';
-    ctx.globalAlpha=.88; ctx.fillStyle='#eef0f8';
-    ctx.font='500 11px DM Mono,monospace';
-    ctx.fillText(p.label, px, py+p.sz+16);
-    ctx.globalAlpha=unlocked[p.id]?.8:.4;
-    ctx.fillStyle=unlocked[p.id]?'#1bc47d':p.col;
+    ctx.globalAlpha=.88;ctx.fillStyle='#eef0f8';ctx.font='500 11px DM Mono,monospace';
+    ctx.fillText(p.label,px,py+p.sz+16);
+    ctx.globalAlpha=unlocked[p.id]?.8:.4;ctx.fillStyle=unlocked[p.id]?'#1bc47d':p.col;
     ctx.font='9px DM Mono,monospace';
-    ctx.fillText(unlocked[p.id]?'UNLOCKED':'roll to reach', px, py+p.sz+27);
+    ctx.fillText(unlocked[p.id]?'UNLOCKED':'roll to reach',px,py+p.sz+27);
     ctx.globalAlpha=1;
   }
 
-  // === BALL PHYSICS ===
+  // BALL PHYSICS
   if(active){
-    // Keyboard control
     var spd=0.22;
-    if(K['ArrowLeft']) BALL.vx-=spd;
-    if(K['ArrowRight']) BALL.vx+=spd;
-    if(K['ArrowUp']) BALL.vy-=spd;
-    if(K['ArrowDown']) BALL.vy+=spd;
-
-    // Gravity-like pull toward nearest unlocked orbit path (navigational hint)
-    var nearestDist=9999, nearestPull=null;
+    if(K['ArrowLeft'])BALL.vx-=spd;if(K['ArrowRight'])BALL.vx+=spd;
+    if(K['ArrowUp'])BALL.vy-=spd;if(K['ArrowDown'])BALL.vy+=spd;
+    var nearestDist=9999,nearestPull=null;
     for(var i=0;i<PROJ.length;i++){
-      if(unlocked[PROJ[i].id]) continue;
+      if(unlocked[PROJ[i].id])continue;
       var pos2=ppos(PROJ[i],T);
       var dd=Math.sqrt((BALL.x-pos2.x)*(BALL.x-pos2.x)+(BALL.y-pos2.y)*(BALL.y-pos2.y));
-      if(dd<nearestDist){ nearestDist=dd; nearestPull=pos2; }
+      if(dd<nearestDist){nearestDist=dd;nearestPull=pos2;}
     }
-    // Very subtle drift toward nearest planet (not forced, just suggestive)
-    if(nearestPull && nearestDist>200){
+    if(nearestPull&&nearestDist>200){
       BALL.vx+=(nearestPull.x-BALL.x)*0.000012;
       BALL.vy+=(nearestPull.y-BALL.y)*0.000012;
     }
-
-    // Friction
-    BALL.vx*=.978; BALL.vy*=.978;
-    // Speed cap
+    BALL.vx*=.978;BALL.vy*=.978;
     var spd2=Math.sqrt(BALL.vx*BALL.vx+BALL.vy*BALL.vy);
-    if(spd2>9){ BALL.vx=(BALL.vx/spd2)*9; BALL.vy=(BALL.vy/spd2)*9; }
-
-    BALL.x+=BALL.vx; BALL.y+=BALL.vy;
-
-    // Bounce off walls
-    if(BALL.x<BALL.r){ BALL.x=BALL.r; BALL.vx=Math.abs(BALL.vx)*.85; }
-    if(BALL.x>W-BALL.r){ BALL.x=W-BALL.r; BALL.vx=-Math.abs(BALL.vx)*.85; }
-    if(BALL.y<BALL.r+52){ BALL.y=BALL.r+52; BALL.vy=Math.abs(BALL.vy)*.85; }
-    if(BALL.y>H-BALL.r){ BALL.y=H-BALL.r; BALL.vy=-Math.abs(BALL.vy)*.85; }
-
-    // Trail
-    BALL.trail.push({x:BALL.x, y:BALL.y, a:0.7});
-    if(BALL.trail.length>40) BALL.trail.shift();
-
-    // Draw trail
+    if(spd2>9){BALL.vx=(BALL.vx/spd2)*9;BALL.vy=(BALL.vy/spd2)*9;}
+    BALL.x+=BALL.vx;BALL.y+=BALL.vy;
+    if(BALL.x<BALL.r){BALL.x=BALL.r;BALL.vx=Math.abs(BALL.vx)*.85;}
+    if(BALL.x>W-BALL.r){BALL.x=W-BALL.r;BALL.vx=-Math.abs(BALL.vx)*.85;}
+    if(BALL.y<BALL.r+52){BALL.y=BALL.r+52;BALL.vy=Math.abs(BALL.vy)*.85;}
+    if(BALL.y>H-BALL.r){BALL.y=H-BALL.r;BALL.vy=-Math.abs(BALL.vy)*.85;}
+    BALL.trail.push({x:BALL.x,y:BALL.y});
+    if(BALL.trail.length>40)BALL.trail.shift();
     for(var i=0;i<BALL.trail.length;i++){
-      var tt=BALL.trail[i], fr=i/BALL.trail.length;
+      var tt=BALL.trail[i],fr=i/BALL.trail.length;
       ctx.fillStyle='rgba(24,160,251,'+fr*.4+')';
-      ctx.beginPath(); ctx.arc(tt.x,tt.y,BALL.r*fr*.65,0,Math.PI*2); ctx.fill();
+      ctx.beginPath();ctx.arc(tt.x,tt.y,BALL.r*fr*.65,0,Math.PI*2);ctx.fill();
     }
-
-    // Draw ball
-    if(BALL.glow>0) BALL.glow--;
+    if(BALL.glow>0)BALL.glow--;
     var glowAmt=BALL.glow>0?30:14;
-    ctx.save();
-    ctx.shadowColor='#18a0fb'; ctx.shadowBlur=glowAmt;
-    // Outer ring
-    ctx.strokeStyle='rgba(24,160,251,0.6)'; ctx.lineWidth=2;
-    ctx.beginPath(); ctx.arc(BALL.x,BALL.y,BALL.r+3,0,Math.PI*2); ctx.stroke();
-    // Ball body
+    ctx.save();ctx.shadowColor='#18a0fb';ctx.shadowBlur=glowAmt;
+    ctx.strokeStyle='rgba(24,160,251,0.6)';ctx.lineWidth=2;
+    ctx.beginPath();ctx.arc(BALL.x,BALL.y,BALL.r+3,0,Math.PI*2);ctx.stroke();
     var bg=ctx.createRadialGradient(BALL.x-3,BALL.y-3,0,BALL.x,BALL.y,BALL.r);
-    bg.addColorStop(0,'#d0e8ff');
-    bg.addColorStop(0.5,'#7ec8f7');
-    bg.addColorStop(1,'#1a5fa0');
-    ctx.fillStyle=bg;
-    ctx.beginPath(); ctx.arc(BALL.x,BALL.y,BALL.r,0,Math.PI*2); ctx.fill();
-    // Shine
-    ctx.globalAlpha=.55; ctx.fillStyle='rgba(255,255,255,0.9)';
-    ctx.beginPath(); ctx.arc(BALL.x-3,BALL.y-3,3.5,0,Math.PI*2); ctx.fill();
-    ctx.shadowBlur=0; ctx.restore();
+    bg.addColorStop(0,'#d0e8ff');bg.addColorStop(0.5,'#7ec8f7');bg.addColorStop(1,'#1a5fa0');
+    ctx.fillStyle=bg;ctx.beginPath();ctx.arc(BALL.x,BALL.y,BALL.r,0,Math.PI*2);ctx.fill();
+    ctx.globalAlpha=.55;ctx.fillStyle='rgba(255,255,255,0.9)';
+    ctx.beginPath();ctx.arc(BALL.x-3,BALL.y-3,3.5,0,Math.PI*2);ctx.fill();
+    ctx.shadowBlur=0;ctx.restore();
+    updateHints();
   }
 }
 
