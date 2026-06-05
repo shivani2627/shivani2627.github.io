@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Citibank Spotlight Dashboard · Shivani Harode</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,200;0,300;1,200;1,300&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e1a;--surface:#111828;--surface2:#18243a;--border:rgba(255,255,255,.08);
+  --text:#eef0f8;--text2:rgba(238,240,248,.55);--text3:rgba(238,240,248,.28);
+  --citi:#e8325a;--citi2:rgba(232,50,90,;--gold:#e8c060;--blue:#0ea5e9;--green:#1bc47d;
+}
+[data-theme="light"]{
+  --bg:#f4f6fb;--surface:#fff;--surface2:#eef1f8;--border:rgba(0,0,0,.09);
+  --text:#0a0e1a;--text2:rgba(10,14,26,.55);--text3:rgba(10,14,26,.3);
+}
+*{box-sizing:border-box;margin:0;padding:0;transition:background .3s,color .3s,border-color .3s}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* NAV */
+#nav{position:sticky;top:0;z-index:100;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,5vw,60px);background:var(--surface);border-bottom:1px solid var(--border);backdrop-filter:blur(20px)}
+.nav-back{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text2);cursor:pointer;text-decoration:none;transition:color .2s;font-family:'DM Mono',monospace;letter-spacing:.06em}
+.nav-back:hover{color:var(--citi)}
+.nav-back svg{flex-shrink:0}
+.nav-title{font-family:'Fraunces',serif;font-size:14px;font-weight:300;font-style:italic;color:var(--text2)}
+.nav-r{display:flex;align-items:center;gap:10px}
+/* Theme toggle */
+.theme-toggle{display:flex;align-items:center;gap:7px;padding:5px 12px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);cursor:pointer;font-size:10px;color:var(--text2);font-family:'DM Mono',monospace;letter-spacing:.05em;transition:all .2s}
+.theme-toggle:hover{border-color:var(--citi);color:var(--citi)}
+.toggle-pill{width:28px;height:16px;border-radius:8px;background:rgba(232,50,90,.3);position:relative;flex-shrink:0;transition:background .3s}
+.toggle-pill::after{content:'';position:absolute;top:2px;left:2px;width:12px;height:12px;border-radius:50%;background:var(--citi);transition:transform .3s}
+[data-theme="light"] .toggle-pill{background:rgba(232,50,90,.3)}
+[data-theme="light"] .toggle-pill::after{transform:translateX(12px)}
+
+/* HERO */
+.hero{padding:clamp(48px,8vh,80px) clamp(16px,5vw,60px) clamp(32px,5vh,56px);max-width:1200px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;background:rgba(232,50,90,.1);border:1px solid rgba(232,50,90,.25);font-size:9px;color:var(--citi);letter-spacing:.14em;text-transform:uppercase;margin-bottom:18px;font-family:'DM Mono',monospace}
+.hero-badge::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--citi);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+h1.hero-h{font-family:'Fraunces',serif;font-size:clamp(32px,5.5vw,60px);font-weight:200;letter-spacing:-.04em;line-height:.92;margin-bottom:14px}
+h1.hero-h em{font-style:italic;color:var(--citi)}
+.hero-sub{font-size:clamp(13px,1.8vw,16px);color:var(--text2);line-height:1.75;max-width:580px;margin-bottom:28px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:8px}
+.meta-pill{padding:5px 12px;border-radius:100px;border:1px solid var(--border);font-size:10px;color:var(--text2);font-family:'DM Mono',monospace;background:var(--surface)}
+.meta-pill.accent{border-color:rgba(232,50,90,.3);color:var(--citi);background:rgba(232,50,90,.07)}
+
+/* STATS STRIP */
+.stats-strip{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:24px clamp(16px,5vw,60px)}
+.stats-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.stat{text-align:center;padding:12px}
+.stat-v{font-family:'Fraunces',serif;font-size:clamp(26px,4vw,40px);font-weight:200;letter-spacing:-.03em;color:var(--citi);line-height:1}
+.stat-l{font-size:10px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-top:6px;font-family:'DM Mono',monospace}
+
+/* MAIN CONTENT */
+.content{max-width:1200px;margin:0 auto;padding:clamp(32px,6vh,60px) clamp(16px,5vw,60px)}
+
+/* SECTION */
+.sec-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--citi);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.sec-label::before{content:'';width:20px;height:1px;background:var(--citi);opacity:.5;flex-shrink:0}
+.sec-h{font-family:'Fraunces',serif;font-size:clamp(22px,3.5vw,34px);font-weight:300;letter-spacing:-.02em;margin-bottom:18px;line-height:1.1}
+.sec-h em{font-style:italic;color:var(--citi)}
+.sec-body{font-size:14px;color:var(--text2);line-height:1.85;margin-bottom:28px}
+
+/* PROBLEM / SOLUTION */
+.ps-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:40px}
+.ps-card{padding:22px 24px;border-radius:16px;border:1px solid var(--border);background:var(--surface)}
+.ps-icon{font-size:22px;margin-bottom:10px}
+.ps-t{font-family:'Fraunces',serif;font-size:17px;font-weight:300;margin-bottom:10px}
+.ps-t em{font-style:italic;color:var(--citi)}
+.ps-b{font-size:12.5px;color:var(--text2);line-height:1.75}
+
+/* FEATURE SHOWCASE — Mock dashboard */
+.showcase{border-radius:20px;overflow:hidden;border:1px solid var(--border);margin-bottom:40px;background:var(--surface)}
+.showcase-bar{height:40px;background:var(--surface2);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 16px;gap:8px}
+.sbar-dot{width:10px;height:10px;border-radius:50%}
+.sbar-title{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.08em;margin-left:auto;margin-right:auto}
+.dash-wrap{padding:20px}
+/* Citi Header bar */
+.citi-header{height:44px;border-radius:10px;background:var(--citi);display:flex;align-items:center;padding:0 16px;margin-bottom:16px;justify-content:space-between}
+.citi-logo{font-family:'Fraunces',serif;font-size:14px;font-weight:300;color:#fff;letter-spacing:.04em}
+.citi-nav-pills{display:flex;gap:6px}
+.citi-pill{padding:4px 10px;border-radius:6px;font-size:9px;color:rgba(255,255,255,.7);font-family:'DM Mono',monospace;cursor:pointer}
+.citi-pill.active{background:rgba(255,255,255,.2);color:#fff}
+/* KPI Cards */
+.kpi-label{font-size:9px;color:var(--text3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;font-family:'DM Mono',monospace}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.kpi{padding:14px;border-radius:10px;border:1px solid var(--border);background:var(--surface2)}
+.kpi-module{font-size:9px;color:var(--text3);font-family:'DM Mono',monospace;letter-spacing:.06em;margin-bottom:4px;text-transform:uppercase}
+.kpi-val{font-family:'Fraunces',serif;font-size:20px;font-weight:300;line-height:1;margin-bottom:2px}
+.kpi-owner{font-size:9px;color:var(--text3)}
+.kpi-badge{display:inline-flex;align-items:center;gap:3px;padding:2px 6px;border-radius:4px;font-size:8px;font-family:'DM Mono',monospace;margin-top:5px}
+/* Projects table */
+.proj-table{width:100%;border-collapse:collapse;font-size:11px}
+.proj-table th{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.08em;color:var(--text3);text-transform:uppercase;padding:6px 10px;text-align:left;border-bottom:1px solid var(--border)}
+.proj-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text2);font-size:11px}
+.proj-table tr:last-child td{border-bottom:none}
+.owner-av{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-family:'DM Mono',monospace;vertical-align:middle;margin-right:5px}
+.status-badge{padding:2px 7px;border-radius:100px;font-size:8px;font-family:'DM Mono',monospace}
+
+/* FEATURE CARDS */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:40px}
+.feat-card{padding:20px;border-radius:16px;border:1px solid var(--border);background:var(--surface)}
+.feat-icon{font-size:24px;margin-bottom:12px}
+.feat-t{font-family:'Fraunces',serif;font-size:16px;font-weight:300;margin-bottom:8px}
+.feat-t em{font-style:italic;color:var(--citi)}
+.feat-b{font-size:12px;color:var(--text2);line-height:1.7}
+.feat-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px}
+.feat-tag{padding:2px 8px;border-radius:100px;font-size:8px;font-family:'DM Mono',monospace;border:1px solid var(--border);color:var(--text3)}
+
+/* DESIGN SYSTEM SECTION */
+.ds-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-bottom:16px}
+.ds-color{height:48px;border-radius:8px;display:flex;align-items:flex-end;padding:6px 8px}
+.ds-color-l{font-size:7px;font-family:'DM Mono',monospace;color:rgba(255,255,255,.8)}
+.ds-components{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:40px}
+.ds-comp{padding:14px 16px;border-radius:12px;border:1px solid var(--border);background:var(--surface2);font-size:11px;color:var(--text2)}
+.ds-comp-t{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);margin-bottom:5px;letter-spacing:.06em}
+
+/* TIMELINE */
+.timeline{margin-bottom:40px}
+.tl-item{display:flex;gap:16px;padding-bottom:20px;position:relative}
+.tl-item::before{content:'';position:absolute;left:9px;top:20px;bottom:0;width:1px;background:var(--border)}
+.tl-item:last-child::before{display:none}
+.tl-dot{width:20px;height:20px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.tl-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+.tl-body{flex:1}
+.tl-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--text3);letter-spacing:.06em;margin-bottom:3px}
+.tl-co{font-size:13px;font-weight:600;color:var(--text);margin-bottom:1px}
+.tl-role{font-size:11px;color:var(--text2)}
+
+/* OUTCOME */
+.outcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:40px}
+.outcome-card{padding:20px 22px;border-radius:14px;border:1px solid var(--border);background:var(--surface);display:flex;gap:14px;align-items:flex-start}
+.outcome-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.outcome-t{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.outcome-b{font-size:11.5px;color:var(--text2);line-height:1.65}
+
+/* BACK BUTTON */
+.back-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--text2);cursor:pointer;text-decoration:none;transition:all .22s;margin-bottom:60px}
+.back-btn:hover{border-color:var(--citi);color:var(--citi);background:rgba(232,50,90,.06)}
+
+@media(max-width:768px){.stats-inner,.feat-grid,.kpi-grid{grid-template-columns:1fr 1fr}.ps-grid,.outcome-grid,.ds-components{grid-template-columns:1fr}.ds-grid{grid-template-columns:repeat(3,1fr)}.citi-nav-pills{display:none}}
+@media(max-width:480px){.stats-inner,.kpi-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to Universe
+  </a>
+  <div class="nav-title">Citibank Spotlight Dashboard</div>
+  <div class="nav-r">
+    <div class="theme-toggle" onclick="toggleTheme()" id="themeBtn">
+      <span id="themeIcon">🌙</span>
+      <div class="toggle-pill" id="togglePill"></div>
+      <span id="themeLabel">Dark</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Banking · Internal Tool · Nov 2021 – Jul 2022</div>
+  <h1 class="hero-h">Citibank<br><em>Spotlight</em><br>Dashboard</h1>
+  <div class="hero-sub">An internal employee portal giving Citibank teams a single source of truth — all business modules, KPIs, and project ownership in one unified, accessible interface.</div>
+  <div class="hero-meta">
+    <span class="meta-pill accent">Synechron · Citibank</span>
+    <span class="meta-pill">Nov 2021 – Jul 2022</span>
+    <span class="meta-pill">Internal Dashboard</span>
+    <span class="meta-pill">Citi Design System</span>
+    <span class="meta-pill">Dark / Light Mode</span>
+    <span class="meta-pill">Accessibility</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat"><div class="stat-v">KPI</div><div class="stat-l">Cards per module</div></div>
+    <div class="stat"><div class="stat-v">2</div><div class="stat-l">Theme modes</div></div>
+    <div class="stat"><div class="stat-v">Citi DS</div><div class="stat-l">Design system</div></div>
+    <div class="stat"><div class="stat-v">9mo</div><div class="stat-l">Engagement</div></div>
+  </div>
+</div>
+
+<div class="content">
+
+  <!-- PROBLEM / SOLUTION -->
+  <div class="sec-label">The Challenge</div>
+  <div class="sec-h">One bank.<br><em>Scattered data.</em></div>
+  <div class="ps-grid">
+    <div class="ps-card">
+      <div class="ps-icon">🗂️</div>
+      <div class="ps-t">The <em>Problem</em></div>
+      <div class="ps-b">Citibank employees had to jump across multiple internal tools, spreadsheets, and email threads to track project statuses, module KPIs, and ownership across different business units. There was no single source of truth — leading to delays, duplicated effort, and accountability gaps.</div>
+    </div>
+    <div class="ps-card">
+      <div class="ps-icon">🎯</div>
+      <div class="ps-t">The <em>Solution</em></div>
+      <div class="ps-b">Design and deliver an internal Spotlight Dashboard — a centralized portal where every Citibank module appears as a KPI card with live data, project ownership, and status tracking. Built on Citi's own design system to ensure brand consistency and faster adoption by internal teams.</div>
+    </div>
+  </div>
+
+  <!-- LIVE DASHBOARD MOCKUP -->
+  <div class="sec-label">Product Showcase</div>
+  <div class="sec-h">The <em>dashboard</em> in action</div>
+
+  <div class="showcase">
+    <div class="showcase-bar">
+      <div class="sbar-dot" style="background:#ff5f57"></div>
+      <div class="sbar-dot" style="background:#ffbd2e"></div>
+      <div class="sbar-dot" style="background:#28c840"></div>
+      <div class="sbar-title">spotlight.citi.internal · Employee Portal</div>
+    </div>
+    <div class="dash-wrap">
+      <!-- Citi Header -->
+      <div class="citi-header">
+        <div class="citi-logo">✦ Citi Spotlight</div>
+        <div class="citi-nav-pills">
+          <div class="citi-pill active">Overview</div>
+          <div class="citi-pill">Modules</div>
+          <div class="citi-pill">Analytics</div>
+          <div class="citi-pill">Settings</div>
+        </div>
+        <div style="font-size:9px;color:rgba(255,255,255,.6);font-family:'DM Mono',monospace">S. Harode · Q1 2022</div>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-label">Module KPI Overview — All Business Units</div>
+      <div class="kpi-grid">
+        <div class="kpi">
+          <div class="kpi-module">Retail Banking</div>
+          <div class="kpi-val" style="color:#e8325a">2,847</div>
+          <div class="kpi-owner">Owner: J. Matthews</div>
+          <div class="kpi-badge" style="background:rgba(27,196,125,.15);color:#1bc47d">↑ On Track</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-module">Credit Cards</div>
+          <div class="kpi-val" style="color:#0ea5e9">14.2M</div>
+          <div class="kpi-owner">Owner: P. Rodriguez</div>
+          <div class="kpi-badge" style="background:rgba(14,165,233,.12);color:#0ea5e9">● Active</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-module">Wealth Mgmt</div>
+          <div class="kpi-val" style="color:#e8c060">$48B</div>
+          <div class="kpi-owner">Owner: C. Park</div>
+          <div class="kpi-badge" style="background:rgba(232,192,96,.12);color:#e8c060">→ Review</div>
+        </div>
+        <div class="kpi">
+          <div class="kpi-module">Digital Banking</div>
+          <div class="kpi-val" style="color:#1bc47d">98.4%</div>
+          <div class="kpi-owner">Owner: A. Singh</div>
+          <div class="kpi-badge" style="background:rgba(27,196,125,.15);color:#1bc47d">↑ On Track</div>
+        </div>
+      </div>
+
+      <!-- Projects Table -->
+      <div class="kpi-label" style="margin-top:16px">Active Projects · Ownership View</div>
+      <table class="proj-table">
+        <thead>
+          <tr>
+            <th>Project</th><th>Module</th><th>Owner</th><th>Status</th><th>Due</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Digital Onboarding v3</td>
+            <td style="color:rgba(238,240,248,.4)">Retail</td>
+            <td><span class="owner-av" style="background:#e8325a">JM</span>J. Matthews</td>
+            <td><span class="status-badge" style="background:rgba(27,196,125,.15);color:#1bc47d">In Progress</span></td>
+            <td style="color:rgba(238,240,248,.4)">Mar 15</td>
+          </tr>
+          <tr>
+            <td>Rewards Dashboard</td>
+            <td style="color:rgba(238,240,248,.4)">Cards</td>
+            <td><span class="owner-av" style="background:#0ea5e9">PR</span>P. Rodriguez</td>
+            <td><span class="status-badge" style="background:rgba(232,192,96,.12);color:#e8c060">Review</span></td>
+            <td style="color:rgba(238,240,248,.4)">Mar 22</td>
+          </tr>
+          <tr>
+            <td>Portfolio Analytics</td>
+            <td style="color:rgba(238,240,248,.4)">Wealth</td>
+            <td><span class="owner-av" style="background:#e8c060">CP</span>C. Park</td>
+            <td><span class="status-badge" style="background:rgba(14,165,233,.12);color:#0ea5e9">Design</span></td>
+            <td style="color:rgba(238,240,248,.4)">Apr 5</td>
+          </tr>
+          <tr>
+            <td>Mobile App Redesign</td>
+            <td style="color:rgba(238,240,248,.4)">Digital</td>
+            <td><span class="owner-av" style="background:#1bc47d">AS</span>A. Singh</td>
+            <td><span class="status-badge" style="background:rgba(27,196,125,.15);color:#1bc47d">On Track</span></td>
+            <td style="color:rgba(238,240,248,.4)">Apr 18</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- FEATURES -->
+  <div class="sec-label">Key Features</div>
+  <div class="sec-h">What <em>we built</em></div>
+  <div class="feat-grid">
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <div class="feat-t">KPI <em>Cards</em></div>
+      <div class="feat-b">Every Citibank business module gets its own KPI card — showing live metrics, ownership, and project status at a glance. Configurable by team leads and refreshed in real time.</div>
+      <div class="feat-tags"><span class="feat-tag">Data Viz</span><span class="feat-tag">Real-time</span><span class="feat-tag">Configurable</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🌗</div>
+      <div class="feat-t">Dark &amp; <em>Light Mode</em></div>
+      <div class="feat-b">Full dark/light theme toggle built for accessibility. Both themes tested to WCAG AA contrast standards, using Citi's approved color tokens — not custom one-offs.</div>
+      <div class="feat-tags"><span class="feat-tag">Accessibility</span><span class="feat-tag">WCAG AA</span><span class="feat-tag">Citi Tokens</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🏛️</div>
+      <div class="feat-t">Citi <em>Design System</em></div>
+      <div class="feat-b">Every component — buttons, cards, tables, forms — uses Citi's own internal design system. This meant faster developer handoff, guaranteed brand consistency, and zero custom component debt.</div>
+      <div class="feat-tags"><span class="feat-tag">Component Library</span><span class="feat-tag">Brand Compliance</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">👤</div>
+      <div class="feat-t">Ownership <em>Tracking</em></div>
+      <div class="feat-b">Every module and project is tied to an owner — with avatars, names, and status. Reduces the classic "who owns this?" back-and-forth and makes accountability visual.</div>
+      <div class="feat-tags"><span class="feat-tag">Project Mgmt</span><span class="feat-tag">Transparency</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔍</div>
+      <div class="feat-t">Unified <em>Search</em></div>
+      <div class="feat-b">Employees can search across all modules, projects, and owners from a single search bar — eliminating the need to navigate between separate tools or ask colleagues where data lives.</div>
+      <div class="feat-tags"><span class="feat-tag">Search</span><span class="feat-tag">Discovery</span></div>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔔</div>
+      <div class="feat-t">Role-based <em>Access</em></div>
+      <div class="feat-b">Different views for different roles — employees see their modules, managers see cross-unit dashboards, admins see the full picture. Access designed to reduce noise and surface relevance.</div>
+      <div class="feat-tags"><span class="feat-tag">Permissions</span><span class="feat-tag">Role UX</span></div>
+    </div>
+  </div>
+
+  <!-- DESIGN SYSTEM -->
+  <div class="sec-label">Design System</div>
+  <div class="sec-h">Built on <em>Citi's foundation</em></div>
+  <div class="sec-body">Rather than building a custom design system from scratch, the Spotlight Dashboard was designed entirely within Citi's existing internal design system. This created immediate familiarity for internal users and significantly reduced the engineering effort required for implementation.</div>
+
+  <div class="ds-grid">
+    <div class="ds-color" style="background:#e8325a"><div class="ds-color-l">Citi Red</div></div>
+    <div class="ds-color" style="background:#0d3a8e"><div class="ds-color-l">Citi Navy</div></div>
+    <div class="ds-color" style="background:#003B70"><div class="ds-color-l">Citi Dark</div></div>
+    <div class="ds-color" style="background:rgba(232,50,90,.12);border:1px solid rgba(232,50,90,.2)"><div class="ds-color-l" style="color:var(--text3)">Citi Tint</div></div>
+    <div class="ds-color" style="background:var(--surface2);border:1px solid var(--border)"><div class="ds-color-l" style="color:var(--text3)">Surface</div></div>
+    <div class="ds-color" style="background:#1bc47d"><div class="ds-color-l">Success</div></div>
+  </div>
+
+  <div class="ds-components">
+    <div class="ds-comp"><div class="ds-comp-t">KPI Card</div>Metric + module name + owner + status badge with color-coded state</div>
+    <div class="ds-comp"><div class="ds-comp-t">Data Table</div>Sortable columns, owner avatars, status pills, inline actions</div>
+    <div class="ds-comp"><div class="ds-comp-t">Navigation</div>Top bar with Citi branding + tab pills for section switching</div>
+    <div class="ds-comp"><div class="ds-comp-t">Status Badge</div>Color-coded pill system: On Track / Review / Design / At Risk</div>
+    <div class="ds-comp"><div class="ds-comp-t">Owner Avatar</div>Initials-based avatar with role-specific color assignments</div>
+    <div class="ds-comp"><div class="ds-comp-t">Theme Toggle</div>Dark/light switcher using Citi's approved semantic token pairs</div>
+  </div>
+
+  <!-- MY ROLE -->
+  <div class="sec-label">My Role</div>
+  <div class="sec-h">What <em>I designed</em></div>
+  <div class="sec-body">Engaged through Synechron as UI/UX Designer embedded within the Citibank internal product team. Responsible for end-to-end design — from initial wireframes and information architecture through to high-fidelity Figma prototypes and developer handoff documentation.</div>
+
+  <div class="outcome-grid">
+    <div class="outcome-card">
+      <div class="outcome-icon" style="background:rgba(232,50,90,.12)">📐</div>
+      <div><div class="outcome-t">Information Architecture</div><div class="outcome-b">Structured the portal's hierarchy — defining how modules, KPIs, ownership, and status maps would relate to each other across user roles.</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon" style="background:rgba(14,165,233,.1)">🎨</div>
+      <div><div class="outcome-t">High-fidelity UI Design</div><div class="outcome-b">Full Figma designs for all dashboard states — empty, loading, populated, error — in both dark and light themes.</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon" style="background:rgba(27,196,125,.1)">♿</div>
+      <div><div class="outcome-t">Accessibility Review</div><div class="outcome-b">Ensured all color pairs, focus states, and interactive elements met WCAG AA standards in both theme modes before handoff.</div></div>
+    </div>
+    <div class="outcome-card">
+      <div class="outcome-icon" style="background:rgba(232,192,96,.1)">📦</div>
+      <div><div class="outcome-t">Developer Handoff</div><div class="outcome-b">Documented component specs, spacing, token usage, and interaction behavior so engineers could implement without design guesswork.</div></div>
+    </div>
+  </div>
+
+  <!-- FULL CAREER TIMELINE -->
+  <div class="sec-label">Career Timeline</div>
+  <div class="sec-h">The full <em>journey</em></div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot" style="background:#3b82f6"></div>
+      <div class="tl-body">
+        <div class="tl-date">Jan 2026 – Present</div>
+        <div class="tl-co">State of Missouri · DESE School Finance</div>
+        <div class="tl-role">Senior UI/UX Designer · UX redesign for 500+ school districts</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:#8b5cf6"></div>
+      <div class="tl-body">
+        <div class="tl-date">Jan 2024 – Jun 2025</div>
+        <div class="tl-co">State of Wisconsin · PROTECT Case Management</div>
+        <div class="tl-role">Senior UI/UX Designer · Case management system for District Attorneys</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:#0ea5e9"></div>
+      <div class="tl-body">
+        <div class="tl-date">Oct 2022 – Apr 2023</div>
+        <div class="tl-co">Wipro · HP Managed Print Services</div>
+        <div class="tl-role">UI/UX Designer · Enterprise shipping dashboard (PMPS + CMPS)</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:#e8325a"></div>
+      <div class="tl-body">
+        <div class="tl-date">Nov 2021 – Jul 2022</div>
+        <div class="tl-co">Synechron · Citibank Spotlight Dashboard</div>
+        <div class="tl-role">UI/UX Designer · Internal employee portal with KPI cards & dark/light mode</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:#f97316"></div>
+      <div class="tl-body">
+        <div class="tl-date">Nov 2018 – Aug 2021</div>
+        <div class="tl-co">Atos · FedEx Office</div>
+        <div class="tl-role">UI Developer → UI/UX Designer · Product category UX + usability testing</div>
+      </div>
+    </div>
+  </div>
+
+  <a href="index.html" class="back-btn">← Back to Design Universe</a>
+</div>
+
+<script>
+var isDark = true;
+function toggleTheme() {
+  isDark = !isDark;
+  document.documentElement.setAttribute('data-theme', isDark ? '' : 'light');
+  document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
+  document.getElementById('themeLabel').textContent = isDark ? 'Dark' : 'Light';
+  // Update dashboard mock colors for light mode
+  updateMockTheme();
+}
+function updateMockTheme() {
+  var tables = document.querySelectorAll('.proj-table td, .proj-table th');
+  // CSS vars handle most of it, but status badges need refresh
+}
+</script>
+</body>
+</html>

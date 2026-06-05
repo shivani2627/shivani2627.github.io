@@ -169,7 +169,7 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
 
 <!-- NAV -->
 <nav id="nav">
-  <div class="nbrand"><div class="nld"></div>Shivani's Design World</div>
+  <div class="nbrand" onclick="goHome()" style="cursor:pointer;transition:opacity .2s" onmouseover="this.style.opacity='.7'" onmouseout="this.style.opacity='1'"><div class="nld"></div>Shivani's Design World</div>
   <div class="nlinks">
     <button class="nlink" onclick="openPanel('testi')">Clients</button>
     <button class="nlink" onclick="openPanel('freelance')">Freelance</button>
@@ -177,8 +177,9 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
     <button class="nlink" onclick="openAbout()" style="border-color:rgba(232,192,96,.25);color:rgba(232,192,96,.7)">About ✦</button>
   </div>
   <div style="display:flex;align-items:center;gap:10px">
-    <div class="nscore">Discovered: <b id="sc">0</b>/4</div>
+    <div class="nscore">Discovered: <b id="sc">0</b>/5</div>
     <a href="resume.pdf" target="_blank" class="nresume">Resume ↓</a>
+  <button id="sound-btn" onclick="toggleSound()" title="Mute sounds" style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s" onmouseover="this.style.background='rgba(255,255,255,.18)'" onmouseout="this.style.background='rgba(255,255,255,.08)'">🔊</button>
   </div>
 </nav>
 
@@ -189,8 +190,9 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
     <div class="pdot" id="p1"></div>
     <div class="pdot" id="p2"></div>
     <div class="pdot" id="p3"></div>
+    <div class="pdot" id="p4"></div>
   </div>
-  <div class="plbl" id="plbl">Find all 4 planets</div>
+  <div class="plbl" id="plbl">Find all 5 planets</div>
 </div>
 
 <!-- HINT ARROW -->
@@ -212,7 +214,7 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
   </div>
   <h1 class="sh">Shivani's<br><em>Design World</em></h1>
   <div class="sh-sub">✦ Let's Play to Explore Projects ✦</div>
-  <p class="sp">4 project planets orbit the Design Sun. Roll your ball across the cosmos to reach them — each one unlocks a real case study from Shivani's career.</p>
+  <p class="sp">5 project planets orbit the Design Sun. Roll your ball across the cosmos to reach them — each one unlocks a real case study from Shivani's career.</p>
   <div class="mechbox">
     <div class="micon">🪐</div>
     <div class="mtext">
@@ -229,8 +231,8 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
 <div class="scr off" id="complete-scr">
   <div style="animation:fup .6s ease both">
     <div style="font-size:9px;color:#e8c060;letter-spacing:.16em;text-transform:uppercase;margin-bottom:10px">🏆 Mission Complete</div>
-    <h1 class="sh" style="animation:none;opacity:1;margin-bottom:8px">All planets<br><em>discovered!</em></h1>
-    <p style="font-size:12px;color:rgba(238,240,248,.5);line-height:1.7;max-width:360px;margin:0 auto 16px">You've navigated the entire Design Universe.<br>Now let's build something great together.</p>
+    <h1 class="sh" style="animation:none;opacity:1;margin-bottom:8px">All planets<br><em>all 5 discovered!</em></h1>
+    <p style="font-size:12px;color:rgba(238,240,248,.5);line-height:1.7;max-width:360px;margin:0 auto 16px">You've navigated the entire Design Universe — 5 planets discovered!<br>Now let's build something great together.</p>
   </div>
   <div class="avail"><div class="avd"></div>Available · Frisco TX · Open to remote</div>
   <div class="complete-grid">
@@ -415,6 +417,306 @@ kbd{background:rgba(255,255,255,.1);padding:1px 5px;border-radius:3px;font-size:
 </div>
 
 <script>
+
+// ═══════════════════════════════════════════════════════
+//  COSMIC AUDIO ENGINE — Web Audio API
+//  Ball bounce · Planet unlock · Ambient universe hum
+// ═══════════════════════════════════════════════════════
+var AC = null; // AudioContext (lazy init on first interaction)
+var ambientNode = null, ambientGain = null;
+var ambientStarted = false;
+
+function getAC() {
+  if (!AC) {
+    AC = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (AC.state === 'suspended') AC.resume();
+  return AC;
+}
+
+// ── AMBIENT UNIVERSE HUM ─────────────────────────────
+// Layered drones: deep space rumble + ethereal shimmer
+function startAmbient() {
+  if (ambientStarted) return;
+  ambientStarted = true;
+  var ac = getAC();
+
+  // Master ambient gain
+  ambientGain = ac.createGain();
+  ambientGain.gain.setValueAtTime(0, ac.currentTime);
+  ambientGain.gain.linearRampToValueAtTime(0.18, ac.currentTime + 4);
+  ambientGain.connect(ac.destination);
+
+  // Layer 1 — deep sub rumble (40 Hz)
+  var osc1 = ac.createOscillator();
+  var g1 = ac.createGain();
+  osc1.type = 'sine';
+  osc1.frequency.value = 40;
+  g1.gain.value = 0.4;
+  osc1.connect(g1); g1.connect(ambientGain);
+  osc1.start();
+  // Slowly modulate the frequency (breathing universe)
+  osc1.frequency.setValueAtTime(40, ac.currentTime);
+  (function breathe1() {
+    if (!ambientStarted) return;
+    osc1.frequency.linearRampToValueAtTime(44, ac.currentTime + 8);
+    setTimeout(function(){
+      osc1.frequency.linearRampToValueAtTime(40, ac.currentTime + 8);
+      setTimeout(breathe1, 16000);
+    }, 8000);
+  })();
+
+  // Layer 2 — mid shimmer (180 Hz)
+  var osc2 = ac.createOscillator();
+  var g2 = ac.createGain();
+  osc2.type = 'sine';
+  osc2.frequency.value = 180;
+  g2.gain.value = 0.12;
+  osc2.connect(g2); g2.connect(ambientGain);
+  osc2.start();
+  (function breathe2() {
+    if (!ambientStarted) return;
+    osc2.frequency.linearRampToValueAtTime(195, ac.currentTime + 12);
+    osc2.frequency.linearRampToValueAtTime(175, ac.currentTime + 24);
+    setTimeout(breathe2, 24000);
+  })();
+
+  // Layer 3 — high ethereal shimmer (520 Hz + LFO)
+  var osc3 = ac.createOscillator();
+  var lfo = ac.createOscillator();
+  var lfoGain = ac.createGain();
+  var g3 = ac.createGain();
+  osc3.type = 'sine';
+  osc3.frequency.value = 520;
+  lfo.type = 'sine';
+  lfo.frequency.value = 0.08; // very slow wobble
+  lfoGain.gain.value = 12;
+  lfo.connect(lfoGain);
+  lfoGain.connect(osc3.frequency);
+  g3.gain.value = 0.06;
+  osc3.connect(g3); g3.connect(ambientGain);
+  lfo.start(); osc3.start();
+
+  // Layer 4 — subtle noise texture (cosmic dust)
+  var bufLen = ac.sampleRate * 2;
+  var buf = ac.createBuffer(1, bufLen, ac.sampleRate);
+  var data = buf.getChannelData(0);
+  for (var n = 0; n < bufLen; n++) data[n] = (Math.random() * 2 - 1) * 0.012;
+  var noise = ac.createBufferSource();
+  noise.buffer = buf; noise.loop = true;
+  var noiseFilter = ac.createBiquadFilter();
+  noiseFilter.type = 'bandpass';
+  noiseFilter.frequency.value = 200;
+  noiseFilter.Q.value = 0.3;
+  var noiseGain = ac.createGain();
+  noiseGain.gain.value = 0.25;
+  noise.connect(noiseFilter); noiseFilter.connect(noiseGain); noiseGain.connect(ambientGain);
+  noise.start();
+
+  // Layer 5 — occasional twinkling chime (random high pings)
+  function twinkle() {
+    if (!ambientStarted) return;
+    var ac2 = getAC();
+    var freqs = [880, 1047, 1175, 1319, 1568, 2093];
+    var f = freqs[Math.floor(Math.random() * freqs.length)];
+    var o = ac2.createOscillator();
+    var g = ac2.createGain();
+    o.type = 'sine';
+    o.frequency.value = f;
+    g.gain.setValueAtTime(0, ac2.currentTime);
+    g.gain.linearRampToValueAtTime(0.04, ac2.currentTime + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, ac2.currentTime + 1.8);
+    o.connect(g); g.connect(ac2.destination);
+    o.start(); o.stop(ac2.currentTime + 2);
+    // Next twinkle in 1.5–6 seconds
+    setTimeout(twinkle, 1500 + Math.random() * 4500);
+  }
+  setTimeout(twinkle, 2000);
+}
+
+// ── BALL BOUNCE SOUND ────────────────────────────────
+// Crisp "plink" — short sine burst with fast decay
+var lastBounceTime = 0;
+function playBounce(speed) {
+  var ac = getAC();
+  var now = ac.currentTime;
+  if (now - lastBounceTime < 0.06) return; // debounce
+  lastBounceTime = now;
+  var vol = Math.min(1, speed / 8) * 0.35;
+  if (vol < 0.02) return;
+
+  // Main ping
+  var osc = ac.createOscillator();
+  var gain = ac.createGain();
+  osc.type = 'sine';
+  // Pitch scales slightly with speed
+  osc.frequency.value = 320 + speed * 18;
+  osc.frequency.exponentialRampToValueAtTime(200, now + 0.08);
+  gain.gain.setValueAtTime(vol, now);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.18);
+  osc.connect(gain); gain.connect(ac.destination);
+  osc.start(now); osc.stop(now + 0.2);
+
+  // Harmonic overtone
+  var osc2 = ac.createOscillator();
+  var g2 = ac.createGain();
+  osc2.type = 'sine';
+  osc2.frequency.value = (320 + speed * 18) * 2.1;
+  g2.gain.setValueAtTime(vol * 0.3, now);
+  g2.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
+  osc2.connect(g2); g2.connect(ac.destination);
+  osc2.start(now); osc2.stop(now + 0.14);
+}
+
+// ── WALL BOUNCE ──────────────────────────────────────
+function playWallBounce(speed) {
+  var ac = getAC();
+  var now = ac.currentTime;
+  var vol = Math.min(1, speed / 8) * 0.22;
+  if (vol < 0.015) return;
+  var osc = ac.createOscillator();
+  var gain = ac.createGain();
+  osc.type = 'triangle';
+  osc.frequency.value = 180 + speed * 10;
+  gain.gain.setValueAtTime(vol, now);
+  gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+  osc.connect(gain); gain.connect(ac.destination);
+  osc.start(now); osc.stop(now + 0.16);
+}
+
+// ── PLANET APPROACH HUM ──────────────────────────────
+// Plays a rising harmonic when ball nears a planet
+var planetHumNode = null, planetHumGain = null;
+var currentHumFreq = 0;
+function updatePlanetHum(dist, planetCol) {
+  if (!active) { if (planetHumGain) planetHumGain.gain.setTargetAtTime(0, getAC().currentTime, 0.3); return; }
+  var ac = getAC();
+  var maxDist = 180, vol = dist < maxDist ? (1 - dist/maxDist) * 0.12 : 0;
+  if (!planetHumNode) {
+    planetHumNode = ac.createOscillator();
+    planetHumGain = ac.createGain();
+    var rev = ac.createConvolver();
+    planetHumNode.type = 'sine';
+    planetHumNode.frequency.value = 220;
+    planetHumGain.gain.value = 0;
+    planetHumNode.connect(planetHumGain); planetHumGain.connect(ac.destination);
+    planetHumNode.start();
+  }
+  planetHumGain.gain.setTargetAtTime(vol, ac.currentTime, 0.15);
+  // Pitch rises as you get closer
+  var targetFreq = 220 + (1 - Math.max(0, dist - 40) / maxDist) * 180;
+  planetHumNode.frequency.setTargetAtTime(targetFreq, ac.currentTime, 0.2);
+}
+
+// ── PLANET UNLOCK FANFARE ────────────────────────────
+// Ascending arpeggio + sparkle burst
+function playUnlock(planetId) {
+  var ac = getAC();
+  var now = ac.currentTime;
+  // Color-coded base frequencies
+  var bases = [261.63, 329.63, 392, 466.16, 523.25]; // C, E, G, Bb, C5
+  var base = bases[planetId] || 330;
+
+  // Arpeggio: 4 notes ascending
+  var arpFreqs = [base, base*1.25, base*1.5, base*2, base*2.5];
+  arpFreqs.forEach(function(freq, i) {
+    var o = ac.createOscillator();
+    var g = ac.createGain();
+    o.type = 'sine';
+    o.frequency.value = freq;
+    g.gain.setValueAtTime(0, now + i*0.1);
+    g.gain.linearRampToValueAtTime(0.22, now + i*0.1 + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + i*0.1 + 0.45);
+    o.connect(g); g.connect(ac.destination);
+    o.start(now + i*0.1); o.stop(now + i*0.1 + 0.5);
+  });
+
+  // Sparkle burst (random high pings)
+  for (var s = 0; s < 8; s++) {
+    (function(delay) {
+      setTimeout(function() {
+        var ac2 = getAC();
+        var t = ac2.currentTime;
+        var o = ac2.createOscillator();
+        var g = ac2.createGain();
+        o.type = 'sine';
+        o.frequency.value = 1200 + Math.random() * 1400;
+        g.gain.setValueAtTime(0.08, t);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+        o.connect(g); g.connect(ac2.destination);
+        o.start(t); o.stop(t + 0.35);
+      }, delay);
+    })(s * 60 + Math.random() * 40);
+  }
+
+  // Bass thump
+  var bass = ac.createOscillator();
+  var bassG = ac.createGain();
+  bass.type = 'sine';
+  bass.frequency.value = base * 0.5;
+  bass.frequency.exponentialRampToValueAtTime(base * 0.25, now + 0.4);
+  bassG.gain.setValueAtTime(0.3, now);
+  bassG.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+  bass.connect(bassG); bassG.connect(ac.destination);
+  bass.start(now); bass.stop(now + 0.55);
+}
+
+// ── MISSION COMPLETE JINGLE ──────────────────────────
+function playMissionComplete() {
+  var ac = getAC();
+  var now = ac.currentTime;
+  // Victory chord progression: C major → G major → A minor → F major
+  var chords = [
+    [261.63, 329.63, 392],   // C
+    [392, 493.88, 587.33],   // G
+    [440, 523.25, 659.26],   // A
+    [349.23, 440, 523.25]    // F
+  ];
+  chords.forEach(function(chord, ci) {
+    chord.forEach(function(freq) {
+      var o = ac.createOscillator();
+      var g = ac.createGain();
+      o.type = 'sine';
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0, now + ci * 0.35);
+      g.gain.linearRampToValueAtTime(0.12, now + ci * 0.35 + 0.04);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + ci * 0.35 + 0.6);
+      o.connect(g); g.connect(ac.destination);
+      o.start(now + ci * 0.35); o.stop(now + ci * 0.35 + 0.65);
+    });
+  });
+  // Final high sparkle sweep
+  setTimeout(function() {
+    for (var i = 0; i < 16; i++) {
+      (function(delay, freq) {
+        setTimeout(function() {
+          var ac2 = getAC();
+          var t = ac2.currentTime;
+          var o = ac2.createOscillator();
+          var g = ac2.createGain();
+          o.type = 'sine';
+          o.frequency.value = freq;
+          g.gain.setValueAtTime(0.06, t);
+          g.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
+          o.connect(g); g.connect(ac2.destination);
+          o.start(t); o.stop(t + 0.45);
+        }, delay);
+      })(i * 40, 800 + i * 120);
+    }
+  }, 1400);
+}
+
+// ── SOUND TOGGLE ────────────────────────────────────
+var soundOn = true;
+function toggleSound() {
+  soundOn = !soundOn;
+  if (ambientGain) {
+    ambientGain.gain.setTargetAtTime(soundOn ? 0.18 : 0, getAC().currentTime, 0.5);
+  }
+  document.getElementById('sound-btn').textContent = soundOn ? '🔊' : '🔇';
+  document.getElementById('sound-btn').title = soundOn ? 'Mute sounds' : 'Enable sounds';
+}
+
 var cv=document.getElementById('c'),ctx=cv.getContext('2d');
 var W,H;
 function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight;}
@@ -449,7 +751,14 @@ var PROJ=[
    title:'FedEx Office <em>Category UX</em>',
    desc:'Product category redesign — two PDP concepts tested with 10 usability participants. Better discoverability and pricing.',
    mets:[{v:'10',l:'Participants'},{v:'2',l:'PDP Concepts'},{v:'1st',l:'Pro Project'}],
-   tags:['E-Commerce','Usability','Responsive'],link:'fedex-shipping.html'}
+   tags:['E-Commerce','Usability','Responsive'],link:'fedex-shipping.html'},
+  {id:4,label:'Citi',col:'#e8325a',gcol:'rgba(232,50,90,',sz:42,
+   angle:1.3,orbitR:0.69,orbitSpd:0.000055,
+   ey:'Banking · Internal Dashboard',
+   title:'Citibank Spotlight <em>Dashboard</em>',
+   desc:"Internal employee portal for Citibank — all business modules in one place. KPI cards, project ownership tracking, dark/light mode, built on Citi's own design system.",
+   mets:[{v:'KPI',l:'Cards'},{v:'Dark/Light',l:'Mode'},{v:'Citi DS',l:'Design System'}],
+   tags:['Dashboard','Internal Tool','Accessibility','Design System'],link:'citibank-spotlight.html'}
 ];
 
 // ═══ STARS & PARTICLES ═══
@@ -462,7 +771,7 @@ for(var i=0;i<100;i++) parts.push({x:Math.random(),y:Math.random(),vx:(Math.rand
 var BALL={x:0,y:0,vx:0,vy:0,r:11,trail:[],glow:0};
 
 // ═══ GAME STATE ═══
-var active=false,T=0,unlocked=[false,false,false,false],score=0,cooldown=0,openId=-1,K={};
+var active=false,T=0,unlocked=[false,false,false,false,false],score=0,cooldown=0,openId=-1,K={};
 var dragging=false,dragX=0,dragY=0,lastDragX=0,lastDragY=0;
 
 function ppos(p,t){
@@ -483,6 +792,7 @@ document.addEventListener('touchend',function(){dragging=false;});
 
 function startGame(){
   document.getElementById('intro').classList.add('off');
+  if(soundOn) startAmbient();
   document.getElementById('progress').classList.add('show');
   document.getElementById('hud').classList.add('show');
   document.getElementById('minimap').classList.add('show');
@@ -494,13 +804,14 @@ function startGame(){
 
 function restart(){
   document.getElementById('complete-scr').classList.add('off');
+  if(soundOn && !ambientStarted) startAmbient();
   document.getElementById('progress').classList.add('show');
   document.getElementById('hud').classList.add('show');
   document.getElementById('minimap').classList.add('show');
-  unlocked=[false,false,false,false];score=0;
+  unlocked=[false,false,false,false,false];score=0;
   document.getElementById('sc').textContent='0';
-  document.getElementById('plbl').textContent='Find all 4 planets';
-  for(var i=0;i<4;i++) document.getElementById('p'+i).className='pdot'+(i===0?' active':'');
+  document.getElementById('plbl').textContent='Find all 5 planets';
+  for(var i=0;i<5;i++) document.getElementById('p'+i).className='pdot'+(i===0?' active':'');
   BALL.x=W/2;BALL.y=H/2+80;BALL.vx=1.5;BALL.vy=-1;BALL.trail=[];
   openId=-1;closeCard();active=true;
   document.getElementById('hint-arrow').style.display='flex';
@@ -516,15 +827,16 @@ function unlock(idx){
   if(unlocked[idx])return;
   unlocked[idx]=true;score++;
   document.getElementById('sc').textContent=score;
-  var names=['DESE','PROTECT','HP MPS','FedEx'];
-  showToast('✦ Unlocked: '+names[idx]+' — '+score+'/4 discovered');
-  for(var i=0;i<4;i++){
+  var names=['DESE','PROTECT','HP MPS','FedEx','Citi'];
+  showToast('✦ Unlocked: '+names[idx]+' — '+score+'/5 discovered');
+  if(soundOn) playUnlock(idx);
+  for(var i=0;i<5;i++){
     var d=document.getElementById('p'+i);
     if(i<score)d.className='pdot done';
     else if(i===score)d.className='pdot active';
     else d.className='pdot';
   }
-  if(score===4){
+  if(score===5){
     document.getElementById('plbl').textContent='Mission complete! 🏆';
     setTimeout(function(){
       active=false;closeCard();
@@ -533,9 +845,10 @@ function unlock(idx){
       document.getElementById('minimap').classList.remove('show');
       document.getElementById('hint-arrow').style.display='none';
       document.getElementById('complete-scr').classList.remove('off');
+      if(soundOn) playMissionComplete();
     },1800);
   } else {
-    var left=4-score;
+    var left=5-score;
     document.getElementById('plbl').textContent=left+' planet'+(left>1?'s':'')+' remaining';
   }
 }
@@ -560,6 +873,7 @@ function openCard(idx){
   card.style.left=cx2+'px';card.style.top=cy2+'px';
   card.classList.add('show');
   unlock(idx);cooldown=240;
+  if(soundOn) playBounce(Math.sqrt(BALL.vx*BALL.vx+BALL.vy*BALL.vy)*3);
   BALL.vx*=.1;BALL.vy*=.1;BALL.glow=60;
 }
 
@@ -602,6 +916,7 @@ function updateHints(){
   document.getElementById('ha-dist').textContent=bestDist<120?'CLOSE!':Math.round(bestDist/80)+' units';
   var pulse=bestDist<120?1:.55+.45*Math.sin(T*.12);
   arrow.style.opacity=pulse;
+  if(soundOn) updatePlanetHum(bestDist, best.col);
 
   // Mini map
   var mc=document.getElementById('mm'),mctx=mc.getContext('2d');
@@ -626,6 +941,32 @@ function updateHints(){
 }
 
 // ═══ MAIN LOOP ═══
+
+// ── GO HOME (click brand name) ──────────────────────
+function goHome() {
+  // Hide all screens, panels, modals
+  closeCard();
+  ['panel-testi','panel-freelance','panel-contact'].forEach(function(id){ document.getElementById(id).classList.remove('open'); });
+  document.getElementById('about-modal').classList.remove('open');
+  document.getElementById('complete-scr').classList.add('off');
+  document.getElementById('progress').classList.remove('show');
+  document.getElementById('hud').classList.remove('show');
+  document.getElementById('minimap').classList.remove('show');
+  document.getElementById('hint-arrow').style.display='none';
+  // Reset game
+  unlocked=[false,false,false,false,false]; score=0; active=false;
+  document.getElementById('sc').textContent='0';
+  document.getElementById('plbl').textContent='Find all 5 planets';
+  for(var i=0;i<5;i++) document.getElementById('p'+i).className='pdot'+(i===0?' active':'');
+  BALL.x=W/2; BALL.y=H/2+80; BALL.vx=0; BALL.vy=0; BALL.trail=[];
+  openId=-1;
+  // Stop ambient
+  if(ambientGain){ ambientGain.gain.setTargetAtTime(0, getAC().currentTime, 0.5); }
+  ambientStarted=false;
+  // Show intro
+  document.getElementById('intro').classList.remove('off');
+}
+
 function loop(){
   requestAnimationFrame(loop);T++;
   if(cooldown>0)cooldown--;
@@ -763,10 +1104,10 @@ function loop(){
     var spd2=Math.sqrt(BALL.vx*BALL.vx+BALL.vy*BALL.vy);
     if(spd2>9){BALL.vx=(BALL.vx/spd2)*9;BALL.vy=(BALL.vy/spd2)*9;}
     BALL.x+=BALL.vx;BALL.y+=BALL.vy;
-    if(BALL.x<BALL.r){BALL.x=BALL.r;BALL.vx=Math.abs(BALL.vx)*.85;}
-    if(BALL.x>W-BALL.r){BALL.x=W-BALL.r;BALL.vx=-Math.abs(BALL.vx)*.85;}
-    if(BALL.y<BALL.r+52){BALL.y=BALL.r+52;BALL.vy=Math.abs(BALL.vy)*.85;}
-    if(BALL.y>H-BALL.r){BALL.y=H-BALL.r;BALL.vy=-Math.abs(BALL.vy)*.85;}
+    if(BALL.x<BALL.r){BALL.x=BALL.r;var spd_w=Math.abs(BALL.vx);BALL.vx=spd_w*.85;if(soundOn)playWallBounce(spd_w);}
+    if(BALL.x>W-BALL.r){BALL.x=W-BALL.r;var spd_w2=Math.abs(BALL.vx);BALL.vx=-spd_w2*.85;if(soundOn)playWallBounce(spd_w2);}
+    if(BALL.y<BALL.r+52){BALL.y=BALL.r+52;var spd_w3=Math.abs(BALL.vy);BALL.vy=spd_w3*.85;if(soundOn)playWallBounce(spd_w3);}
+    if(BALL.y>H-BALL.r){BALL.y=H-BALL.r;var spd_w4=Math.abs(BALL.vy);BALL.vy=-spd_w4*.85;if(soundOn)playWallBounce(spd_w4);}
     BALL.trail.push({x:BALL.x,y:BALL.y});
     if(BALL.trail.length>40)BALL.trail.shift();
     for(var i=0;i<BALL.trail.length;i++){
