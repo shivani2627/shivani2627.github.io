@@ -9,13 +9,14 @@
 :root{
   --bg:#0a0e1a;--surface:#111828;--surface2:#18243a;--border:rgba(255,255,255,.08);
   --text:#eef0f8;--text2:rgba(238,240,248,.55);--text3:rgba(238,240,248,.28);
-  --citi:#e8325a;--citi2:rgba(232,50,90,;--gold:#e8c060;--blue:#0ea5e9;--green:#1bc47d;
+  --citi:#e8325a;--citi-soft:rgba(232,50,90,.1);--gold:#e8c060;--blue:#0ea5e9;--green:#1bc47d;
 }
 [data-theme="light"]{
   --bg:#f4f6fb;--surface:#fff;--surface2:#eef1f8;--border:rgba(0,0,0,.09);
   --text:#0a0e1a;--text2:rgba(10,14,26,.55);--text3:rgba(10,14,26,.3);
 }
-*{box-sizing:border-box;margin:0;padding:0;transition:background .3s,color .3s,border-color .3s}
+*{box-sizing:border-box;margin:0;padding:0}
+body,div,span,p,a,button,table,td,th{transition:background .3s,color .3s,border-color .3s}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden}
 
 /* NAV */
@@ -139,6 +140,7 @@ h1.hero-h em{font-style:italic;color:var(--citi)}
 .back-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;border:1px solid var(--border);background:var(--surface);font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--text2);cursor:pointer;text-decoration:none;transition:all .22s;margin-bottom:60px}
 .back-btn:hover{border-color:var(--citi);color:var(--citi);background:rgba(232,50,90,.06)}
 
+.ds-surface{background:var(--surface2);border:1px solid var(--border)}.ds-surface-l{color:var(--text3)}
 @media(max-width:768px){.stats-inner,.feat-grid,.kpi-grid{grid-template-columns:1fr 1fr}.ps-grid,.outcome-grid,.ds-components{grid-template-columns:1fr}.ds-grid{grid-template-columns:repeat(3,1fr)}.citi-nav-pills{display:none}}
 @media(max-width:480px){.stats-inner,.kpi-grid{grid-template-columns:1fr}}
 </style>
@@ -349,8 +351,8 @@ h1.hero-h em{font-style:italic;color:var(--citi)}
     <div class="ds-color" style="background:#e8325a"><div class="ds-color-l">Citi Red</div></div>
     <div class="ds-color" style="background:#0d3a8e"><div class="ds-color-l">Citi Navy</div></div>
     <div class="ds-color" style="background:#003B70"><div class="ds-color-l">Citi Dark</div></div>
-    <div class="ds-color" style="background:rgba(232,50,90,.12);border:1px solid rgba(232,50,90,.2)"><div class="ds-color-l" style="color:var(--text3)">Citi Tint</div></div>
-    <div class="ds-color" style="background:var(--surface2);border:1px solid var(--border)"><div class="ds-color-l" style="color:var(--text3)">Surface</div></div>
+    <div class="ds-color" style="background:rgba(232,50,90,.12);border:1px solid rgba(232,50,90,.2)"><div class="ds-color-l" style="color:rgba(238,240,248,.28)">Citi Tint</div></div>
+    <div class="ds-color" style="background:#18243a;border:1px solid rgba(255,255,255,.08)"><div class="ds-color-l" style="color:rgba(238,240,248,.28)">Surface</div></div>
     <div class="ds-color" style="background:#1bc47d"><div class="ds-color-l">Success</div></div>
   </div>
 
@@ -440,7 +442,7 @@ h1.hero-h em{font-style:italic;color:var(--citi)}
 var isDark = true;
 function toggleTheme() {
   isDark = !isDark;
-  document.documentElement.setAttribute('data-theme', isDark ? '' : 'light');
+  if(isDark){ document.documentElement.removeAttribute('data-theme'); } else { document.documentElement.setAttribute('data-theme','light'); }
   document.getElementById('themeIcon').textContent = isDark ? '🌙' : '☀️';
   document.getElementById('themeLabel').textContent = isDark ? 'Dark' : 'Light';
   // Update dashboard mock colors for light mode
