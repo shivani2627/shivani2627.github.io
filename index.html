@@ -12,6 +12,7 @@
   --ink:#0e0d0b;
   --ink-60:rgba(14,13,11,.6);
   --ink-35:rgba(14,13,11,.35);
+  --ink-50:rgba(14,13,11,.55);
   --ink-15:rgba(14,13,11,.15);
   --cream:#f5f0e8;
   --cream-dark:#ede6d9;
@@ -113,7 +114,14 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 }
 .hero-bg-img{
   position:absolute;inset:0;
-  background-image:url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=2000&q=80&auto=format&fit=crop');
+  background: linear-gradient(
+    160deg,
+    #e8dcc8 0%,
+    #d4c4a0 25%,
+    #c8b88a 50%,
+    #bca870 70%,
+    #d4c098 100%
+  );
   background-size:cover;background-position:center 30%;
   transform-origin:center;
   will-change:transform;
@@ -164,7 +172,7 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 }
 .hero-scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2.5s ease-in-out infinite}
 @keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.7);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
-.hero-scroll-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.22em;color:var(--ink-35);text-transform:uppercase;writing-mode:vertical-rl}
+.hero-scroll-label{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.22em;color:var(--ink-50);text-transform:uppercase;writing-mode:vertical-rl}
 
 /* ─────────────────────────────────────────
    SECTION 2 — STATEMENT
@@ -205,7 +213,7 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
   font-weight:300;letter-spacing:-.04em;color:var(--ink);line-height:1;display:block;
 }
 .stat-n em{font-style:italic;color:var(--gold)}
-.stat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-35);margin-top:6px;display:block}
+.stat-l{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-50);margin-top:6px;display:block}
 
 /* ─────────────────────────────────────────
    SECTION 3 — WORK
@@ -214,7 +222,7 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 .work-header{max-width:1100px;margin:0 auto 72px;display:flex;align-items:flex-end;justify-content:space-between;gap:32px;flex-wrap:wrap}
 .work-title{font-family:'Cormorant Garamond',serif;font-size:clamp(40px,5vw,64px);font-weight:300;letter-spacing:-.025em;line-height:1}
 .work-title em{font-style:italic;color:var(--gold)}
-.work-count{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-35)}
+.work-count{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-50)}
 .proj-list{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:2px}
 
 /* Project row */
@@ -310,7 +318,7 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 .about-facts{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
 .fact{padding:18px 20px;border:1px solid var(--border);border-radius:12px;background:var(--warm-white);transition:all .3s}
 .fact:hover{border-color:var(--gold-mid);background:var(--gold-light)}
-.fact-key{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-35);margin-bottom:4px}
+.fact-key{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-50);margin-bottom:4px}
 .fact-val{font-size:13px;color:var(--ink);font-weight:500}
 @media(max-width:900px){
   #about{grid-template-columns:1fr}
@@ -338,9 +346,9 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 .tl-item::before{content:'';position:absolute;left:-4px;top:42px;width:9px;height:9px;border-radius:50%;border:1px solid var(--gold);background:var(--cream);transition:background .3s}
 .tl-item:hover::before{background:var(--gold)}
 .tl-item:hover{background:linear-gradient(to right,var(--gold-light),transparent);border-radius:0 12px 12px 0}
-.tl-date{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--ink-35);padding-top:4px}
+.tl-date{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.06em;color:var(--ink-50);padding-top:4px}
 .tl-co{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;color:var(--ink);margin-bottom:4px}
-.tl-role{font-size:13px;color:var(--ink-60);font-weight:300}
+.tl-role{font-size:13.5px;color:var(--ink-60);font-weight:400}
 @media(max-width:600px){
   .tl-item{grid-template-columns:1fr;gap:8px;padding-left:28px}
 }
@@ -379,7 +387,13 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 }
 .coda-bg{
   position:absolute;inset:0;
-  background-image:url('https://images.unsplash.com/photo-1517479149777-5f3b1511d5ad?w=2000&q=80&auto=format&fit=crop&fp-y=0.6');
+  background: linear-gradient(
+    140deg,
+    #c8b880 0%,
+    #b8a060 30%,
+    #a89050 60%,
+    #c4b070 100%
+  );
   background-size:cover;background-position:center 40%;
   will-change:transform;
 }
@@ -403,7 +417,7 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 .contact-card:hover{border-color:var(--gold-mid);background:var(--gold-light);transform:translateY(-3px);box-shadow:0 12px 40px rgba(184,150,90,.15)}
 .contact-card:focus{outline:2px solid var(--gold);outline-offset:3px}
 .cc-icon{font-size:17px;margin-bottom:7px}
-.cc-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-35);margin-bottom:3px}
+.cc-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-50);margin-bottom:3px}
 .cc-v{font-size:12px;color:var(--ink);font-weight:500}
 .coda-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .cta-primary{
@@ -424,9 +438,9 @@ body.cursor-hover #cursor-ring{width:52px;height:52px;border-color:var(--gold-mi
 
 /* ── FOOTER ── */
 footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--cream)}
-.footer-text{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-35);letter-spacing:.06em}
+.footer-text{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-50);letter-spacing:.06em}
 .footer-links{display:flex;gap:20px}
-.footer-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-35);text-decoration:none;letter-spacing:.06em;transition:color .2s}
+.footer-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--ink-50);text-decoration:none;letter-spacing:.06em;transition:color .2s}
 .footer-link:hover{color:var(--gold)}
 @media(max-width:600px){footer{flex-direction:column;gap:12px;padding:24px;text-align:center}}
 
@@ -460,7 +474,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 .p-tsrc{display:flex;align-items:center;gap:9px;padding-top:10px;border-top:1px solid var(--border)}
 .p-tav{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;color:#fff;flex-shrink:0;font-family:'DM Mono',monospace;font-weight:700}
 .p-tnm{font-size:11.5px;font-weight:600;color:var(--ink)}
-.p-trl{font-size:9px;color:var(--ink-35);margin-top:1px}
+.p-trl{font-size:9px;color:var(--ink-50);margin-top:1px}
 /* panel freelance */
 .fl-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
 .fl-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--cream);cursor:pointer;transition:all .25s;text-decoration:none;display:block;color:inherit}
@@ -468,7 +482,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 .fl-card:focus{outline:2px solid var(--gold);outline-offset:3px}
 .fl-vis{height:78px;display:flex;align-items:center;justify-content:center}
 .fl-body{padding:10px 12px}
-.fl-cat{font-size:8px;color:var(--ink-35);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;font-family:'DM Mono',monospace}
+.fl-cat{font-size:8px;color:var(--ink-50);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px;font-family:'DM Mono',monospace}
 .fl-name{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:400;color:var(--ink)}
 .fl-name em{font-style:italic}
 /* panel contact */
@@ -477,7 +491,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 .p-cl:hover{border-color:var(--gold-mid);background:var(--gold-light);transform:translateY(-2px)}
 .p-cl:focus{outline:2px solid var(--gold);outline-offset:3px}
 .p-ci{font-size:15px;margin-bottom:5px}
-.p-cll{font-family:'DM Mono',monospace;font-size:8px;color:var(--ink-35);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
+.p-cll{font-family:'DM Mono',monospace;font-size:8px;color:var(--ink-50);letter-spacing:.1em;text-transform:uppercase;margin-bottom:2px}
 .p-cv{font-size:12px;color:var(--ink);font-weight:500}
 /* about modal */
 #about-modal{position:fixed;inset:0;z-index:700;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .35s}
@@ -492,11 +506,11 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 .about-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;background:var(--gold-light);border:1px solid var(--gold-mid);font-size:9px;color:var(--gold);letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px;font-family:'DM Mono',monospace}
 .about-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;letter-spacing:-.02em;color:var(--ink);margin-bottom:4px}
 .about-name em{font-style:italic;color:var(--gold)}
-.about-sub{font-size:12px;color:var(--ink-35);margin-bottom:20px}
+.about-sub{font-size:12px;color:var(--ink-50);margin-bottom:20px}
 .a-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px}
 .a-stat{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:12px 8px;text-align:center}
 .a-stat-v{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:400;color:var(--gold);line-height:1;letter-spacing:-.02em}
-.a-stat-l{font-family:'DM Mono',monospace;font-size:8px;color:var(--ink-35);letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
+.a-stat-l{font-family:'DM Mono',monospace;font-size:8px;color:var(--ink-50);letter-spacing:.06em;margin-top:3px;text-transform:uppercase}
 .about-bio-text{font-size:13px;color:var(--ink-60);line-height:1.82;margin-bottom:16px;font-weight:300}
 .about-bio-text strong{color:var(--gold);font-weight:500}
 .about-skills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px}
@@ -507,7 +521,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 .a-tl:last-child::before{display:none}
 .a-tl-dot{width:18px;height:18px;border-radius:50%;flex-shrink:0;margin-top:2px;border:1.5px solid var(--gold);background:var(--warm-white);display:flex;align-items:center;justify-content:center}
 .a-tl-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--gold)}
-.a-tl-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-35);margin-bottom:1px}
+.a-tl-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--ink-50);margin-bottom:1px}
 .a-tl-co{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:400;color:var(--ink)}
 .a-tl-role{font-size:11px;color:var(--ink-60)}
 .about-egg{background:var(--gold-light);border:1px solid var(--gold-mid);border-radius:10px;padding:13px;font-size:12px;color:var(--ink-60);line-height:1.7}
@@ -660,6 +674,175 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
   .about-facts-grid { grid-template-columns: 1fr; }
 }
 
+
+/* ── HERO PROOF STRIP ── */
+.hero-proof {
+  display: flex; align-items: center; gap: 0;
+  border: 1px solid rgba(14,13,11,.12); border-radius: 14px;
+  overflow: hidden; background: rgba(250,248,244,.7);
+  backdrop-filter: blur(12px);
+  margin-top: 28px; opacity: 0; transform: translateY(16px);
+  max-width: 640px;
+}
+.hero-proof-item {
+  flex: 1; padding: 14px 18px; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; gap: 3px;
+  transition: background .25s; cursor: pointer;
+}
+.hero-proof-item:hover { background: var(--gold-light); }
+.hero-proof-item:focus { outline: 2px solid var(--gold); outline-offset: -2px; }
+.hp-num {
+  font-family: 'Cormorant Garamond', serif; font-size: clamp(18px,2vw,24px);
+  font-weight: 400; letter-spacing: -.02em; color: var(--ink); line-height: 1;
+}
+.hp-label {
+  font-family: 'DM Mono', monospace; font-size: 8.5px; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--ink-50); line-height: 1.3;
+}
+.hero-proof-div {
+  width: 1px; height: 40px; background: rgba(14,13,11,.1); flex-shrink: 0; align-self: center;
+}
+
+/* ── HERO CTAS WRAP ── */
+.hero-ctas-wrap {
+  display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px;
+  opacity: 0; transform: translateY(16px);
+}
+.hero-btn-primary {
+  padding: 13px 28px; background: var(--ink); color: var(--cream);
+  border-radius: 100px; font-size: 13px; font-weight: 500;
+  text-decoration: none; transition: all .35s var(--ease); letter-spacing: .02em;
+  display: inline-block; border: none; cursor: pointer;
+}
+.hero-btn-primary:hover { background: var(--gold); transform: translateY(-2px); }
+.hero-btn-primary:focus { outline: 2px solid var(--gold); outline-offset: 3px; }
+.hero-btn-outline {
+  padding: 13px 24px; background: transparent; color: var(--ink);
+  border-radius: 100px; font-size: 13px; font-weight: 500;
+  text-decoration: none; border: 1px solid rgba(14,13,11,.2);
+  transition: all .3s var(--ease); display: inline-block;
+}
+.hero-btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+.hero-btn-outline:focus { outline: 2px solid var(--gold); outline-offset: 3px; }
+.hero-btn-ghost {
+  padding: 13px 20px; background: transparent; color: rgba(14,13,11,.5);
+  border-radius: 100px; font-size: 13px; text-decoration: none;
+  border: 1px solid transparent; transition: all .25s; display: inline-block;
+}
+.hero-btn-ghost:hover { color: var(--ink); border-color: rgba(14,13,11,.15); }
+.hero-btn-ghost:focus { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+/* ── PROCESS SECTION ── */
+#process {
+  padding: 100px 0; background: var(--warm-white);
+  border-top: 1px solid var(--border);
+}
+.process-inner { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.process-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1px; background: var(--border);
+  border-radius: 20px; overflow: hidden; margin-top: 48px;
+}
+.process-step {
+  background: var(--warm-white); padding: 32px 28px;
+  transition: background .3s var(--ease);
+}
+.process-step:hover { background: var(--gold-light); }
+.process-num {
+  font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: .14em;
+  color: var(--gold); margin-bottom: 16px; display: block;
+}
+.process-step-title {
+  font-family: 'Cormorant Garamond', serif; font-size: 22px;
+  font-weight: 400; letter-spacing: -.01em; color: var(--ink);
+  margin-bottom: 10px; line-height: 1.1;
+}
+.process-step-title em { font-style: italic; color: var(--gold); }
+.process-step-desc {
+  font-size: 13px; color: var(--ink-60); line-height: 1.72; font-weight: 300;
+}
+.process-tools {
+  display: flex; flex-wrap: wrap; gap: 5px; margin-top: 14px;
+}
+.process-tool {
+  padding: 3px 9px; border: 1px solid var(--border); border-radius: 100px;
+  font-family: 'DM Mono', monospace; font-size: 9px; color: var(--ink-50);
+  background: var(--cream);
+}
+@media(max-width: 900px) { .process-grid { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 600px) { .process-grid { grid-template-columns: 1fr; } .process-inner { padding: 0 24px; } }
+
+/* ── PROJ-DESC better readability ── */
+.proj-desc {
+  font-size: 14px !important;
+  color: rgba(14,13,11,.62) !important;
+  line-height: 1.78 !important;
+}
+
+/* ── HERO proof animation ── */
+@media(max-width: 600px) {
+  .hero-proof { flex-wrap: wrap; }
+  .hero-proof-div { display: none; }
+  .hero-proof-item { min-width: 45%; border-top: 1px solid rgba(14,13,11,.08); }
+  .hero-ctas-wrap { flex-direction: column; align-items: flex-start; }
+}
+
+
+/* ── PROCESS SECTION EXTRA ── */
+.process-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 300; letter-spacing: -.03em; line-height: 1.05;
+  color: var(--ink); margin-bottom: 20px;
+}
+.process-title em { font-style: italic; color: var(--gold); }
+.process-intro {
+  font-size: 15px; color: var(--ink-60); line-height: 1.82;
+  font-weight: 300; max-width: 640px; margin-bottom: 52px;
+}
+
+
+/* ── STATEMENT METHOD ROW ── */
+.stmt-method {
+  display: flex; gap: 32px; margin-top: 36px; flex-wrap: wrap;
+}
+.stmt-method-item {
+  display: flex; align-items: flex-start; gap: 10px; flex: 1; min-width: 180px;
+}
+.smi-icon { color: var(--gold); font-size: 14px; margin-top: 3px; flex-shrink: 0; }
+.smi-label {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500;
+  color: var(--ink); letter-spacing: .06em; display: block; margin-bottom: 2px;
+}
+.smi-desc { font-size: 12px; color: var(--ink-60); font-weight: 300; display: block; line-height: 1.5; }
+
+
+.tl-detail {
+  font-size: 12.5px; color: var(--ink-60); line-height: 1.65;
+  font-weight: 300; margin-top: 5px; max-width: 560px;
+}
+
+
+.voice-context {
+  font-size: 14px; color: var(--ink-60); font-weight: 300;
+  margin-bottom: 40px; margin-top: -28px;
+  font-style: italic; font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; line-height: 1.6; max-width: 560px;
+}
+
+
+/* ── TIMELINE DETAIL ── */
+.tl-detail {
+  font-size: 12.5px; color: var(--ink-60); line-height: 1.68;
+  font-weight: 300; margin-top: 6px; max-width: 520px;
+}
+/* ── PROCESS section base ── */
+#process {
+  padding: 100px 0; background: var(--warm-white);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
 </style>
 </head>
 <body>
@@ -682,12 +865,13 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
   <a href="#" id="nav-brand" class="nav-name" aria-label="Shivani Harode — top of page">Shivani Harode</a>
   <div class="nav-links">
     <a href="#about" class="nav-link">About</a>
+    <a href="#process" class="nav-link">Process</a>
     <a href="#work" class="nav-link">Work</a>
     <a href="#journey" class="nav-link">Journey</a>
-    <button class="nav-link" onclick="openPanel('testi')" style="cursor:pointer">Clients</button>
-    <button class="nav-link" onclick="openPanel('freelance')" style="cursor:pointer">Freelance</button>
-    <button class="nav-link" onclick="openPanel('contact')" style="cursor:pointer">Contact</button>
-    <button class="nav-link" onclick="openAbout()" style="cursor:pointer;color:var(--gold)">About ✦</button>
+    <button type="button" class="nav-link" onclick="openPanel('testi')">Clients</button>
+    <button type="button" class="nav-link" onclick="openPanel('freelance')">Freelance</button>
+    <button type="button" class="nav-link" onclick="openPanel('contact')">Contact</button>
+    <button type="button" class="nav-link" onclick="openAbout()" style="color:var(--gold)">About ✦</button>
   </div>
   <a href="resume.pdf" target="_blank" rel="noopener" class="nav-resume" aria-label="Download resume">Resume</a>
 </nav>
@@ -707,7 +891,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       <span class="hero-name-line" id="hero-line-2"><em>Harode</em></span>
     </h1>
     <p class="hero-sub" id="hero-sub">
-      Designing enterprise experiences that actually work
+      8 years solving the problems most designers skip
     </p>
     <div class="hero-meta" id="hero-meta">
       <span class="hero-meta-item">Government · Banking · Logistics</span>
@@ -715,6 +899,32 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       <span class="hero-meta-item">Available for new roles</span>
       <span class="hero-meta-sep" aria-hidden="true"></span>
       <span class="hero-meta-item">Remote-friendly</span>
+    </div>
+    <div class="hero-proof" id="hero-proof" aria-label="Key outcomes">
+      <a href="#work" class="hero-proof-item">
+        <span class="hp-num">40–50%</span>
+        <span class="hp-label">task time reduction · DESE</span>
+      </a>
+      <span class="hero-proof-div" aria-hidden="true"></span>
+      <a href="#work" class="hero-proof-item">
+        <span class="hp-num">50+</span>
+        <span class="hp-label">screens shipped · PROTECT</span>
+      </a>
+      <span class="hero-proof-div" aria-hidden="true"></span>
+      <a href="#work" class="hero-proof-item">
+        <span class="hp-num">+36</span>
+        <span class="hp-label">NPS lift · DESE</span>
+      </a>
+      <span class="hero-proof-div" aria-hidden="true"></span>
+      <a href="#work" class="hero-proof-item">
+        <span class="hp-num">8+</span>
+        <span class="hp-label">years enterprise UX</span>
+      </a>
+    </div>
+    <div class="hero-ctas-wrap" id="hero-ctas-wrap">
+      <a href="#work" class="hero-btn-primary" role="button">View Case Studies</a>
+      <a href="resume.pdf" target="_blank" rel="noopener" class="hero-btn-outline">Download Resume ↓</a>
+      <a href="#about" class="hero-btn-ghost">My Story</a>
     </div>
   </div>
   <div class="hero-scroll" id="hero-scroll" aria-hidden="true">
@@ -729,10 +939,10 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
   <div class="statement-inner">
     <div class="statement-label">Design Philosophy</div>
     <h2 class="statement-text">
-      <span class="line"><span class="line-inner">I design for the</span></span>
-      <span class="line"><span class="line-inner"><em>complex middle</em> —</span></span>
-      <span class="line"><span class="line-inner">where constraints are real</span></span>
-      <span class="line"><span class="line-inner">and users are not personas.</span></span>
+      <span class="line"><span class="line-inner">I lead UX for systems</span></span>
+      <span class="line"><span class="line-inner">where <em>failure has real cost</em> —</span></span>
+      <span class="line"><span class="line-inner">government, banking, enterprise —</span></span>
+      <span class="line"><span class="line-inner">and I ship work that holds up.</span></span>
     </h2>
     <div class="stats-row" role="list" aria-label="Career highlights">
       <div class="stat-col" role="listitem"><span class="stat-n" data-count="8" data-suffix="+">8+</span><span class="stat-l">Years experience</span></div>
@@ -743,7 +953,84 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
   </div>
 </section>
 
-<!-- ══ WORK ══ -->
+<!-- ══ HOW I WORK ══ -->
+<section id="process" aria-label="Design process and methodology">
+  <div class="process-inner">
+    <div class="statement-label">How I Work</div>
+    <h2 class="process-title">From <em>ambiguity</em><br>to shipped product</h2>
+    <p class="process-intro">Senior UX isn't about making things pretty. It's about making the right call under constraint, bringing stakeholders with you, and delivering work that earns trust — from users, from engineering, from business. Here's how I approach it.</p>
+
+    <div class="process-grid" role="list">
+
+      <div class="process-step reveal" role="listitem">
+        <span class="process-num" aria-hidden="true">01</span>
+        <div class="process-step-title">Discover &amp;<br><em>Frame</em></div>
+        <p class="process-step-desc">Before designing, I need to understand the actual problem — not the stated one. I run stakeholder interviews, contextual inquiry, heuristic audits, and competitive analysis to build a shared understanding of what's broken and why. Most redesigns fail because they solve the symptom. I find the system.</p>
+        <div class="process-tools">
+          <span class="process-tool">Stakeholder interviews</span>
+          <span class="process-tool">Contextual inquiry</span>
+          <span class="process-tool">Heuristic audit</span>
+          <span class="process-tool">Journey mapping</span>
+        </div>
+      </div>
+
+      <div class="process-step reveal reveal-delay-1" role="listitem">
+        <span class="process-num" aria-hidden="true">02</span>
+        <div class="process-step-title">Research &amp;<br><em>Synthesise</em></div>
+        <p class="process-step-desc">I turn raw research into actionable design direction. User interviews, usability testing, and synthesis sessions produce not just insights but <em>hypotheses</em> — testable assumptions about what a better experience looks like. Every design decision maps back to evidence, not instinct.</p>
+        <div class="process-tools">
+          <span class="process-tool">User interviews</span>
+          <span class="process-tool">Usability testing</span>
+          <span class="process-tool">Affinity mapping</span>
+          <span class="process-tool">FigJam synthesis</span>
+        </div>
+      </div>
+
+      <div class="process-step reveal reveal-delay-2" role="listitem">
+        <span class="process-num" aria-hidden="true">03</span>
+        <div class="process-step-title">Design &amp;<br><em>Validate</em></div>
+        <p class="process-step-desc">I design in layers — IA and flows first, lo-fi wireframes to validate structure, hi-fi to validate visual hierarchy and interaction patterns. I prototype in Figma or Axure RP, test with real users, and iterate fast. I've learned that the most important design decision is often which option <em>not</em> to pursue.</p>
+        <div class="process-tools">
+          <span class="process-tool">Wireframing</span>
+          <span class="process-tool">Figma prototypes</span>
+          <span class="process-tool">Axure RP 10</span>
+          <span class="process-tool">A/B concept testing</span>
+        </div>
+      </div>
+
+      <div class="process-step reveal reveal-delay-3" role="listitem">
+        <span class="process-num" aria-hidden="true">04</span>
+        <div class="process-step-title">Build &amp;<br><em>Ship</em></div>
+        <p class="process-step-desc">My front-end background means I work directly with engineering — not just hand off and hope. I write detailed specs, annotate edge cases, review builds in staging, and push back when implementation diverges from intent. The design that ships is the one that matters. Everything before it is just a hypothesis.</p>
+        <div class="process-tools">
+          <span class="process-tool">Design systems</span>
+          <span class="process-tool">Dev handoff</span>
+          <span class="process-tool">WCAG 2.1 AA</span>
+          <span class="process-tool">React review</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+    <div class="stmt-method" aria-label="Research and process approach">
+      <div class="stmt-method-item">
+        <span class="smi-icon" aria-hidden="true">◎</span>
+        <div><span class="smi-label">Research-led</span><span class="smi-desc">Every major decision backed by user evidence</span></div>
+      </div>
+      <div class="stmt-method-item">
+        <span class="smi-icon" aria-hidden="true">◎</span>
+        <div><span class="smi-label">Systems thinker</span><span class="smi-desc">Design components, not just screens</span></div>
+      </div>
+      <div class="stmt-method-item">
+        <span class="smi-icon" aria-hidden="true">◎</span>
+        <div><span class="smi-label">Shipped, not specced</span><span class="smi-desc">Dev background means my work survives handoff</span></div>
+      </div>
+    </div>
+
+</section>
+
+
 <section id="work" aria-label="Case studies">
   <div class="work-header">
     <div>
@@ -760,7 +1047,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       <div class="proj-main">
         <div class="proj-lead-badge" aria-label="Lead Designer — sole UX, end-to-end ownership">Lead Designer · Sole UX — End-to-End</div>
         <div class="proj-name">Missouri DESE <em>School Finance</em></div>
-        <p class="proj-desc">Finance staff at 500+ districts used a 2003-era system — 4+ hours per submission, no error guidance. I rebuilt it from discovery to React handoff, interviewing 12 finance directors across rural and urban districts.</p>
+        <p class="proj-desc">Finance staff at 500+ districts used a 2003-era system — 4+ hours per submission, no error guidance, no save. I led discovery to React handoff as the sole designer. Research with 12 finance directors revealed the core issue wasn't the UI — it was the submission mental model. Districts thought in fiscal years; the system was structured by data field type. Restructuring IA around that insight drove the 40–50% time reduction.</p>
         <div class="proj-tags">
           <span class="proj-tag">Government</span>
           <span class="proj-tag">Public Sector</span>
@@ -791,7 +1078,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       <div class="proj-main">
         <div class="proj-lead-badge" aria-label="Lead Designer — sole UX, end-to-end ownership">Lead Designer · Sole UX — End-to-End</div>
         <div class="proj-name">PROTECT <em>Case Management</em></div>
-        <p class="proj-desc">Wisconsin DAs managed active cases in spreadsheets. I designed their first dedicated platform — embedded 1.5 years, delivering brand identity, 50+ screens across web and desktop, eFiling portal, and XCQ querying.</p>
+        <p class="proj-desc">Wisconsin DAs managed active cases in spreadsheets and paper files. Embedded as sole designer for 1.5 years, I ran workshops with DAs, investigators, and IT stakeholders to map the case lifecycle before designing a single screen. Key insight: desktop and web users had fundamentally different interaction patterns — solving that split drove the entire IA. Delivered brand identity, 50+ screens, eFiling, and XCQ querying.</p>
         <div class="proj-tags">
           <span class="proj-tag">Case Management</span>
           <span class="proj-tag">District Attorneys</span>
@@ -820,7 +1107,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       <div class="proj-num" aria-hidden="true">03</div>
       <div class="proj-main">
         <div class="proj-name">HP MPS <em>Shipping Dashboard</em></div>
-        <p class="proj-desc">HP's managed print team had no real-time visibility across 247 enterprise devices. I built two linked platforms — PMPS for sales pipeline and CMPS for contract management.</p>
+        <p class="proj-desc">HP's managed print team had no real-time visibility across 247 devices. The constraint: two completely different user types (sales reps vs. contract managers) needed the same data, differently prioritised. Rather than one bloated dashboard, I designed two linked platforms — PMPS for pipeline, CMPS for contracts — with shared data architecture. Taught myself Axure RP 10 mid-project to meet engineering's prototyping requirements.</p>
         <div class="proj-tags">
           <span class="proj-tag">Enterprise</span>
           <span class="proj-tag">Shipping</span>
@@ -848,7 +1135,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       <div class="proj-num" aria-hidden="true">04</div>
       <div class="proj-main">
         <div class="proj-name">Citibank <em>Spotlight</em></div>
-        <p class="proj-desc">Six Citi teams tracked projects across four separate tools. I restructured IA around module ownership and consolidated everything into one portal built on Citi's own design system — dark and light modes, both WCAG AA.</p>
+        <p class="proj-desc">Six Citi teams across four tools, no shared view of who owned what. Discovery revealed the real problem: teams organised work by project type, but accountability broke down at the module level. Restructuring IA around module ownership — not project category — resolved the "who owns this?" loop. Built on Citi's existing design system; zero new components, full brand compliance, WCAG AA in both themes.</p>
         <div class="proj-tags">
           <span class="proj-tag">Banking</span>
           <span class="proj-tag">Internal Dashboard</span>
@@ -876,7 +1163,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       <div class="proj-num" aria-hidden="true">05</div>
       <div class="proj-main">
         <div class="proj-name">FedEx Office <em>Category UX</em></div>
-        <p class="proj-desc">High drop-off on product category pages. I developed two competing PDP concepts and ran moderated usability sessions with 10 participants — Concept B won for reasons we didn't expect.</p>
+        <p class="proj-desc">High drop-off on product category pages despite correct product discovery. Heuristic audit pointed to pricing confusion — we designed two competing PDP concepts around different hierarchy assumptions. Moderated testing with 10 users showed Concept B won, but not for the reason we designed it. Users ignored the pricing widget we'd prioritised; they made purchase decisions on the service comparison table. That finding reshaped the final design and taught me that the insight is rarely in the assumption.</p>
         <div class="proj-tags">
           <span class="proj-tag">E-Commerce</span>
           <span class="proj-tag">Usability Testing</span>
@@ -1038,7 +1325,9 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
       </div>
       <div class="tl-item" role="listitem">
         <div class="tl-date">Nov 2018 – Aug 2021</div>
-        <div><div class="tl-co">Atos · FedEx Office</div><div class="tl-role">UI Developer → UI/UX Designer · Category UX + usability testing</div></div>
+        <div><div class="tl-co">Atos · FedEx Office</div>
+          <div class="tl-role">UI Developer → UI/UX Designer · Career pivot to UX</div>
+          <div class="tl-detail">Started in front-end code, transitioned into UX. Led product category redesign with moderated usability testing (10 participants, A/B concepts). 3yr engagement.</div></div>
       </div>
     </div>
   </div>
@@ -1047,7 +1336,10 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 <!-- ══ TESTIMONIALS ══ -->
 <section id="voice" aria-label="Client testimonials">
   <div class="voice-inner">
-    <div class="voice-label">What clients say</div>
+    <div class="voice-label">Client Voices</div>
+    <div class="voice-context">
+      Real words from real collaborators. I work long-term and embedded — these aren't project testimonials, they're relationship reviews.
+    </div>
     <div class="testi-scroll">
       <div class="testi-item">
         <span class="testi-quote-mark" aria-hidden="true">"</span>
@@ -1086,7 +1378,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
     <h2 class="coda-heading">
       Let's build<br><em>something real</em>
     </h2>
-    <p class="coda-sub">Senior UX Designer open to full-time roles, contracts, and meaningful work. Especially excited about complexity that most designers walk away from.</p>
+    <p class="coda-sub">Senior UI/UX Designer with 8+ years in government, banking, and enterprise. If you're looking for someone who runs discovery, builds systems, navigates stakeholders, and ships — let's talk.</p>
     <div class="contact-grid">
       <a href="mailto:Shivaniharode@gmail.com" class="contact-card" aria-label="Email Shivani">
         <div class="cc-icon">✉️</div><div class="cc-l">Email</div><div class="cc-v">Shivaniharode@gmail.com</div>
@@ -1121,7 +1413,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 <div class="panel" id="panel-testi" role="dialog" aria-modal="true" aria-label="Client testimonials">
   <div class="panel-bg" onclick="closePanel('testi')" aria-hidden="true"></div>
   <div class="panel-body">
-    <button class="panel-x" onclick="closePanel('testi')" aria-label="Close">✕</button>
+    <button type="button" class="panel-x" onclick="closePanel('testi')" aria-label="Close">✕</button>
     <div class="panel-ey">Client Voices</div>
     <div class="panel-title">What <em>clients say</em></div>
     <div class="p-tcard"><div class="p-tq">Working with Shivani on PROTECT has been a rewarding experience. Over 1.5 years she delivered thoughtful, user-centered design across 50+ screens. She rose to every challenge with professionalism and curiosity.</div><div class="p-tsrc"><div class="p-tav" style="background:#3C3489">LF</div><div><div class="p-tnm">Lisa Fangmann</div><div class="p-trl">Business Analyst · DAIT Wisconsin</div></div></div></div>
@@ -1133,7 +1425,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 <div class="panel" id="panel-freelance" role="dialog" aria-modal="true" aria-label="Freelance work">
   <div class="panel-bg" onclick="closePanel('freelance')" aria-hidden="true"></div>
   <div class="panel-body">
-    <button class="panel-x" onclick="closePanel('freelance')" aria-label="Close">✕</button>
+    <button type="button" class="panel-x" onclick="closePanel('freelance')" aria-label="Close">✕</button>
     <div class="panel-ey">Creative Side</div>
     <div class="panel-title">Freelance <em>Studio</em></div>
     <div class="fl-grid">
@@ -1147,7 +1439,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 <div class="panel" id="panel-contact" role="dialog" aria-modal="true" aria-label="Contact">
   <div class="panel-bg" onclick="closePanel('contact')" aria-hidden="true"></div>
   <div class="panel-body" style="display:flex;flex-direction:column;justify-content:center">
-    <button class="panel-x" onclick="closePanel('contact')" aria-label="Close">✕</button>
+    <button type="button" class="panel-x" onclick="closePanel('contact')" aria-label="Close">✕</button>
     <div class="panel-ey">Get In Touch</div>
     <div class="panel-title">Let's <em>connect</em></div>
     <p style="font-size:13px;color:var(--ink-60);line-height:1.78;margin-bottom:18px;font-weight:300">Senior UX Designer open to full-time roles, contracts, and meaningful collaboration.</p>
@@ -1166,7 +1458,7 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
   <div class="about-box">
     <div class="about-bar" aria-hidden="true"></div>
     <div class="about-inner">
-      <button class="about-x" onclick="closeAbout()" aria-label="Close">✕</button>
+      <button type="button" class="about-x" onclick="closeAbout()" aria-label="Close">✕</button>
       <div class="about-badge">✦ My Story</div>
       <div class="about-name">Meet the <em>Designer</em></div>
       <div class="about-sub">8+ years turning complex enterprise problems into human-centred experiences.</div>
@@ -1360,12 +1652,14 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a){
 // ══════════════════════════════════════
 var heroTl = gsap.timeline({ defaults:{ ease:'power4.out' } });
 heroTl
-  .to('#hero-eyebrow', { opacity:1, y:0, duration:1, delay:.3 })
-  .to('#hero-line-1',  { opacity:1, y:0, duration:1.1 }, '-=.7')
-  .to('#hero-line-2',  { opacity:1, y:0, duration:1.1 }, '-=.85')
-  .to('#hero-sub',     { opacity:1, y:0, duration:.9 }, '-=.7')
-  .to('#hero-meta',    { opacity:1, y:0, duration:.8 }, '-=.6')
-  .to('#hero-scroll',  { opacity:1, duration:.8 }, '-=.4');
+  .to('#hero-eyebrow',     { opacity:1, y:0, duration:1,   delay:.3 })
+  .to('#hero-line-1',      { opacity:1, y:0, duration:1.1 }, '-=.7')
+  .to('#hero-line-2',      { opacity:1, y:0, duration:1.1 }, '-=.85')
+  .to('#hero-sub',         { opacity:1, y:0, duration:.9  }, '-=.7')
+  .to('#hero-meta',        { opacity:1, y:0, duration:.8  }, '-=.6')
+  .to('.hero-proof',       { opacity:1, y:0, duration:.8  }, '-=.5')
+  .to('.hero-ctas-wrap',   { opacity:1, y:0, duration:.7  }, '-=.5')
+  .to('#hero-scroll',      { opacity:1, duration:.6        }, '-=.4');
 
 // ══════════════════════════════════════
 //  PARALLAX — HERO IMAGE
@@ -1560,6 +1854,22 @@ function showToast(msg){
   t.textContent = msg; t.classList.add('on');
   setTimeout(function(){ t.classList.remove('on'); }, 2400);
 }
+
+// Process steps
+gsap.fromTo('.process-step',
+  { opacity: 0, y: 30 },
+  {
+    opacity: 1, y: 0, duration: .9, stagger: .15, ease: 'power3.out',
+    scrollTrigger: { trigger: '#process', start: 'top 80%' }
+  }
+);
+gsap.fromTo('.process-title, .process-intro',
+  { opacity: 0, y: 20 },
+  {
+    opacity: 1, y: 0, duration: 1, stagger: .12, ease: 'power3.out',
+    scrollTrigger: { trigger: '#process', start: 'top 85%' }
+  }
+);
 
 // ══════════════════════════════════════
 //  REDUCED MOTION FALLBACK
