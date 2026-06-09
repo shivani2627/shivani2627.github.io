@@ -3,203 +3,886 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>PROTECT Case Management · Case Study · Shivani Harode</title>
+<meta name="description" content="PROTECT Case Management System — UI/UX Case Study by Shivani Harode. 1.5-year embedded design engagement for the State of Wisconsin.">
+<title>PROTECT Case Management · Shivani Harode</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--c:#f5f0e8;--cw:#faf8f4;--ink:#1a1508;--i70:rgba(26,21,8,.7);--i50:rgba(26,21,8,.5);--i12:rgba(26,21,8,.12);--gold:#b8945a;--gl:rgba(184,148,90,.13);--gm:rgba(184,148,90,.38);--ease:cubic-bezier(.16,1,.3,1)}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--c);color:var(--ink);-webkit-font-smoothing:antialiased}
-/* BACK NAV */
-.back-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(245,240,232,.94);backdrop-filter:blur(22px);border-bottom:1px solid var(--i12)}
-.back-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:var(--c);border-radius:100px;font-size:12px;font-weight:500;text-decoration:none;transition:all .3s var(--ease);letter-spacing:.02em}
-.back-btn:hover{background:var(--gold);transform:translateY(-1px)}
-.back-btn:focus{outline:2px solid var(--gold);outline-offset:3px}
-.back-btn svg{flex-shrink:0;transition:transform .25s}
-.back-btn:hover svg{transform:translateX(-2px)}
-.back-crumb{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--i50)}
-@media(max-width:600px){.back-nav{padding:12px 20px}.back-crumb{display:none}}
-/* HERO */
-.cs-hero{padding:110px 0 72px;background:linear-gradient(145deg,#1a0b35 0%,#4c1d95 60%,#2d0f6b 100%);position:relative;overflow:hidden}
-.cs-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 70% 40%,rgba(255,255,255,.06) 0%,transparent 70%)}
-.cs-hero-inner{max-width:900px;margin:0 auto;padding:0 52px}
-.cs-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:22px}
-.cs-tag::before{content:'◆';font-size:7px;color:rgba(255,255,255,.5)}
-.cs-lead{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:100px;background:rgba(201,169,110,.25);font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:#f0d89a;margin-bottom:16px;width:fit-content}
-.cs-lead::before{content:'★';font-size:7px}
-.cs-title{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,72px);font-weight:400;letter-spacing:-.03em;line-height:.92;color:#fff;margin-bottom:10px}
-.cs-title em{font-style:italic;color:#c9a96e}
-.cs-subtitle{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:32px}
-.cs-stats{display:flex;gap:36px;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(255,255,255,.12);margin-top:32px}
-.cs-stat-v{font-family:'Playfair Display',serif;font-size:28px;font-weight:500;color:#c9a96e;letter-spacing:-.025em;line-height:1}
-.cs-stat-l{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px}
-@media(max-width:600px){.cs-hero-inner{padding:0 22px}.cs-stats{gap:22px}}
-/* MAIN CONTENT */
-.cs-body{max-width:900px;margin:0 auto;padding:0 52px 100px}
-@media(max-width:600px){.cs-body{padding:0 22px 80px}}
-.cs-section{padding:64px 0;border-bottom:1px solid var(--i12)}
-.cs-section:last-child{border-bottom:none}
-.cs-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.cs-eyebrow::before{content:'';width:16px;height:1px;background:var(--gold)}
-.cs-h2{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:400;letter-spacing:-.025em;line-height:1.06;color:var(--ink);margin-bottom:18px}
-.cs-h2 em{font-style:italic;color:var(--gold)}
-.cs-p{font-size:15px;color:var(--i70);line-height:1.85;font-weight:300;margin-bottom:16px}
-.cs-p:last-child{margin-bottom:0}
-.cs-p strong{color:var(--ink);font-weight:500}
-/* Info grid */
-.cs-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
-.cs-info-card{padding:18px 20px;border:1px solid var(--i12);border-radius:14px;background:var(--cw)}
-.cs-info-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--i50);margin-bottom:6px}
-.cs-info-val{font-size:13.5px;color:var(--ink);font-weight:500;line-height:1.4}
-.cs-info-val.gold{color:var(--gold)}
-@media(max-width:600px){.cs-info-grid{grid-template-columns:1fr 1fr}}
-/* Module cards */
-.cs-modules{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0}
-.cs-module{padding:20px 22px;border:1px solid var(--i12);border-radius:16px;background:var(--cw);position:relative;overflow:hidden;transition:all .3s}
-.cs-module::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(184,148,90,.2));transform:scaleX(0);transform-origin:left;transition:transform .38s}
-.cs-module:hover::before{transform:scaleX(1)}
-.cs-module:hover{border-color:var(--gm)}
-.cs-mod-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:8px;display:block}
-.cs-mod-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--ink);margin-bottom:6px}
-.cs-mod-desc{font-size:12.5px;color:var(--i70);line-height:1.65;font-weight:300}
-@media(max-width:600px){.cs-modules{grid-template-columns:1fr}}
-/* Insight callout */
-.cs-insight{padding:22px 24px;border:1px solid var(--gm);border-radius:16px;background:var(--gl);margin:28px 0}
-.cs-insight-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
-.cs-insight-text{font-family:'Playfair Display',serif;font-size:clamp(17px,2.2vw,22px);font-weight:400;font-style:italic;color:var(--ink);line-height:1.5}
-/* Tools */
-.cs-tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
-.cs-tool{padding:5px 13px;border:1px solid var(--i12);border-radius:100px;font-family:'DM Mono',monospace;font-size:9.5px;color:var(--i50);background:var(--cw);transition:all .2s}
-.cs-tool:hover{border-color:var(--gm);color:var(--gold);background:var(--gl)}
-/* Outcome numbers */
-.cs-outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
-.cs-oc{padding:20px 18px;border:1px solid var(--i12);border-radius:14px;background:var(--cw);text-align:center}
-.cs-oc-v{font-family:'Playfair Display',serif;font-size:32px;font-weight:500;color:var(--gold);letter-spacing:-.03em;line-height:1}
-.cs-oc-l{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--i50);margin-top:6px}
-@media(max-width:600px){.cs-outcomes{grid-template-columns:1fr 1fr}}
-/* CTA */
-.cs-cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:40px;padding-top:40px;border-top:1px solid var(--i12)}
-.btn-p{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;background:var(--ink);color:var(--c);border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .3s;letter-spacing:.02em}
-.btn-p:hover{background:var(--gold);transform:translateY(-2px)}
-.btn-s{display:inline-flex;align-items:center;gap:7px;padding:13px 22px;background:transparent;color:var(--ink);border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;border:1.5px solid var(--i12);transition:all .28s}
-.btn-s:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#ffffff;
+      --surface:#f7f4f0;
+      --surface2:#efe9e2;
+      --border:rgba(28,18,10,0.08);
+      --border-med:rgba(28,18,10,0.14);
+      --text:#1c1714;
+      --muted:#7a706a;
+      --soft:#b5ada7;
+      --accent:#4c1d95;
+      --accent2:#7c3aed;
+      --purple:#5b21b6;
+      --purple-light:#ede9fe;
+      --fs:'Fraunces',Georgia,serif;
+      --fd:'DM Sans',system-ui,sans-serif;
+      --fm:'DM Mono',monospace;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--fd);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+
+    /* ── NAV ── */
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,5vw,80px);background:rgba(255,255,255,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-back{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;font-family:var(--fm);transition:color .18s}
+    .nav-back:hover{color:var(--text)}
+    .nav-back:focus{outline:2px solid var(--accent2);outline-offset:3px;border-radius:4px}
+    .nav-crumb{font-family:var(--fm);font-size:12px;color:var(--soft)}
+
+    /* ── HERO ── */
+    .hero{padding:116px clamp(20px,5vw,80px) 76px;background:#3b0764;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:-180px;right:-160px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,0.22) 0%,transparent 68%);pointer-events:none}
+    .hero::after{content:'';position:absolute;bottom:-80px;left:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,0.03) 0%,transparent 70%);pointer-events:none}
+    .hero-inner{max-width:900px;position:relative;z-index:1}
+    .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--fm);font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+    .hero-eyebrow::before{content:'';width:22px;height:1px;background:rgba(255,255,255,0.28)}
+    h1.hero-title{font-family:var(--fs);font-size:clamp(36px,6vw,66px);font-weight:300;line-height:1.06;letter-spacing:-.03em;color:#fff;margin-bottom:18px}
+    h1.hero-title em{font-style:italic;color:#c4b5fd}
+    .hero-desc{font-size:17px;color:rgba(255,255,255,0.65);max-width:560px;line-height:1.75;margin-bottom:44px}
+    .hero-metrics{display:flex;gap:44px;flex-wrap:wrap;padding-top:36px;border-top:1px solid rgba(255,255,255,0.1)}
+    .metric-val{font-family:var(--fs);font-size:38px;font-weight:300;color:#fff;letter-spacing:-.02em;line-height:1}
+    .metric-lbl{font-size:11px;color:rgba(255,255,255,0.45);font-family:var(--fm);letter-spacing:.05em;margin-top:5px}
+
+    /* ── META ROW ── */
+    .meta-row{background:var(--surface);border-bottom:1px solid var(--border);padding:22px clamp(20px,5vw,80px)}
+    .meta-inner{display:flex;gap:44px;flex-wrap:wrap;max-width:900px}
+    .meta-item{display:flex;flex-direction:column;gap:4px}
+    .meta-lbl{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase}
+    .meta-val{font-size:13px;color:var(--text);font-weight:500}
+
+    /* ── MAIN ── */
+    .main{max-width:900px;margin:0 auto;padding:68px clamp(20px,5vw,40px) 100px}
+
+    /* ── SECTION ── */
+    .cs-section{margin-bottom:76px}
+    .cs-eyebrow{font-family:var(--fm);font-size:11px;color:var(--soft);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .cs-eyebrow::before{content:'';width:16px;height:1px;background:var(--soft)}
+    h2.cs-title{font-family:var(--fs);font-size:clamp(26px,4vw,40px);font-weight:300;letter-spacing:-.03em;line-height:1.1;color:var(--text);margin-bottom:16px}
+    h2.cs-title em{font-style:italic;color:var(--accent)}
+    .cs-body{font-size:15.5px;color:var(--muted);line-height:1.82;max-width:660px}
+    .cs-body p{margin-bottom:14px}
+    .cs-body p:last-child{margin-bottom:0}
+    .cs-body strong{color:var(--text);font-weight:600}
+    .divider{height:1px;background:var(--border);margin:0 0 76px}
+
+    /* ── CALLOUTS ── */
+    .callout-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+    .callout{padding:22px 24px;border-radius:12px;border:1px solid}
+    .callout.problem{background:#fff5f5;border-color:#fecaca}
+    .callout.solution{background:#f5f3ff;border-color:#ddd6fe}
+    .callout-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--text);margin-bottom:12px}
+    .callout-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+    .callout-list li{font-size:13px;color:var(--muted);line-height:1.6;display:flex;gap:8px;align-items:flex-start}
+    .callout-list li::before{flex-shrink:0;margin-top:1px}
+    .callout-list.bad li::before{content:'–';color:#f87171}
+    .callout-list.good li::before{content:'✓';color:#7c3aed;font-size:11px}
+
+    /* ── PROCESS ── */
+    .process-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+    .process-box{padding:20px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--border);position:relative}
+    .process-box::after{content:'→';position:absolute;top:20px;right:-10px;color:var(--soft);font-size:13px;z-index:1}
+    .process-box:last-child::after{display:none}
+    .process-num{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.06em;margin-bottom:7px}
+    .process-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+    .process-text{font-size:12px;color:var(--muted);line-height:1.6}
+
+    /* ── INSIGHTS ── */
+    .insight-list{display:flex;flex-direction:column;gap:12px;margin-top:24px}
+    .insight{padding:20px 22px;background:var(--surface);border-radius:12px;border-left:3px solid var(--accent2)}
+    .insight-quote{font-family:var(--fs);font-size:15px;font-style:italic;color:var(--text);line-height:1.65}
+    .insight-source{font-family:var(--fm);font-size:11px;color:var(--soft);letter-spacing:.04em;margin-top:8px;display:block}
+
+    /* ── WORKSTREAM CARDS ── */
+    .workstream-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:28px}
+    .ws-card{padding:22px 24px;border-radius:14px;background:var(--surface);border:1px solid var(--border);position:relative;overflow:hidden}
+    .ws-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--purple))}
+    .ws-num{font-family:var(--fm);font-size:10px;color:var(--soft);letter-spacing:.06em;margin-bottom:6px}
+    .ws-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:8px}
+    .ws-desc{font-size:13px;color:var(--muted);line-height:1.65}
+    .ws-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+    .ws-tag{padding:2px 9px;border-radius:100px;font-size:10px;font-family:var(--fm);background:var(--purple-light);color:var(--purple);border:1px solid #ddd6fe}
+
+    /* ── SCREEN MOCKUPS ── */
+    .screen-stack{display:flex;flex-direction:column;gap:52px;margin-top:32px}
+    .screen-frame{border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 4px 32px rgba(0,0,0,0.08)}
+    .screen-annotation{margin-top:14px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start}
+    .screen-num-badge{width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-family:var(--fm);font-size:10px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+    .screen-title{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+    .screen-desc{font-size:13px;color:var(--muted);line-height:1.7}
+    .screen-callouts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+    .screen-callout{padding:3px 10px;border-radius:100px;font-size:11px;font-family:var(--fm);background:var(--surface);border:1px solid var(--border-med);color:var(--muted)}
+    .screen-callout.highlight{background:var(--purple-light);border-color:#ddd6fe;color:var(--purple)}
+
+    /* ── PROTECT APP CHROME ── */
+    .app{display:flex;flex-direction:column;font-family:'DM Sans',system-ui,sans-serif;min-height:440px}
+    .app-top{background:#3b0764;height:50px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;flex-shrink:0}
+    .app-brand{display:flex;align-items:center;gap:9px}
+    .app-logo{width:28px;height:28px;border-radius:5px;background:rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;letter-spacing:.03em}
+    .app-name{font-size:12px;font-weight:600;color:#fff}
+    .app-sub{font-size:9px;color:rgba(255,255,255,0.45);font-family:var(--fm);letter-spacing:.03em}
+    .app-right{display:flex;align-items:center;gap:10px}
+    .app-bell{width:28px;height:28px;border-radius:5px;background:rgba(255,255,255,0.07);display:flex;align-items:center;justify-content:center;position:relative;cursor:default;flex-shrink:0}
+    .app-bell svg{width:13px;height:13px;stroke:rgba(255,255,255,0.75);fill:none;stroke-width:1.8}
+    .app-bell-dot{position:absolute;top:5px;right:5px;width:6px;height:6px;background:#EF4444;border-radius:50%;border:1.5px solid #3b0764}
+    .app-profile{display:flex;align-items:center;gap:7px}
+    .app-av{width:27px;height:27px;border-radius:50%;background:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff}
+    .app-uname{font-size:11px;font-weight:600;color:#fff}
+    .app-urole{font-size:9px;color:rgba(255,255,255,0.42)}
+    .app-body{display:flex;flex:1;overflow:hidden}
+    .app-sidebar{width:176px;background:#fff;border-right:1px solid #E5E7EB;padding:10px 0;flex-shrink:0}
+    .app-ns{font-size:9px;font-family:var(--fm);color:#9CA3AF;letter-spacing:.08em;text-transform:uppercase;padding:7px 13px 3px}
+    .app-ni{display:flex;align-items:center;gap:7px;padding:6px 9px;margin:1px 5px;border-radius:5px;font-size:11px;color:#374151;cursor:default}
+    .app-ni.active{background:#7c3aed;color:#fff;font-weight:500}
+    .app-ni:not(.active):hover{background:#F3F4F6}
+    .app-ni-ic{width:11px;height:11px;border-radius:2px;background:currentColor;opacity:.55;flex-shrink:0}
+    .app-sub-wrap{padding:2px 4px 3px 19px}
+    .app-sub-ni{display:block;padding:4px 9px;font-size:10px;color:#374151;border-radius:4px;border-left:2px solid #E5E7EB;margin-left:2px;cursor:default;font-family:var(--fd)}
+    .app-sub-ni.act{border-left-color:#7c3aed;color:#7c3aed;background:#f5f3ff}
+    .app-main{flex:1;background:#F9FAFB;overflow:hidden;display:flex;flex-direction:column}
+    .app-ph{padding:12px 16px 10px;background:#fff;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+    .app-ph-title{font-size:14px;font-weight:600;color:#111827}
+    .app-ph-sub{font-size:10px;color:#6B7280;margin-top:1px}
+    .app-ph-actions{display:flex;gap:6px;flex-shrink:0}
+    .app-btn-p{padding:5px 11px;background:#7c3aed;color:#fff;border-radius:5px;font-size:10px;font-weight:500;border:none;cursor:default;white-space:nowrap}
+    .app-btn-o{padding:5px 11px;background:#fff;color:#111827;border:1px solid #D1D5DB;border-radius:5px;font-size:10px;font-weight:500;cursor:default;white-space:nowrap}
+    .app-inner{padding:12px 16px;flex:1;overflow:hidden;display:flex;flex-direction:column;gap:10px}
+
+    /* Filter bar */
+    .app-filter{background:#fff;border-radius:7px;padding:10px 12px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.03);display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+    .app-fl{font-size:9px;font-weight:600;color:#111827;margin-bottom:3px}
+    .app-fs{padding:4px 8px;border:1px solid #D1D5DB;border-radius:4px;font-size:10px;color:#111827;background:#fff;min-width:100px}
+    .app-fs.locked{background:#F9FAFB;color:#9CA3AF;border-color:#E5E7EB}
+
+    /* Table */
+    .app-tw{overflow:hidden;border-radius:6px;border:1px solid #E5E7EB;box-shadow:0 1px 2px rgba(0,0,0,.04)}
+    .app-t{width:100%;border-collapse:collapse;font-size:10px}
+    .app-t thead tr{background:#3b0764}
+    .app-t thead th{padding:7px 10px;font-size:9px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.04em;text-align:left;white-space:nowrap}
+    .app-t thead th.r{text-align:right}
+    .app-t tbody tr{background:#fff;border-bottom:1px solid #F3F4F6}
+    .app-t tbody tr:hover{background:#F9FAFB}
+    .app-t tbody td{padding:6px 10px;color:#111827;white-space:nowrap}
+    .app-t tbody td.r{text-align:right}
+    .app-t tbody td.lnk{color:#7c3aed;text-decoration:underline;cursor:default}
+    .b{display:inline-flex;padding:1px 7px;border-radius:999px;font-size:8px;font-weight:700}
+    .b.s{background:#f5f3ff;color:#5b21b6}
+    .b.w{background:#FEF9C3;color:#92400E}
+    .b.n{background:#F3F4F6;color:#374151}
+    .b.e{background:#FEE2E2;color:#B91C1C}
+    .b.g{background:#DCFCE7;color:#15803D}
+
+    /* Stat cards */
+    .app-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .app-stat{background:#fff;border-radius:6px;padding:11px 12px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+    .app-stat-lbl{font-size:9px;color:#6B7280;margin-bottom:3px}
+    .app-stat-val{font-size:17px;font-weight:600;color:#111827;line-height:1}
+    .app-stat-sub{font-size:8px;color:#6B7280;margin-top:2px}
+
+    /* Details pane */
+    .app-2col{display:flex;gap:9px}
+    .app-col-main{flex:1;min-width:0}
+    .app-col-side{width:176px;flex-shrink:0;display:flex;flex-direction:column;gap:9px}
+    .app-detail-card{background:#fff;border-radius:6px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.03);overflow:hidden}
+    .app-detail-title{font-size:10px;font-weight:600;color:#111827;padding:8px 12px;border-bottom:1px solid #F3F4F6;background:#F9FAFB}
+    .app-detail-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 12px;border-bottom:1px solid #F9FAFB}
+    .app-dl{font-size:10px;color:#6B7280}
+    .app-dv{font-size:10px;color:#111827;font-weight:500;text-align:right}
+    .app-dv.hi{color:#7c3aed}
+
+    /* Form */
+    .app-form-section{background:#fff;border-radius:6px;border:1px solid #F3F4F6;box-shadow:0 1px 2px rgba(0,0,0,.03);overflow:hidden}
+    .app-form-title{font-size:10px;font-weight:600;color:#111827;padding:8px 12px;border-bottom:1px solid #F3F4F6;background:#F9FAFB}
+    .app-form-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;padding:10px 12px}
+    .app-fl-label{font-size:8px;font-weight:600;color:#374151;margin-bottom:2px}
+    .app-fl-input{padding:4px 7px;border:1px solid #D1D5DB;border-radius:4px;font-size:9px;color:#111827;background:#fff;width:100%}
+    .app-fl-input.focused{border-color:#7c3aed;box-shadow:0 0 0 2px rgba(124,58,237,.15)}
+
+    /* Outcomes */
+    .outcomes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+    .outcome-card{padding:24px 20px;border-radius:14px;background:var(--surface);border:1px solid var(--border)}
+    .outcome-val{font-family:var(--fs);font-size:40px;font-weight:300;color:var(--accent2);letter-spacing:-.02em;line-height:1}
+    .outcome-lbl{font-size:13px;color:var(--text);font-weight:500;margin-top:7px}
+    .outcome-desc{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.6}
+
+    /* Role table */
+    .role-table{width:100%;border-collapse:collapse;margin-top:24px;font-size:13px}
+    .role-table thead tr{background:#3b0764}
+    .role-table thead th{padding:10px 14px;font-size:11px;font-weight:700;color:#fff;text-align:left;text-transform:uppercase;letter-spacing:.05em}
+    .role-table tbody tr{border-bottom:1px solid var(--border);background:var(--bg)}
+    .role-table tbody tr:hover{background:var(--surface)}
+    .role-table tbody td{padding:10px 14px;color:var(--muted);vertical-align:top;line-height:1.6}
+    .role-table tbody td:first-child{font-weight:600;color:var(--text);white-space:nowrap}
+    .role-pill{display:inline-flex;padding:2px 9px;border-radius:100px;font-size:10px;font-family:var(--fm);font-weight:600}
+    .role-pill.shivani{background:var(--purple-light);color:var(--purple)}
+    .role-pill.dev{background:#dcfce7;color:#15803d}
+    .role-pill.pm{background:#fef9c3;color:#92400e}
+
+    /* Quote */
+    .testi-block{background:var(--surface);border-left:3px solid var(--accent2);border-radius:0 12px 12px 0;padding:22px 24px;margin-top:28px}
+    .testi-q{font-family:var(--fs);font-size:16px;font-style:italic;color:var(--text);line-height:1.7;margin-bottom:14px}
+    .testi-src{display:flex;align-items:center;gap:11px}
+    .testi-av{width:36px;height:36px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;font-family:var(--fm);font-weight:700;flex-shrink:0}
+    .testi-name{font-size:13px;font-weight:600;color:var(--text)}
+    .testi-role{font-size:11px;color:var(--soft)}
+
+    /* Footer */
+    footer{background:var(--surface);border-top:1px solid var(--border);padding:28px clamp(20px,5vw,80px);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+    .foot-copy{font-family:var(--fm);font-size:12px;color:var(--soft)}
+    .foot-back{display:inline-flex;align-items:center;gap:6px;color:var(--accent2);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+    .foot-back:hover{color:var(--accent)}
+
+    @media(max-width:760px){
+      .callout-grid,.process-row,.outcomes-grid,.workstream-grid{grid-template-columns:1fr}
+      .process-box::after{display:none}
+      .app-sidebar{display:none}
+      .app-stats{grid-template-columns:1fr 1fr}
+      .app-form-grid{grid-template-columns:1fr 1fr}
+      .app-2col{flex-direction:column}
+      .app-col-side{width:100%}
+    }
 </style>
 </head>
 <body>
 
-<!-- BACK NAV -->
-<nav class="back-nav" aria-label="Site navigation">
-  <a href="index.html" class="back-btn" aria-label="Back to portfolio">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<!-- NAV -->
+<nav aria-label="Site navigation">
+  <a href="index.html" class="nav-back" aria-label="Back to portfolio">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
     Back to Portfolio
   </a>
-  <span class="back-crumb">PROTECT · Case Study</span>
+  <span class="nav-crumb">PROTECT · Case Study</span>
 </nav>
 
 <!-- HERO -->
-<div class="cs-hero">
-  <div class="cs-hero-inner">
-    <div class="cs-tag">State of Wisconsin · Case Management</div>
-    <div class="cs-lead">Lead Designer · Sole UX — End-to-End</div>
-    <h1 class="cs-title">PROTECT<br><em>Case Management</em></h1>
-    <div class="cs-subtitle">Senior UI/UX Designer &nbsp;·&nbsp; Jan 2024 – Jun 2025 &nbsp;·&nbsp; 1.5 Years Embedded</div>
-    <div class="cs-stats">
-      <div><div class="cs-stat-v">50+</div><div class="cs-stat-l">Screens designed</div></div>
-      <div><div class="cs-stat-v">5</div><div class="cs-stat-l">Major modules</div></div>
-      <div><div class="cs-stat-v">1.5yr</div><div class="cs-stat-l">Embedded engagement</div></div>
-      <div><div class="cs-stat-v">Solo</div><div class="cs-stat-l">Sole designer</div></div>
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Case Study &middot; Government UX &middot; Jan 2024 &ndash; Jun 2025</div>
+    <h1 class="hero-title">PROTECT<br><em>Case Management System</em></h1>
+    <p class="hero-desc">A 1.5-year embedded UX engagement redesigning the State of Wisconsin&rsquo;s case management platform for District Attorneys — from brand identity through desktop app, web interfaces, eFiling, and XCQ querying. Solo designer across 5 major workstreams.</p>
+    <div class="hero-metrics">
+      <div><div class="metric-val">50+</div><div class="metric-lbl">Screens designed</div></div>
+      <div><div class="metric-val">5</div><div class="metric-lbl">Workstreams</div></div>
+      <div><div class="metric-val">1.5yr</div><div class="metric-lbl">Embedded engagement</div></div>
+      <div><div class="metric-val">Solo</div><div class="metric-lbl">UX designer</div></div>
     </div>
   </div>
 </div>
 
-<!-- BODY -->
-<div class="cs-body">
+<!-- META ROW -->
+<div class="meta-row">
+  <div class="meta-inner">
+    <div class="meta-item"><div class="meta-lbl">Client</div><div class="meta-val">State of Wisconsin (DOA)</div></div>
+    <div class="meta-item"><div class="meta-lbl">My Role</div><div class="meta-val">Lead UI/UX Designer · Sole Designer</div></div>
+    <div class="meta-item"><div class="meta-lbl">Duration</div><div class="meta-val">Jan 2024 – Jun 2025 (1.5 years)</div></div>
+    <div class="meta-item"><div class="meta-lbl">Tools</div><div class="meta-val">Figma · InVision · Axure RP · FigJam · GIMP</div></div>
+    <div class="meta-item"><div class="meta-lbl">Platform</div><div class="meta-val">Desktop app + Web (responsive)</div></div>
+  </div>
+</div>
+
+<div class="main">
 
   <!-- OVERVIEW -->
   <div class="cs-section">
-    <div class="cs-eyebrow">Project Overview</div>
-    <h2 class="cs-h2">Wisconsin DAs were running <em>active cases</em> in spreadsheets</h2>
-    <p class="cs-p">The Wisconsin Department of Justice needed a purpose-built case management system for their District Attorneys — the PROTECT Case Management platform. Before PROTECT, DAs and investigators tracked active criminal cases in spreadsheets, shared documents, and paper files. Data was siloed, handoffs were error-prone, and there was no single source of truth for case status.</p>
-    <p class="cs-p">I was brought in as the <strong>sole UI/UX designer for 1.5 years</strong>, responsible for all five major design workstreams: brand identity, desktop app revamp, details pane web app, XCQ web querying, and eFiling portal.</p>
-    <div class="cs-info-grid">
-      <div class="cs-info-card"><div class="cs-info-label">My Role</div><div class="cs-info-val gold">Senior UI/UX Designer · Sole Designer</div></div>
-      <div class="cs-info-card"><div class="cs-info-label">Duration</div><div class="cs-info-val">Jan 2024 – Jun 2025 (1.5 years)</div></div>
-      <div class="cs-info-card"><div class="cs-info-label">Client</div><div class="cs-info-val">State of Wisconsin · DOJ</div></div>
-      <div class="cs-info-card"><div class="cs-info-label">Tools</div><div class="cs-info-val">Figma, InVision, FigJam, Axure RP, GIMP</div></div>
-      <div class="cs-info-card"><div class="cs-info-label">Deliverables</div><div class="cs-info-val">50+ screens, brand identity, 5 modules</div></div>
-      <div class="cs-info-card"><div class="cs-info-label">Team</div><div class="cs-info-val">Solo designer + Engineering + Business team</div></div>
+    <div class="cs-eyebrow">Overview</div>
+    <h2 class="cs-title">DA offices running on <em>spreadsheets and paper</em></h2>
+    <div class="cs-body">
+      <p>When I joined the PROTECT project, Wisconsin District Attorney offices were tracking active criminal cases across a combination of spreadsheets, shared drives, and paper files. There was no single source of truth, no audit trail, and no way to understand case workload at a glance.</p>
+      <p>The State of Wisconsin's Department of Administration needed a purpose-built case management system. I was brought in as the sole UI/UX designer and embedded with the team for 18 months — long enough to understand the domain deeply, build trust with stakeholders, and deliver five distinct design efforts under the PROTECT umbrella.</p>
+      <p><strong>My primary challenge</strong> was that desktop and web users had fundamentally different interaction patterns. DAs reviewing case files needed dense, information-rich desktop interfaces. Supervisors and clerks accessing the web portal needed streamlined task flows. One IA would not serve both. Solving that split became the structural foundation for every design decision that followed.</p>
     </div>
   </div>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM + SOLUTION -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Problem &amp; Solution</div>
+    <h2 class="cs-title">What was broken, and <em>how we fixed it</em></h2>
+    <div class="callout-grid">
+      <div class="callout problem">
+        <div class="callout-head">⚠️ &nbsp;Before PROTECT</div>
+        <ul class="callout-list bad">
+          <li>Cases tracked in Excel — no audit trail, version conflicts</li>
+          <li>No visibility into DA workload across the office</li>
+          <li>eFiling done via email attachments — error-prone, manual</li>
+          <li>Desktop and web users forced into the same interface</li>
+          <li>No brand or visual identity — staff felt it wasn't a "real" system</li>
+          <li>XCQ queries ran in a separate legacy tool with no UI</li>
+        </ul>
+      </div>
+      <div class="callout solution">
+        <div class="callout-head">✦ &nbsp;After PROTECT</div>
+        <ul class="callout-list good">
+          <li>Single platform with full case lifecycle tracking and audit log</li>
+          <li>Dashboard-driven workload visibility for supervisors</li>
+          <li>Dedicated eFiling portal with validation and status tracking</li>
+          <li>Separate IA for desktop (dense/keyboard) and web (task-focused)</li>
+          <li>Full brand identity: logo, colour system, typography, icon set</li>
+          <li>XCQ querying rebuilt as a first-class UI module</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- MY ROLE -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">My Role</div>
+    <h2 class="cs-title">What I owned <em>end-to-end</em></h2>
+    <div class="cs-body"><p>As the sole designer across an 18-month engagement, I owned the entire design surface — from early-stage discovery and stakeholder workshops through to pixel-perfect Figma deliverables and developer handoff. There was no design team to escalate to or collaborate with. Every decision was mine to make and defend.</p></div>
+    <table class="role-table">
+      <thead><tr><th>Workstream</th><th>What I delivered</th><th>Owner</th></tr></thead>
+      <tbody>
+        <tr><td>Brand Identity</td><td>Logo, colour system, typography, icon set, brand guidelines document</td><td><span class="role-pill shivani">Shivani</span></td></tr>
+        <tr><td>Desktop App Revamp</td><td>Full IA, navigation, case view, dashboards — desktop-optimised interaction patterns</td><td><span class="role-pill shivani">Shivani</span></td></tr>
+        <tr><td>Details Pane Web</td><td>Responsive web companion — streamlined task flows for clerks and supervisors</td><td><span class="role-pill shivani">Shivani</span></td></tr>
+        <tr><td>XCQ Web Module</td><td>Query builder UI, results display, export patterns — rebuilt from legacy CLI</td><td><span class="role-pill shivani">Shivani</span></td></tr>
+        <tr><td>eFiling Portal</td><td>End-to-end filing flow, validation states, status tracking, confirmation UI</td><td><span class="role-pill shivani">Shivani</span></td></tr>
+        <tr><td>Engineering handoff</td><td>Annotated Figma specs, component library, interaction notes</td><td><span class="role-pill dev">Dev team</span></td></tr>
+        <tr><td>Project coordination</td><td>Sprint planning, stakeholder review sessions, UAT facilitation</td><td><span class="role-pill pm">PM</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
 
   <!-- DISCOVERY -->
   <div class="cs-section">
-    <div class="cs-eyebrow">Discovery Process</div>
-    <h2 class="cs-h2">The real problem wasn't the <em>missing tool</em></h2>
-    <p class="cs-p">Before designing a single screen, I ran a series of <strong>stakeholder workshops</strong> with District Attorneys, investigators, legal assistants, and the IT team to map the full case lifecycle — from initial filing through court dates, evidence tracking, and closure.</p>
-    <p class="cs-p">The workshops revealed a critical insight that changed the entire design direction:</p>
-    <div class="cs-insight">
-      <div class="cs-insight-label">Key Insight</div>
-      <div class="cs-insight-text">"Desktop users (investigators) and web users (DAs in court) had fundamentally different interaction patterns — desktop users needed dense, scannable grids; web users needed quick status views on small screens. Building one system to serve both would have failed both."</div>
+    <div class="cs-eyebrow">Discovery &amp; Research</div>
+    <h2 class="cs-title">Map the lifecycle before <em>touching the UI</em></h2>
+    <div class="cs-body">
+      <p>Before sketching a single screen, I spent the first six weeks running discovery workshops with District Attorneys, investigators, administrative clerks, and IT stakeholders. The goal was to understand the full case lifecycle — not just the task flows, but the mental model each user type carried into their work.</p>
+      <p>The most important finding came from observing DAs vs. clerks side by side: <strong>DAs think in cases</strong> (deep, contextual, non-linear) while <strong>clerks think in tasks</strong> (linear, batch-oriented, time-sensitive). The same data set, accessed with completely different intent. This observation became the structural principle the entire IA was built on.</p>
     </div>
-    <p class="cs-p">This insight drove the entire information architecture decision — two distinct interaction models within one connected data system, rather than one compromise interface.</p>
-  </div>
-
-  <!-- MODULES -->
-  <div class="cs-section">
-    <div class="cs-eyebrow">Five Workstreams</div>
-    <h2 class="cs-h2">One platform, <em>five major efforts</em></h2>
-    <p class="cs-p">Over 1.5 years, I led design across five distinct workstreams under the PROTECT umbrella:</p>
-    <div class="cs-modules">
-      <div class="cs-module"><span class="cs-mod-num">01</span><div class="cs-mod-title">Brand Identity</div><div class="cs-mod-desc">Designed the PROTECT logo, color system, and visual language from scratch. Required balancing official government aesthetics with approachable usability for busy legal staff.</div></div>
-      <div class="cs-module"><span class="cs-mod-num">02</span><div class="cs-mod-title">Desktop App Revamp</div><div class="cs-mod-desc">Rebuilt the existing desktop case management interface. Focused on dense data tables, keyboard navigation, and fast workflows for investigators who live in this tool all day.</div></div>
-      <div class="cs-module"><span class="cs-mod-num">03</span><div class="cs-mod-title">Details Pane Web App</div><div class="cs-mod-desc">Designed the web-based case details view for DAs accessing PROTECT from court or remote locations. Simplified to high-signal status information on any screen size.</div></div>
-      <div class="cs-module"><span class="cs-mod-num">04</span><div class="cs-mod-title">XCQ Web Querying</div><div class="cs-mod-desc">Designed a query interface for cross-case data retrieval. Applied consistent patterns from the desktop app to ensure investigators could switch contexts without relearning.</div></div>
-      <div class="cs-module"><span class="cs-mod-num">05</span><div class="cs-mod-title">eFiling Portal</div><div class="cs-mod-desc">End-to-end design for the electronic filing portal, including form architecture, error states, confirmation flows, and integration with existing court filing systems.</div></div>
+    <div class="insight-list">
+      <div class="insight">
+        <div class="insight-quote">"When I'm reviewing a case I need everything — charges, history, filings, related parties — all visible without switching screens. I can't afford to hunt for information when I'm in court prep."</div>
+        <span class="insight-source">— District Attorney, Milwaukee County (research session, March 2024)</span>
+      </div>
+      <div class="insight">
+        <div class="insight-quote">"I process 40–60 filings a day. I just need to know what's new, what needs action, and what's done. I don't need to see the whole case file every time."</div>
+        <span class="insight-source">— Administrative Clerk, Dane County (contextual inquiry, April 2024)</span>
+      </div>
+      <div class="insight">
+        <div class="insight-quote">"Right now I run XCQ queries in a terminal. Nobody else in the office knows how. That knowledge shouldn't live in one person's head."</div>
+        <span class="insight-source">— Senior Investigator (stakeholder workshop, March 2024)</span>
+      </div>
     </div>
   </div>
 
-  <!-- APPROACH -->
+  <div class="divider"></div>
+
+  <!-- DESIGN PROCESS -->
   <div class="cs-section">
-    <div class="cs-eyebrow">Design Approach</div>
-    <h2 class="cs-h2">Embedded, not adjacent — <em>design inside the team</em></h2>
-    <p class="cs-p">Being embedded for 1.5 years meant I wasn't just a designer handing off specs. I attended sprint planning, joined standups, reviewed builds in staging, and pushed back when implementation diverged from intent. My front-end background meant conversations with engineering were direct and precise.</p>
-    <p class="cs-p">With a government client, accessibility wasn't optional. Every screen was designed and reviewed for <strong>WCAG 2.1 AA compliance</strong>, keyboard navigation, and screen reader support — requirements that shaped design decisions from color choice through interaction patterns.</p>
-    <div class="cs-tools">
-      <span class="cs-tool">Figma</span>
-      <span class="cs-tool">InVision</span>
-      <span class="cs-tool">FigJam</span>
-      <span class="cs-tool">Axure RP</span>
-      <span class="cs-tool">GIMP</span>
-      <span class="cs-tool">Stakeholder workshops</span>
-      <span class="cs-tool">Journey mapping</span>
-      <span class="cs-tool">WCAG 2.1 AA</span>
-      <span class="cs-tool">Design system documentation</span>
+    <div class="cs-eyebrow">Design Process</div>
+    <h2 class="cs-title">Discovery through <em>handoff</em></h2>
+    <div class="process-row">
+      <div class="process-box">
+        <div class="process-num">01</div>
+        <div class="process-title">Stakeholder workshops</div>
+        <div class="process-text">6 weeks of facilitated sessions mapping case lifecycle, user types, and system constraints across DA offices.</div>
+      </div>
+      <div class="process-box">
+        <div class="process-num">02</div>
+        <div class="process-title">IA &amp; flows</div>
+        <div class="process-text">Separate IA for desktop vs. web. FigJam journey maps validated the structural split before any visual design began.</div>
+      </div>
+      <div class="process-box">
+        <div class="process-num">03</div>
+        <div class="process-title">Iterative design</div>
+        <div class="process-text">Lo-fi → mid-fi → hi-fi across all 5 workstreams. Review cycles with PMs, DAs, and dev every 2 weeks.</div>
+      </div>
+      <div class="process-box">
+        <div class="process-num">04</div>
+        <div class="process-title">Handoff &amp; UAT</div>
+        <div class="process-text">Annotated Figma specs + component library. Facilitated UAT sessions with actual DA staff to validate before build.</div>
+      </div>
     </div>
   </div>
+
+  <div class="divider"></div>
+
+  <!-- 5 WORKSTREAMS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">The Five Workstreams</div>
+    <h2 class="cs-title">One project, <em>five distinct design efforts</em></h2>
+    <div class="cs-body"><p>PROTECT wasn't a single app — it was a platform ecosystem. Each workstream had its own users, constraints, and design challenges. Here's what I delivered across each:</p></div>
+    <div class="workstream-grid">
+      <div class="ws-card">
+        <div class="ws-num">01</div>
+        <div class="ws-title">Brand Identity</div>
+        <div class="ws-desc">Created the PROTECT visual identity from scratch: logo (shield + document mark), purple–black colour palette, DM Sans typography, and an icon set that matched the platform tone — authoritative but approachable.</div>
+        <div class="ws-tags"><span class="ws-tag">Logo design</span><span class="ws-tag">GIMP</span><span class="ws-tag">Brand guidelines</span><span class="ws-tag">Icon set</span></div>
+      </div>
+      <div class="ws-card">
+        <div class="ws-num">02</div>
+        <div class="ws-title">Desktop App Revamp</div>
+        <div class="ws-desc">Complete redesign of the primary DA desktop application. Dense sidebar navigation, full-width case view with linked entities, keyboard-first interaction patterns, and collapsible panel system for multi-case workflows.</div>
+        <div class="ws-tags"><span class="ws-tag">Desktop IA</span><span class="ws-tag">Dense data UI</span><span class="ws-tag">Keyboard nav</span><span class="ws-tag">Figma</span></div>
+      </div>
+      <div class="ws-card">
+        <div class="ws-num">03</div>
+        <div class="ws-title">Details Pane Web</div>
+        <div class="ws-desc">Responsive web companion for clerks and supervisors. Task-oriented flows, batch action patterns, and streamlined case detail view optimised for high-volume daily use on standard office monitors.</div>
+        <div class="ws-tags"><span class="ws-tag">Responsive web</span><span class="ws-tag">Task flows</span><span class="ws-tag">Batch actions</span></div>
+      </div>
+      <div class="ws-card">
+        <div class="ws-num">04</div>
+        <div class="ws-title">XCQ Web Module</div>
+        <div class="ws-desc">Rebuilt a legacy command-line query tool as a first-class UI. Visual query builder with field selectors, result preview, export options, and saved query patterns — making advanced search accessible to all staff, not just technical users.</div>
+        <div class="ws-tags"><span class="ws-tag">Query builder UI</span><span class="ws-tag">Results display</span><span class="ws-tag">Export patterns</span></div>
+      </div>
+      <div class="ws-card" style="grid-column:1/3">
+        <div class="ws-num">05</div>
+        <div class="ws-title">eFiling Portal</div>
+        <div class="ws-desc">End-to-end eFiling experience replacing email-attachment workflows. Stepped submission flow with real-time validation, document preview, filing status tracking, and confirmation notifications. Reduced filing errors and eliminated the "did my email go through?" ambiguity entirely.</div>
+        <div class="ws-tags"><span class="ws-tag">Multi-step flow</span><span class="ws-tag">Form validation</span><span class="ws-tag">Status tracking</span><span class="ws-tag">Document preview</span><span class="ws-tag">Confirmation states</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SCREENS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Design Screens</div>
+    <h2 class="cs-title">Key interfaces <em>across the platform</em></h2>
+
+    <div class="screen-stack">
+
+      <!-- Screen 1: Case List Dashboard -->
+      <div class="screen-wrap">
+        <div class="screen-frame">
+          <div class="app">
+            <div class="app-top">
+              <div class="app-brand">
+                <div class="app-logo">PR</div>
+                <div><div class="app-name">PROTECT</div><div class="app-sub">Case Management System</div></div>
+              </div>
+              <div class="app-right">
+                <div class="app-bell">
+                  <svg viewBox="0 0 16 16"><path d="M8 2a5 5 0 0 0-5 5v2l-1 2h12l-1-2V7a5 5 0 0 0-5-5Zm0 12a2 2 0 0 1-2-2h4a2 2 0 0 1-2 2Z"/></svg>
+                  <div class="app-bell-dot"></div>
+                </div>
+                <div class="app-profile">
+                  <div class="app-av">JR</div>
+                  <div><div class="app-uname">J. Richardson</div><div class="app-urole">District Attorney</div></div>
+                </div>
+              </div>
+            </div>
+            <div class="app-body">
+              <div class="app-sidebar">
+                <div class="app-ns">Navigation</div>
+                <div class="app-ni active"><div class="app-ni-ic"></div>Case Dashboard</div>
+                <div class="app-sub-wrap">
+                  <div class="app-sub-ni act">My Cases</div>
+                  <div class="app-sub-ni">Assigned to Me</div>
+                  <div class="app-sub-ni">Pending Review</div>
+                </div>
+                <div class="app-ni"><div class="app-ni-ic"></div>eFiling</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>XCQ Queries</div>
+                <div class="app-ns">Admin</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Reports</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Settings</div>
+              </div>
+              <div class="app-main">
+                <div class="app-ph">
+                  <div><div class="app-ph-title">Case Dashboard</div><div class="app-ph-sub">Dane County DA Office · 2024–25 Term</div></div>
+                  <div class="app-ph-actions">
+                    <div class="app-btn-o">Export</div>
+                    <div class="app-btn-p">+ New Case</div>
+                  </div>
+                </div>
+                <div class="app-inner">
+                  <div class="app-stats">
+                    <div class="app-stat"><div class="app-stat-lbl">Active Cases</div><div class="app-stat-val">142</div><div class="app-stat-sub">↑ 8 this week</div></div>
+                    <div class="app-stat"><div class="app-stat-lbl">Pending Filing</div><div class="app-stat-val">23</div><div class="app-stat-sub">Due this week</div></div>
+                    <div class="app-stat"><div class="app-stat-lbl">Overdue Actions</div><div class="app-stat-val" style="color:#dc2626">7</div><div class="app-stat-sub">Needs attention</div></div>
+                    <div class="app-stat"><div class="app-stat-lbl">Closed (30d)</div><div class="app-stat-val" style="color:#15803d">38</div><div class="app-stat-sub">+12% vs last month</div></div>
+                  </div>
+                  <div class="app-filter">
+                    <div><div class="app-fl">Case Type</div><select class="app-fs"><option>All Types</option></select></div>
+                    <div><div class="app-fl">Status</div><select class="app-fs"><option>Active</option></select></div>
+                    <div><div class="app-fl">Assigned DA</div><select class="app-fs"><option>All DAs</option></select></div>
+                    <div><div class="app-fl">Date Range</div><select class="app-fs"><option>This Term</option></select></div>
+                  </div>
+                  <div class="app-tw">
+                    <table class="app-t">
+                      <thead><tr><th>Case No.</th><th>Defendant</th><th>Charge</th><th>Status</th><th>Assigned</th><th class="r">Next Action</th></tr></thead>
+                      <tbody>
+                        <tr><td class="lnk">2024-CR-00847</td><td>Martinez, R.</td><td>Felony B — Assault</td><td><span class="b s">Active</span></td><td>Richardson</td><td class="r">Prelim Hrg 12/18</td></tr>
+                        <tr><td class="lnk">2024-CR-00831</td><td>Johnson, T.K.</td><td>Misdemeanor A</td><td><span class="b w">Pending</span></td><td>Chen</td><td class="r">eFiling due 12/15</td></tr>
+                        <tr><td class="lnk">2024-CR-00819</td><td>Williams, S.</td><td>Felony C — Theft</td><td><span class="b s">Active</span></td><td>Richardson</td><td class="r">Trial 01/08</td></tr>
+                        <tr><td class="lnk">2024-CR-00804</td><td>Davis, M.L.</td><td>DUI — 2nd Offense</td><td><span class="b e">Overdue</span></td><td>Patel</td><td class="r">Motion due 12/12 ⚠</td></tr>
+                        <tr><td class="lnk">2024-CR-00798</td><td>Thompson, C.</td><td>Misdemeanor B</td><td><span class="b g">Closed</span></td><td>Richardson</td><td class="r">Sentenced 12/10</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge">1</div>
+          <div>
+            <div class="screen-title">Case Dashboard — Desktop App</div>
+            <div class="screen-desc">The primary DA view. Stat cards surface actionable numbers immediately. The filter bar enables rapid scoping without leaving the page. Row-level status and "Next Action" columns answer the two questions DAs ask most: "What's active?" and "What's due?"</div>
+            <div class="screen-callouts">
+              <span class="screen-callout highlight">Stat cards above fold</span>
+              <span class="screen-callout highlight">Overdue flagged in red</span>
+              <span class="screen-callout">Keyboard-navigable table</span>
+              <span class="screen-callout">Inline filter bar (no modal)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 2: Case Detail View -->
+      <div class="screen-wrap">
+        <div class="screen-frame">
+          <div class="app">
+            <div class="app-top">
+              <div class="app-brand">
+                <div class="app-logo">PR</div>
+                <div><div class="app-name">PROTECT</div><div class="app-sub">Case 2024-CR-00847</div></div>
+              </div>
+              <div class="app-right">
+                <div class="app-btn-o" style="font-size:10px;padding:4px 10px;cursor:default">← Back to List</div>
+                <div class="app-btn-p" style="cursor:default">File Document</div>
+              </div>
+            </div>
+            <div class="app-body">
+              <div class="app-sidebar">
+                <div class="app-ns">Case Sections</div>
+                <div class="app-ni active"><div class="app-ni-ic"></div>Overview</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Charges</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Filings</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Parties</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Hearings</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Documents</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Notes</div>
+                <div class="app-ns">History</div>
+                <div class="app-ni"><div class="app-ni-ic"></div>Audit Log</div>
+              </div>
+              <div class="app-main">
+                <div class="app-ph">
+                  <div><div class="app-ph-title">Case 2024-CR-00847 — Martinez, Roberto</div><div class="app-ph-sub">Felony B Assault · Active · Assigned: J. Richardson</div></div>
+                  <div class="app-ph-actions">
+                    <span class="b s" style="font-size:10px;padding:3px 10px">Active</span>
+                  </div>
+                </div>
+                <div class="app-inner">
+                  <div class="app-2col">
+                    <div class="app-col-main" style="display:flex;flex-direction:column;gap:9px">
+                      <div class="app-detail-card">
+                        <div class="app-detail-title">Case Overview</div>
+                        <div class="app-detail-row"><span class="app-dl">Case Number</span><span class="app-dv">2024-CR-00847</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Filed</span><span class="app-dv">November 14, 2024</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Primary Charge</span><span class="app-dv hi">Felony B — Assault with Intent</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Defendant</span><span class="app-dv">Martinez, Roberto A.</span></div>
+                        <div class="app-detail-row"><span class="app-dl">DOB</span><span class="app-dv">03/12/1989</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Next Hearing</span><span class="app-dv hi">Dec 18, 2024 — Preliminary</span></div>
+                      </div>
+                      <div class="app-detail-card">
+                        <div class="app-detail-title">Recent Filings</div>
+                        <div class="app-detail-row"><span class="app-dl">Complaint</span><span class="app-dv"><span class="b s">Filed</span> Nov 14</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Arrest Warrant</span><span class="app-dv"><span class="b s">Filed</span> Nov 14</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Discovery Package</span><span class="app-dv"><span class="b w">Pending</span> Due Dec 16</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Motion to Suppress</span><span class="app-dv"><span class="b n">Draft</span></span></div>
+                      </div>
+                    </div>
+                    <div class="app-col-side">
+                      <div class="app-detail-card">
+                        <div class="app-detail-title">Assigned Team</div>
+                        <div class="app-detail-row"><span class="app-dl">DA</span><span class="app-dv">J. Richardson</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Investigator</span><span class="app-dv">M. Torres</span></div>
+                        <div class="app-detail-row"><span class="app-dl">Clerk</span><span class="app-dv">S. Nguyen</span></div>
+                      </div>
+                      <div class="app-detail-card">
+                        <div class="app-detail-title">Quick Actions</div>
+                        <div style="padding:9px 12px;display:flex;flex-direction:column;gap:6px">
+                          <div class="app-btn-p" style="text-align:center;border-radius:4px;cursor:default">File Document</div>
+                          <div class="app-btn-o" style="text-align:center;border-radius:4px;cursor:default;font-size:10px">Schedule Hearing</div>
+                          <div class="app-btn-o" style="text-align:center;border-radius:4px;cursor:default;font-size:10px">Add Note</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge">2</div>
+          <div>
+            <div class="screen-title">Case Detail View — Everything in One Screen</div>
+            <div class="screen-desc">The DA's primary working view. Research showed DAs needed all case context — overview, charges, filings, parties, hearings — without switching screens. The left sidebar provides section-based navigation within the case. The two-column layout keeps the overview and quick actions visible at all times.</div>
+            <div class="screen-callouts">
+              <span class="screen-callout highlight">All sections accessible from sidebar</span>
+              <span class="screen-callout highlight">Quick actions always visible</span>
+              <span class="screen-callout">Filing status at a glance</span>
+              <span class="screen-callout">No modal-switching required</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 3: eFiling Portal -->
+      <div class="screen-wrap">
+        <div class="screen-frame">
+          <div class="app" style="min-height:380px">
+            <div class="app-top">
+              <div class="app-brand">
+                <div class="app-logo">PR</div>
+                <div><div class="app-name">PROTECT eFiling</div><div class="app-sub">Document Submission Portal</div></div>
+              </div>
+              <div class="app-right">
+                <div class="app-btn-o" style="font-size:10px;padding:4px 10px;cursor:default">← Cancel Filing</div>
+              </div>
+            </div>
+            <div class="app-main">
+              <!-- Step progress bar -->
+              <div style="background:#fff;padding:12px 20px;border-bottom:1px solid #E5E7EB;display:flex;align-items:center;gap:0">
+                <div style="display:flex;align-items:center;gap:6px;flex:1">
+                  <div style="width:22px;height:22px;border-radius:50%;background:#7c3aed;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff;flex-shrink:0">1</div>
+                  <span style="font-size:10px;font-weight:600;color:#7c3aed">Case &amp; Document</span>
+                  <div style="flex:1;height:1px;background:#7c3aed;margin:0 8px"></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;flex:1">
+                  <div style="width:22px;height:22px;border-radius:50%;background:#f5f3ff;border:2px solid #7c3aed;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#7c3aed;flex-shrink:0">2</div>
+                  <span style="font-size:10px;color:#7c3aed">Review &amp; Validate</span>
+                  <div style="flex:1;height:1px;background:#E5E7EB;margin:0 8px"></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;flex:1">
+                  <div style="width:22px;height:22px;border-radius:50%;background:#F3F4F6;border:2px solid #D1D5DB;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#9CA3AF;flex-shrink:0">3</div>
+                  <span style="font-size:10px;color:#9CA3AF">Submit &amp; Confirm</span>
+                </div>
+              </div>
+              <div class="app-inner">
+                <div class="app-form-section">
+                  <div class="app-form-title">Step 1 — Case &amp; Document Information</div>
+                  <div class="app-form-grid">
+                    <div><div class="app-fl-label">Case Number *</div><input class="app-fl-input focused" value="2024-CR-00847" readonly></div>
+                    <div><div class="app-fl-label">Case Title</div><input class="app-fl-input locked" value="State v. Martinez, Roberto" readonly></div>
+                    <div><div class="app-fl-label">Document Type *</div><select class="app-fl-input"><option>Discovery Package</option></select></div>
+                    <div><div class="app-fl-label">Filing Party *</div><input class="app-fl-input locked" value="Dane County DA Office" readonly></div>
+                    <div><div class="app-fl-label">Receiving Court *</div><select class="app-fl-input"><option>Dane County Circuit Court</option></select></div>
+                    <div><div class="app-fl-label">Urgency</div><select class="app-fl-input"><option>Standard (5 business days)</option></select></div>
+                  </div>
+                </div>
+                <div class="app-form-section">
+                  <div class="app-form-title">Documents to File</div>
+                  <div style="padding:12px;display:flex;flex-direction:column;gap:7px">
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#F9FAFB;border-radius:5px;border:1px solid #E5E7EB">
+                      <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:#374151"><span style="color:#7c3aed">📄</span> Discovery_Package_Martinez_2024-CR-00847.pdf <span class="b s">Validated</span></div>
+                      <span style="font-size:9px;color:#6B7280">2.4 MB</span>
+                    </div>
+                    <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:#F9FAFB;border-radius:5px;border:1px solid #E5E7EB">
+                      <div style="display:flex;align-items:center;gap:8px;font-size:10px;color:#374151"><span style="color:#7c3aed">📄</span> Evidence_Exhibit_A_Photos.pdf <span class="b s">Validated</span></div>
+                      <span style="font-size:9px;color:#6B7280">8.1 MB</span>
+                    </div>
+                    <div style="padding:8px 12px;border:1px dashed #D1D5DB;border-radius:5px;text-align:center;font-size:10px;color:#9CA3AF">+ Add another document</div>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:flex-end;gap:8px">
+                  <div class="app-btn-o" style="cursor:default">Save Draft</div>
+                  <div class="app-btn-p" style="cursor:default">Continue to Review →</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge">3</div>
+          <div>
+            <div class="screen-title">eFiling Portal — Step 1: Case &amp; Document</div>
+            <div class="screen-desc">Replaced email-attachment filing with a structured 3-step portal. Locked fields auto-populate from the case record, preventing data entry errors. Document validation runs inline — users see confirmation before submitting. The step progress bar reduces anxiety about multi-stage processes.</div>
+            <div class="screen-callouts">
+              <span class="screen-callout highlight">3-step progress indicator</span>
+              <span class="screen-callout highlight">Auto-populated case fields</span>
+              <span class="screen-callout">Inline document validation</span>
+              <span class="screen-callout">Save draft at any point</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen 4: XCQ Query Builder -->
+      <div class="screen-wrap">
+        <div class="screen-frame">
+          <div class="app" style="min-height:360px">
+            <div class="app-top">
+              <div class="app-brand">
+                <div class="app-logo">XQ</div>
+                <div><div class="app-name">XCQ Query Module</div><div class="app-sub">Advanced Case Search</div></div>
+              </div>
+              <div class="app-right">
+                <div class="app-btn-o" style="font-size:10px;padding:4px 10px;cursor:default">Saved Queries</div>
+                <div class="app-btn-p" style="cursor:default">Export Results</div>
+              </div>
+            </div>
+            <div class="app-main">
+              <div class="app-ph">
+                <div><div class="app-ph-title">XCQ Query Builder</div><div class="app-ph-sub">Build and run cross-case queries without writing code</div></div>
+              </div>
+              <div class="app-inner">
+                <div class="app-form-section">
+                  <div class="app-form-title">Query Parameters</div>
+                  <div class="app-form-grid">
+                    <div><div class="app-fl-label">Charge Type</div><select class="app-fl-input"><option>Felony B — All</option></select></div>
+                    <div><div class="app-fl-label">Date Range</div><select class="app-fl-input"><option>2024 Term Year</option></select></div>
+                    <div><div class="app-fl-label">Case Status</div><select class="app-fl-input"><option>Active + Pending</option></select></div>
+                    <div><div class="app-fl-label">Assigned DA</div><select class="app-fl-input"><option>All DAs</option></select></div>
+                    <div><div class="app-fl-label">County</div><select class="app-fl-input"><option>Dane County</option></select></div>
+                    <div><div class="app-fl-label">Prior Convictions</div><select class="app-fl-input"><option>Any</option></select></div>
+                  </div>
+                  <div style="padding:0 12px 12px;display:flex;justify-content:flex-end;gap:8px">
+                    <div class="app-btn-o" style="cursor:default">Clear</div>
+                    <div class="app-btn-p" style="cursor:default">Run Query →</div>
+                  </div>
+                </div>
+                <div style="background:#fff;border-radius:6px;border:1px solid #F3F4F6;padding:12px 14px;display:flex;align-items:center;justify-content:space-between">
+                  <div style="font-size:11px;color:#374151;font-weight:600">Results: <span style="color:#7c3aed">47 cases</span> matching your criteria</div>
+                  <div style="display:flex;gap:6px">
+                    <span class="b s">47 Active</span>
+                    <span class="b w">12 Pending</span>
+                  </div>
+                </div>
+                <div class="app-tw">
+                  <table class="app-t">
+                    <thead><tr><th>Case No.</th><th>Defendant</th><th>Charge</th><th>DA</th><th>Status</th><th class="r">Filed</th></tr></thead>
+                    <tbody>
+                      <tr><td class="lnk">2024-CR-00847</td><td>Martinez, R.</td><td>Felony B Assault</td><td>Richardson</td><td><span class="b s">Active</span></td><td class="r">Nov 14</td></tr>
+                      <tr><td class="lnk">2024-CR-00812</td><td>Lopez, C.</td><td>Felony B Robbery</td><td>Chen</td><td><span class="b s">Active</span></td><td class="r">Oct 28</td></tr>
+                      <tr><td class="lnk">2024-CR-00789</td><td>Brown, D.</td><td>Felony B Assault</td><td>Patel</td><td><span class="b w">Pending</span></td><td class="r">Oct 15</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screen-annotation">
+          <div class="screen-num-badge">4</div>
+          <div>
+            <div class="screen-title">XCQ Query Module — From CLI to Visual UI</div>
+            <div class="screen-desc">Before PROTECT, XCQ queries ran in a terminal that only one investigator in the office knew how to use. The redesigned module exposes the same query power through a form-based UI — no code required. Results display inline with export options. Saved queries preserve common searches for reuse.</div>
+            <div class="screen-callouts">
+              <span class="screen-callout highlight">No code required</span>
+              <span class="screen-callout highlight">Results inline</span>
+              <span class="screen-callout">Saved query library</span>
+              <span class="screen-callout">One-click export</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KEY DESIGN DECISIONS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Key Design Decisions</div>
+    <h2 class="cs-title">The calls that <em>shaped the platform</em></h2>
+    <div class="cs-body">
+      <p><strong>Split IA for desktop vs. web.</strong> The most important structural decision. Desktop users (DAs, investigators) needed dense, contextual, keyboard-first interfaces. Web users (clerks, supervisors) needed streamlined task flows optimised for high-volume daily use. One IA would have served neither group well. The split doubled the design effort but produced two genuinely usable experiences.</p>
+      <p><strong>Auto-populated fields in eFiling.</strong> Early prototypes showed users re-entering case information that already existed in the system — leading to errors. Locking case fields and auto-populating from the case record eliminated an entire category of filing mistakes. This required close coordination with the dev team to expose the right data in the right form context.</p>
+      <p><strong>Inline XCQ results, not a separate page.</strong> The original brief called for XCQ results to open in a new page. After testing with investigators, we found that users frequently needed to cross-reference results against other cases — requiring constant back-navigation. Moving results inline kept the query context visible and reduced the cognitive load of the task significantly.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
 
   <!-- OUTCOMES -->
   <div class="cs-section">
     <div class="cs-eyebrow">Outcomes</div>
-    <h2 class="cs-h2">From spreadsheets to a <em>purpose-built platform</em></h2>
-    <div class="cs-outcomes">
-      <div class="cs-oc"><div class="cs-oc-v">50+</div><div class="cs-oc-l">Screens shipped</div></div>
-      <div class="cs-oc"><div class="cs-oc-v">5</div><div class="cs-oc-l">Design workstreams</div></div>
-      <div class="cs-oc"><div class="cs-oc-v">1.5yr</div><div class="cs-oc-l">Embedded engagement</div></div>
-      <div class="cs-oc"><div class="cs-oc-v">0</div><div class="cs-oc-l">Prior UX foundation</div></div>
-    </div>
-    <p class="cs-p">PROTECT went from a concept to a shipped, working case management platform — replacing the spreadsheet-and-paper system that DAs and investigators had relied on for years. The dual interaction model (desktop-dense vs. web-simplified) was validated by the legal team and adopted without major revisions.</p>
-    <p class="cs-p">The brand identity created for PROTECT established a visual language that carried through all five modules, giving the platform a coherent identity despite its complexity.</p>
-
-    <div class="cs-cta-row">
-      <a href="index.html" class="btn-p">
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M9 2L4 6.5 9 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Back to Portfolio
-      </a>
-      <a href="mailto:Shivaniharode@gmail.com" class="btn-s">Discuss this project ✉</a>
+    <h2 class="cs-title">What the work <em>actually delivered</em></h2>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="outcome-val">50+</div>
+        <div class="outcome-lbl">Screens designed</div>
+        <div class="outcome-desc">Across 5 workstreams — desktop app, web portal, eFiling, XCQ, and brand identity.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">1.5yr</div>
+        <div class="outcome-lbl">Embedded engagement</div>
+        <div class="outcome-desc">Long-term enough to understand domain deeply, build trust, and iterate through multiple UAT cycles.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="outcome-val">Solo</div>
+        <div class="outcome-lbl">End-to-end ownership</div>
+        <div class="outcome-desc">Discovery, research, IA, visual design, prototyping, brand identity, developer handoff — all solo.</div>
+      </div>
     </div>
   </div>
 
-</div>
+  <div class="divider"></div>
+
+  <!-- TESTIMONIALS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Client Feedback</div>
+    <h2 class="cs-title">What the team <em>said</em></h2>
+    <div class="testi-block">
+      <div class="testi-q">"Working with Shivani on PROTECT has been a rewarding experience. Over the course of 1.5 years, she delivered thoughtful, user-centered design across 50+ screens. She rose to every challenge with professionalism and curiosity."</div>
+      <div class="testi-src">
+        <div class="testi-av">LF</div>
+        <div><div class="testi-name">Lisa Fangmann</div><div class="testi-role">Business Analyst, Division of Administrative Information Technology · State of Wisconsin</div></div>
+      </div>
+    </div>
+    <div class="testi-block" style="margin-top:16px">
+      <div class="testi-q">"You took the team's input and put together a nice design scheme. Applying patterns to our XCQ design is one of your real strengths. Good that you adjusted from web to desktop forms — that distinction mattered a lot to us."</div>
+      <div class="testi-src">
+        <div class="testi-av" style="background:#3d7260">JM</div>
+        <div><div class="testi-name">Jenn Macainag</div><div class="testi-role">Project Lead, PROTECT · State of Wisconsin</div></div>
+      </div>
+    </div>
+    <div class="testi-block" style="margin-top:16px">
+      <div class="testi-q">"What stood out most was Shivani's ability to adapt across a wide range of challenges — from UI/UX for multiple platforms to logos and icons. Her creativity, versatility, and collaborative spirit were critical to PROTECT's success."</div>
+      <div class="testi-src">
+        <div class="testi-av">LF</div>
+        <div><div class="testi-name">Lisa Fangmann</div><div class="testi-role">Division of Enterprise Technology · State of Wisconsin</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- LEARNINGS -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Learnings</div>
+    <h2 class="cs-title">What I'd <em>do differently</em></h2>
+    <div class="cs-body">
+      <p><strong>Start brand identity earlier.</strong> I designed the PROTECT brand identity in parallel with early app screens, which caused some rework when brand decisions evolved. In future embedded engagements, I'd lock brand fundamentals — colour, typography, tone — before any interface design begins.</p>
+      <p><strong>Get DA office hours sooner.</strong> The most valuable research came from sitting with DAs during actual court prep sessions. That access took months to arrange through bureaucratic channels. Next time I'd negotiate observational access as a project kickoff requirement rather than an optional research activity.</p>
+      <p><strong>Document design rationale as you go.</strong> Because the engagement was so long, later decisions sometimes lost the thread back to original research. Maintaining a running decision log — "why we chose X over Y" — would have made stakeholder reviews faster and reduced re-litigation of settled decisions.</p>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<footer>
+  <span class="foot-copy">Shivani Harode · Senior UI/UX Designer · PROTECT Case Study</span>
+  <a href="index.html" class="foot-back">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    Back to Portfolio
+  </a>
+</footer>
+
 </body>
 </html>
