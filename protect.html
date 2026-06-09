@@ -3,88 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<meta name="description" content="PROTECT Case Management System — UX Case Study by Shivani Harode">
 <title>PROTECT Case Management · Case Study · Shivani Harode</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0a0a0a;--bg2:#111114;--text:#f2f0ed;--text2:rgba(242,240,237,.55);--text3:rgba(242,240,237,.28);--gold:#c9a96e;--gold2:rgba(201,169,110,.12);--border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.13);--purple:#7c3aed;--ease:cubic-bezier(.16,1,.3,1)}
+:root{--c:#f5f0e8;--cw:#faf8f4;--ink:#1a1508;--i70:rgba(26,21,8,.7);--i50:rgba(26,21,8,.5);--i12:rgba(26,21,8,.12);--gold:#b8945a;--gl:rgba(184,148,90,.13);--gm:rgba(184,148,90,.38);--ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box;margin:0;padding:0}
-html{overflow-x:hidden}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
-
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--c);color:var(--ink);-webkit-font-smoothing:antialiased}
 /* BACK NAV */
-.back-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.back-btn{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;background:var(--gold);color:#000;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;transition:all .3s;letter-spacing:.02em}
-.back-btn:hover{background:#e8c98a;transform:translateY(-1px)}
+.back-nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:14px 48px;background:rgba(245,240,232,.94);backdrop-filter:blur(22px);border-bottom:1px solid var(--i12)}
+.back-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--ink);color:var(--c);border-radius:100px;font-size:12px;font-weight:500;text-decoration:none;transition:all .3s var(--ease);letter-spacing:.02em}
+.back-btn:hover{background:var(--gold);transform:translateY(-1px)}
 .back-btn:focus{outline:2px solid var(--gold);outline-offset:3px}
-.back-btn svg{flex-shrink:0}
-.back-crumb{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
-
+.back-btn svg{flex-shrink:0;transition:transform .25s}
+.back-btn:hover svg{transform:translateX(-2px)}
+.back-crumb{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--i50)}
+@media(max-width:600px){.back-nav{padding:12px 20px}.back-crumb{display:none}}
 /* HERO */
-.cs-hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 56px 80px;position:relative;overflow:hidden}
-.cs-hero-bg{position:absolute;inset:0;background:linear-gradient(145deg,#1a0b35 0%,#4c1d95 50%,#2d0f6b 100%);z-index:0}
-.cs-hero-grain{position:absolute;inset:0;opacity:.03;z-index:1;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.cs-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,.2) 0%,rgba(10,10,10,.5) 60%,rgba(10,10,10,.95) 100%);z-index:2}
-.cs-hero-content{position:relative;z-index:10;max-width:900px}
-.cs-tag{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border:1px solid rgba(124,58,237,.4);border-radius:100px;background:rgba(124,58,237,.12);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;margin-bottom:20px}
-.cs-title{font-family:'Playfair Display',serif;font-size:clamp(44px,7vw,88px);font-weight:400;letter-spacing:-.035em;line-height:.9;color:var(--text);margin-bottom:16px}
-.cs-title em{font-style:italic;color:#a78bfa}
-.cs-sub{font-size:clamp(15px,1.8vw,19px);color:var(--text2);line-height:1.7;max-width:660px;font-weight:300;margin-bottom:36px}
-.cs-meta-row{display:flex;flex-wrap:wrap;gap:24px}
-.cs-meta-item{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
-.cs-meta-item span{color:var(--text);display:block;margin-top:3px;font-size:13px;font-family:'Inter',sans-serif;font-weight:500;letter-spacing:0;text-transform:none}
-
-/* CONTENT */
-.cs-body{max-width:880px;margin:0 auto;padding:80px 48px 120px}
-.cs-section{margin-bottom:72px}
-.cs-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:10px}
-.cs-label::before{content:'';width:18px;height:1px;background:var(--gold)}
-.cs-h2{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,42px);font-weight:400;letter-spacing:-.02em;color:var(--text);margin-bottom:20px;line-height:1.05}
-.cs-h2 em{font-style:italic;color:#a78bfa}
-.cs-p{font-size:15px;color:var(--text2);line-height:1.85;font-weight:300;margin-bottom:16px}
+.cs-hero{padding:110px 0 72px;background:linear-gradient(145deg,#1a0b35 0%,#4c1d95 60%,#2d0f6b 100%);position:relative;overflow:hidden}
+.cs-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 70% 40%,rgba(255,255,255,.06) 0%,transparent 70%)}
+.cs-hero-inner{max-width:900px;margin:0 auto;padding:0 52px}
+.cs-tag{display:inline-flex;align-items:center;gap:6px;padding:5px 14px;border-radius:100px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:22px}
+.cs-tag::before{content:'◆';font-size:7px;color:rgba(255,255,255,.5)}
+.cs-lead{display:inline-flex;align-items:center;gap:5px;padding:3px 11px;border-radius:100px;background:rgba(201,169,110,.25);font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:#f0d89a;margin-bottom:16px;width:fit-content}
+.cs-lead::before{content:'★';font-size:7px}
+.cs-title{font-family:'Playfair Display',serif;font-size:clamp(40px,6vw,72px);font-weight:400;letter-spacing:-.03em;line-height:.92;color:#fff;margin-bottom:10px}
+.cs-title em{font-style:italic;color:#c9a96e}
+.cs-subtitle{font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:32px}
+.cs-stats{display:flex;gap:36px;flex-wrap:wrap;padding-top:32px;border-top:1px solid rgba(255,255,255,.12);margin-top:32px}
+.cs-stat-v{font-family:'Playfair Display',serif;font-size:28px;font-weight:500;color:#c9a96e;letter-spacing:-.025em;line-height:1}
+.cs-stat-l{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px}
+@media(max-width:600px){.cs-hero-inner{padding:0 22px}.cs-stats{gap:22px}}
+/* MAIN CONTENT */
+.cs-body{max-width:900px;margin:0 auto;padding:0 52px 100px}
+@media(max-width:600px){.cs-body{padding:0 22px 80px}}
+.cs-section{padding:64px 0;border-bottom:1px solid var(--i12)}
+.cs-section:last-child{border-bottom:none}
+.cs-eyebrow{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.cs-eyebrow::before{content:'';width:16px;height:1px;background:var(--gold)}
+.cs-h2{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,40px);font-weight:400;letter-spacing:-.025em;line-height:1.06;color:var(--ink);margin-bottom:18px}
+.cs-h2 em{font-style:italic;color:var(--gold)}
+.cs-p{font-size:15px;color:var(--i70);line-height:1.85;font-weight:300;margin-bottom:16px}
 .cs-p:last-child{margin-bottom:0}
-.cs-p strong{color:var(--text);font-weight:500}
-
-/* Metrics */
-.cs-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:32px 0}
-.cs-metric{padding:24px 20px;border:1px solid var(--border2);border-radius:16px;background:rgba(255,255,255,.03);text-align:center}
-.cs-mv{font-family:'Playfair Display',serif;font-size:36px;font-weight:500;color:#a78bfa;letter-spacing:-.03em;line-height:1}
-.cs-ml{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-top:6px}
-
-/* Insight box */
-.cs-insight{padding:24px 26px;border-left:3px solid #7c3aed;border-radius:0 14px 14px 0;background:rgba(124,58,237,.08);margin:28px 0}
-.cs-insight-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.14em;text-transform:uppercase;color:#a78bfa;margin-bottom:8px}
-.cs-insight p{font-size:15px;color:var(--text2);line-height:1.78;font-weight:300;font-style:italic}
-
-/* Process chips */
-.cs-chips{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}
-.cs-chip{padding:6px 14px;border:1px solid var(--border2);border-radius:100px;font-family:'DM Mono',monospace;font-size:10px;color:var(--text2);background:rgba(255,255,255,.03)}
-
-/* Feature list */
-.cs-list{list-style:none;margin:20px 0}
-.cs-list li{padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--text2);line-height:1.7;font-weight:300;display:flex;gap:12px;align-items:flex-start}
-.cs-list li:last-child{border-bottom:none}
-.cs-list li::before{content:'◆';color:#a78bfa;font-size:8px;margin-top:4px;flex-shrink:0}
-.cs-list li strong{color:var(--text);font-weight:500}
-
-/* Bottom CTA */
-.cs-cta-section{text-align:center;padding:60px 0 0;border-top:1px solid var(--border)}
-.cs-cta-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--text3);margin-bottom:20px}
-.cs-cta-h{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:400;letter-spacing:-.025em;color:var(--text);margin-bottom:28px;line-height:1.05}
-.cs-cta-h em{font-style:italic;color:#a78bfa}
-.cs-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.cs-btn-p{padding:13px 28px;background:var(--gold);color:#000;border-radius:100px;font-size:13px;font-weight:600;text-decoration:none;transition:all .3s;display:inline-block}
-.cs-btn-p:hover{background:#e8c98a;transform:translateY(-2px)}
-.cs-btn-g{padding:13px 22px;background:transparent;color:var(--text2);border-radius:100px;font-size:13px;text-decoration:none;border:1px solid var(--border2);transition:all .25s;display:inline-block}
-.cs-btn-g:hover{color:var(--text);border-color:rgba(255,255,255,.25);transform:translateY(-2px)}
-
-footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.ft{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3)}
-.ft-a{font-family:'DM Mono',monospace;font-size:10px;color:var(--text3);text-decoration:none;transition:color .2s}
-.ft-a:hover{color:var(--gold)}
-@media(max-width:768px){.cs-hero{padding:100px 24px 60px}.cs-body{padding:60px 24px 80px}.cs-metrics{grid-template-columns:1fr 1fr}.back-nav{padding:14px 24px}.cs-meta-row{gap:16px}footer{flex-direction:column;gap:10px;text-align:center;padding:22px}}
+.cs-p strong{color:var(--ink);font-weight:500}
+/* Info grid */
+.cs-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
+.cs-info-card{padding:18px 20px;border:1px solid var(--i12);border-radius:14px;background:var(--cw)}
+.cs-info-label{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--i50);margin-bottom:6px}
+.cs-info-val{font-size:13.5px;color:var(--ink);font-weight:500;line-height:1.4}
+.cs-info-val.gold{color:var(--gold)}
+@media(max-width:600px){.cs-info-grid{grid-template-columns:1fr 1fr}}
+/* Module cards */
+.cs-modules{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0}
+.cs-module{padding:20px 22px;border:1px solid var(--i12);border-radius:16px;background:var(--cw);position:relative;overflow:hidden;transition:all .3s}
+.cs-module::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(184,148,90,.2));transform:scaleX(0);transform-origin:left;transition:transform .38s}
+.cs-module:hover::before{transform:scaleX(1)}
+.cs-module:hover{border-color:var(--gm)}
+.cs-mod-num{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:8px;display:block}
+.cs-mod-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;color:var(--ink);margin-bottom:6px}
+.cs-mod-desc{font-size:12.5px;color:var(--i70);line-height:1.65;font-weight:300}
+@media(max-width:600px){.cs-modules{grid-template-columns:1fr}}
+/* Insight callout */
+.cs-insight{padding:22px 24px;border:1px solid var(--gm);border-radius:16px;background:var(--gl);margin:28px 0}
+.cs-insight-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.cs-insight-text{font-family:'Playfair Display',serif;font-size:clamp(17px,2.2vw,22px);font-weight:400;font-style:italic;color:var(--ink);line-height:1.5}
+/* Tools */
+.cs-tools{display:flex;flex-wrap:wrap;gap:7px;margin-top:16px}
+.cs-tool{padding:5px 13px;border:1px solid var(--i12);border-radius:100px;font-family:'DM Mono',monospace;font-size:9.5px;color:var(--i50);background:var(--cw);transition:all .2s}
+.cs-tool:hover{border-color:var(--gm);color:var(--gold);background:var(--gl)}
+/* Outcome numbers */
+.cs-outcomes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:28px 0}
+.cs-oc{padding:20px 18px;border:1px solid var(--i12);border-radius:14px;background:var(--cw);text-align:center}
+.cs-oc-v{font-family:'Playfair Display',serif;font-size:32px;font-weight:500;color:var(--gold);letter-spacing:-.03em;line-height:1}
+.cs-oc-l{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--i50);margin-top:6px}
+@media(max-width:600px){.cs-outcomes{grid-template-columns:1fr 1fr}}
+/* CTA */
+.cs-cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:40px;padding-top:40px;border-top:1px solid var(--i12)}
+.btn-p{display:inline-flex;align-items:center;gap:7px;padding:13px 26px;background:var(--ink);color:var(--c);border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;transition:all .3s;letter-spacing:.02em}
+.btn-p:hover{background:var(--gold);transform:translateY(-2px)}
+.btn-s{display:inline-flex;align-items:center;gap:7px;padding:13px 22px;background:transparent;color:var(--ink);border-radius:100px;font-size:13px;font-weight:500;text-decoration:none;border:1.5px solid var(--i12);transition:all .28s}
+.btn-s:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
 </style>
 </head>
 <body>
@@ -100,18 +99,16 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 
 <!-- HERO -->
 <div class="cs-hero">
-  <div class="cs-hero-bg" aria-hidden="true"></div>
-  <div class="cs-hero-grain" aria-hidden="true"></div>
-  <div class="cs-hero-overlay" aria-hidden="true"></div>
-  <div class="cs-hero-content">
-    <div class="cs-tag">★ Lead Designer · Sole UX — End-to-End</div>
+  <div class="cs-hero-inner">
+    <div class="cs-tag">State of Wisconsin · Case Management</div>
+    <div class="cs-lead">Lead Designer · Sole UX — End-to-End</div>
     <h1 class="cs-title">PROTECT<br><em>Case Management</em></h1>
-    <p class="cs-sub">Designing Wisconsin's first dedicated platform for District Attorneys managing active criminal cases — from blank canvas to production-ready system, embedded for 1.5 years as the sole designer.</p>
-    <div class="cs-meta-row">
-      <div class="cs-meta-item">Client<span>State of Wisconsin · DOJ</span></div>
-      <div class="cs-meta-item">Timeline<span>Jan 2024 – Jun 2025</span></div>
-      <div class="cs-meta-item">My Role<span>Senior UI/UX Designer · Sole Designer</span></div>
-      <div class="cs-meta-item">Platforms<span>Web + Desktop Applications</span></div>
+    <div class="cs-subtitle">Senior UI/UX Designer &nbsp;·&nbsp; Jan 2024 – Jun 2025 &nbsp;·&nbsp; 1.5 Years Embedded</div>
+    <div class="cs-stats">
+      <div><div class="cs-stat-v">50+</div><div class="cs-stat-l">Screens designed</div></div>
+      <div><div class="cs-stat-v">5</div><div class="cs-stat-l">Major modules</div></div>
+      <div><div class="cs-stat-v">1.5yr</div><div class="cs-stat-l">Embedded engagement</div></div>
+      <div><div class="cs-stat-v">Solo</div><div class="cs-stat-l">Sole designer</div></div>
     </div>
   </div>
 </div>
@@ -119,94 +116,90 @@ footer{padding:28px 48px;border-top:1px solid var(--border);display:flex;align-i
 <!-- BODY -->
 <div class="cs-body">
 
-  <!-- Metrics -->
-  <div class="cs-metrics">
-    <div class="cs-metric"><div class="cs-mv">50+</div><div class="cs-ml">Screens delivered</div></div>
-    <div class="cs-metric"><div class="cs-mv">5</div><div class="cs-ml">Major modules</div></div>
-    <div class="cs-metric"><div class="cs-mv">1.5yr</div><div class="cs-ml">Embedded engagement</div></div>
+  <!-- OVERVIEW -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Project Overview</div>
+    <h2 class="cs-h2">Wisconsin DAs were running <em>active cases</em> in spreadsheets</h2>
+    <p class="cs-p">The Wisconsin Department of Justice needed a purpose-built case management system for their District Attorneys — the PROTECT Case Management platform. Before PROTECT, DAs and investigators tracked active criminal cases in spreadsheets, shared documents, and paper files. Data was siloed, handoffs were error-prone, and there was no single source of truth for case status.</p>
+    <p class="cs-p">I was brought in as the <strong>sole UI/UX designer for 1.5 years</strong>, responsible for all five major design workstreams: brand identity, desktop app revamp, details pane web app, XCQ web querying, and eFiling portal.</p>
+    <div class="cs-info-grid">
+      <div class="cs-info-card"><div class="cs-info-label">My Role</div><div class="cs-info-val gold">Senior UI/UX Designer · Sole Designer</div></div>
+      <div class="cs-info-card"><div class="cs-info-label">Duration</div><div class="cs-info-val">Jan 2024 – Jun 2025 (1.5 years)</div></div>
+      <div class="cs-info-card"><div class="cs-info-label">Client</div><div class="cs-info-val">State of Wisconsin · DOJ</div></div>
+      <div class="cs-info-card"><div class="cs-info-label">Tools</div><div class="cs-info-val">Figma, InVision, FigJam, Axure RP, GIMP</div></div>
+      <div class="cs-info-card"><div class="cs-info-label">Deliverables</div><div class="cs-info-val">50+ screens, brand identity, 5 modules</div></div>
+      <div class="cs-info-card"><div class="cs-info-label">Team</div><div class="cs-info-val">Solo designer + Engineering + Business team</div></div>
+    </div>
   </div>
 
-  <!-- Problem -->
+  <!-- DISCOVERY -->
   <div class="cs-section">
-    <div class="cs-label">The Problem</div>
-    <h2 class="cs-h2">DAs managing criminal<br><em>cases in spreadsheets</em></h2>
-    <p class="cs-p">Wisconsin District Attorneys across the state were tracking active criminal cases using a patchwork of spreadsheets, paper files, and disconnected tools. There was no centralised system, no shared visibility, and no way to efficiently manage the complex web of cases, hearings, defendants, and evidence that a modern DA's office handles daily.</p>
-    <p class="cs-p">I was brought in as the <strong>sole UI/UX designer</strong> on the PROTECT project to design their first dedicated case management platform — from brand identity to production-ready screens across both web and desktop applications.</p>
+    <div class="cs-eyebrow">Discovery Process</div>
+    <h2 class="cs-h2">The real problem wasn't the <em>missing tool</em></h2>
+    <p class="cs-p">Before designing a single screen, I ran a series of <strong>stakeholder workshops</strong> with District Attorneys, investigators, legal assistants, and the IT team to map the full case lifecycle — from initial filing through court dates, evidence tracking, and closure.</p>
+    <p class="cs-p">The workshops revealed a critical insight that changed the entire design direction:</p>
     <div class="cs-insight">
-      <div class="cs-insight-label">Key Discovery</div>
-      <p>Desktop and web users had fundamentally different interaction patterns — DAs in courtrooms needed completely different flows than office staff managing case records. Solving that split drove the entire information architecture.</p>
+      <div class="cs-insight-label">Key Insight</div>
+      <div class="cs-insight-text">"Desktop users (investigators) and web users (DAs in court) had fundamentally different interaction patterns — desktop users needed dense, scannable grids; web users needed quick status views on small screens. Building one system to serve both would have failed both."</div>
+    </div>
+    <p class="cs-p">This insight drove the entire information architecture decision — two distinct interaction models within one connected data system, rather than one compromise interface.</p>
+  </div>
+
+  <!-- MODULES -->
+  <div class="cs-section">
+    <div class="cs-eyebrow">Five Workstreams</div>
+    <h2 class="cs-h2">One platform, <em>five major efforts</em></h2>
+    <p class="cs-p">Over 1.5 years, I led design across five distinct workstreams under the PROTECT umbrella:</p>
+    <div class="cs-modules">
+      <div class="cs-module"><span class="cs-mod-num">01</span><div class="cs-mod-title">Brand Identity</div><div class="cs-mod-desc">Designed the PROTECT logo, color system, and visual language from scratch. Required balancing official government aesthetics with approachable usability for busy legal staff.</div></div>
+      <div class="cs-module"><span class="cs-mod-num">02</span><div class="cs-mod-title">Desktop App Revamp</div><div class="cs-mod-desc">Rebuilt the existing desktop case management interface. Focused on dense data tables, keyboard navigation, and fast workflows for investigators who live in this tool all day.</div></div>
+      <div class="cs-module"><span class="cs-mod-num">03</span><div class="cs-mod-title">Details Pane Web App</div><div class="cs-mod-desc">Designed the web-based case details view for DAs accessing PROTECT from court or remote locations. Simplified to high-signal status information on any screen size.</div></div>
+      <div class="cs-module"><span class="cs-mod-num">04</span><div class="cs-mod-title">XCQ Web Querying</div><div class="cs-mod-desc">Designed a query interface for cross-case data retrieval. Applied consistent patterns from the desktop app to ensure investigators could switch contexts without relearning.</div></div>
+      <div class="cs-module"><span class="cs-mod-num">05</span><div class="cs-mod-title">eFiling Portal</div><div class="cs-mod-desc">End-to-end design for the electronic filing portal, including form architecture, error states, confirmation flows, and integration with existing court filing systems.</div></div>
     </div>
   </div>
 
-  <!-- Process -->
+  <!-- APPROACH -->
   <div class="cs-section">
-    <div class="cs-label">Discovery &amp; Research</div>
-    <h2 class="cs-h2">Understanding before<br><em>designing</em></h2>
-    <p class="cs-p">Before designing a single screen, I ran workshops with District Attorneys, investigators, paralegals, and IT stakeholders to map the complete case lifecycle. This was not a typical B2B SaaS audience — understanding their mental models, legal constraints, and daily workflows required deep immersion.</p>
-    <div class="cs-chips">
-      <span class="cs-chip">🔍 Stakeholder workshops</span>
-      <span class="cs-chip">🗺️ Case lifecycle mapping</span>
-      <span class="cs-chip">👥 User interviews — DAs, investigators, staff</span>
-      <span class="cs-chip">📋 Workflow documentation</span>
-      <span class="cs-chip">🖥️ Desktop vs. web analysis</span>
+    <div class="cs-eyebrow">Design Approach</div>
+    <h2 class="cs-h2">Embedded, not adjacent — <em>design inside the team</em></h2>
+    <p class="cs-p">Being embedded for 1.5 years meant I wasn't just a designer handing off specs. I attended sprint planning, joined standups, reviewed builds in staging, and pushed back when implementation diverged from intent. My front-end background meant conversations with engineering were direct and precise.</p>
+    <p class="cs-p">With a government client, accessibility wasn't optional. Every screen was designed and reviewed for <strong>WCAG 2.1 AA compliance</strong>, keyboard navigation, and screen reader support — requirements that shaped design decisions from color choice through interaction patterns.</p>
+    <div class="cs-tools">
+      <span class="cs-tool">Figma</span>
+      <span class="cs-tool">InVision</span>
+      <span class="cs-tool">FigJam</span>
+      <span class="cs-tool">Axure RP</span>
+      <span class="cs-tool">GIMP</span>
+      <span class="cs-tool">Stakeholder workshops</span>
+      <span class="cs-tool">Journey mapping</span>
+      <span class="cs-tool">WCAG 2.1 AA</span>
+      <span class="cs-tool">Design system documentation</span>
     </div>
   </div>
 
-  <!-- Design -->
+  <!-- OUTCOMES -->
   <div class="cs-section">
-    <div class="cs-label">Design Scope</div>
-    <h2 class="cs-h2">Five major efforts,<br><em>all solo</em></h2>
-    <p class="cs-p">The PROTECT umbrella covered five distinct design workstreams, each with its own complexity and stakeholder requirements:</p>
-    <ul class="cs-list">
-      <li><strong>Brand Identity &amp; Logo</strong> — Created the PROTECT brand from scratch, including logo, colour system, and design language that would work across both web and desktop contexts.</li>
-      <li><strong>Desktop Application Revamp</strong> — Redesigned the core desktop case management app used daily by DA offices. Optimised for power users who navigate hundreds of cases.</li>
-      <li><strong>Details Pane Web App</strong> — Designed the web-based details pane for case record management, balancing information density with clarity.</li>
-      <li><strong>XCQ Web Application</strong> — Complex querying interface for cross-case search and filtering. Heavy information architecture work to make a powerful tool feel approachable.</li>
-      <li><strong>eFiling Application</strong> — End-to-end eFiling portal for submitting court documents digitally, replacing a paper-based process with strict legal compliance requirements.</li>
-    </ul>
-  </div>
-
-  <!-- Tools -->
-  <div class="cs-section">
-    <div class="cs-label">Tools &amp; Methods</div>
-    <h2 class="cs-h2">Working with<br><em>engineering directly</em></h2>
-    <p class="cs-p">With a complex desktop application, high-fidelity Axure RP prototypes were essential for validating interactions before development. My front-end background meant I could collaborate directly with the engineering team on implementation details, ensuring designs survived handoff without compromise.</p>
-    <div class="cs-chips">
-      <span class="cs-chip">Figma — UI design &amp; components</span>
-      <span class="cs-chip">InVision — stakeholder reviews</span>
-      <span class="cs-chip">FigJam — workshops &amp; synthesis</span>
-      <span class="cs-chip">Axure RP — desktop prototypes</span>
-      <span class="cs-chip">GIMP — asset creation</span>
+    <div class="cs-eyebrow">Outcomes</div>
+    <h2 class="cs-h2">From spreadsheets to a <em>purpose-built platform</em></h2>
+    <div class="cs-outcomes">
+      <div class="cs-oc"><div class="cs-oc-v">50+</div><div class="cs-oc-l">Screens shipped</div></div>
+      <div class="cs-oc"><div class="cs-oc-v">5</div><div class="cs-oc-l">Design workstreams</div></div>
+      <div class="cs-oc"><div class="cs-oc-v">1.5yr</div><div class="cs-oc-l">Embedded engagement</div></div>
+      <div class="cs-oc"><div class="cs-oc-v">0</div><div class="cs-oc-l">Prior UX foundation</div></div>
     </div>
-  </div>
+    <p class="cs-p">PROTECT went from a concept to a shipped, working case management platform — replacing the spreadsheet-and-paper system that DAs and investigators had relied on for years. The dual interaction model (desktop-dense vs. web-simplified) was validated by the legal team and adopted without major revisions.</p>
+    <p class="cs-p">The brand identity created for PROTECT established a visual language that carried through all five modules, giving the platform a coherent identity despite its complexity.</p>
 
-  <!-- Learnings -->
-  <div class="cs-section">
-    <div class="cs-label">Key Learnings</div>
-    <h2 class="cs-h2">What this project<br><em>taught me</em></h2>
-    <ul class="cs-list">
-      <li><strong>Desktop UX is a different discipline.</strong> Desktop application design demands fundamentally different thinking than web — keyboard shortcuts, information density, window management, and multi-panel layouts require their own design patterns.</li>
-      <li><strong>Domain expertise compounds.</strong> After 1.5 years embedded, my designs improved significantly because I understood the legal context as well as the users did.</li>
-      <li><strong>Pattern libraries pay dividends.</strong> Building a reusable pattern library early meant the XCQ and eFiling modules came together faster and more consistently than the earlier workstreams.</li>
-    </ul>
-  </div>
-
-  <!-- CTA -->
-  <div class="cs-cta-section">
-    <div class="cs-cta-label">Want to know more?</div>
-    <h2 class="cs-cta-h">Let's discuss<br><em>this project</em></h2>
-    <div class="cs-btns">
-      <a href="mailto:Shivaniharode@gmail.com" class="cs-btn-p">✉ Contact Shivani</a>
-      <a href="index.html" class="cs-btn-g">← Back to Portfolio</a>
+    <div class="cs-cta-row">
+      <a href="index.html" class="btn-p">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" aria-hidden="true"><path d="M9 2L4 6.5 9 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back to Portfolio
+      </a>
+      <a href="mailto:Shivaniharode@gmail.com" class="btn-s">Discuss this project ✉</a>
     </div>
   </div>
 
 </div>
-
-<footer>
-  <div class="ft">Shivani Harode · Senior UI/UX Designer · Frisco, TX</div>
-  <a href="index.html" class="ft-a">← Portfolio</a>
-</footer>
-
 </body>
 </html>
