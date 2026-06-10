@@ -202,11 +202,6 @@ section{position:relative;z-index:10}
 .pj-c{grid-column:1/5;grid-row:2}
 .pj-d{grid-column:5/9;grid-row:2}
 .pj-e{grid-column:9/13;grid-row:2}
-.pj-thumb{position:relative;overflow:hidden;flex-shrink:0}
-
-
-
-
 .t-dese 
 .t-protect 
 .t-hp 
@@ -214,8 +209,6 @@ section{position:relative;z-index:10}
 .t-fedex 
 
 
-.pj-num-bg{position:absolute;bottom:8px;right:14px;font-family:'Playfair Display',serif;font-size:68px;font-weight:700;line-height:1;color:rgba(255,255,255,.07);letter-spacing:-.04em;pointer-events:none;font-style:italic}
-.pj-tag{position:absolute;top:13px;left:13px;padding:4px 10px;border-radius:100px;background:rgba(0,0,0,.38);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.68)}
 .pj-body{padding:20px 22px;flex:1;display:flex;flex-direction:column}
 .pj-lead{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border:1px solid var(--gmid);border-radius:100px;background:var(--glight);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;width:fit-content}
 .pj-lead::before{content:'★';font-size:7px}
@@ -510,32 +503,30 @@ footer{padding:24px 52px;border-top:1px solid var(--i12);display:flex;align-item
 }
 a{text-decoration:none;color:inherit;}
 
-/* ── PROJECT THUMBNAILS ── */
-.pj-thumb{position:relative;overflow:hidden;flex-shrink:0}
-.pj-a .pj-thumb{height:300px}
+
+
+/* ══ PROJECT CARD THUMBNAILS ══ */
+.pj-thumb{position:relative;overflow:hidden;flex-shrink:0;background:#0a0a14}
+.pj-a .pj-thumb{height:290px}
 .pj-b .pj-thumb{height:240px}
-.pj-c .pj-thumb,.pj-d .pj-thumb,.pj-e .pj-thumb{height:200px}
-.pj-timg{position:absolute;inset:0;overflow:hidden}
-.pj-timg svg{position:absolute;inset:0;width:100%;height:100%}
+.pj-c .pj-thumb{height:200px}
+.pj-d .pj-thumb{height:200px}
+.pj-e .pj-thumb{height:200px}
+.pj-timg{position:absolute;top:0;left:0;right:0;bottom:0;overflow:hidden}
+.pj-timg svg{display:block;width:100%;height:100%;position:absolute;top:0;left:0}
 .pj-tag{
-  position:absolute;top:13px;left:13px;z-index:10;
+  position:absolute;top:12px;left:12px;z-index:10;
   padding:4px 10px;border-radius:100px;
-  background:rgba(0,0,0,.42);backdrop-filter:blur(8px);
-  border:1px solid rgba(255,255,255,.12);
-  font-family:'DM Mono',monospace;font-size:8px;
-  letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.7);
+  background:rgba(0,0,0,.45);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.14);
+  font-family:'DM Mono',monospace;font-size:7.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.75);
 }
 .pj-num-bg{
-  position:absolute;bottom:10px;right:14px;z-index:2;
-  font-family:'Playfair Display',serif;font-size:72px;font-weight:700;
-  font-style:italic;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;
-}
-a(255,255,255,.7);
-}
-.pj-num-bg{
-  position:absolute;bottom:10px;right:14px;z-index:2;
-  font-family:'Playfair Display',serif;font-size:72px;font-weight:700;
-  font-style:italic;color:rgba(255,255,255,.05);line-height:1;pointer-events:none;
+  position:absolute;bottom:8px;right:12px;z-index:5;
+  font-family:'Playfair Display',serif;font-size:72px;
+  font-weight:700;font-style:italic;line-height:1;
+  color:rgba(255,255,255,.06);pointer-events:none;letter-spacing:-.04em;
 }
 </style>
 </head>
@@ -669,7 +660,7 @@ a(255,255,255,.7);
 
     <a href="missouri-dese.html" class="pj pj-a t-dese" role="listitem" aria-label="Missouri DESE School Finance — read case study">
       <div class="pj-thumb"><div class="pj-timg">
-<svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 480 300" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="db" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#071528"/><stop offset="100%" stop-color="#0f2d5a"/></linearGradient>
 </defs>
@@ -745,7 +736,7 @@ a(255,255,255,.7);
 
     <a href="protect.html" class="pj pj-b t-protect" role="listitem" aria-label="PROTECT Case Management — read case study">
       <div class="pj-thumb"><div class="pj-timg">
-<svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 380 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="pb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#150930"/><stop offset="100%" stop-color="#3b1284"/></linearGradient>
 </defs>
@@ -816,7 +807,7 @@ a(255,255,255,.7);
 
     <a href="hp-mps.html" class="pj pj-c t-hp" role="listitem" aria-label="HP MPS Shipping Dashboard — read case study">
       <div class="pj-thumb"><div class="pj-timg">
-<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="hb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#041520"/><stop offset="100%" stop-color="#0a3248"/></linearGradient>
 </defs>
@@ -880,7 +871,7 @@ a(255,255,255,.7);
 
     <a href="citibank-spotlight.html" class="pj pj-d t-citi" role="listitem" aria-label="Citibank Spotlight — read case study">
       <div class="pj-thumb"><div class="pj-timg">
-<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="cb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0c0015"/><stop offset="100%" stop-color="#450010"/></linearGradient>
 </defs>
@@ -949,7 +940,7 @@ a(255,255,255,.7);
 
     <a href="fedex-shipping.html" class="pj pj-e t-fedex" role="listitem" aria-label="FedEx Office Category UX — read case study">
       <div class="pj-thumb"><div class="pj-timg">
-<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
 <defs>
   <linearGradient id="fb" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#160500"/><stop offset="100%" stop-color="#5c1a00"/></linearGradient>
 </defs>
@@ -1310,10 +1301,19 @@ gsap.fromTo('.ii',{opacity:0},{
 });
 
 /* PROJECT CARDS */
-gsap.fromTo('.pj',{opacity:0,y:40},{
-  opacity:1,y:0,duration:.88,stagger:.09,ease:'power3.out',
-  scrollTrigger:{trigger:'.proj-grid',start:'top 95%',once:true}
+gsap.set('.pj',{opacity:0,y:30});
+gsap.to('.pj',{
+  opacity:1,y:0,duration:.85,stagger:.08,ease:'power3.out',
+  scrollTrigger:{trigger:'#work',start:'top 90%',once:true}
 });
+// Fallback: show cards after 1.5s if GSAP doesn't fire
+setTimeout(function(){
+  document.querySelectorAll('.pj').forEach(function(el){
+    if(parseFloat(getComputedStyle(el).opacity)<0.5){
+      el.style.opacity='1';el.style.transform='none';
+    }
+  });
+},1500);
 
 /* ABOUT — photo swap via ScrollTrigger progress */
 var curP=0;
