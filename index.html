@@ -196,19 +196,12 @@ section{position:relative;z-index:10}
 .pj:hover{border-color:rgba(26,21,8,.2);transform:translateY(-5px);box-shadow:0 24px 64px rgba(26,21,8,.1)}
 .pj:focus{outline:2px solid var(--gold);outline-offset:4px}
 .pj:hover .pj-arrow{transform:rotate(0deg) translate(3px,-3px);color:var(--gold)}
-.pj:hover 
+.pj:hover .pj-timg{transform:scale(1.04)}
 .pj-a{grid-column:1/9;grid-row:1}
 .pj-b{grid-column:9/13;grid-row:1}
 .pj-c{grid-column:1/5;grid-row:2}
 .pj-d{grid-column:5/9;grid-row:2}
 .pj-e{grid-column:9/13;grid-row:2}
-.t-dese 
-.t-protect 
-.t-hp 
-.t-citi 
-.t-fedex 
-
-
 .pj-body{padding:20px 22px;flex:1;display:flex;flex-direction:column}
 .pj-lead{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border:1px solid var(--gmid);border-radius:100px;background:var(--glight);font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;width:fit-content}
 .pj-lead::before{content:'★';font-size:7px}
@@ -440,7 +433,7 @@ footer{padding:24px 52px;border-top:1px solid var(--i12);display:flex;align-item
 }
 .hero-name em{font-style:italic;color:var(--gold)}
 .hero-name-line{display:block;overflow:hidden}
-.hn-i{display:block;transform:translateY(106%)}
+.hn-i{display:block;transform:translateY(108%);will-change:transform}
 .hero-sub{
   font-family:'Playfair Display',serif;
   font-size:clamp(16px,1.8vw,21px);
@@ -1200,6 +1193,7 @@ a{text-decoration:none;color:inherit;}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
+/* ════ B
 /* ════ BUTTER SMOOTH SCROLL — Expo ease, zero flicker ════ */
 (function(W){
   function LS(o){
