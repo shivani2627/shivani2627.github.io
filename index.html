@@ -269,24 +269,24 @@ section{position:relative;z-index:10}
 @media(max-width:900px){.about-sticky{grid-template-columns:1fr;height:auto}.aph-side{height:280px;position:relative;flex-shrink:0}.about-right{padding:36px 22px 52px}.aph-blend{background:linear-gradient(to bottom,transparent 40%,var(--c) 100%)}}
 
 /* ═══ PROCESS ═══ */
-#process{padding:100px 52px;background:var(--cw);border-top:1px solid var(--i12);border-bottom:1px solid var(--i12)}
-.proc-hdr{margin-bottom:50px}
-.proc-title{font-family:'Playfair Display',serif;font-size:clamp(30px,4.5vw,52px);font-weight:400;letter-spacing:-.025em;line-height:1;color:var(--ink);margin-bottom:13px}
-.proc-title em{font-style:italic;color:var(--gold)}
-.proc-lead{font-size:14px;color:var(--i70);line-height:1.8;font-weight:300;max-width:560px}
-.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--i12);border-radius:20px;overflow:hidden;border:1px solid var(--i12)}
-.ps{background:var(--cw);padding:30px 24px;transition:background .3s var(--ease);position:relative;overflow:hidden}
+
+
+
+
+
+
+
 .ps::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),rgba(184,148,90,.2));transform:scaleX(0);transform-origin:left;transition:transform .38s var(--ease)}
 .ps:hover::before{transform:scaleX(1)}
 .ps:hover{background:var(--glight)}
-.ps-n{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.14em;color:var(--gold);margin-bottom:14px;display:block}
-.ps-t{font-family:'Playfair Display',serif;font-size:18px;font-weight:400;color:var(--ink);margin-bottom:9px;line-height:1.1}
-.ps-t em{font-style:italic;color:var(--gold)}
-.ps-d{font-size:13px;color:var(--i70);line-height:1.7;font-weight:300;margin-bottom:13px}
-.ps-tools{display:flex;flex-wrap:wrap;gap:5px}
-.pst{padding:3px 9px;border:1px solid var(--i12);border-radius:100px;font-family:'DM Mono',monospace;font-size:8.5px;color:var(--i50);background:var(--c)}
-@media(max-width:900px){.proc-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.proc-grid{grid-template-columns:1fr}#process{padding:80px 22px}}
+
+
+
+
+
+
+@media(max-width:900px){}
+@media(max-width:600px){}
 
 /* ═══ JOURNEY ═══ */
 #journey{padding:100px 52px;background:var(--c)}
@@ -520,6 +520,112 @@ a{text-decoration:none;color:inherit;}
   font-family:'Playfair Display',serif;font-size:72px;
   font-weight:700;font-style:italic;line-height:1;
   color:rgba(255,255,255,.06);pointer-events:none;letter-spacing:-.04em;
+}
+
+/* ── PROCESS TIMELINE ── */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media(max-width:900px){}
+@media(max-width:600px){}
+
+/* ══ PROCESS SECTION ══ */
+#process{
+  padding:100px 52px;
+  background:var(--cw);
+  border-top:1px solid var(--i12);
+  border-bottom:1px solid var(--i12);
+}
+.proc-hdr{margin-bottom:56px;max-width:680px}
+.proc-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,4.5vw,52px);
+  font-weight:400;letter-spacing:-.025em;
+  line-height:1.05;color:var(--ink);margin-bottom:14px;
+}
+.proc-title em{font-style:italic;color:var(--gold)}
+.proc-lead{font-size:14px;color:var(--i70);line-height:1.8;font-weight:300;max-width:580px}
+
+/* Two-column grid of steps */
+.proc-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  border:1px solid var(--i12);
+  border-radius:20px;
+  overflow:hidden;
+  max-width:1000px;
+}
+.proc-step{
+  display:flex;gap:18px;align-items:flex-start;
+  padding:26px 28px;
+  border-bottom:1px solid var(--i12);
+  border-right:1px solid var(--i12);
+  background:var(--cw);
+  transition:background .22s;
+  position:relative;
+}
+.proc-step:hover{background:var(--gl)}
+/* Remove right border from even steps (right column) */
+.proc-step:nth-child(2n){border-right:none}
+/* Remove bottom border from last two steps */
+.proc-step:nth-last-child(-n+2){border-bottom:none}
+/* If odd total, last step spans full width */
+.proc-step.full{grid-column:1/-1;border-right:none}
+
+.proc-n{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:.1em;
+  color:var(--gold);font-weight:500;
+  flex-shrink:0;padding-top:3px;
+  min-width:26px;
+}
+.proc-icon{
+  font-size:20px;flex-shrink:0;
+  width:36px;height:36px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--gl);border-radius:10px;
+  flex-shrink:0;
+}
+.proc-content{flex:1}
+.proc-step-title{
+  font-family:'Playfair Display',serif;
+  font-size:16px;font-weight:400;
+  color:var(--ink);margin-bottom:6px;line-height:1.2;
+}
+.proc-step-title em{font-style:italic;color:var(--gold)}
+.proc-step-desc{
+  font-size:12.5px;color:var(--i70);
+  line-height:1.7;font-weight:300;
+}
+.proc-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.proc-chip{
+  padding:3px 9px;border:1px solid var(--i12);border-radius:100px;
+  font-family:'DM Mono',monospace;font-size:8px;
+  color:var(--i50);background:var(--c);
+}
+
+/* connector arrow between grid steps */
+@media(max-width:760px){
+  #process{padding:64px 24px}
+  .proc-grid{grid-template-columns:1fr}
+  .proc-step{border-right:none!important}
+  .proc-step:nth-last-child(-n+2){border-bottom:1px solid var(--i12)}
+  .proc-step:last-child{border-bottom:none}
 }
 </style>
 </head>
@@ -1058,15 +1164,102 @@ a{text-decoration:none;color:inherit;}
 <section id="process" aria-label="Design process">
   <div class="inner">
     <div class="proc-hdr">
-      <div class="sec-label reveal">How I Work</div>
-      <h2 class="proc-title reveal r1">From <em>ambiguity</em> to shipped</h2>
-      <p class="proc-lead reveal r2">Senior UX isn't about making things pretty. It's about making the right call under constraint, bringing stakeholders with you, and delivering work that earns trust.</p>
+      <div class="sec-label reveal">My Process</div>
+      <h2 class="proc-title reveal r1">What process you can <em>expect from me</em></h2>
+      <p class="proc-lead reveal r2">Not a template. A discipline built across 8 years of embedded work — government, enterprise, banking. Every engagement follows the same rigour, regardless of timeline or scope.</p>
     </div>
     <div class="proc-grid">
-      <div class="ps reveal"><span class="ps-n">01</span><div class="ps-t">Discover &amp; <em>Frame</em></div><p class="ps-d">Before designing, I understand the actual problem — not the stated one. Stakeholder interviews, contextual inquiry, heuristic audits. Most redesigns fail because they solve the symptom. I find the system.</p><div class="ps-tools"><span class="pst">Stakeholder interviews</span><span class="pst">Contextual inquiry</span><span class="pst">Heuristic audit</span></div></div>
-      <div class="ps reveal r1"><span class="ps-n">02</span><div class="ps-t">Research &amp; <em>Synthesise</em></div><p class="ps-d">User interviews, usability testing, and synthesis sessions produce not just insights but hypotheses — testable assumptions about what a better experience looks like.</p><div class="ps-tools"><span class="pst">User interviews</span><span class="pst">Usability testing</span><span class="pst">Affinity mapping</span></div></div>
-      <div class="ps reveal r2"><span class="ps-n">03</span><div class="ps-t">Design &amp; <em>Validate</em></div><p class="ps-d">IA and flows first, lo-fi to validate structure, hi-fi to validate hierarchy and interactions. The most important decision is often which option not to pursue.</p><div class="ps-tools"><span class="pst">Wireframing</span><span class="pst">Figma prototypes</span><span class="pst">Axure RP 10</span></div></div>
-      <div class="ps reveal r3"><span class="ps-n">04</span><div class="ps-t">Build &amp; <em>Ship</em></div><p class="ps-d">My front-end background means I work directly with engineering. The design that ships is the one that matters. Everything before it is just a hypothesis.</p><div class="ps-tools"><span class="pst">Design systems</span><span class="pst">Dev handoff</span><span class="pst">WCAG 2.1 AA</span></div></div>
+
+      <div class="proc-step reveal">
+        <div class="proc-icon">🤝</div>
+        <div class="proc-content">
+          <div class="proc-n">01</div>
+          <div class="proc-step-title">Stakeholder meetings <em>&amp; notes</em></div>
+          <p class="proc-step-desc">Every engagement starts with a structured session — not a kickoff call, an actual working meeting. I prepare a discussion guide in advance, document decisions and open questions, and share a written summary within 24 hours. Nothing falls through the cracks.</p>
+          <div class="proc-chips"><span class="proc-chip">Discussion guide</span><span class="proc-chip">Session notes</span><span class="proc-chip">Open questions log</span><span class="proc-chip">Stakeholder map</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r1">
+        <div class="proc-icon">🔍</div>
+        <div class="proc-content">
+          <div class="proc-n">02</div>
+          <div class="proc-step-title">UX/UI audit <em>of the feature</em></div>
+          <p class="proc-step-desc">Before designing anything new, I audit what exists. Heuristic evaluation across all flows, cataloguing inconsistencies, friction points, accessibility failures, and design debt. This is what prevents redesigns that recreate the same problems in a new visual style.</p>
+          <div class="proc-chips"><span class="proc-chip">Heuristic evaluation</span><span class="proc-chip">Friction inventory</span><span class="proc-chip">Accessibility audit</span><span class="proc-chip">Design debt log</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r2">
+        <div class="proc-icon">📊</div>
+        <div class="proc-content">
+          <div class="proc-n">03</div>
+          <div class="proc-step-title">Review <em>analytics</em></div>
+          <p class="proc-step-desc">Numbers tell you where users stop — they don't tell you why. I review drop-off rates, funnel data, error logs, and support tickets alongside qualitative research so the two inform each other. Analytics without context is noise.</p>
+          <div class="proc-chips"><span class="proc-chip">Funnel analysis</span><span class="proc-chip">Drop-off mapping</span><span class="proc-chip">Error log review</span><span class="proc-chip">Support ticket themes</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r3">
+        <div class="proc-icon">📝</div>
+        <div class="proc-content">
+          <div class="proc-n">04</div>
+          <div class="proc-step-title">Note findings, <em>update PRD</em></div>
+          <p class="proc-step-desc">Findings from research, audit, and analytics get synthesised into a single source of truth. I update the PRD with user insights alongside product requirements — so the team builds from evidence, not assumptions, and traceability is preserved.</p>
+          <div class="proc-chips"><span class="proc-chip">Insights synthesis</span><span class="proc-chip">PRD annotations</span><span class="proc-chip">Evidence-linked requirements</span><span class="proc-chip">Decision log</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r3">
+        <div class="proc-icon">👥</div>
+        <div class="proc-content">
+          <div class="proc-n">05</div>
+          <div class="proc-step-title">Conduct <em>research</em></div>
+          <p class="proc-step-desc">Contextual inquiry, moderated usability testing, and stakeholder interviews with real users — not proxies. Sessions documented with participant quotes. Synthesis in FigJam: affinity maps, journey maps, persona frameworks. Output is a prioritised insight doc, not a 60-slide deck.</p>
+          <div class="proc-chips"><span class="proc-chip">Contextual inquiry</span><span class="proc-chip">Usability testing</span><span class="proc-chip">Affinity mapping</span><span class="proc-chip">Journey map</span><span class="proc-chip">Insight summary</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r3">
+        <div class="proc-icon">📰</div>
+        <div class="proc-content">
+          <div class="proc-n">06</div>
+          <div class="proc-step-title">Read forums, <em>blogs &amp; trends</em></div>
+          <p class="proc-step-desc">I research how similar problems have been solved in comparable domains — competitor products, adjacent industries, emerging patterns. Government UX borrows from healthcare UX. Enterprise dashboards borrow from fintech. Context-reading keeps solutions from being isolated.</p>
+          <div class="proc-chips"><span class="proc-chip">Competitor audit</span><span class="proc-chip">Industry benchmarks</span><span class="proc-chip">Pattern libraries</span><span class="proc-chip">Domain research</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r3">
+        <div class="proc-icon">💡</div>
+        <div class="proc-content">
+          <div class="proc-n">07</div>
+          <div class="proc-step-title">Conduct research <em>&amp; ideate</em></div>
+          <p class="proc-step-desc">Synthesis becomes generation. I run ideation sessions with cross-functional teams — structured exercises, not free-for-alls. How Might We framing, opportunity mapping, concept sketches. Every idea is grounded in a specific user need surfaced from research.</p>
+          <div class="proc-chips"><span class="proc-chip">HMW framing</span><span class="proc-chip">Opportunity mapping</span><span class="proc-chip">Concept exploration</span><span class="proc-chip">Cross-team ideation</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r3">
+        <div class="proc-icon">🧠</div>
+        <div class="proc-content">
+          <div class="proc-n">08</div>
+          <div class="proc-step-title">Brainstorm <em>ideas</em></div>
+          <p class="proc-step-desc">Before screens, possibilities. I explore multiple directions at low fidelity — diverging deliberately before converging. This is where unconventional approaches get considered. The best solution in my portfolio case studies rarely came from the first obvious direction.</p>
+          <div class="proc-chips"><span class="proc-chip">Divergent exploration</span><span class="proc-chip">Direction comparison</span><span class="proc-chip">Feasibility check</span><span class="proc-chip">Concept selection</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r3">
+        <div class="proc-icon">✏️</div>
+        <div class="proc-content">
+          <div class="proc-n">09</div>
+          <div class="proc-step-title">Sketching</div>
+          <p class="proc-step-desc">Paper first. Always. Sketching is thinking — faster feedback loops, no visual polish to get attached to, and stakeholders give more honest reactions to rough sketches than polished wireframes. I sketch key screens and flows before touching Figma.</p>
+          <div class="proc-chips"><span class="proc-chip">Paper sketches</span><span class="proc-chip">Flow diagrams</span><span class="proc-chip">Layout exploration</span><span class="proc-chip">Stakeholder sketch review</span></div>
+        </div>
+      </div>
+      <div class="proc-step reveal r3">
+        <div class="proc-icon">🖥️</div>
+        <div class="proc-content">
+          <div class="proc-n">10</div>
+          <div class="proc-step-title">Digitised <em>into UI</em></div>
+          <p class="proc-step-desc">Sketches become wireframes, wireframes become high-fidelity — built on a component library from day one. Every component is named, documented, and variant-ed. Colour tokens, type scales, spacing grids. I design the system, not just the screens. Annotated handoff specs cover every state, edge case, and responsive behaviour. My front-end background means I can have a real conversation about what's feasible — and what's worth fighting for.</p>
+          <div class="proc-chips"><span class="proc-chip">Component library</span><span class="proc-chip">Design tokens</span><span class="proc-chip">Hi-fi screens</span><span class="proc-chip">Annotated specs</span><span class="proc-chip">WCAG AA audit</span><span class="proc-chip">Dev handoff</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1093,10 +1286,10 @@ a{text-decoration:none;color:inherit;}
     <h2 class="sec-h reveal r1">What people <em>actually say</em></h2>
     <p class="voice-ctx reveal r2">Real words from real collaborators. I work long-term and embedded — these aren't project testimonials, they're relationship reviews.</p>
     <div class="tg">
-      <div class="tc reveal"><div class="tc-q">Working with Shivani on PROTECT has been a rewarding experience. Over 1.5 years she delivered thoughtful, user-centered design across 50+ screens. She rose to every challenge with professionalism and curiosity.</div><div class="tc-src"><div class="tc-av" style="background:#3C3489">LF</div><div><div class="tc-name">Lisa Fangmann</div><div class="tc-role">Business Analyst · DAIT Wisconsin</div></div></div></div>
-      <div class="tc reveal r1"><div class="tc-q">What stood out most was Shivani's ability to adapt across a wide range of challenges — from UI/UX for multiple platforms to logos and icons. Her creativity, versatility, and collaboration were critical to success.</div><div class="tc-src"><div class="tc-av" style="background:#3C3489">LF</div><div><div class="tc-name">Lisa Fangmann</div><div class="tc-role">Division of Enterprise Technology · Wisconsin</div></div></div></div>
-      <div class="tc reveal r2"><div class="tc-q">You took the team's input and put together a nice design scheme. Applying patterns to our XCQ design is one of your real strengths. Good that you adjusted from web to desktop forms.</div><div class="tc-src"><div class="tc-av" style="background:#3d7260">JM</div><div><div class="tc-name">Jenn Macainag</div><div class="tc-role">Project Lead · PROTECT · Wisconsin</div></div></div></div>
-    </div>
+    <div class="tc reveal"><div class="tc-q">Working with Shivani on PROTECT has been a rewarding experience. Over 1.5 years she delivered thoughtful, user-centered design across 50+ screens. She rose to every challenge with professionalism and curiosity.</div><div class="tc-src"><div class="tc-av" style="background:#3C3489">LF</div><div><div class="tc-name">Lisa Fangmann</div><div class="tc-role">Business Analyst · DAIT Wisconsin</div></div></div></div>
+    <div class="tc reveal r1"><div class="tc-q">Shivani brought real structure to a complex design problem. Her ability to map two completely different user types and design separate but coherent interfaces for each showed a maturity of thinking I rarely see. The PMPS prototype landed with stakeholders immediately.</div><div class="tc-src"><div class="tc-av" style="background:#0057b8">SS</div><div><div class="tc-name">Shakila Shanmugnathan</div><div class="tc-role">UI/UX Lead · HP Inc. MPS</div></div></div></div>
+    <div class="tc reveal r2"><div class="tc-q">You took the team's input and put together a nice design scheme. Applying patterns to our XCQ design is one of your real strengths. Good that you adjusted the approach from web to desktop forms.</div><div class="tc-src"><div class="tc-av" style="background:#3d7260">JM</div><div><div class="tc-name">Jenn Macainag</div><div class="tc-role">Project Lead · PROTECT · Wisconsin</div></div></div></div>
+  </div>
   </div>
 </section>
 
@@ -1126,7 +1319,7 @@ a{text-decoration:none;color:inherit;}
     <button type="button" class="px" onclick="closeP('testi')" aria-label="Close">✕</button>
     <div class="p-ey">Client Voices</div><div class="p-h">What <em>clients say</em></div>
     <div class="p-tc"><div class="p-tq">Working with Shivani on PROTECT has been a rewarding experience. Over 1.5 years she delivered thoughtful, user-centered design across 50+ screens.</div><div class="p-tsrc"><div class="p-tav" style="background:#3C3489">LF</div><div><div class="p-tnm">Lisa Fangmann</div><div class="p-trl">Business Analyst · DAIT Wisconsin</div></div></div></div>
-    <div class="p-tc"><div class="p-tq">What stood out most was Shivani's ability to adapt — from UI/UX for multiple platforms to logos and icons. Her creativity and collaboration were critical to success.</div><div class="p-tsrc"><div class="p-tav" style="background:#3C3489">LF</div><div><div class="p-tnm">Lisa Fangmann</div><div class="p-trl">Division of Enterprise Technology · Wisconsin</div></div></div></div>
+    <div class="p-tc"><div class="p-tq">Shivani brought real structure to a complex design problem. Her ability to map two completely different user types and design separate but coherent interfaces for each showed a maturity of thinking I rarely see. The PMPS prototype landed with stakeholders immediately.</div><div class="p-tsrc"><div class="p-tav" style="background:#0057b8">SS</div><div><div class="p-tnm">Shakila Shanmugnathan</div><div class="p-trl">UI/UX Lead · HP Inc. MPS</div></div></div></div>
     <div class="p-tc"><div class="p-tq">You took the team's input and put together a nice design scheme. Applying patterns to our XCQ design is one of your real strengths.</div><div class="p-tsrc"><div class="p-tav" style="background:#3d7260">JM</div><div><div class="p-tnm">Jenn Macainag</div><div class="p-trl">Project Lead · PROTECT · Wisconsin</div></div></div></div>
     <div style="padding:11px;border:1px dashed var(--gmid);border-radius:10px;font-size:11px;color:var(--i50);text-align:center;background:var(--glight)">✦ More from DESE &amp; HP Inc. coming soon</div>
   </div>
@@ -1235,6 +1428,8 @@ a{text-decoration:none;color:inherit;}
 
 var ls=new LS({duration:1.55});
 ls.on('scroll',function(){ScrollTrigger.update();});
+gsap.registerPlugin(ScrollTrigger);
+gsap.config({nullTargetWarn:false});
 gsap.ticker.lagSmoothing(0);
 
 /* NAV */
@@ -1330,7 +1525,7 @@ if(window.innerWidth>900){
 }
 
 /* PROCESS */
-gsap.fromTo('.ps',{opacity:0,y:26},{
+gsap.fromTo('.proc-step',{opacity:0,y:26},{
   opacity:1,y:0,duration:.82,stagger:.12,ease:'power3.out',
   scrollTrigger:{trigger:'#process',start:'top 82%'}
 });
@@ -1370,7 +1565,7 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape'){['testi','f
 /* REDUCED MOTION */
 if(window.matchMedia('(prefers-reduced-motion:reduce)').matches){
   ls.destroy();gsap.globalTimeline.timeScale(0);
-  document.querySelectorAll('.reveal,.ii,.pj,.tc,.ps,.tl-item').forEach(function(el){el.classList.add('in');el.style.opacity='1';el.style.transform='none';});
+  document.querySelectorAll('.reveal,.ii,.pj,.tc,.proc-step,.tl-item').forEach(function(el){el.classList.add('in');el.style.opacity='1';el.style.transform='none';});
   ['#hn1','#hn2','#he','#hs','#hp','#hc','#hscroll'].forEach(function(s){var el=document.querySelector(s);if(el){el.style.opacity='1';el.style.transform='none';}});
 }
 </script>
