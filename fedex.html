@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FedEx Print Case Study</title>
+<meta name="description" content="Research-led print product pages for FedEx Office.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="nav glass" role="banner">
+  <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#ai">AI workflow</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <div class="modes" role="group" aria-label="Display mode">
+    <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
+    <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
+    <button type="button" data-focus aria-pressed="false" title="Focus mode: no motion, no blur, larger text">◎<span>Focus</span></button>
+  </div>
+  <button type="button" class="menu-btn" aria-expanded="false">Menu</button>
+</header>
+<main id="main"><section class="cs-hero"><div class="wrap">
+  <div class="crumbs load-in"><a href="index.html#work">Case studies</a><span>/</span><span>FedEx Office</span></div>
+  <h1 class="load-in d2">FedEx Office: helping people choose the right print product</h1>
+  <p class="lede load-in d3">My first professional project, and where I moved from UI developer to designer. As part of the Atos Syntel team, I helped FedEx Office customers understand print products, starting with yard signs, before they had to configure and pay.</p>
+  <div class="tags load-in d3" style="margin-top:20px"><span class="tag">E‑commerce</span><span class="tag">Research-led</span><span class="tag fg">Wireframes → components</span></div>
+  <dl class="meta glass load-in d4"><div><dt>Client</dt><dd>FedEx Office via Atos Syntel</dd></div><div><dt>Role</dt><dd>UI developer → UX designer</dd></div><div><dt>Timeline</dt><dd>Nov 2018 – Jul 2021</dd></div><div><dt>Tools</dt><dd>Figma, HTML/CSS/JS, Angular, Bootstrap</dd></div></dl>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#scope">Scope</a><a href="#research">Research</a><a href="#figma">Concepts</a><a href="#testing">Testing</a><a href="#reflection">Reflection</a></nav></div>
+
+<section class="cs-sec" id="scope"><div class="wrap two">
+ <div><div class="eyebrow">My role</div><h2 class="h">One contributor on a large team</h2>
+ <div class="prose"><p>FedEx Office is a large product built by many teams. I joined as a UI developer, building responsive pages in Angular and Bootstrap. Over time I asked to join research and wireframing, and I ended up contributing to the design decisions below as well as building them.</p>
+ <p>I also designed screens for a mobile label-creation flow (iOS and Android). That work isn't covered here.</p></div></div>
+ <div class="box sun" style="align-self:start"><span class="k">The question</span><p style="font-family:var(--f-display);font-size:1.3rem;line-height:1.3;color:var(--ink)">How might we help customers choose between similar print products, and show the price before they commit?</p></div>
+</div></section>
+
+<section class="cs-sec" id="research"><div class="wrap">
+ <div class="eyebrow">Research</div><h2 class="h">The customers had already told us</h2>
+ <div class="prose"><p>The team analyzed <strong>Voice of Customer survey</strong> responses, reviewed competitors (UPS, DHL, BlueDart), ran a <strong>heuristic review</strong> of the existing product page and mapped brand needs against customer needs.</p></div>
+ <div class="methods"><span class="method">Voice of Customer analysis</span><span class="method">Competitive review</span><span class="method">Heuristic review</span><span class="method">Brand vs. customer needs map</span></div>
+ <div class="insights">
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Customers couldn't tell an H-Stake from an H-Frame from an Aluminum frame. The dropdown listed three names and nothing else.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Each type gets its own card with a photo, use case and material.</div></div>
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Price appeared only after configuration, and people left before they got there.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>“Starting at” price on every card, plus a pricing tab that compares all sizes.</div></div>
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Many people landed straight on a product page from search and skipped the category page.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>A second concept: an inline type guide on the product page itself.</div></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="figma"><div class="wrap">
+ <div class="eyebrow">Figma file · Concepts</div><h2 class="h">From wireframe to two testable concepts</h2>
+ <div class="prose"><p>I worked from wireframes to a reusable product-type card component, which both concepts share. Prices shown as $ symbols are placeholders.</p></div>
+ <div class="fig" data-fig data-default="fx-card" data-fit="fx-hi">
+  <div class="fig-bar"><div class="fig-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="fig-tools" aria-hidden="true"><span class="on">➚</span><span>#</span><span>▭</span><span>✎</span><span>T</span><span>💬</span></div>
+    <div class="fig-file">FedEx Office · Yard signs / <b>Concepts</b></div>
+    <div class="fig-zoom"><button type="button" data-zoom="-0.1" aria-label="Zoom out">−</button><output>100%</output><button type="button" data-zoom="0.1" aria-label="Zoom in">+</button></div></div>
+  <div class="fig-body">
+    <aside class="fig-layers" aria-label="Layers"><div class="fl-h">Pages<span>+</span></div><div class="fl-pages"><div class="">Research</div><div class="">Wireframes</div><div class="on">Concepts</div><div class="">Specs</div></div><div class="fl-h">Layers</div><button type="button" class="ly " style="--d:0" data-t="fx-wf"><i>#</i>Wireframe · category page</button><button type="button" class="ly " style="--d:0" data-t="fx-hi"><i>#</i>Concept A · Shop by type</button><button type="button" class="ly " style="--d:1" data-t="fx-hero"><i>▭</i>Hero</button><button type="button" class="ly " style="--d:1" data-t="fx-row"><i>⫼</i>Card row</button><button type="button" class="ly inst" style="--d:2" data-t="fx-card"><i>◇</i>Product type card</button><button type="button" class="ly " style="--d:0" data-t="fx-b"><i>#</i>Concept B · PDP tooltip</button><button type="button" class="ly inst" style="--d:1" data-t="fx-tip-q"><i>◇</i>Help icon</button><button type="button" class="ly inst" style="--d:1" data-t="fx-tip"><i>◇</i>Type guide</button></aside>
+    <div class="fig-canvas" tabindex="0" aria-label="Canvas, scroll to pan"><div class="fig-board"><div class="ff" id="fx-wf"><div class="ff-label"># Wireframe · category page</div><div class="ff-body" data-id="fx-wf" style="width:460px;"><div class="wf" style="padding:16px;background:#fafafa;display:flex;flex-direction:column;gap:10px">
+<div class="box" style="height:60px">HERO · category name + one-line promise + CTA</div>
+<div style="font-size:11px">SHOP BY TYPE</div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><div class="box" style="display:flex;flex-direction:column;gap:6px"><div style="height:54px;background:#eee;border-radius:4px"></div>TYPE NAME<div class="bar" style="width:50%"></div>• use case<br>• material</div><div class="box" style="display:flex;flex-direction:column;gap:6px"><div style="height:54px;background:#eee;border-radius:4px"></div>TYPE NAME<div class="bar" style="width:50%"></div>• use case<br>• material</div><div class="box" style="display:flex;flex-direction:column;gap:6px"><div style="height:54px;background:#eee;border-radius:4px"></div>TYPE NAME<div class="bar" style="width:50%"></div>• use case<br>• material</div></div>
+<div class="box" style="height:70px">PRICE TABLE · tabs per type · size × sides</div></div></div></div><div class="ff" id="fx-hi"><div class="ff-label"># Concept A · Shop by type</div><div class="ff-body" data-id="fx-hi" style="width:620px;"><div style="font-family:Geist,Arial;background:#fff">
+<div style="background:#4d148c;color:#fff;padding:12px 18px;font-size:12px;display:flex;gap:16px"><b>FedEx Office</b><span style="opacity:.8">Business &amp; career · Banners &amp; signs · Cards · Templates</span></div>
+<div data-id="fx-hero" style="padding:22px 18px;background:linear-gradient(90deg,#f6f2fb,#fff)"><div style="font-size:22px;font-weight:700;color:#222">Yard signs</div><div style="font-size:12px;color:#555;margin-top:4px">Durable signs for events, campaigns and real estate.</div></div>
+<div style="padding:14px 18px 20px"><div style="font-size:12px;font-weight:700;margin-bottom:10px;color:#222">Shop by type</div><div data-id="fx-row" style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px"><div data-id="fx-card" style="background:#fff;border:1px solid #e6e1ef;border-radius:10px;overflow:hidden;font-family:Geist,Arial;display:flex;flex-direction:column"><div style="height:110px;background:#ffeedd;display:grid;place-items:center;font-size:42px">🪧</div><div style="padding:12px;display:flex;flex-direction:column;gap:6px"><b style="font-size:13px;color:#222">Corrugated H-Stake</b><span style="font-size:12px;color:#4d148c;font-weight:700">Starting at $·</span><ul style="margin:0;padding-left:16px;font-size:11px;color:#555;display:flex;flex-direction:column;gap:3px"><li>Wire stake for soil</li><li>Lightweight, short-term</li></ul><span style="margin-top:4px;font-size:11px;font-weight:600;color:#ff6200">Shop h-stake →</span></div></div><div  style="background:#fff;border:1px solid #e6e1ef;border-radius:10px;overflow:hidden;font-family:Geist,Arial;display:flex;flex-direction:column"><div style="height:110px;background:#ece4f7;display:grid;place-items:center;font-size:42px">🪧</div><div style="padding:12px;display:flex;flex-direction:column;gap:6px"><b style="font-size:13px;color:#222">Corrugated H-Frame</b><span style="font-size:12px;color:#4d148c;font-weight:700">Starting at $$</span><ul style="margin:0;padding-left:16px;font-size:11px;color:#555;display:flex;flex-direction:column;gap:3px"><li>Metal frame</li><li>Better in wind and traffic</li></ul><span style="margin-top:4px;font-size:11px;font-weight:600;color:#ff6200">Shop h-frame →</span></div></div><div  style="background:#fff;border:1px solid #e6e1ef;border-radius:10px;overflow:hidden;font-family:Geist,Arial;display:flex;flex-direction:column"><div style="height:110px;background:#e2f2ea;display:grid;place-items:center;font-size:42px">🪧</div><div style="padding:12px;display:flex;flex-direction:column;gap:6px"><b style="font-size:13px;color:#222">Aluminum H-Frame</b><span style="font-size:12px;color:#4d148c;font-weight:700">Starting at $$$</span><ul style="margin:0;padding-left:16px;font-size:11px;color:#555;display:flex;flex-direction:column;gap:3px"><li>Metal sign and frame</li><li>Weather and rust resistant</li></ul><span style="margin-top:4px;font-size:11px;font-weight:600;color:#ff6200">Shop h-frame →</span></div></div></div></div></div></div></div><div class="ff" id="fx-b"><div class="ff-label"># Concept B · PDP tooltip</div><div class="ff-body" data-id="fx-b" style="width:560px;"><div style="font-family:Geist,Arial;background:#fff;padding:18px;display:grid;grid-template-columns:150px 1fr;gap:16px">
+<div style="height:150px;background:#ffeedd;border-radius:8px;display:grid;place-items:center;font-size:48px">🪧</div>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:12px;color:#333"><b style="font-size:16px">Create your own yard sign</b>
+<span style="display:flex;gap:6px;align-items:center">Yard sign type <span data-id="fx-tip-q" style="width:16px;height:16px;border-radius:50%;background:#4d148c;color:#fff;font-size:10px;display:grid;place-items:center">?</span></span>
+<span class="m-in" style="min-width:220px">Corrugated H-Stake ▾</span>
+<div data-id="fx-tip" style="border:1px solid #d9cdee;border-radius:8px;padding:10px;box-shadow:0 8px 20px -8px rgba(77,20,140,.35);display:flex;flex-direction:column;gap:6px;font-size:11px"><b style="font-size:12px">Choose the right type</b>
+<span><b>H-Stake · $</b> Wire stake, pushed into soil. Light and easy.</span><span><b>H-Frame · $$</b> Metal frame. Lasts longer in wind.</span><span><b>Aluminum · $$$</b> Metal sign. Weather and rust resistant.</span></div></div></div></div></div></div></div>
+    <aside class="fig-props" aria-label="Properties"><div class="fp-tabs"><span class="on">Design</span><span>Prototype</span><span>Dev Mode</span></div><div class="fig-props-body"></div></aside>
+  </div>
+  <div class="fig-help"><b>Interactive file</b>Click a layer or anything on the canvas to inspect it</div>
+  <template data-p="fx-wf"><div class="fp-sec"><h5>Frame<span></span></h5><div class="fp-row"><div class="fp-f "><i>W</i>460</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f "><i>X</i>0</div><div class="fp-f "><i>Y</i>0</div></div></div><div class="fp-sec"><div class="fp-note">Wireframe agreed with the team before visual design. Price sits on the card, before any configuration.</div></div></template><template data-p="fx-hi"><div class="fp-sec"><h5>Frame<span></span></h5><div class="fp-row"><div class="fp-f "><i>W</i>620</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f "><i>X</i>0</div><div class="fp-f "><i>Y</i>0</div></div></div><div class="fp-sec"><div class="fp-note">Concept A: a category landing page that explains the differences before people choose.</div></div></template><template data-p="fx-hero"><div class="fp-sec"><h5>Auto layout<span>⋮⋮</span></h5><div class="fp-dir"><span class="on">↓</span><span>→</span><span>⤶</span></div><div class="fp-row"><div class="fp-f "><i>⇹ gap</i>4</div><div class="fp-f "><i>▢ pad</i>22, 18</div><div class="fp-f "><i>W</i>Fill</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f full"><i>Align</i>Top left</div></div></div></template><template data-p="fx-row"><div class="fp-sec"><h5>Auto layout<span>⋮⋮</span></h5><div class="fp-dir"><span>↓</span><span class="on">→</span><span>⤶</span></div><div class="fp-row"><div class="fp-f "><i>⇹ gap</i>12</div><div class="fp-f "><i>▢ pad</i>0</div><div class="fp-f "><i>W</i>Fill</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f full"><i>Align</i>Top left</div></div></div><div class="fp-sec"><div class="fp-note">Three equal Fill cards. In the mobile frame the same row switches to vertical.</div></div></template><template data-p="fx-card"><div class="fp-sec"><h5>Product type card<span>❖</span></h5><div class="fp-f full"><i>Image</i>Swap</div><div class="fp-f full"><i>Bullets</i>2</div><div class="fp-f full"><i>Show price</i>true</div></div><div class="fp-sec"><div class="fp-note">“Starting at” price on the card answered the most common survey complaint: price showed up too late.</div></div></template><template data-p="fx-b"><div class="fp-sec"><h5>Frame<span></span></h5><div class="fp-row"><div class="fp-f "><i>W</i>560</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f "><i>X</i>0</div><div class="fp-f "><i>Y</i>0</div></div></div><div class="fp-sec"><div class="fp-note">Concept B: for people who land directly on a product page from search, a guide in place of a trip back to the category page.</div></div></template><template data-p="fx-tip-q"><div class="fp-sec"><h5>Help icon<span>❖</span></h5><div class="fp-f full"><i>State</i>Default · Open</div></div></template><template data-p="fx-tip"><div class="fp-sec"><h5>Type guide<span>❖</span></h5><div class="fp-f full"><i>Rows</i>3</div><div class="fp-f full"><i>Show price</i>true</div></div><div class="fp-sec"><div class="fp-note">In testing, people preferred this for direct landings because it took fewer steps.</div></div></template>
+</div>
+</div></section>
+
+<section class="cs-sec" id="testing"><div class="wrap two">
+ <div><div class="eyebrow">Usability testing</div><h2 class="h">Two rounds, two different winners</h2>
+ <div class="prose"><p><strong>Round 1</strong> asked whether people would rather start from the category page or go straight to a product page. Most chose the category page, saying the type cards made comparing easier.</p>
+ <p><strong>Round 2</strong> compared two ideas for people who land directly on a product page. The inline guide (Concept B) won, but by less than we expected. People liked that it needed fewer steps, which we hadn't treated as the deciding factor.</p></div></div>
+ <div class="box" style="align-self:start"><span class="k">Result</span><p>Both concepts were approved for development, with analytics and surveys planned after launch to measure the effect in production. I built parts of the front end myself.</p></div>
+</div></section>
+
+<section class="cs-sec" id="reflection"><div class="wrap">
+ <div class="eyebrow">Reflection</div><h2 class="h">What this project taught me</h2>
+ <div class="three">
+  <div class="box"><h3>Code made me a better designer</h3><p>I knew what was cheap and what was expensive to build, so my designs handed off with less back-and-forth.</p></div>
+  <div class="box"><h3>Research changes the conversation</h3><p>“Show the price earlier” carried more weight because customers had said it, not us.</p></div>
+  <div class="box"><h3>Confidence beats features</h3><p>People didn't want more information. They wanted the right information at the moment they were choosing.</p></div>
+ </div>
+</div></section>
+<div class="wrap"><a class="next glass" href="lab.html"><div><small>Outside client work</small><h3>My work: real-world UX and Figma experiments</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
+  <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+</footer></div>
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HP Print Central Case Study</title>
+<meta name="description" content="Splitting HP's managed print workflow into two connected platforms.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="nav glass" role="banner">
+  <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#ai">AI workflow</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <div class="modes" role="group" aria-label="Display mode">
+    <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
+    <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
+    <button type="button" data-focus aria-pressed="false" title="Focus mode: no motion, no blur, larger text">◎<span>Focus</span></button>
+  </div>
+  <button type="button" class="menu-btn" aria-expanded="false">Menu</button>
+</header>
+<main id="main"><section class="cs-hero"><div class="wrap">
+  <div class="crumbs load-in"><a href="index.html#work">Case studies</a><span>/</span><span>HP Managed Print Central</span></div>
+  <h1 class="load-in d2">HP Managed Print Central: one lifecycle, two products</h1>
+  <p class="lede load-in d3">HP's managed print business sells and runs print fleets for large companies. The journey from first opportunity to active contract was spread across spreadsheets, email and separate portals. I designed Managed Print Central as two connected platforms: one for sales (PMPS) and one for running contracts (CMPS).</p>
+  <div class="tags load-in d3" style="margin-top:20px"><span class="tag">B2B · enterprise</span><span class="tag">Strategic trade-offs</span><span class="tag fg">Shared components</span></div>
+  <dl class="meta glass load-in d4"><div><dt>Client</dt><dd>HP Inc. via Wipro</dd></div><div><dt>Role</dt><dd>Senior UX designer</dd></div><div><dt>Timeline</dt><dd>Oct 2022 – Apr 2023</dd></div><div><dt>Tools</dt><dd>Figma, Axure RP, Draw.io</dd></div></dl>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#research">Research</a><a href="#split">The split</a><a href="#screens">Screens</a><a href="#figma">Figma</a><a href="#reflection">Reflection</a></nav></div>
+
+<section class="cs-sec" id="research"><div class="wrap two">
+ <div><div class="eyebrow">Research</div><h2 class="h">Three roles pulling in different directions</h2>
+ <div class="prose"><p>I interviewed HP sales reps, contract managers and their managers to map how work actually moved. I listed every tool being replaced and built a <strong>requirements matrix</strong> that tied each user need to a feature, which became the shared checklist for product and engineering.</p></div>
+ <div class="methods"><span class="method">Stakeholder interviews</span><span class="method">Current-tool inventory</span><span class="method">Requirements matrix</span><span class="method">Site map in Draw.io</span><span class="method">Prototype reviews</span></div></div>
+ <div class="insights" style="align-self:start">
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Sales reps tracked opportunities in personal spreadsheets, so nobody could see which proposals were live.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>A shared opportunities list with Create / Existing / Archived tabs.</div></div>
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Contract managers logged into several systems just to check a shipment.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>CMPS brings fleet, shipment and supply status into one place.</div></div>
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Managers couldn't see their team's pipeline until someone sent a report.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Dashboard widgets for proposals by status, visible to managers.</div></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="split"><div class="wrap">
+ <div class="eyebrow">Strategic trade-offs</div><h2 class="h">The biggest decision was structural</h2>
+ <div class="trade">
+  <div class="to"><h3>One tool or two?</h3><div class="opts"><div class="opt"><b>Option</b>One large app with every module</div><div class="opt pick"><b>Chosen</b>Two platforms (sales and contracts) with a shared entry point and an Onboarding handoff</div></div><p>Sales reps and contract managers think about the same customer at different moments. One app would have buried each group's work under the other's. The Onboarding module makes the hand-over between them visible.</p></div>
+  <div class="to"><h3>Hide columns or keep them?</h3><div class="opts"><div class="opt"><b>Option</b>Show 5 columns and move the rest to a detail page</div><div class="opt pick"><b>Chosen</b>Keep all 10 columns with horizontal scroll</div></div><p>Reps compared proposals across columns. Hiding them meant opening records one at a time, so we kept the density.</p></div>
+  <div class="to"><h3>Toggle or dropdown for the main filter?</h3><div class="opts"><div class="opt"><b>Option</b>Dropdown with every filter in one place</div><div class="opt pick"><b>Chosen</b>Toggle for Active/All, checkboxes for status</div></div><p>Active vs. All flips constantly; status filters change less. Two tiers matched how often each one is used.</p></div>
+  <div class="to"><h3>Long create form or short?</h3><div class="opts"><div class="opt"><b>Option</b>Collect every proposal detail up front</div><div class="opt pick"><b>Chosen</b>Six fields to create, details added later</div></div><p>A short form gets the record created. Details are added in the proposal builder once the deal is real.</p></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="screens"><div class="wrap">
+ <div class="eyebrow">Production screens</div><h2 class="h">Annotated wireframes from the project</h2>
+ <div class="prose"><p>These are the actual screens used in stakeholder reviews and development briefings. Customer and partner details are placeholders.</p></div>
+ <div class="two" style="margin-top:24px;align-items:start">
+  <figure class="shot" style="margin:0"><div class="shot-wrap"><img src="img/hp-screen-existing-proposals.jpg" alt="Existing proposals screen with toggle filter, status checkboxes and a wide data table" loading="lazy"><span class="pin" style="left:14.7%;top:17.4%">1</span><span class="pin" style="left:34%;top:22.3%">2</span><span class="pin" style="left:61%;top:32%">3</span><span class="pin" style="left:83%;top:49%">4</span></div><figcaption>Proposals · Existing</figcaption></figure>
+  <ol class="notes"><li><b>Toggle for the frequent filter.</b> Active vs. All, matching the Opportunities screen.</li><li><b>Multi-select status.</b> Approved, Alternate, In progress, Rejected, Won, Archived.</li><li><b>Ten columns, horizontal scroll.</b> Density was a deliberate trade-off.</li><li><b>Pagination with page size</b> for accounts with long proposal histories.</li></ol>
+ </div>
+ <div class="two" style="margin-top:28px;align-items:start">
+  <figure class="shot" style="margin:0"><div class="shot-wrap"><img src="img/hp-screen-opportunities.jpg" alt="Archived opportunities with a Won/All toggle and status column" loading="lazy"><span class="pin" style="left:10.5%;top:20.5%">1</span><span class="pin" style="left:38%;top:15.2%">2</span><span class="pin" style="left:42%;top:48%">3</span><span class="pin" style="left:77%;top:51.6%">4</span></div><figcaption>Opportunities · Archived</figcaption></figure>
+  <ol class="notes"><li><b>Won / All toggle</b> on archived records.</li><li><b>Three sub-tabs</b> for every module: Create, Existing, Archived.</li><li><b>Statuses in plain words:</b> Active, Lost, Abandoned.</li><li><b>Consistent pager</b> across both platforms.</li></ol>
+ </div>
+ <div class="two" style="margin-top:28px;align-items:start">
+  <figure class="shot" style="margin:0"><div class="shot-wrap"><img src="img/hp-screen-create-proposal.jpg" alt="Create proposal form with six fields and a single primary button" loading="lazy"><span class="pin" style="left:34.6%;top:26.5%">1</span><span class="pin" style="left:7.5%;top:60.3%">2</span><span class="pin" style="left:31.3%;top:64.9%">3</span></div><figcaption>Proposals · Create</figcaption></figure>
+  <ol class="notes"><li><b>Linked fields</b> pull customer and opportunity data instead of re-typing it.</li><li><b>Coterminous</b>, an enterprise contract option, as a simple checkbox.</li><li><b>One primary action</b>, so the next step is never ambiguous.</li></ol>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="figma"><div class="wrap">
+ <div class="eyebrow">Figma file · Shared components</div><h2 class="h">One component set across both platforms</h2>
+ <div class="prose"><p>Axure was the client's sign-off format, but the UI was designed in Figma first. I built the shared components (module tabs, filters, table) as Figma components with variants, used them in both PMPS and CMPS screens, and recreated the same patterns in the Axure prototypes for review.</p></div>
+ <div class="fig" data-fig data-default="h-toggle" data-fit="f-hp">
+  <div class="fig-bar"><div class="fig-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="fig-tools" aria-hidden="true"><span class="on">➚</span><span>#</span><span>▭</span><span>✎</span><span>T</span><span>💬</span></div>
+    <div class="fig-file">HP · Managed Print Central / <b>Components</b></div>
+    <div class="fig-zoom"><button type="button" data-zoom="-0.1" aria-label="Zoom out">−</button><output>100%</output><button type="button" data-zoom="0.1" aria-label="Zoom in">+</button></div></div>
+  <div class="fig-body">
+    <aside class="fig-layers" aria-label="Layers"><div class="fl-h">Pages<span>+</span></div><div class="fl-pages"><div class="">Site map</div><div class="on">Components</div><div class="">PMPS</div><div class="">CMPS</div></div><div class="fl-h">Layers</div><button type="button" class="ly comp" style="--d:0" data-t="f-hp"><i>❖</i>Shared components</button><button type="button" class="ly comp" style="--d:1" data-t="h-nav"><i>❖</i>Module tabs</button><button type="button" class="ly comp" style="--d:1" data-t="h-toggle"><i>❖</i>Toggle filter</button><button type="button" class="ly comp" style="--d:1" data-t="h-status"><i>❖</i>Status filter group</button><button type="button" class="ly comp" style="--d:1" data-t="h-table"><i>❖</i>Data table</button></aside>
+    <div class="fig-canvas" tabindex="0" aria-label="Canvas, scroll to pan"><div class="fig-board"><div class="ff" id="f-hp"><div class="ff-label comp">❖ Shared components</div><div class="ff-body" data-id="f-hp" style="width:720px;"><div class="m" style="padding:20px;display:flex;flex-direction:column;gap:20px;background:#fff"><div data-id="h-nav" style="display:flex;gap:18px;align-items:flex-end;border-bottom:1px solid #999;padding:0 10px;font-size:13px;color:#555"><span style="padding:8px 10px;">Dashboard</span><span style="padding:8px 10px;">Opportunities</span><span style="padding:8px 10px;border:1px solid #999;border-bottom:1px solid #fff;margin-bottom:-1px;background:#fff;color:#0096d6;border-radius:4px 4px 0 0">Proposals</span><span style="padding:8px 10px;">Customers</span><span style="padding:8px 10px;">Onboarding</span></div><div style="display:flex;gap:40px;align-items:flex-end"><div data-id="h-toggle" style="display:flex;flex-direction:column;gap:4px;font-size:12px"><span style="font-size:9px;color:#0096d6">Opportunity filter</span><span style="display:flex;gap:8px;align-items:center">Active <i style="width:28px;height:14px;border:1.5px solid #0096d6;border-radius:8px;position:relative;display:inline-block"><i style="position:absolute;left:1px;top:1px;width:10px;height:10px;border-radius:50%;border:1.5px solid #0096d6;box-sizing:border-box"></i></i> All</span></div><div data-id="h-status" style="display:flex;gap:12px;font-size:12px;flex-wrap:wrap"><span style="display:flex;gap:5px;align-items:center"><i style="width:12px;height:12px;border:1px solid #bbb;border-radius:2px;display:inline-block;background:#0096d6;border-color:#0096d6"></i>Approved</span><span style="display:flex;gap:5px;align-items:center"><i style="width:12px;height:12px;border:1px solid #bbb;border-radius:2px;display:inline-block;"></i>Alternate</span><span style="display:flex;gap:5px;align-items:center"><i style="width:12px;height:12px;border:1px solid #bbb;border-radius:2px;display:inline-block;background:#0096d6;border-color:#0096d6"></i>In progress</span><span style="display:flex;gap:5px;align-items:center"><i style="width:12px;height:12px;border:1px solid #bbb;border-radius:2px;display:inline-block;"></i>Rejected</span><span style="display:flex;gap:5px;align-items:center"><i style="width:12px;height:12px;border:1px solid #bbb;border-radius:2px;display:inline-block;"></i>Won</span><span style="display:flex;gap:5px;align-items:center"><i style="width:12px;height:12px;border:1px solid #bbb;border-radius:2px;display:inline-block;"></i>Archived</span></div></div><div data-id="h-table" style="display:grid;grid-template-columns:repeat(5,1fr);font-size:11px"><span style="background:#7a7a7a;color:#fff;padding:8px">Proposal #</span><span style="background:#7a7a7a;color:#fff;padding:8px">Description</span><span style="background:#7a7a7a;color:#fff;padding:8px">Status</span><span style="background:#7a7a7a;color:#fff;padding:8px">Customer</span><span style="background:#7a7a7a;color:#fff;padding:8px">Created</span><span style="padding:8px;border-bottom:1px solid #ddd;color:#0096d6">[id]</span><span style="padding:8px;border-bottom:1px solid #ddd;color:#333">[description]</span><span style="padding:8px;border-bottom:1px solid #ddd;color:#333">[status]</span><span style="padding:8px;border-bottom:1px solid #ddd;color:#333">[customer]</span><span style="padding:8px;border-bottom:1px solid #ddd;color:#333">[date]</span></div></div></div></div></div></div>
+    <aside class="fig-props" aria-label="Properties"><div class="fp-tabs"><span class="on">Design</span><span>Prototype</span><span>Dev Mode</span></div><div class="fig-props-body"></div></aside>
+  </div>
+  <div class="fig-help"><b>Interactive file</b>Click a layer or anything on the canvas to inspect it</div>
+  <template data-p="f-hp"><div class="fp-sec"><h5>Frame<span></span></h5><div class="fp-row"><div class="fp-f "><i>W</i>720</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f "><i>X</i>0</div><div class="fp-f "><i>Y</i>0</div></div></div><div class="fp-sec"><div class="fp-note">One set of components shared by both platforms, so a sales rep moving into contract management didn't have to learn a second product.</div></div></template><template data-p="h-nav"><div class="fp-sec"><h5>Module tabs<span>❖</span></h5><div class="fp-f full"><i>Active</i>Proposals</div><div class="fp-f full"><i>Sub-tabs</i>Create · Existing · Archived</div></div><div class="fp-sec"><h5>Auto layout<span>⋮⋮</span></h5><div class="fp-dir"><span>↓</span><span class="on">→</span><span>⤶</span></div><div class="fp-row"><div class="fp-f "><i>⇹ gap</i>18</div><div class="fp-f "><i>▢ pad</i>0, 10</div><div class="fp-f "><i>W</i>Fill</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f full"><i>Align</i>Bottom left</div></div></div></template><template data-p="h-toggle"><div class="fp-sec"><h5>Toggle filter<span>❖</span></h5><div class="fp-f full"><i>Left</i>Active / Won</div><div class="fp-f full"><i>Right</i>All</div><div class="fp-f full"><i>State</i>Left</div></div><div class="fp-sec"><div class="fp-note">Used for the one filter people change constantly. A toggle is one click; a dropdown is two.</div></div></template><template data-p="h-status"><div class="fp-sec"><h5>Status filter group<span>❖</span></h5><div class="fp-f full"><i>Options</i>6</div><div class="fp-f full"><i>Multi-select</i>true</div></div><div class="fp-sec"><h5>Auto layout<span>⋮⋮</span></h5><div class="fp-dir"><span>↓</span><span>→</span><span class="on">⤶</span></div><div class="fp-row"><div class="fp-f "><i>⇹ gap</i>12</div><div class="fp-f "><i>▢ pad</i>0</div><div class="fp-f "><i>W</i>Fill</div><div class="fp-f "><i>H</i>Hug</div><div class="fp-f full"><i>Align</i>Top left</div></div></div></template><template data-p="h-table"><div class="fp-sec"><h5>Data table<span>❖</span></h5><div class="fp-f full"><i>Columns</i>Up to 10</div><div class="fp-f full"><i>Overflow</i>Horizontal scroll</div><div class="fp-f full"><i>Link column</i>1</div></div><div class="fp-sec"><div class="fp-note">We kept all ten columns and allowed horizontal scroll, because sales reps compare across them.</div></div></template>
+</div>
+</div></section>
+
+<section class="cs-sec" id="reflection"><div class="wrap two">
+ <div><div class="eyebrow">Outcome &amp; reflection</div><h2 class="h">Approved, then used as the build spec</h2>
+ <div class="prose"><p>Both platforms were reviewed module by module and approved through clickable prototypes, which then served as the spec during development. Onboarding needed the most revision. The handover between sales and contracts was a new idea for users, and it took two rounds to make it clear.</p></div></div>
+ <div class="quote"><blockquote>“Her ability to map two completely different user types and design separate but coherent interfaces showed a maturity of thinking I rarely see.”</blockquote><cite><b>Shakila Shanmugnathan</b>UI/UX Lead, HP Managed Print Services</cite></div>
+</div></section>
+<div class="wrap"><a class="next glass" href="citi.html"><div><small>Next case study</small><h3>Citi Spotlight dashboard</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
+  <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+</footer></div>
+<script src="site.js"></script>
+</body>
+</html>

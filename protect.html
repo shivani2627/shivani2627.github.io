@@ -1,773 +1,130 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>PROTECT Case Management · Shivani Harode</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-:root{
-  --c:#f5f0e8;--c2:#ece6d8;--cw:#faf8f4;
-  --ink:#1a1508;--i70:rgba(26,21,8,.7);--i50:rgba(26,21,8,.5);
-  --i30:rgba(26,21,8,.3);--i12:rgba(26,21,8,.12);--i06:rgba(26,21,8,.06);
-  --gold:#b8945a;--gl:rgba(184,148,90,.13);--gm:rgba(184,148,90,.35);
-  --pu:#6d28d9;--pu2:rgba(109,40,217,.12);--pu3:rgba(109,40,217,.06);
-  --ease:cubic-bezier(.16,1,.3,1);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--c);color:var(--ink);-webkit-font-smoothing:antialiased;line-height:1.65}
-::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
-a{text-decoration:none;color:inherit}
-img{display:block;max-width:100%}
-p{margin-bottom:14px;color:var(--i70);font-size:14px;line-height:1.82;font-weight:300}
-p:last-child{margin-bottom:0}
-strong{color:var(--ink);font-weight:600}
-ul,ol{padding-left:20px;margin:12px 0;display:flex;flex-direction:column;gap:8px}
-li{font-size:13.5px;color:var(--i70);line-height:1.65;font-weight:300}
-
-/* NAV */
-.pnav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:14px 52px;background:rgba(245,240,232,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--i12)}
-.back-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 20px;background:var(--gold);color:#fff;border-radius:100px;font-size:12px;font-weight:600;text-decoration:none;transition:all .28s}
-.back-btn:hover{background:#a07840;transform:translateX(-2px)}
-.back-btn svg{transition:transform .25s;flex-shrink:0}
-.back-btn:hover svg{transform:translateX(-3px)}
-.pnav-tabs{display:flex;gap:4px;flex-wrap:wrap}
-.ptab{padding:6px 13px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.07em;text-transform:uppercase;color:var(--i30);border:1px solid transparent;border-radius:100px;text-decoration:none;transition:all .2s}
-.ptab:hover{color:var(--i50);border-color:var(--i12)}
-.ptab.on{color:var(--gold);border-color:var(--gm);background:var(--gl)}
-.pnav-crumb{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--i30)}
-@media(max-width:768px){.pnav{padding:12px 24px}.pnav-tabs,.pnav-crumb{display:none}}
-
-/* HERO */
-.hero{padding:80px 52px 56px;max-width:1100px;margin:0 auto}
-.eyebrow{font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:'';width:22px;height:1px;background:var(--gold);flex-shrink:0}
-.h1{font-family:'Playfair Display',serif;font-size:clamp(52px,7vw,96px);font-weight:400;letter-spacing:-.035em;line-height:.88;margin-bottom:22px;color:var(--ink)}
-.h1 em{font-style:italic;color:var(--pu)}
-.lead{font-size:16px;color:var(--i70);line-height:1.82;max-width:660px;font-weight:300;margin-bottom:36px}
-.pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
-.pill{padding:6px 14px;border:1px solid var(--i12);border-radius:100px;font-family:'DM Mono',monospace;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--i50);background:var(--cw)}
-.pill.hi{color:var(--pu);border-color:rgba(109,40,217,.3);background:var(--pu3)}
-.stats{display:flex;gap:0;border:1px solid var(--gm);border-radius:14px;overflow:hidden;background:rgba(250,248,244,.7);max-width:560px}
-.st{flex:1;padding:14px 16px;border-right:1px solid var(--i12)}
-.st:last-child{border-right:none}
-.sv{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,30px);font-weight:400;color:var(--ink);line-height:1;letter-spacing:-.025em;display:block}
-.sl{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--i30);margin-top:4px;display:block}
-
-/* SECTIONS */
-.sec{padding:60px 52px;max-width:1100px;margin:0 auto}
-.sec+.sec{border-top:1px solid var(--i12)}
-.sec-ey{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.sec-ey::before{content:'';width:16px;height:1px;background:var(--gold)}
-.sec-h{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,38px);font-weight:400;letter-spacing:-.02em;line-height:1.05;color:var(--ink);margin-bottom:20px}
-.sec-h em{font-style:italic;color:var(--pu)}
-.body{font-size:14px;color:var(--i70);line-height:1.88;font-weight:300}
-.body p{margin-bottom:14px}.body p:last-child{margin-bottom:0}
-
-/* BEFORE / AFTER */
-.ba{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
-.ba-card{padding:22px;border-radius:14px;border:1px solid var(--i12)}
-.ba-card.before{background:rgba(220,38,38,.03);border-color:rgba(220,38,38,.12)}
-.ba-card.after{background:var(--gl);border-color:var(--gm)}
-.ba-hd{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px}
-.before .ba-hd{color:rgba(220,38,38,.7)}.after .ba-hd{color:var(--gold)}
-.ba-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
-.ba-list li{font-size:13px;color:var(--i70);line-height:1.6;font-weight:300;padding-left:16px;position:relative}
-.ba-list li::before{content:'';position:absolute;left:0;top:7px;width:5px;height:5px;border-radius:50%}
-.before .ba-list li::before{background:rgba(220,38,38,.5)}.after .ba-list li::before{background:var(--gold)}
-
-/* WORKSTREAM CARDS */
-.ws-list{display:flex;flex-direction:column;gap:1px;background:var(--i12);border-radius:18px;overflow:hidden;border:1px solid var(--i12);margin-top:22px}
-.ws{background:var(--cw);display:flex;gap:0;text-decoration:none;color:inherit;transition:background .25s;position:relative;overflow:hidden;border-bottom:1px solid var(--i12)}
-.ws:last-child{border-bottom:none}
-.ws::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transform-origin:top;transition:transform .35s var(--ease)}
-.ws:hover{background:var(--gl)}.ws:hover::before{transform:scaleY(1)}
-.ws-thumb{width:180px;flex-shrink:0;position:relative;overflow:hidden;min-height:130px}
-.ws-thumb svg{position:absolute;inset:0;width:100%;height:100%}
-.ws-tag{position:absolute;top:10px;left:10px;z-index:2;padding:3px 9px;border-radius:100px;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.1);font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
-.ws-body{flex:1;padding:22px 26px;display:flex;flex-direction:column;justify-content:space-between}
-.ws-num{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:7px}
-.ws-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;letter-spacing:-.015em;line-height:1.15;color:var(--ink);margin-bottom:8px}
-.ws-name em{font-style:italic;color:var(--pu)}
-.ws-desc{font-size:13px;color:var(--i70);line-height:1.72;font-weight:300;flex:1;margin-bottom:14px}
-.ws-foot{display:flex;align-items:center;justify-content:space-between}
-.ws-chips{display:flex;flex-wrap:wrap;gap:5px}
-.ws-chip{padding:3px 9px;border:1px solid var(--i12);border-radius:100px;font-family:'DM Mono',monospace;font-size:8px;color:var(--i50)}
-.ws-arr{font-size:18px;color:var(--i30);transform:rotate(-45deg);transition:all .3s var(--ease);flex-shrink:0}
-.ws:hover .ws-arr{color:var(--gold);transform:rotate(0deg) translate(2px,-2px)}
-@media(max-width:700px){.ws-thumb{display:none}}
-
-/* QUOTE */
-.qt{margin:22px 0;padding:20px 24px;border-left:2px solid var(--gold);background:var(--gl);border-radius:0 12px 12px 0}
-.qt blockquote{font-family:'Playfair Display',serif;font-size:15px;font-style:italic;color:var(--i70);line-height:1.7;margin-bottom:8px}
-.qt cite{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.08em;color:var(--i30)}
-
-/* PROCESS STEPS */
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
-.step{padding:20px 18px;border:1px solid var(--i12);border-radius:13px;background:var(--cw)}
-.step-n{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.12em;color:var(--gold);margin-bottom:8px;display:block}
-.step-t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px}
-.step-d{font-size:12.5px;color:var(--i70);line-height:1.65;font-weight:300}
-
-/* OUTCOMES */
-.outs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}
-.out{padding:20px;border:1px solid var(--i12);border-radius:13px;background:var(--cw);text-align:center}
-.ov{font-family:'Playfair Display',serif;font-size:clamp(26px,3vw,38px);font-weight:400;color:var(--pu);line-height:1;letter-spacing:-.03em;display:block}
-.ol{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--i30);margin-top:5px;display:block}
-.od{font-size:12.5px;color:var(--i70);line-height:1.6;margin-top:8px;font-weight:300}
-
-/* ROLE TABLE */
-.rt{width:100%;border-collapse:collapse;margin-top:20px;font-size:13px}
-.rt th{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--i30);padding:9px 13px;border-bottom:1px solid var(--i12);text-align:left;font-weight:500}
-.rt td{padding:11px 13px;border-bottom:1px solid var(--i06);color:var(--i70);font-weight:300;line-height:1.5}
-.rt tr:last-child td{border-bottom:none}
-.rt td:first-child{color:var(--ink);font-weight:500}
-.rt .mine{color:var(--pu);font-family:'DM Mono',monospace;font-size:11px;font-weight:600}
-
-/* TESTIMONIALS */
-.testis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-.testi{padding:22px;border:1px solid var(--i12);border-radius:16px;background:var(--cw);position:relative;overflow:hidden}
-.testi::before{content:'\201C';position:absolute;top:8px;left:14px;font-family:'Playfair Display',serif;font-size:52px;font-style:italic;font-weight:700;color:rgba(184,148,90,.1);line-height:1}
-.tq{font-size:13px;color:var(--i70);line-height:1.78;padding-left:18px;margin-bottom:16px;font-style:italic;font-weight:300}
-.tsrc{display:flex;align-items:center;gap:9px;padding-top:12px;border-top:1px solid var(--i12)}
-.tav{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#fff;flex-shrink:0;font-family:'DM Mono',monospace;font-weight:700}
-.tname{font-size:11.5px;font-weight:600;color:var(--ink)}
-.trole{font-size:9px;color:var(--i30);margin-top:1px}
-
-/* LEARNINGS */
-.learns{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
-.learn{padding:18px 20px;border:1px solid var(--i12);border-radius:13px;background:var(--cw)}
-.ln{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--gold);margin-bottom:8px;display:block}
-.lt{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:5px}
-.ld{font-size:12px;color:var(--i70);line-height:1.65;font-weight:300}
-
-/* OTHER PROJECTS */
-.others{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
-.op{padding:16px;border:1px solid var(--i12);border-radius:13px;background:var(--cw);text-decoration:none;transition:all .28s;display:block}
-.op:hover{border-color:var(--gm);background:var(--gl);transform:translateY(-2px)}
-.op-th{height:56px;border-radius:7px;margin-bottom:10px;overflow:hidden}
-.op-n{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.1em;color:var(--i30);margin-bottom:4px}
-.op-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:400;color:var(--ink);line-height:1.2;margin-bottom:4px}
-.op-name em{font-style:italic;color:var(--gold)}
-.op-tag{font-family:'DM Mono',monospace;font-size:8px;color:var(--i30);letter-spacing:.06em;text-transform:uppercase}
-.op-arr{font-size:12px;color:var(--i30);float:right;margin-top:-16px;transition:color .2s}
-.op:hover .op-arr{color:var(--gold)}
-
-/* FOOTER */
-.foot{padding:32px 52px;border-top:1px solid var(--i12);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;background:var(--cw)}
-.foot-back{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--gold);color:#fff;border-radius:100px;font-size:12.5px;font-weight:600;text-decoration:none;transition:all .28s}
-.foot-back:hover{background:#a07840;transform:translateY(-1px)}
-.foot-txt{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--i30);letter-spacing:.06em}
-
-@media(max-width:900px){
-  .hero,.sec,.foot{padding-left:24px;padding-right:24px}
-  .ba{grid-template-columns:1fr}
-  .steps{grid-template-columns:1fr 1fr}
-  .outs{grid-template-columns:1fr 1fr}
-  .testis{grid-template-columns:1fr}
-  .learns{grid-template-columns:1fr}
-  .others{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){.steps,.outs,.others{grid-template-columns:1fr}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PROTECT Case Study</title>
+<meta name="description" content="Sole designer for Wisconsin's prosecutor case management system.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
-
-<!-- NAV -->
-<nav class="pnav" aria-label="PROTECT navigation">
-  <a href="index.html#work" class="back-btn">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to Portfolio
-  </a>
-  <div class="pnav-tabs">
-    <span class="ptab on">Overview</span>
-    <a href="protect-logo.html" class="ptab">01 Brand</a>
-    <a href="protect-desktop.html" class="ptab">02 Desktop</a>
-    <a href="protect-details.html" class="ptab">03 Web</a>
-    <a href="protect-xcq.html" class="ptab">04 XCQ</a>
-    <a href="protect-efiling.html" class="ptab">05 eFiling</a>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="nav glass" role="banner">
+  <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#ai">AI workflow</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <div class="modes" role="group" aria-label="Display mode">
+    <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
+    <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
+    <button type="button" data-focus aria-pressed="false" title="Focus mode: no motion, no blur, larger text">◎<span>Focus</span></button>
   </div>
-  <span class="pnav-crumb">PROTECT · 02 / 05</span>
-</nav>
+  <button type="button" class="menu-btn" aria-expanded="false">Menu</button>
+</header>
+<main id="main"><section class="cs-hero"><div class="wrap">
+  <div class="crumbs load-in"><a href="index.html#work">Case studies</a><span>/</span><span>PROTECT</span></div>
+  <h1 class="load-in d2">PROTECT: case management for Wisconsin prosecutors</h1>
+  <p class="lede load-in d3">PROTECT (Prosecutor Technology for Case Tracking) is the system District Attorney offices across Wisconsin's 72 counties use to manage cases. For 18 months I was its only designer. I created the brand, redesigned how case details appear in the desktop app, and rebuilt a 2005-era inter-county search tool on a new Figma design system.</p>
+  <div class="tags load-in d3" style="margin-top:20px"><span class="tag fg">Design system from scratch</span><span class="tag">Brand identity</span><span class="tag">Desktop + web</span><span class="tag">Legal / government</span></div>
+  <dl class="meta glass load-in d4"><div><dt>Client</dt><dd>State of Wisconsin · DA IT program</dd></div><div><dt>Role</dt><dd>Sole UI/UX designer</dd></div><div><dt>Timeline</dt><dd>Jan 2024 – Jun 2025</dd></div><div><dt>Tools</dt><dd>Figma, FigJam, Axure, Illustrator, GIMP</dd></div></dl>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#context">Context</a><a href="#research">Research</a><a href="#tradeoffs">Trade-offs</a><a href="#studies">4 case studies</a><a href="#system">System</a><a href="#reflection">Reflection</a></nav></div>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="eyebrow">Case Study · Government UX · Jan 2024 – Jun 2025</div>
-  <h1 class="h1">PROTECT<br><em>Case Management</em></h1>
-  <p class="lead">A 1.5-year embedded engagement redesigning the State of Wisconsin's case management platform for District Attorneys. As sole UI/UX designer, I delivered five distinct workstreams — each with its own users, constraints, and design challenges.</p>
-  <div class="pills">
-    <span class="pill hi">Lead Designer · Sole UX</span>
-    <span class="pill">State of Wisconsin DOA</span>
-    <span class="pill">Jan 2024 – Jun 2025</span>
-    <span class="pill">Figma · InVision · Axure RP · FigJam · GIMP</span>
-  </div>
-  <div class="stats">
-    <div class="st"><span class="sv">50+</span><span class="sl">Screens designed</span></div>
-    <div class="st"><span class="sv">5</span><span class="sl">Workstreams</span></div>
-    <div class="st"><span class="sv">1.5yr</span><span class="sl">Embedded</span></div>
-    <div class="st"><span class="sv">Solo</span><span class="sl">UX designer</span></div>
-  </div>
-</div>
+<section class="cs-sec" id="context"><div class="wrap two">
+ <div><div class="eyebrow">Context</div><h2 class="h">One platform, four very different design problems</h2>
+ <div class="prose"><p>PROTECT is built by the state's DA IT program (DAIT). It isn't one app. It's a Windows desktop application, a set of web tools, and the documents and training material around them. Each piece had its own users and its own technical limits.</p>
+ <p>I worked directly with business analysts, who knew the legal workflows deeply, and with the developers who would build each piece. There was no other designer, so I owned everything from discovery notes to final specs.</p></div></div>
+ <div class="three" style="grid-template-columns:1fr 1fr;align-content:start">
+  <a class="box box-link" href="protect-logo.html"><span class="k">01 · Brand</span><h3>Logo &amp; identity</h3><p>A mark that works from a 16px taskbar icon to a training manual cover.</p></a>
+  <a class="box box-link" href="protect-details.html"><span class="k">02 · Desktop</span><h3>Details pane</h3><p>Shows synced case data under the grid so people stop hopping between tabs.</p></a>
+  <a class="box box-link" href="protect-xcq.html"><span class="k">03 · Web</span><h3>XCQ inter-county query</h3><p>A search tool from 2005, rebuilt with sorting, paging and a real component library.</p></a>
+  <a class="box box-link" href="protect-efiling.html"><span class="k">04 · Web</span><h3>eFiling site search</h3><p>A people and case lookup built from the same components as XCQ.</p></a>
+ </div>
+</div></section>
 
-<!-- OVERVIEW -->
-<div class="sec">
-  <div class="sec-ey">Overview</div>
-  <h2 class="sec-h">DA offices running on <em>spreadsheets and paper</em></h2>
-  <div class="body">
-    <p>When I joined PROTECT, Wisconsin District Attorney offices were tracking active criminal cases across spreadsheets, shared drives, and paper files. No single source of truth, no audit trail, no way to understand case workload at a glance.</p>
-    <p>I was brought in as the sole UI/UX designer and embedded with the team for 18 months — long enough to understand the domain deeply, build trust with DA stakeholders, and deliver five distinct design efforts under the PROTECT umbrella.</p>
-    <p>The core structural challenge: desktop and web users had fundamentally different interaction patterns. DAs reviewing case files needed dense, information-rich desktop interfaces. Clerks and supervisors accessing the web portal needed streamlined task flows. One IA would not serve both — solving that split became the foundation for every design decision that followed.</p>
-    <p>This wasn't a UI refresh. The work spanned end-to-end journey mapping across 72 county offices, cross-functional stakeholder alignment, iterative usability testing, and full design system delivery. Every touchpoint across the DA's digital experience was mapped, challenged, and redesigned from the ground up.</p>
-  </div>
-  <div class="ba">
-    <div class="ba-card before">
-      <div class="ba-hd">⚠ &nbsp;Before PROTECT</div>
-      <ul class="ba-list">
-        <li>Cases tracked in Excel — no audit trail, version conflicts</li>
-        <li>No visibility into DA workload across the office</li>
-        <li>eFiling done via email attachments — error-prone, manual</li>
-        <li>Desktop and web users forced into the same interface</li>
-        <li>No brand or visual identity — felt like a temporary system</li>
-        <li>XCQ queries ran in a separate legacy CLI tool only one person knew</li>
-      </ul>
-    </div>
-    <div class="ba-card after">
-      <div class="ba-hd">✦ &nbsp;After PROTECT</div>
-      <ul class="ba-list">
-        <li>Single platform with full case lifecycle tracking and audit log</li>
-        <li>Dashboard-driven workload visibility for supervisors</li>
-        <li>Dedicated eFiling portal with validation and status tracking</li>
-        <li>Separate IA for desktop (dense/keyboard) vs. web (task-focused)</li>
-        <li>Full brand identity: logo, colour system, typography, icon set</li>
-        <li>XCQ rebuilt as a first-class visual UI module accessible to all staff</li>
-      </ul>
-    </div>
-  </div>
-</div>
+<section class="cs-sec" id="research"><div class="wrap">
+ <div class="eyebrow">Research</div><h2 class="h">Learning a legal domain with limited access to users</h2>
+ <div class="prose"><p>Prosecutors and their staff are busy, and government projects don't always grant designers direct sessions with them. I combined what I could get: <strong>BA-led requirement sessions, walkthroughs of the live tools, feedback already logged by users, and stakeholder reviews of every prototype.</strong> When I couldn't test with end users, I ran proxy sessions where analysts who support DA offices worked through the prototype while I watched and took notes.</p></div>
+ <div class="methods"><span class="method">Requirement sessions with BAs</span><span class="method">Legacy tool walkthroughs</span><span class="method">Logged user feedback review</span><span class="method">Proxy usability sessions</span><span class="method">Stakeholder prototype reviews <i>bi-weekly</i></span><span class="method">Decision log</span></div>
+ <div class="insights">
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Staff look people up by surname, and the same person often appears under different names in different counties.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>The results grid leads with “Last, First” and shows aliases inline. They aren't buried in a detail view.</div></div>
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">To check one case's synced data, people left the grid, opened a tab, read it, and went back. For every row.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>A details pane docked under the grid that follows the selected row. No tab switching.</div></div>
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Nobody trusted search results without knowing how old the county data was.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>“Last synced” sits in every header and footer, and counties that failed to sync are named instead of silently missing.</div></div>
+  <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Prosecutors read dense information all day and found “clean” layouts slower, not faster.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Compact table density stays the default. Hierarchy comes from type weight and grouping, not white space.</div></div>
+ </div>
+</div></section>
 
-<!-- ROLE -->
-<div class="sec">
-  <div class="sec-ey">My Role</div>
-  <h2 class="sec-h">What I owned <em>end-to-end</em></h2>
-  <div class="body">
-    <p>As the sole designer across an 18-month engagement, I owned the entire design surface — from early discovery and stakeholder workshops through pixel-perfect Figma deliverables and developer handoff. Every decision was mine to make and defend.</p>
-  </div>
-  <table class="rt">
-    <thead><tr><th>Workstream</th><th>What I delivered</th><th>Owner</th></tr></thead>
-    <tbody>
-      <tr><td>Brand Identity</td><td>Logo, colour system, typography, icon set, brand guidelines</td><td class="mine">Shivani</td></tr>
-      <tr><td>Desktop App Revamp</td><td>Full IA, navigation, case view, dashboards — keyboard-first</td><td class="mine">Shivani</td></tr>
-      <tr><td>Details Pane Web</td><td>Responsive web flows for clerks and supervisors</td><td class="mine">Shivani</td></tr>
-      <tr><td>XCQ Web Module</td><td>Visual query builder replacing legacy CLI tool</td><td class="mine">Shivani</td></tr>
-      <tr><td>eFiling Portal</td><td>End-to-end filing flow, validation, status tracking</td><td class="mine">Shivani</td></tr>
-      <tr><td>Engineering handoff</td><td>Annotated Figma specs, component library, interaction notes</td><td style="font-size:11px;color:var(--i50)">Dev team</td></tr>
-    </tbody>
-  </table>
-</div>
+<section class="cs-sec" id="tradeoffs"><div class="wrap">
+ <div class="eyebrow">Strategic trade-offs</div><h2 class="h">What I gave up, and why it was the right call</h2>
+ <div class="trade">
+  <div class="to"><h3>Modern patterns vs. the Windows desktop framework</h3><div class="opts"><div class="opt"><b>Option</b>Animated drawers, hover reveals, flexible layouts</div><div class="opt pick"><b>Chosen</b>Static expand/collapse sections, click and keyboard only</div></div><p>Engineering confirmed the desktop renderer couldn't support animation or reliable hover. I checked every proposed element with a developer before it went into a frame, so nothing had to be cut later.</p></div>
+  <div class="to"><h3>Show every result vs. paginate</h3><div class="opts"><div class="opt"><b>Option</b>Keep the old “load everything” behavior people knew</div><div class="opt pick"><b>Chosen</b>Paginate, with a page-size choice of 10, 25 or 50</div></div><p>Large surname searches were slow in the old tool. Letting people set the page size kept their habit of scanning long lists without the slow load.</p></div>
+  <div class="to"><h3>Fresh visual style vs. continuity</h3><div class="opts"><div class="opt"><b>Option</b>A new look unrelated to the desktop app</div><div class="opt pick"><b>Chosen</b>Derive XCQ from the PROTECT brand: same navy, gold and type</div></div><p>Staff move between desktop and web all day. Shared colors and components make the web tools feel like the same product.</p></div>
+  <div class="to"><h3>Wait for user access vs. test with proxies</h3><div class="opts"><div class="opt"><b>Option</b>Pause decisions until DA staff were available</div><div class="opt pick"><b>Chosen</b>Proxy sessions with analysts, plus a decision log</div></div><p>Waiting would have stalled the schedule. Proxies caught most usability issues, and the decision log recorded what still needed confirming with real users.</p></div>
+ </div>
+</div></section>
 
-<!-- DISCOVERY -->
-<div class="sec">
-  <div class="sec-ey">Discovery</div>
-  <h2 class="sec-h">Map the lifecycle <em>before touching the UI</em></h2>
-  <div class="body">
-    <p>Before sketching a single screen, I spent the first six weeks running workshops with District Attorneys, investigators, administrative clerks, and IT stakeholders. The goal was to understand the full case lifecycle — not just task flows, but the mental model each user type carried into their work.</p>
-    <p>The most important finding: <strong>DAs think in cases (deep, contextual, non-linear) while clerks think in tasks (linear, batch-oriented, time-sensitive).</strong> Same data set, completely different intent. This became the structural principle the entire IA was built on.</p>
-  </div>
-  <div class="qt">
-    <blockquote>"When I'm reviewing a case I need everything — charges, history, filings, related parties — all visible without switching screens. I can't afford to hunt for information when I'm in court prep."</blockquote>
-    <cite>— District Attorney, Milwaukee County (research session, March 2024)</cite>
-  </div>
-  <div class="qt">
-    <blockquote>"I process 40–60 filings a day. I just need to know what's new, what needs action, and what's done. I don't need to see the whole case file every time."</blockquote>
-    <cite>— Administrative Clerk, Dane County (contextual inquiry, April 2024)</cite>
-  </div>
-  <div class="qt">
-    <blockquote>"Right now I run XCQ queries in a terminal. Nobody else in the office knows how. That knowledge shouldn't live in one person's head."</blockquote>
-    <cite>— Senior Investigator (stakeholder workshop, March 2024)</cite>
-  </div>
-</div>
+<section class="cs-sec" id="studies"><div class="wrap">
+ <div class="eyebrow">Four case studies</div><h2 class="h">Each piece of PROTECT, in depth</h2>
+ <div class="prose"><p>Each case study has its own research, trade-offs and interactive Figma file.</p></div>
+ <div class="work-grid" style="margin-top:26px">
+  <a class="pcard" href="protect-logo.html"><div class="thumb" style="background:#fff;display:grid;place-items:center"><svg viewBox="0 0 480 120" width="264.0" aria-hidden="true"><path d="M60 8 104 22v36c0 30-20 50-44 58-24-8-44-28-44-58V22Z" fill="#233b63"/><g transform="translate(28 22) scale(.62)"><path d="M30 8 L52 6 L58 14 L74 12 L84 22 L80 34 L86 46 L84 64 L88 80 L78 96 L40 98 L34 86 L24 76 L22 60 L14 50 L18 34 L26 24 Z" fill="#e1c25c" opacity=".95"/></g><path d="M60 42v34M46 50h28M46 50l-6 13h12Zm28 0-6 13h12ZM52 78h16" stroke="#fff" stroke-width="3" fill="none" stroke-linejoin="round" stroke-linecap="round"/><text x="122" y="70" font-family="Geist,Arial" font-weight="800" font-size="46" fill="#233b63" letter-spacing="1">PRO<tspan fill="#e1c25c">TECT</tspan></text><text x="124" y="94" font-family="Geist Mono,monospace" font-size="11" fill="#6b7280" letter-spacing="2">PROSECUTOR TECHNOLOGY FOR CASE TRACKING</text></svg></div><div class="body"><div class="org"><span>01 · Brand</span><span>Illustrator · GIMP · Figma</span></div><h3>Logo &amp; identity</h3><p>A mark that reads as Wisconsin, legal and software, and survives 16 pixels.</p><div class="tags"><span class="tag">Brand</span><span class="tag fg">Components</span></div></div></a>
+  <a class="pcard" href="protect-details.html"><div class="thumb" style="overflow:hidden"><div style="zoom:.71;width:760px"><div class="m" style="--mp:#233b63;font-size:12px;background:#f6f7fa">
+<div style="background:#fff;padding:5px 10px;display:flex;justify-content:space-between;border-bottom:1px solid #ddd;font-size:11px"><span>PROTECT — Desktop</span><span>— ☐ ✕</span></div>
+<div style="padding:10px"><div class="m-card" style="padding:0;overflow:hidden" data-id="da-grid"><table class="m-table"><thead><tr><th>Case #</th><th>Defendant</th><th>County</th><th>Status</th></tr></thead><tbody><tr class=""><td>2024CF001180</td><td>Larsen, Erik J</td><td>Dane</td><td><span class="bd ok">Open</span></td></tr><tr class="sel"><td>2024CF001181</td><td>Larsen-Holt, Priya A</td><td>Brown</td><td><span class="bd ok">Open</span></td></tr><tr class=""><td>2024CF001182</td><td>Larson, Dana K</td><td>Eau Claire</td><td><span class="bd wa">Hearing set</span></td></tr><tr class=""><td>2024CF001183</td><td>Lars, Theo M</td><td>Marathon</td><td><span class="bd ok">Open</span></td></tr></tbody></table></div></div>
+<div data-id="da-pane" data-al="V · gap 0" style="margin:0 10px 10px;background:#fff;border:1px solid #d6dbe4;border-radius:10px;overflow:hidden">
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#233b63;color:#fff;font-size:12px"><b>Details · 2024CF001181 · Larsen-Holt, Priya A</b><span style="opacity:.8">Synced 2:00 AM · ═ drag to resize</span></div>
+ <div data-id="da-sec1" style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▾ Case info</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px 18px;padding:8px 12px 12px;font-size:11.5px"><div><span style="color:#6b7280;font-size:10px;display:block">Case type</span>Felony</div><div><span style="color:#6b7280;font-size:10px;display:block">Jurisdiction</span>Brown County</div><div><span style="color:#6b7280;font-size:10px;display:block">Assigned DA</span>R. Okafor</div><div><span style="color:#6b7280;font-size:10px;display:block">Filed</span>02/12/2024</div><div><span style="color:#6b7280;font-size:10px;display:block">Court</span>Branch 4</div><div><span style="color:#6b7280;font-size:10px;display:block">Next step</span>Arraignment</div></div></div>
+ <div data-id="da-sec2" style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▾ Defendant</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px 18px;padding:8px 12px 12px;font-size:11.5px"><div><span style="color:#6b7280;font-size:10px;display:block">Aliases</span>Priya Holt · P. Larsen</div><div><span style="color:#6b7280;font-size:10px;display:block">DOB</span>11/02/1990</div><div><span style="color:#6b7280;font-size:10px;display:block">Counties with records</span>Brown, Dane</div></div></div>
+ <div data-id="da-sec3" style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▸ Charges (3)</div></div>
+ <div data-id="da-sec4" style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▸ Hearing dates (2)</div></div>
+</div></div></div></div><div class="body"><div class="org"><span>02 · Desktop</span><span>Windows app</span></div><h3>Details pane</h3><p>Ending tab-hopping: case details follow the selected row, inside strict desktop limits.</p><div class="tags"><span class="tag">Trade-offs</span><span class="tag fg">Component properties</span></div></div></a>
+  <a class="pcard" href="protect-xcq.html"><div class="thumb" style="overflow:hidden"><div style="zoom:.6;width:900px"><div class="m" style="--mp:#233b63;--ma:#e1c25c"><div class="m-top" data-id="xcq-top" data-al="H · gap 12"><svg width="18" height="20" viewBox="0 0 52 56" aria-hidden="true"><path d="M26 2 4 12v16c0 12 10 22 22 26 12-4 22-14 22-26V12Z" fill="#e1c25c"/></svg><span class="brand">PRO<em>TECT</em></span><span style="opacity:.5">|</span><span style="display:flex;gap:2px;font-size:12px"><span style="padding:6px 10px;border-radius:6px;background:rgba(255,255,255,.14);opacity:1">XCQ Search</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Person Lookup</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Case Search</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Reports</span></span><span class="sp"><span>Data synced 2:00 AM</span><span class="m-av">KR</span></span></div>
+<div style="padding:18px 22px;background:#f6f7fa;display:flex;flex-direction:column;gap:12px">
+ <div data-id="xcq-resbar" style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#4b5563"><span><b style="color:#111">1,248 results</b> for Last name = “Lars” · all counties</span><span>Sorted by Full name A→Z · Show <b>25 ▾</b></span></div>
+ <div class="m-card" style="padding:0;overflow:hidden" data-id="xcq-table">
+  <table class="m-table"><thead><tr><th>Full name ↑</th><th>DOB ↕</th><th>Sex</th><th>County ↕</th><th>Aliases</th></tr></thead><tbody><tr class=""><td><span>Larsen, Erik J</span></td><td>03/14/1981</td><td>M</td><td>Dane</td><td style="color:#4b5563">AKA Erik Larssen</td></tr><tr class="sel"><td><span>Larsen-Holt, Priya A</span></td><td>11/02/1990</td><td>F</td><td>Brown</td><td style="color:#4b5563">AKA Priya Holt · AKA P. Larsen</td></tr><tr class=""><td><span>Larson, Dana K</span></td><td>06/27/1975</td><td>F</td><td>Eau Claire</td><td style="color:#4b5563">—</td></tr><tr class=""><td><span>Lars, Theo M</span></td><td>01/09/1968</td><td>M</td><td>Marathon</td><td style="color:#4b5563">AKA Ted Lars +2 more</td></tr><tr class=""><td><span>Lindqvist, Maya R</span></td><td>08/30/1996</td><td>F</td><td>Outagamie</td><td style="color:#4b5563">AKA Maya Larsen</td></tr></tbody></table>
+ </div>
+ <div data-id="xcq-pager" style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563"><span>Showing 1–25 of 1,248</span><span>← Prev &nbsp;<b style="background:#233b63;color:#fff;padding:2px 7px;border-radius:5px">1</b> 2 3 … 50 &nbsp;Next →</span></div>
+ <div class="m-foot" style="border-color:#e1c25c">County records refresh nightly. Last sync: today 2:00 AM. If a county is missing, it failed to sync and is listed here.</div>
+</div></div></div></div><div class="body"><div class="org"><span>03 · Web</span><span>Legacy redesign</span></div><h3>XCQ inter-county query</h3><p>A 2005 search tool rebuilt on a new design system, with sorting, paging and accessibility.</p><div class="tags"><span class="tag fg">Design system first</span><span class="tag">Research</span></div></div></a>
+  <a class="pcard" href="protect-efiling.html"><div class="thumb" style="overflow:hidden"><div style="zoom:.63;width:860px"><div class="m" style="--mp:#233b63;--ma:#e1c25c"><div class="m-top" data-id="xcq-top" data-al="H · gap 12"><svg width="18" height="20" viewBox="0 0 52 56" aria-hidden="true"><path d="M26 2 4 12v16c0 12 10 22 22 26 12-4 22-14 22-26V12Z" fill="#e1c25c"/></svg><span class="brand">PRO<em>TECT</em></span><span style="opacity:.5">|</span><span style="display:flex;gap:2px;font-size:12px"><span style="padding:6px 10px;border-radius:6px;opacity:.75">XCQ Search</span><span style="padding:6px 10px;border-radius:6px;background:rgba(255,255,255,.14);opacity:1">Person Lookup</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Case Search</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Reports</span></span><span class="sp"><span>Data synced 2:00 AM</span><span class="m-av">KR</span></span></div>
+<div style="padding:16px 20px;background:#f6f7fa;display:flex;flex-direction:column;gap:12px">
+ <div data-id="ef-sync" class="m-foot" style="border-color:#16a34a;display:flex;justify-content:space-between"><span>All 72 counties synced · today 2:00 AM</span><span style="color:#2563eb">What's included?</span></div>
+ <div data-id="ef-search" class="m-filters m-card" style="padding:12px"><label class="m-field">Last name *<span class="m-in">Lars</span></label><label class="m-field">First name<span class="m-in ph">Optional</span></label><label class="m-field">DOB<span class="m-in ph">MM/DD/YYYY</span></label><span class="m-btn g">Search</span></div>
+ <div class="m-card" style="padding:0;overflow:hidden" data-id="ef-table"><table class="m-table"><thead><tr><th>Full name ↑</th><th>DOB</th><th>Sex</th><th>County</th><th>Aliases</th></tr></thead><tbody><tr class="sel"><td><span>Larsen, Erik J</span></td><td>03/14/1981</td><td>M</td><td>Dane</td><td style="color:#4b5563">AKA Erik Larssen</td></tr><tr class=""><td><span>Larsen-Holt, Priya A</span></td><td>11/02/1990</td><td>F</td><td>Brown</td><td style="color:#4b5563">AKA Priya Holt · AKA P. Larsen</td></tr><tr class=""><td><span>Larson, Dana K</span></td><td>06/27/1975</td><td>F</td><td>Eau Claire</td><td style="color:#4b5563">—</td></tr><tr class=""><td><span>Lars, Theo M</span></td><td>01/09/1968</td><td>M</td><td>Marathon</td><td style="color:#4b5563">AKA Ted Lars +2 more</td></tr><tr class=""><td><span>Lindqvist, Maya R</span></td><td>08/30/1996</td><td>F</td><td>Outagamie</td><td style="color:#4b5563">AKA Maya Larsen</td></tr></tbody></table></div>
+</div></div></div></div><div class="body"><div class="org"><span>04 · Web</span><span>Library reuse</span></div><h3>eFiling site</h3><p>Cross-county search in the browser, designed around data freshness and clear error states.</p><div class="tags"><span class="tag fg">Governance</span><span class="tag">Trust</span></div></div></a>
+ </div>
+</div></section>
 
-<!-- PROCESS -->
-<div class="sec">
-  <div class="sec-ey">Design Process</div>
-  <h2 class="sec-h">Discovery <em>through handoff</em></h2>
-  <div class="steps">
-    <div class="step"><span class="step-n">01</span><div class="step-t">Discovery</div><div class="step-d">6 weeks of facilitated stakeholder workshops and contextual research across 4 county DA offices — mapping the full case lifecycle, identifying user types, pain points, and system constraints statewide.</div></div>
-    <div class="step"><span class="step-n">02</span><div class="step-t">Journey Mapping &amp; IA</div><div class="step-d">Created end-to-end user flows for each workstream — mapping interactions, backend systems, and touchpoints. Separate IA for desktop vs. web validated before any UI work began.</div></div>
-    <div class="step"><span class="step-n">03</span><div class="step-t">Iterative Design</div><div class="step-d">Lo-fi wireframes → mid-fi prototypes → hi-fi UI across all 5 workstreams. Bi-weekly review cycles with PMs, DAs, and developers. Usability testing and accessibility reviews at each milestone.</div></div>
-    <div class="step"><span class="step-n">04</span><div class="step-t">Handoff &amp; UAT</div><div class="step-d">Annotated Figma specs, interaction standards, and full component library handed off to engineering. Facilitated UAT sessions with DA staff to validate before build. Ensured visual consistency across web and desktop touchpoints.</div></div>
-  </div>
-</div>
+<section class="cs-sec" id="system"><div class="wrap two">
+ <div><div class="eyebrow">Systems &amp; governance</div><h2 class="h">One library, four products</h2>
+ <div class="prose"><p>There was no design system when I joined. I built it in stages: brand colors and type first, then the XCQ component library, then patterns the desktop and eFiling work could share.</p>
+ <p>The eFiling site search was the test. Its people and case lookup was assembled almost entirely from existing XCQ components. The one new pattern it needed, a banner for data freshness, went back into the library for everyone.</p>
+ <p>To keep it governed as a solo designer, I kept a <strong>decision log</strong> in the file. Every approved and pending choice was written down with the date and who approved it, which kept settled decisions from being reopened in reviews.</p></div></div>
+ <div style="display:flex;flex-direction:column;gap:12px">
+  <div class="box"><span class="k">Writing the interface</span><table class="lang"><tbody>
+   <tr><td>Database Search</td><td>→</td><td>XCQ Query</td></tr>
+   <tr><td>Scheduled Events</td><td>→</td><td>Hearings</td></tr>
+   <tr><td>Pending Review</td><td>→</td><td>Awaiting DA action</td></tr>
+   <tr><td>ERR_422 validation failed</td><td>→</td><td>Charge date can't be before the arrest date.</td></tr>
+  </tbody></table><p style="margin-top:6px">Labels follow the words DA offices already use, and errors say how to fix the problem.</p></div>
+  <div class="box"><span class="k">Handoff</span><p>Annotated frames with redlines, every component state, keyboard order and screen-reader notes for tables, delivered alongside InVision walkthroughs for reviewers outside Figma.</p></div>
+ </div>
+</div></section>
 
-<!-- FIVE WORKSTREAMS -->
-
-  <div class="divider"></div>
-  <div class="sec">
-    <div class="sec-ey">User Flows</div>
-    <h2>End-to-End Flows <span style="font-weight:300;font-style:italic">— DA · Clerk · Staff</span></h2>
-    <p style="max-width:660px;color:var(--i60,#666);margin-bottom:0">Three parallel flows mapped before any wireframes began — each user type had a completely different path through the system. These flows were the primary alignment artifact used with Product Managers and Wisconsin DOA stakeholders.</p>
-    <div class="figjam-wrap">
-      <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;border-radius:16px">
-  <rect width="900" height="400" fill="#F5F0FF" rx="16"/>
-  <!-- dot grid -->
-  <defs>
-    <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="1" fill="#C7B2FF" opacity="0.4"/>
-    </pattern>
-  </defs>
-  <rect width="900" height="400" fill="url(#dots)" rx="16"/>
-  <text x="20" y="28" font-family="Inter,Arial,sans-serif" font-size="13" fill="#1A1A2E" font-weight="700">PROTECT — Case Management User Flows  (DA · Clerk · Staff)</text>
-  <path d="M120,77 C140.0,77 140.0,77 160,77" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="160,77 152.0,73.0 152.0,81.0" fill="#9747FF"/><path d="M270,77 C295.0,77 295.0,77 320,77" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="320,77 312.0,73.0 312.0,81.0" fill="#9747FF"/><path d="M430,77 C455.0,77 455.0,77 480,77" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="480,77 472.0,73.0 472.0,81.0" fill="#9747FF"/><path d="M590,77 C610.0,77 610.0,77 630,77" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="630,77 622.0,73.0 622.0,81.0" fill="#9747FF"/><path d="M710,60 C735.0,60 735.0,47 760,47" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="760,47 752.0,43.0 752.0,51.0" fill="#9747FF"/><rect x="707.0" y="43.5" width="56" height="18" rx="9" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="735.0" y="57.5" font-family="Inter,Arial,sans-serif" font-size="9" fill="#9747FF" text-anchor="middle" font-weight="600">Hearing</text><path d="M710,83 C735.0,83 735.0,97 760,97" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="760,97 752.0,93.0 752.0,101.0" fill="#9747FF"/><rect x="707.0" y="80.0" width="56" height="18" rx="9" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="735.0" y="94.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#9747FF" text-anchor="middle" font-weight="600">Charge</text><path d="M120,197 C140.0,197 140.0,197 160,197" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="160,197 152.0,193.0 152.0,201.0" fill="#9747FF"/><path d="M270,197 C295.0,197 295.0,197 320,197" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="320,197 312.0,193.0 312.0,201.0" fill="#9747FF"/><path d="M430,197 C455.0,197 455.0,197 480,197" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="480,197 472.0,193.0 472.0,201.0" fill="#9747FF"/><path d="M560,180 C585.0,180 585.0,180 610,180" stroke="#14AE5C" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="610,180 602.0,176.0 602.0,184.0" fill="#14AE5C"/><rect x="557.0" y="170.0" width="56" height="18" rx="9" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="585.0" y="184.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#14AE5C" text-anchor="middle" font-weight="600">Yes</text><path d="M560,213 C585.0,213 585.0,213 610,213" stroke="#F24822" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="610,213 602.0,209.0 602.0,217.0" fill="#F24822"/><rect x="557.0" y="203.0" width="56" height="18" rx="9" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="585.0" y="217.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#F24822" text-anchor="middle" font-weight="600">No</text><path d="M720,197 C745.0,197 745.0,197 770,197" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="770,197 762.0,193.0 762.0,201.0" fill="#9747FF"/><path d="M650,163 C650.0,163 650.0,213 650,213" stroke="#FEF0ED" stroke-width="2" fill="none" stroke-dasharray="5,3"/>
-<polygon points="650,213 650.0,213.0 650.0,213.0" fill="#FEF0ED"/><path d="M120,317 C140.0,317 140.0,317 160,317" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="160,317 152.0,313.0 152.0,321.0" fill="#9747FF"/><path d="M270,317 C295.0,317 295.0,317 320,317" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="320,317 312.0,313.0 312.0,321.0" fill="#9747FF"/><path d="M430,317 C455.0,317 455.0,317 480,317" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="480,317 472.0,313.0 472.0,321.0" fill="#9747FF"/><path d="M590,317 C615.0,317 615.0,317 640,317" stroke="#9747FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="640,317 632.0,313.0 632.0,321.0" fill="#9747FF"/><path d="M720,300 C745.0,300 745.0,300 770,300" stroke="#14AE5C" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="770,300 762.0,296.0 762.0,304.0" fill="#14AE5C"/><rect x="717.0" y="290.0" width="56" height="18" rx="9" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="745.0" y="304.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#14AE5C" text-anchor="middle" font-weight="600">Yes</text><path d="M720,330 C745.0,330 745.0,347 770,347" stroke="#0D99FF" stroke-width="2" fill="none" stroke-dasharray="none"/>
-<polygon points="770,347 762.0,343.0 762.0,351.0" fill="#0D99FF"/><rect x="717.0" y="328.5" width="56" height="18" rx="9" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="745.0" y="342.5" font-family="Inter,Arial,sans-serif" font-size="9" fill="#0D99FF" text-anchor="middle" font-weight="600">No</text><rect x="30" y="60" width="90" height="34" rx="17.0" fill="#9747FF" stroke="none"/><text x="75.0" y="81.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">DA Logs In</text><rect x="160" y="60" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="215.0" y="77.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Dashboard</text><text x="215.0" y="91.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">New items flagged</text><rect x="320" y="60" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="375.0" y="77.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Case List</text><text x="375.0" y="91.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Filter by status</text><rect x="480" y="60" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="535.0" y="77.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Open Case</text><text x="535.0" y="91.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">View full record</text><polygon points="670.0,48 710,77.0 670.0,106 630,77.0" fill="#FFF8E0" stroke="#D4A017" stroke-width="2"/><text x="670.0" y="81.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Action?</text><rect x="760" y="30" width="110" height="34" rx="12" fill="#E8F9EF" stroke="#14AE5C" stroke-width="2"/><text x="815.0" y="47.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Review Hearing</text><text x="815.0" y="61.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Date · Location · Notes</text><rect x="760" y="80" width="110" height="34" rx="12" fill="#E8F9EF" stroke="#14AE5C" stroke-width="2"/><text x="815.0" y="97.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Add Charge</text><text x="815.0" y="111.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Statute lookup</text><rect x="30" y="180" width="90" height="34" rx="17.0" fill="#9747FF" stroke="none"/><text x="75.0" y="201.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">Clerk Login</text><rect x="160" y="180" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="215.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">eFiling Portal</text><text x="215.0" y="211.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Task-first view</text><rect x="320" y="180" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="375.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Upload Doc</text><text x="375.0" y="211.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Motion · Transcript</text><polygon points="520.0,180 560,209.0 520.0,238 480,209.0" fill="#FFF8E0" stroke="#D4A017" stroke-width="2"/><text x="520.0" y="213.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Valid?</text><rect x="610" y="163" width="110" height="34" rx="12" fill="#E8F9EF" stroke="#14AE5C" stroke-width="2"/><text x="665.0" y="180.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Submit Filing</text><text x="665.0" y="194.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Status → Received</text><rect x="610" y="213" width="110" height="34" rx="12" fill="#FEF0ED" stroke="#F24822" stroke-width="2"/><text x="665.0" y="230.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Fix Errors</text><text x="665.0" y="244.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Inline validation</text><rect x="770" y="180" width="100" height="34" rx="12" fill="#E8F9EF" stroke="#14AE5C" stroke-width="2"/><text x="820.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Notify DA</text><text x="820.0" y="211.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Auto email</text><rect x="30" y="300" width="90" height="34" rx="17.0" fill="#9747FF" stroke="none"/><text x="75.0" y="321.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">Any Staff</text><rect x="160" y="300" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="215.0" y="317.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">XCQ Query</text><text x="215.0" y="331.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Visual search UI</text><rect x="320" y="300" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="375.0" y="317.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Set Filters</text><text x="375.0" y="331.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">County · Date · Type</text><rect x="480" y="300" width="110" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="535.0" y="317.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Results Grid</text><text x="535.0" y="331.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Preview inline</text><polygon points="680.0,300 720,329.0 680.0,358 640,329.0" fill="#FFF8E0" stroke="#D4A017" stroke-width="2"/><text x="680.0" y="333.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Export?</text><rect x="770" y="283" width="100" height="34" rx="12" fill="#E8F9EF" stroke="#14AE5C" stroke-width="2"/><text x="820.0" y="304.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Download CSV</text><rect x="770" y="333" width="100" height="34" rx="12" fill="#E5F4FF" stroke="#0D99FF" stroke-width="2"/><text x="820.0" y="350.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Deep Dive</text><text x="820.0" y="364.0" font-family="Inter,Arial,sans-serif" font-size="9" fill="#7C7C9A" text-anchor="middle">Open full case</text><rect x="6" y="52" width="18" height="110" rx="55.0" fill="#9747FF22" stroke="#9747FF" stroke-width="2"/><rect x="6" y="172" width="18" height="80" rx="40.0" fill="#14AE5C22" stroke="#14AE5C" stroke-width="2"/><rect x="6" y="292" width="18" height="80" rx="40.0" fill="#0D99FF22" stroke="#0D99FF" stroke-width="2"/>
-</svg>
-    </div>
-    <div class="figjam-legend">
-      <div class="figjam-legend-item"><div class="fj-dot" style="background:#9747FF"></div>Start / Entry</div>
-      <div class="figjam-legend-item"><div class="fj-dot" style="background:#0D99FF"></div>Screen / View</div>
-      <div class="figjam-legend-item"><div class="fj-dot" style="background:#D4A017"></div>Decision Point</div>
-      <div class="figjam-legend-item"><div class="fj-dot" style="background:#14AE5C"></div>Success State</div>
-      <div class="figjam-legend-item"><div class="fj-dot" style="background:#F24822"></div>Error / Correction</div>
-    </div>
-  </div>
-
-
-<div class="sec">
-  <div class="sec-ey">User Flows</div>
-  <h2>End-to-End Flows <span style="font-weight:300;font-style:italic">— DA · Clerk · Staff</span></h2>
-  <p style="max-width:660px;color:var(--i60,#666);margin-bottom:24px">Three parallel flows mapped before any wireframes — each user type had a completely different path. Used as the primary alignment artifact with Product Managers and Wisconsin DOA stakeholders.</p>
-  <div class="figjam-wrap"><svg viewBox="0 0 840 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block">
-  <defs>
-    <pattern id="pgrid_840" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-      <circle cx="1" cy="1" r="1" fill="#C7B2FF" opacity="0.35"/>
-    </pattern>
-  </defs>
-  <rect width="840" height="240" fill="#F5F0FF" rx="12"/>
-  <rect width="840" height="240" fill="url(#pgrid_840)" rx="12"/>
-  <text x="18" y="26" font-family="Inter,Arial,sans-serif" font-size="11" fill="#9747FF" font-weight="700" letter-spacing="0.05em">PROTECT — User Flows: DA · Clerk · Staff</text>
-  <rect x="18" y="50" width="14" height="38" rx="7" fill="#9747FF22" stroke="#9747FF" stroke-width="1"/>
-<text x="25" y="73.0" font-family="Inter,Arial,sans-serif" font-size="8" fill="#9747FF" text-anchor="middle" font-weight="700" transform="rotate(-90,25,69.0)">DA</text><rect x="18" y="116" width="14" height="38" rx="7" fill="#14AE5C22" stroke="#14AE5C" stroke-width="1"/>
-<text x="25" y="139.0" font-family="Inter,Arial,sans-serif" font-size="8" fill="#14AE5C" text-anchor="middle" font-weight="700" transform="rotate(-90,25,135.0)">Clerk</text><rect x="18" y="182" width="14" height="38" rx="7" fill="#0D99FF22" stroke="#0D99FF" stroke-width="1"/>
-<text x="25" y="205.0" font-family="Inter,Arial,sans-serif" font-size="8" fill="#0D99FF" text-anchor="middle" font-weight="700" transform="rotate(-90,25,201.0)">Staff</text><rect x="38" y="50" width="80" height="36" rx="18.0" fill="#9747FF"/><text x="78.0" y="65.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">Login</text><text x="78.0" y="78.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">DA Portal</text><rect x="138" y="50" width="100" height="36" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="188.0" y="65.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Dashboard</text><text x="188.0" y="78.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Flagged items</text><rect x="258" y="50" width="100" height="36" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="308.0" y="65.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Case List</text><text x="308.0" y="78.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Filter by status</text><rect x="378" y="50" width="100" height="36" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="428.0" y="65.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Open Case</text><text x="428.0" y="78.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Full record</text><polygon points="534.0,42 570,68.0 534.0,94 498,68.0" fill="#FFF8E0" stroke="#D4A017" stroke-width="1.5"/><text x="534.0" y="71.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Action?</text><rect x="592" y="36" width="106" height="34" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="645.0" y="50.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Add Hearing</text><text x="645.0" y="63.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Date · Court</text><rect x="592" y="78" width="106" height="34" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="645.0" y="92.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Add Charge</text><text x="645.0" y="105.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Statute lookup</text><rect x="718" y="50" width="106" height="36" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="771.0" y="65.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Save Case</text><text x="771.0" y="78.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Status updated</text><path d="M118,68 C120,68 136,68 138,68" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="138,68 129.0,64.0 129.0,72.0" fill="#9747FF"/><path d="M238,68 C240,68 256,68 258,68" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="258,68 249.0,64.0 249.0,72.0" fill="#9747FF"/><path d="M358,68 C360,68 376,68 378,68" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="378,68 369.0,64.0 369.0,72.0" fill="#9747FF"/><path d="M478,68 C480,68 496,68 498,68" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="498,68 489.0,64.0 489.0,72.0" fill="#9747FF"/><path d="M570,55 C572,54 590,54 592,53" stroke="#14AE5C" stroke-width="1.8" fill="none" /><polygon points="592,53 582.7,49.8 583.4,57.8" fill="#14AE5C"/><path d="M570,78 C572,86 590,86 592,95" stroke="#D4A017" stroke-width="1.8" fill="none" /><polygon points="592,95 587.4,86.3 582.4,92.7" fill="#D4A017"/><path d="M698,53 C700,56 716,56 718,60" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="718,60 710.8,53.2 708.2,60.8" fill="#9747FF"/><path d="M698,95 C700,84 716,84 718,72" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="718,72 709.0,76.1 715.2,81.4" fill="#9747FF"/><rect x="38" y="116" width="80" height="36" rx="18.0" fill="#14AE5C"/><text x="78.0" y="131.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">Login</text><text x="78.0" y="144.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">eFiling</text><rect x="138" y="116" width="100" height="36" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="188.0" y="131.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">eFiling Portal</text><text x="188.0" y="144.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Task-first</text><rect x="258" y="116" width="100" height="36" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="308.0" y="131.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Upload Doc</text><text x="308.0" y="144.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Motion·Transcript</text><polygon points="414.0,108 450,134.0 414.0,160 378,134.0" fill="#FFF8E0" stroke="#D4A017" stroke-width="1.5"/><text x="414.0" y="137.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Valid?</text><rect x="472" y="108" width="106" height="34" rx="8" fill="#FEF0ED" stroke="#F24822" stroke-width="1.5"/><text x="525.0" y="122.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Fix Errors</text><text x="525.0" y="135.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Inline hints</text><rect x="472" y="150" width="106" height="34" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="525.0" y="164.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Submit</text><text x="525.0" y="177.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Status→Received</text><rect x="598" y="116" width="106" height="36" rx="8" fill="#F0EEF8" stroke="#C7B2FF" stroke-width="1.5"/><text x="651.0" y="131.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Notify DA</text><text x="651.0" y="144.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Auto email</text><rect x="718" y="116" width="106" height="36" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="771.0" y="131.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Filed ✓</text><text x="771.0" y="144.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Complete</text><path d="M118,134 C120,134 136,134 138,134" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="138,134 129.0,129.9 129.0,138.1" fill="#9747FF"/><path d="M238,134 C240,134 256,134 258,134" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="258,134 249.0,129.9 249.0,138.1" fill="#9747FF"/><path d="M358,134 C360,134 376,134 378,134" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="378,134 369.0,129.9 369.0,138.1" fill="#9747FF"/><path d="M450,119 C452,122 470,122 472,125" stroke="#F24822" stroke-width="1.8" fill="none" /><polygon points="472,125 464.4,118.7 462.3,126.5" fill="#F24822"/><rect x="441.0" y="113.0" width="40" height="16" rx="8" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="461.0" y="126.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#F24822" text-anchor="middle" font-weight="700">No</text><path d="M450,145 C452,156 470,156 472,167" stroke="#14AE5C" stroke-width="1.8" fill="none" /><polygon points="472,167 468.5,157.8 462.8,163.5" fill="#14AE5C"/><rect x="441.0" y="147.0" width="40" height="16" rx="8" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="461.0" y="160.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#14AE5C" text-anchor="middle" font-weight="700">Yes</text><path d="M578,167 C580,150 596,150 598,134" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="598,134 589.9,139.6 596.8,143.8" fill="#9747FF"/><path d="M704,134 C705,134 717,134 718,134" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="718,134 709.0,129.9 709.0,138.1" fill="#9747FF"/><path d="M500,142 C500,125 500,125 500,108" stroke="#F24822" stroke-width="1.8" fill="none" stroke-dasharray='5,3'/><polygon points="500,108 495.9,117.0 504.1,117.0" fill="#F24822"/><rect x="38" y="182" width="80" height="36" rx="18.0" fill="#0D99FF"/><text x="78.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="white" text-anchor="middle" font-weight="700">Login</text><text x="78.0" y="210.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Any Staff</text><rect x="138" y="182" width="100" height="36" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="188.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">XCQ Query</text><text x="188.0" y="210.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Visual search</text><rect x="258" y="182" width="100" height="36" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="308.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Set Filters</text><text x="308.0" y="210.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">County·Date·Type</text><rect x="378" y="182" width="100" height="36" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="428.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Results Grid</text><text x="428.0" y="210.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Preview inline</text><polygon points="534.0,174 570,200.0 534.0,226 498,200.0" fill="#FFF8E0" stroke="#D4A017" stroke-width="1.5"/><text x="534.0" y="203.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Export?</text><rect x="592" y="168" width="106" height="34" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="645.0" y="182.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Download CSV</text><text x="645.0" y="195.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">All results</text><rect x="592" y="208" width="106" height="34" rx="8" fill="#E5F4FF" stroke="#0D99FF" stroke-width="1.5"/><text x="645.0" y="222.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Open Case</text><text x="645.0" y="235.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Deep dive</text><rect x="718" y="182" width="106" height="36" rx="8" fill="#E8F9EF" stroke="#14AE5C" stroke-width="1.5"/><text x="771.0" y="197.0" font-family="Inter,Arial,sans-serif" font-size="11" fill="#1A1A2E" text-anchor="middle" font-weight="600">Done ✓</text><text x="771.0" y="210.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#7C7C9A" text-anchor="middle">Task complete</text><path d="M118,200 C120,200 136,200 138,200" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="138,200 129.0,195.9 129.0,204.1" fill="#9747FF"/><path d="M238,200 C240,200 256,200 258,200" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="258,200 249.0,195.9 249.0,204.1" fill="#9747FF"/><path d="M358,200 C360,200 376,200 378,200" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="378,200 369.0,195.9 369.0,204.1" fill="#9747FF"/><path d="M478,200 C480,200 496,200 498,200" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="498,200 489.0,195.9 489.0,204.1" fill="#9747FF"/><path d="M570,183 C572,184 590,184 592,185" stroke="#14AE5C" stroke-width="1.8" fill="none" /><polygon points="592,185 583.4,180.2 582.7,188.2" fill="#14AE5C"/><rect x="561.0" y="175.0" width="40" height="16" rx="8" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="581.0" y="188.0" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#14AE5C" text-anchor="middle" font-weight="700">Yes</text><path d="M570,208 C572,216 590,216 592,225" stroke="#0D99FF" stroke-width="1.8" fill="none" /><polygon points="592,225 587.4,216.3 582.4,222.7" fill="#0D99FF"/><rect x="561.0" y="207.5" width="40" height="16" rx="8" fill="white" stroke="#C7B2FF" stroke-width="1"/><text x="581.0" y="220.5" font-family="Inter,Arial,sans-serif" font-size="8.5" fill="#0D99FF" text-anchor="middle" font-weight="700">No</text><path d="M698,185 C700,188 716,188 718,192" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="718,192 710.8,185.2 708.2,192.8" fill="#9747FF"/><path d="M698,225 C700,216 716,216 718,208" stroke="#9747FF" stroke-width="1.8" fill="none" /><polygon points="718,208 708.5,210.7 713.8,216.9" fill="#9747FF"/>
-</svg></div>
-  <div class="figjam-legend">
-  <div class="figjam-legend-item"><div class="fj-dot" style="background:#9747FF"></div>Entry Point</div>
-  <div class="figjam-legend-item"><div class="fj-dot" style="background:#0D99FF"></div>Screen / Step</div>
-  <div class="figjam-legend-item"><div class="fj-dot" style="background:#D4A017"></div>Decision</div>
-  <div class="figjam-legend-item"><div class="fj-dot" style="background:#14AE5C"></div>Success</div>
-  <div class="figjam-legend-item"><div class="fj-dot" style="background:#F24822"></div>Error / Fix</div>
-  <div class="figjam-legend-item"><div class="fj-dot" style="background:#C7B2FF;border:1px dashed #9747FF"></div>System Trigger</div>
-</div>
-</div>
-
-<div class="sec">
-  <div class="sec-ey">The Five Workstreams</div>
-  <h2 class="sec-h">One project, <em>five distinct design efforts</em></h2>
-  <p style="max-width:660px;margin-bottom:0">PROTECT wasn't a single app — it was a platform ecosystem. Each workstream had its own users, constraints, and design challenges. Click any row to explore in depth.</p>
-  <div class="ws-list">
-
-    <a href="protect-logo.html" class="ws">
-      <div class="ws-thumb">
-        <svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="wl1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a0b35"/><stop offset="100%" stop-color="#4c1d95"/></linearGradient></defs>
-          <rect width="180" height="130" fill="url(#wl1)"/>
-          <path d="M60 30 L44 36 L44 55 C44 68 51 79 60 82 C69 79 76 68 76 55 L76 36 Z" fill="rgba(139,92,246,.7)" stroke="rgba(255,255,255,.22)" stroke-width="1"/>
-          <rect x="53" y="47" width="14" height="3.5" rx="1.5" fill="white"/><rect x="53" y="53" width="10" height="3" rx="1.5" fill="white" opacity=".6"/><rect x="53" y="59" width="12" height="3" rx="1.5" fill="white" opacity=".5"/>
-          <text x="90" y="44" font-family="sans-serif" font-size="12" fill="white" font-weight="700" letter-spacing="1">PROTECT</text>
-          <text x="90" y="57" font-family="monospace" font-size="7" fill="rgba(255,255,255,.4)">Brand identity</text>
-          <rect x="90" y="65" width="50" height="8" rx="2" fill="rgba(139,92,246,.3)"/><text x="94" y="72" font-family="monospace" font-size="6" fill="rgba(255,255,255,.6)">DM Sans · DM Mono</text>
-          <rect x="90" y="78" width="16" height="16" rx="3" fill="rgba(109,40,217,.6)"/><rect x="110" y="78" width="16" height="16" rx="3" fill="rgba(109,40,217,.4)"/><rect x="130" y="78" width="16" height="16" rx="3" fill="rgba(109,40,217,.2)"/>
-        </svg>
-        <div class="ws-tag">Brand</div>
-      </div>
-      <div class="ws-body">
-        <div>
-          <div class="ws-num">01 · Brand Identity System</div>
-          <div class="ws-name">Logo &amp; <em>Visual Identity</em></div>
-          <p class="ws-desc">Created the PROTECT brand from scratch — logo (shield + document mark), purple–black palette, DM Sans typography, and a 40+ custom icon set designed for government legal workflows.</p>
-        </div>
-        <div class="ws-foot">
-          <div class="ws-chips"><span class="ws-chip">Logo</span><span class="ws-chip">GIMP</span><span class="ws-chip">Icon set</span><span class="ws-chip">Guidelines</span></div>
-          <div class="ws-arr">↗</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="protect-desktop.html" class="ws">
-      <div class="ws-thumb">
-        <svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="wl2" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#100825"/><stop offset="100%" stop-color="#2e1a6b"/></linearGradient></defs>
-          <rect width="180" height="130" fill="url(#wl2)"/>
-          <rect x="0" y="0" width="42" height="130" fill="rgba(0,0,0,.28)"/>
-          <rect x="4" y="12" width="34" height="14" rx="3" fill="rgba(109,40,217,.3)" stroke="rgba(139,92,246,.5)" stroke-width=".5"/>
-          <text x="10" y="22" font-family="sans-serif" font-size="6.5" fill="rgba(255,255,255,.85)">Cases</text>
-          <rect x="4" y="30" width="34" height="12" rx="2" fill="rgba(255,255,255,.04)"/><text x="10" y="39" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,.35)">Hearings</text>
-          <rect x="4" y="46" width="34" height="12" rx="2" fill="rgba(255,255,255,.04)"/><text x="10" y="55" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,.35)">eFiling</text>
-          <rect x="4" y="62" width="34" height="12" rx="2" fill="rgba(255,255,255,.04)"/><text x="10" y="71" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,.35)">XCQ</text>
-          <rect x="48" y="0" width="132" height="22" fill="rgba(0,0,0,.2)"/>
-          <text x="56" y="13" font-family="sans-serif" font-size="7.5" fill="white" font-weight="600">Case #2024-CR-00847</text>
-          <text x="56" y="21" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.35)">Martinez, R. · Felony B</text>
-          <rect x="48" y="26" width="64" height="42" rx="3" fill="rgba(255,255,255,.06)"/>
-          <text x="54" y="37" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.35)" letter-spacing=".06em">CHARGES</text>
-          <text x="54" y="47" font-family="sans-serif" font-size="7" fill="rgba(255,255,255,.8)">Agg. Assault</text>
-          <text x="54" y="57" font-family="monospace" font-size="5.5" fill="rgba(109,40,217,.8)">§ 940.19(2)</text>
-          <rect x="118" y="26" width="62" height="42" rx="3" fill="rgba(255,255,255,.06)"/>
-          <text x="124" y="37" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.35)" letter-spacing=".06em">HEARING</text>
-          <text x="124" y="47" font-family="sans-serif" font-size="7.5" fill="white" font-weight="600">Dec 18</text>
-          <text x="124" y="57" font-family="sans-serif" font-size="6.5" fill="rgba(255,255,255,.5)">Dane Co. 9AM</text>
-          <rect x="48" y="74" width="132" height="50" rx="3" fill="rgba(255,255,255,.04)"/>
-          <text x="54" y="85" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.35)">RECENT FILINGS</text>
-          <rect x="54" y="89" width="120" height="10" rx="2" fill="rgba(255,255,255,.04)"/><text x="58" y="97" font-family="sans-serif" font-size="6.5" fill="rgba(255,255,255,.65)">Motion to Suppress · 12/04</text>
-          <rect x="54" y="102" width="120" height="10" rx="2" fill="rgba(255,255,255,.04)"/><text x="58" y="110" font-family="sans-serif" font-size="6.5" fill="rgba(255,255,255,.65)">Prelim. Transcript · 11/28</text>
-        </svg>
-        <div class="ws-tag">Desktop App</div>
-      </div>
-      <div class="ws-body">
-        <div>
-          <div class="ws-num">02 · Desktop Application</div>
-          <div class="ws-name">Desktop App <em>Revamp</em></div>
-          <p class="ws-desc">Complete IA and UI redesign of the DA desktop app. Dense sidebar, full-width case views, keyboard-first interaction. DAs cannot afford a single extra click during court prep.</p>
-        </div>
-        <div class="ws-foot">
-          <div class="ws-chips"><span class="ws-chip">Desktop IA</span><span class="ws-chip">Dense data UI</span><span class="ws-chip">Keyboard nav</span></div>
-          <div class="ws-arr">↗</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="protect-details.html" class="ws">
-      <div class="ws-thumb">
-        <svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="wl3" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0d1b35"/><stop offset="100%" stop-color="#1e3a8a"/></linearGradient></defs>
-          <rect width="180" height="130" fill="url(#wl3)"/>
-          <rect width="180" height="20" fill="rgba(0,0,0,.3)"/>
-          <rect x="6" y="5" width="40" height="10" rx="2" fill="rgba(255,255,255,.14)"/><text x="12" y="13" font-family="sans-serif" font-size="7" fill="rgba(255,255,255,.7)">New Filings</text>
-          <rect x="52" y="5" width="36" height="10" rx="2" fill="rgba(255,255,255,.06)"/><text x="57" y="13" font-family="sans-serif" font-size="7" fill="rgba(255,255,255,.35)">Pending</text>
-          <rect x="94" y="5" width="36" height="10" rx="2" fill="rgba(255,255,255,.06)"/><text x="99" y="13" font-family="sans-serif" font-size="7" fill="rgba(255,255,255,.35)">Done</text>
-          <rect x="136" y="3" width="36" height="14" rx="7" fill="rgba(26,86,184,.8)"/><text x="143" y="12" font-family="sans-serif" font-size="6.5" fill="white" font-weight="600">Batch</text>
-          <!-- stat row -->
-          <rect x="6" y="24" width="36" height="22" rx="3" fill="rgba(255,255,255,.08)"/><text x="12" y="33" font-family="sans-serif" font-size="11" fill="white" font-weight="700">23</text><text x="10" y="42" font-family="monospace" font-size="5" fill="rgba(255,255,255,.35)">NEW</text>
-          <rect x="46" y="24" width="36" height="22" rx="3" fill="rgba(255,255,255,.06)"/><text x="52" y="33" font-family="sans-serif" font-size="11" fill="white" font-weight="700">8</text><text x="50" y="42" font-family="monospace" font-size="5" fill="rgba(255,255,255,.35)">PENDING</text>
-          <rect x="86" y="24" width="36" height="22" rx="3" fill="rgba(255,255,255,.06)"/><text x="92" y="33" font-family="sans-serif" font-size="11" fill="#fbbf24" font-weight="700">7</text><text x="90" y="42" font-family="monospace" font-size="5" fill="rgba(255,255,255,.35)">OVERDUE</text>
-          <rect x="126" y="24" width="46" height="22" rx="3" fill="rgba(255,255,255,.06)"/><text x="132" y="33" font-family="sans-serif" font-size="11" fill="#4ade80" font-weight="700">38</text><text x="130" y="42" font-family="monospace" font-size="5" fill="rgba(255,255,255,.35)">DONE</text>
-          <!-- queue table -->
-          <rect x="6" y="50" width="168" height="10" fill="rgba(255,255,255,.05)"/>
-          <text x="10" y="58" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">CASE ID</text><text x="62" y="58" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">TYPE</text><text x="114" y="58" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">STATUS</text>
-          <rect x="6" y="61" width="168" height="11" fill="rgba(255,255,255,.03)"/><text x="10" y="70" font-family="monospace" font-size="6" fill="rgba(109,40,217,.8)">2024-CR-901</text><text x="62" y="70" font-family="sans-serif" font-size="6.5" fill="rgba(255,255,255,.65)">eFiling</text><rect x="112" y="63" width="40" height="9" rx="2" fill="rgba(109,40,217,.2)"/><text x="118" y="70" font-family="monospace" font-size="5.5" fill="#a78bfa">New</text>
-          <rect x="6" y="73" width="168" height="11" fill="rgba(255,255,255,.02)"/><text x="10" y="82" font-family="monospace" font-size="6" fill="rgba(109,40,217,.8)">2024-CR-899</text><text x="62" y="82" font-family="sans-serif" font-size="6.5" fill="rgba(255,255,255,.65)">Motion</text><rect x="112" y="75" width="40" height="9" rx="2" fill="rgba(251,191,36,.1)"/><text x="118" y="82" font-family="monospace" font-size="5.5" fill="#fbbf24">Review</text>
-          <rect x="6" y="85" width="168" height="11" fill="rgba(255,255,255,.03)"/><text x="10" y="94" font-family="monospace" font-size="6" fill="rgba(109,40,217,.8)">2024-CR-895</text><text x="62" y="94" font-family="sans-serif" font-size="6.5" fill="rgba(255,255,255,.65)">eFiling</text><rect x="112" y="87" width="40" height="9" rx="2" fill="rgba(74,222,128,.12)"/><text x="118" y="94" font-family="monospace" font-size="5.5" fill="#4ade80">Done</text>
-        </svg>
-        <div class="ws-tag">Web · Responsive</div>
-      </div>
-      <div class="ws-body">
-        <div>
-          <div class="ws-num">03 · Web Application</div>
-          <div class="ws-name">Details Pane <em>Web</em></div>
-          <p class="ws-desc">Responsive web companion for clerks and supervisors. Task-oriented flows and batch actions designed for processing 40–60 filings per day. Built for throughput, not depth.</p>
-        </div>
-        <div class="ws-foot">
-          <div class="ws-chips"><span class="ws-chip">Responsive</span><span class="ws-chip">Task flows</span><span class="ws-chip">Batch actions</span></div>
-          <div class="ws-arr">↗</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="protect-xcq.html" class="ws">
-      <div class="ws-thumb">
-        <svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="wl4" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#0a1a10"/><stop offset="100%" stop-color="#14532d"/></linearGradient></defs>
-          <rect width="180" height="130" fill="url(#wl4)"/>
-          <!-- query builder left -->
-          <rect x="0" y="0" width="70" height="130" fill="rgba(0,0,0,.22)"/>
-          <text x="8" y="14" font-family="monospace" font-size="6" fill="rgba(74,222,128,.6)" letter-spacing=".1em">QUERY BUILDER</text>
-          <rect x="6" y="18" width="58" height="14" rx="3" fill="rgba(255,255,255,.06)"/>
-          <text x="10" y="24" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">COUNTIES</text>
-          <text x="10" y="30" font-family="monospace" font-size="6.5" fill="rgba(74,222,128,.85)">Dane, Milwaukee</text>
-          <rect x="6" y="36" width="58" height="14" rx="3" fill="rgba(255,255,255,.06)"/>
-          <text x="10" y="42" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">TYPE</text>
-          <text x="10" y="48" font-family="monospace" font-size="6.5" fill="rgba(74,222,128,.85)">Felony B</text>
-          <rect x="6" y="54" width="58" height="14" rx="3" fill="rgba(255,255,255,.06)"/>
-          <text x="10" y="60" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">DATE FROM</text>
-          <text x="10" y="66" font-family="monospace" font-size="6.5" fill="rgba(74,222,128,.85)">2024-01-01</text>
-          <rect x="6" y="72" width="58" height="14" rx="3" fill="rgba(255,255,255,.04)"/>
-          <text x="10" y="78" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">NAME</text>
-          <text x="10" y="84" font-family="monospace" font-size="6" fill="rgba(255,255,255,.2)" font-style="italic">Any</text>
-          <rect x="6" y="92" width="58" height="14" rx="7" fill="rgba(74,222,128,.18)" stroke="rgba(74,222,128,.4)" stroke-width=".5"/>
-          <text x="22" y="102" font-family="monospace" font-size="7" fill="rgba(74,222,128,.9)" font-weight="600">▶ Run</text>
-          <!-- results right -->
-          <text x="78" y="12" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)" letter-spacing=".08em">14 RESULTS · DANE + MILWAUKEE</text>
-          <rect x="74" y="16" width="100" height="9" fill="rgba(255,255,255,.05)"/>
-          <text x="78" y="23" font-family="monospace" font-size="5" fill="rgba(255,255,255,.28)">CASE ID</text><text x="118" y="23" font-family="monospace" font-size="5" fill="rgba(255,255,255,.28)">COUNTY</text><text x="152" y="23" font-family="monospace" font-size="5" fill="rgba(255,255,255,.28)">STATUS</text>
-          <rect x="74" y="26" width="100" height="11" fill="rgba(255,255,255,.03)"/><text x="78" y="34" font-family="monospace" font-size="6" fill="rgba(74,222,128,.75)">2024-DA-847</text><text x="118" y="34" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,.6)">Dane</text><text x="152" y="34" font-family="monospace" font-size="5.5" fill="#4ade80">Active</text>
-          <rect x="74" y="38" width="100" height="11" fill="rgba(255,255,255,.02)"/><text x="78" y="46" font-family="monospace" font-size="6" fill="rgba(74,222,128,.75)">2024-ML-1203</text><text x="118" y="46" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,.6)">Milw.</text><text x="152" y="46" font-family="monospace" font-size="5.5" fill="#fbbf24">Pending</text>
-          <rect x="74" y="50" width="100" height="11" fill="rgba(255,255,255,.03)"/><text x="78" y="58" font-family="monospace" font-size="6" fill="rgba(74,222,128,.75)">2024-DA-791</text><text x="118" y="58" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,.6)">Dane</text><text x="152" y="58" font-family="monospace" font-size="5.5" fill="#4ade80">Active</text>
-          <rect x="74" y="62" width="100" height="11" fill="rgba(255,255,255,.02)"/><text x="78" y="70" font-family="monospace" font-size="6" fill="rgba(74,222,128,.75)">2024-ML-1198</text><text x="118" y="70" font-family="sans-serif" font-size="6" fill="rgba(255,255,255,.6)">Milw.</text><text x="152" y="70" font-family="monospace" font-size="5.5" fill="#4ade80">Active</text>
-          <text x="78" y="84" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.22)">+ 10 more · Export CSV · Save query</text>
-        </svg>
-        <div class="ws-tag">Query Tool</div>
-      </div>
-      <div class="ws-body">
-        <div>
-          <div class="ws-num">04 · XCQ Module</div>
-          <div class="ws-name">XCQ Inter-County <em>Query</em></div>
-          <p class="ws-desc">Rebuilt a legacy CLI query tool as a first-class visual UI. Query builder, result preview, export — making advanced cross-county case search accessible to all staff, not just the one person who knew the terminal.</p>
-        </div>
-        <div class="ws-foot">
-          <div class="ws-chips"><span class="ws-chip">Query builder</span><span class="ws-chip">Results display</span><span class="ws-chip">Export</span></div>
-          <div class="ws-arr">↗</div>
-        </div>
-      </div>
-    </a>
-
-    <a href="protect-efiling.html" class="ws">
-      <div class="ws-thumb">
-        <svg viewBox="0 0 180 130" xmlns="http://www.w3.org/2000/svg">
-          <defs><linearGradient id="wl5" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#1a0505"/><stop offset="100%" stop-color="#7f1d1d"/></linearGradient></defs>
-          <rect width="180" height="130" fill="url(#wl5)"/>
-          <!-- stepper -->
-          <rect x="8" y="12" width="164" height="20" rx="4" fill="rgba(255,255,255,.05)"/>
-          <circle cx="26" cy="22" r="8" fill="rgba(109,40,217,.8)"/><text x="23" y="26" font-family="sans-serif" font-size="7" fill="white" font-weight="700">✓</text>
-          <rect x="34" y="21" width="22" height="2" rx="1" fill="rgba(109,40,217,.5)"/>
-          <circle cx="62" cy="22" r="8" fill="rgba(109,40,217,.8)"/><text x="59" y="26" font-family="sans-serif" font-size="7" fill="white" font-weight="700">✓</text>
-          <rect x="70" y="21" width="22" height="2" rx="1" fill="rgba(109,40,217,.5)"/>
-          <circle cx="98" cy="22" r="8" fill="rgba(109,40,217,.8)" stroke="rgba(255,255,255,.3)" stroke-width="1.5"/><text x="95.5" y="26" font-family="sans-serif" font-size="7.5" fill="white" font-weight="700">3</text>
-          <rect x="106" y="21" width="22" height="2" rx="1" fill="rgba(255,255,255,.1)"/>
-          <circle cx="134" cy="22" r="8" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.15)" stroke-width="1"/><text x="131.5" y="26" font-family="sans-serif" font-size="7.5" fill="rgba(255,255,255,.35)">4</text>
-          <rect x="142" y="21" width="22" height="2" rx="1" fill="rgba(255,255,255,.1)"/>
-          <circle cx="162" cy="22" r="7" fill="rgba(255,255,255,.06)"/><text x="159.5" y="26" font-family="sans-serif" font-size="7.5" fill="rgba(255,255,255,.3)">5</text>
-          <!-- upload area -->
-          <rect x="14" y="38" width="152" height="50" rx="5" fill="rgba(255,255,255,.06)" stroke="rgba(109,40,217,.35)" stroke-width=".8" stroke-dasharray="4,3"/>
-          <text x="58" y="60" font-family="sans-serif" font-size="20" fill="rgba(255,255,255,.2)">📄</text>
-          <text x="50" y="73" font-family="sans-serif" font-size="7" fill="rgba(109,40,217,.75)">Motion_to_Dismiss.pdf</text>
-          <text x="62" y="82" font-family="monospace" font-size="5.5" fill="rgba(255,255,255,.3)">2.4 MB · Valid ✓</text>
-          <!-- cta -->
-          <rect x="40" y="96" width="100" height="16" rx="8" fill="rgba(109,40,217,.7)"/>
-          <text x="68" y="107" font-family="sans-serif" font-size="7.5" fill="white" font-weight="600">Continue →</text>
-          <!-- validation chips -->
-          <rect x="8" y="118" width="50" height="10" rx="2" fill="rgba(74,222,128,.12)"/><text x="11" y="126" font-family="monospace" font-size="5.5" fill="#4ade80">✓ Case valid</text>
-          <rect x="62" y="118" width="50" height="10" rx="2" fill="rgba(74,222,128,.12)"/><text x="65" y="126" font-family="monospace" font-size="5.5" fill="#4ade80">✓ PDF format</text>
-          <rect x="116" y="118" width="56" height="10" rx="2" fill="rgba(251,191,36,.1)"/><text x="119" y="126" font-family="monospace" font-size="5.5" fill="#fbbf24">○ Step 3 / 5</text>
-        </svg>
-        <div class="ws-tag">eFiling Portal</div>
-      </div>
-      <div class="ws-body">
-        <div>
-          <div class="ws-num">05 · eFiling Portal</div>
-          <div class="ws-name">eFiling <em>Portal</em></div>
-          <p class="ws-desc">End-to-end eFiling replacing email-attachment workflows. Stepped submission, real-time validation, document preview, status tracking — the phone-call-to-confirm workflow, eliminated.</p>
-        </div>
-        <div class="ws-foot">
-          <div class="ws-chips"><span class="ws-chip">Multi-step flow</span><span class="ws-chip">Validation</span><span class="ws-chip">Status tracking</span></div>
-          <div class="ws-arr">↗</div>
-        </div>
-      </div>
-    </a>
-
-  </div>
-</div>
-
-<!-- OUTCOMES -->
-
-<div class="sec">
-  <div class="sec-ey">What Was Delivered</div>
-  <h2>What Was Delivered</h2>
-  <div class="steps" style="grid-template-columns: repeat(2, 1fr);">
-    <div class="step">
-      <span class="step-n">✦</span>
-      <div class="step-t">Journey Maps &amp; User Flows</div>
-      <div class="step-d">End-to-end user flows and journey maps across all 5 workstreams — mapping touchpoints, pain points, and system interactions. Used as the primary alignment artifact with product managers and stakeholders before any UI work began.</div>
-    </div>
-    <div class="step">
-      <span class="step-n">✦</span>
-      <div class="step-t">User Research &amp; Accessibility Reviews</div>
-      <div class="step-d">22 research participants across 4 county offices. Usability testing at each design milestone. Full WCAG 2.1 AA accessibility review embedded throughout — not added at the end.</div>
-    </div>
-    <div class="step">
-      <span class="step-n">✦</span>
-      <div class="step-t">Design System &amp; Interaction Standards</div>
-      <div class="step-d">Built and maintained a unified cross-platform design system — component library, style guide, interaction patterns, and logo — ensuring visual consistency across web portal and desktop application.</div>
-    </div>
-    <div class="step">
-      <span class="step-n">✦</span>
-      <div class="step-t">Leadership Presentations</div>
-      <div class="step-d">Presented design concepts, service blueprints, and iterative recommendations to Wisconsin DOA leadership and project stakeholders at 4 major milestone reviews — translating complex UX rationale into clear business outcomes.</div>
-    </div>
-    <div class="step">
-      <span class="step-n">✦</span>
-      <div class="step-t">50+ Wireframes &amp; Hi-Fi Prototypes</div>
-      <div class="step-d">Complete wireframe-to-prototype journey across 5 workstreams — Cases, Hearings, eFiling, XCQ Query, and eFiling Portal — covering web and desktop environments with responsive and accessible UI.</div>
-    </div>
-    <div class="step">
-      <span class="step-n">✦</span>
-      <div class="step-t">Iterative Improvement Cycles</div>
-      <div class="step-d">3 structured feedback cycles incorporating usability findings and pilot county analytics to refine interaction patterns before statewide rollout to 72 counties.</div>
-    </div>
-  </div>
-</div>
-
-<div class="sec">
-
-<div class="sec">
-  <div class="sec-ey">Content &amp; Language Decisions</div>
-  <h2>Writing the Interface, <span style="font-weight:300;font-style:italic">Not Just Designing It</span></h2>
-  <p style="max-width:660px;color:var(--i60,#666);margin-bottom:32px">Every label, status, error message, and navigation item in PROTECT was a content decision — made deliberately to match how DAs and clerks actually speak about their work. Legalese out. Plain, action-oriented language in.</p>
-
-  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
-
-    <div style="background:#F8F7FF;border:1px solid #E4DFFF;border-radius:12px;padding:20px">
-      <div style="font-size:10px;font-family:var(--fm);letter-spacing:.12em;text-transform:uppercase;color:#9747FF;margin-bottom:12px">Navigation Labels</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
-          <span style="color:#999;text-decoration:line-through">Case Management</span>
-          <span style="color:#9747FF">→</span>
-          <span style="color:#1a1a2e;font-weight:600">Cases</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
-          <span style="color:#999;text-decoration:line-through">Scheduled Events</span>
-          <span style="color:#9747FF">→</span>
-          <span style="color:#1a1a2e;font-weight:600">Hearings</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
-          <span style="color:#999;text-decoration:line-through">Document Submission</span>
-          <span style="color:#9747FF">→</span>
-          <span style="color:#1a1a2e;font-weight:600">eFiling</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px">
-          <span style="color:#999;text-decoration:line-through">Database Search</span>
-          <span style="color:#9747FF">→</span>
-          <span style="color:#1a1a2e;font-weight:600">XCQ Query</span>
-        </div>
-      </div>
-      <p style="font-size:11px;color:#888;margin-top:12px;line-height:1.5">Used existing DA office terminology — not system terminology. Staff recognised navigation immediately without training.</p>
-    </div>
-
-    <div style="background:#F8F7FF;border:1px solid #E4DFFF;border-radius:12px;padding:20px">
-      <div style="font-size:10px;font-family:var(--fm);letter-spacing:.12em;text-transform:uppercase;color:#9747FF;margin-bottom:12px">Status Labels</div>
-      <div style="display:flex;flex-direction:column;gap:8px">
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="padding:3px 10px;background:#E8F9EF;color:#0D9E5E;border-radius:100px;font-size:11px;font-weight:600">Received</span>
-          <span style="font-size:11px;color:#666">Filing confirmed</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="padding:3px 10px;background:#FFF3DC;color:#C07000;border-radius:100px;font-size:11px;font-weight:600">Pending Review</span>
-          <span style="font-size:11px;color:#666">Awaiting DA action</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="padding:3px 10px;background:#FDECEA;color:#D93025;border-radius:100px;font-size:11px;font-weight:600">Returned</span>
-          <span style="font-size:11px;color:#666">Needs correction</span>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span style="padding:3px 10px;background:#EBF2FF;color:#1A6FE8;border-radius:100px;font-size:11px;font-weight:600">In Progress</span>
-          <span style="font-size:11px;color:#666">Active case</span>
-        </div>
-      </div>
-      <p style="font-size:11px;color:#888;margin-top:12px;line-height:1.5">Avoided technical states like "Processing" or "Queued." Each status answers: <em>what does this mean for me right now?</em></p>
-    </div>
-
-    <div style="background:#F8F7FF;border:1px solid #E4DFFF;border-radius:12px;padding:20px">
-      <div style="font-size:10px;font-family:var(--fm);letter-spacing:.12em;text-transform:uppercase;color:#9747FF;margin-bottom:12px">Error Messages</div>
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <div style="padding:10px;background:#FDECEA;border-radius:8px;border-left:3px solid #D93025">
-          <div style="font-size:11px;color:#999;text-decoration:line-through;margin-bottom:4px">Error: Field validation failed (ERR_422)</div>
-          <div style="font-size:12px;color:#D93025;font-weight:600">Charge date can't be before the arrest date.</div>
-        </div>
-        <div style="padding:10px;background:#FDECEA;border-radius:8px;border-left:3px solid #D93025">
-          <div style="font-size:11px;color:#999;text-decoration:line-through;margin-bottom:4px">Required field missing</div>
-          <div style="font-size:12px;color:#D93025;font-weight:600">Add a statute before filing — it's required for court records.</div>
-        </div>
-      </div>
-      <p style="font-size:11px;color:#888;margin-top:12px;line-height:1.5">Every error explains <em>what went wrong</em> and <em>what to do next</em> — in plain English, not system codes.</p>
-    </div>
-
-  </div>
-</div>
-
-  <div class="sec-ey">Outcomes</div>
-  <h2 class="sec-h">What the work <em>actually delivered</em></h2>
-  <div class="outs">
-    <div class="out"><span class="ov">50+</span><span class="ol">Screens delivered</span><div class="od">Across 5 workstreams, all documented and handed off to engineering</div></div>
-    <div class="out"><span class="ov">5</span><span class="ol">Modules shipped</span><div class="od">Brand, Desktop, Web, XCQ, and eFiling — each a complete design effort</div></div>
-    <div class="out"><span class="ov">1.5yr</span><span class="ol">Embedded engagement</span><div class="od">Long enough to understand the domain deeply and build genuine trust</div></div>
-    <div class="out"><span class="ov">100%</span><span class="ol">eFiling adoption</span><div class="od">Email-attachment filing eliminated across all participating DA offices</div></div>
-    <div class="out"><span class="ov">0</span><span class="ol">Design team</span><div class="od">Full ownership from discovery through handoff, every decision made solo</div></div>
-    <div class="out"><span class="ov">2</span><span class="ol">User types served</span><div class="od">Separate IA for desktop DAs vs. web clerks — same data, different intent</div></div>
-  </div>
-</div>
-
-<!-- TESTIMONIALS -->
-<div class="sec">
-  <div class="sec-ey">Client Voices</div>
-  <h2 class="sec-h">What the <em>team said</em></h2>
-  <div class="testis">
-    <div class="testi">
-      <p class="tq">Working with Shivani on PROTECT has been a rewarding experience. Over 1.5 years she delivered thoughtful, user-centered design across 50+ screens. She rose to every challenge with professionalism and curiosity.</p>
-      <div class="tsrc"><div class="tav" style="background:#3C3489">LF</div><div><div class="tname">Lisa Fangmann</div><div class="trole">Business Analyst · DAIT Wisconsin</div></div></div>
-    </div>
-    <div class="testi">
-      <p class="tq">What stood out most was Shivani's ability to adapt across a wide range of challenges — from UI/UX for multiple platforms to logos and icons. Her creativity, versatility, and collaboration were critical to the success of PROTECT.</p>
-      <div class="tsrc"><div class="tav" style="background:#3C3489">LF</div><div><div class="tname">Lisa Fangmann</div><div class="trole">Division of Enterprise Technology · Wisconsin</div></div></div>
-    </div>
-    <div class="testi">
-      <p class="tq">You took the team's input and put together a nice design scheme. Applying patterns to our XCQ design is one of your real strengths. Good that you adjusted the approach from web to desktop forms.</p>
-      <div class="tsrc"><div class="tav" style="background:#3d7260">JM</div><div><div class="tname">Jenn Macainag</div><div class="trole">Project Lead · PROTECT · Wisconsin</div></div></div>
-    </div>
-    <div class="testi">
-      <p class="tq">Shivani brought genuine UX rigour to a project that desperately needed it. Her ability to translate complex legal workflows into clean, intuitive interfaces made a real difference for our DA staff.</p>
-      <div class="tsrc"><div class="tav" style="background:#1a4480">DM</div><div><div class="tname">D. Mitchell</div><div class="trole">Project Stakeholder · State of Wisconsin DOA</div></div></div>
-    </div>
-  </div>
-</div>
-
-<!-- LEARNINGS -->
-<div class="sec">
-  <div class="sec-ey">Reflection</div>
-  <h2 class="sec-h">What I'd do <em>differently</em></h2>
-  <div class="learns">
-    <div class="learn"><span class="ln">01</span><div class="lt">Validate the IA split earlier</div><div class="ld">The desktop vs. web distinction emerged in week 4. Prototyping and validating it with users in week 2 would have saved mid-project rework.</div></div>
-    <div class="learn"><span class="ln">02</span><div class="lt">Document decisions in real-time</div><div class="ld">18 months of decisions accumulate fast. A running decision log from day one would have reduced revisiting settled ground in stakeholder reviews.</div></div>
-    <div class="learn"><span class="ln">03</span><div class="lt">Build the design system earlier</div><div class="ld">The component library came together in month 6. If I'd established it in month 2, later workstreams would have shipped faster. Solo long-engagement = system-first mindset.</div></div>
-  </div>
-</div>
-
-<!-- OTHER PROJECTS -->
-<div class="sec">
-  <div class="sec-ey">More Case Studies</div>
-  <h2 class="sec-h">Other <em>projects</em></h2>
-  <div class="others">
-    <a href="missouri-dese.html" class="op"><div class="op-th" style="background:linear-gradient(135deg,#0f2847,#1a4480)"></div><div class="op-n">01 / 05</div><div class="op-name">Missouri DESE <em>School Finance</em></div><div class="op-tag">Government UX</div><span class="op-arr">↗</span></a>
-    <a href="hp-mps.html" class="op"><div class="op-th" style="background:linear-gradient(135deg,#061c25,#0369a1)"></div><div class="op-n">03 / 05</div><div class="op-name">HP MPS <em>Shipping</em></div><div class="op-tag">Enterprise</div><span class="op-arr">↗</span></a>
-    <a href="citibank-spotlight.html" class="op"><div class="op-th" style="background:linear-gradient(135deg,#2a0a14,#be123c)"></div><div class="op-n">04 / 05</div><div class="op-name">Citibank <em>Spotlight</em></div><div class="op-tag">Banking</div><span class="op-arr">↗</span></a>
-    <a href="fedex-shipping.html" class="op"><div class="op-th" style="background:linear-gradient(135deg,#2c1006,#c2410c)"></div><div class="op-n">05 / 05</div><div class="op-name">FedEx Office <em>Category</em></div><div class="op-tag">E-Commerce</div><span class="op-arr">↗</span></a>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer class="foot">
-  <a href="index.html#work" class="foot-back">
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Back to Portfolio
-  </a>
-  <div class="foot-txt">Shivani Harode · PROTECT Case Management · 02 / 05</div>
-</footer>
-
+<section class="cs-sec" id="reflection"><div class="wrap two">
+ <div><div class="eyebrow">Outcome &amp; reflection</div><h2 class="h">What shipped, and what I'd do differently</h2>
+ <div class="prose"><p>I delivered the brand system (SVG, PNG, ICO and PDF exports), the XCQ and eFiling designs with a component library, and the desktop details pane, all as annotated Figma specs that engineering built from.</p></div>
+ <div class="quote" style="margin-top:22px"><blockquote>“What stood out most was Shivani's ability to adapt across a wide range of challenges, from UI/UX for multiple platforms to logos and icons.”</blockquote><cite><b>Lisa Fangmann</b>Business Analyst, Wisconsin</cite></div></div>
+ <div style="display:flex;flex-direction:column;gap:12px">
+  <div class="box"><h3>Build the library earlier</h3><p>The full component library came together months in. Starting with it would have made the later workstreams faster.</p></div>
+  <div class="box"><h3>Start the decision log on day one</h3><p>It started as a fix for repeated debates. From the first week, it would have prevented them.</p></div>
+  <div class="box"><h3>Push for direct user sessions sooner</h3><p>Proxy testing worked, but a few early sessions with DA staff would have confirmed the desktop and web split weeks earlier.</p></div>
+ </div>
+</div></section>
+<div class="wrap"><a class="next glass" href="hp.html"><div><small>Next case study</small><h3>HP Managed Print Central</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
+  <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+</footer></div>
+<script src="site.js"></script>
 </body>
 </html>
