@@ -132,7 +132,7 @@
    <div class="box"><span class="k">What I did</span><p>Research with state staff, a role-based structure for DESE, districts and the public, a design system, prototypes and the developer handoff.</p></div>
    <div class="box"><span class="k">Result</span><p>Handed off in June 2026: the Figma file in Dev Mode, a design document and React components that match the file.</p><!-- If you have a real number (fewer clicks, time saved, tasks completed), add it here. --></div>
   </div>
-</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#story">The project</a><a href="#problems">The old portal</a><a href="#heuristics">Heuristics</a><a href="#research">Research</a><a href="#approach">How I worked</a><a href="#ai">Using AI</a><a href="#ia">Structure</a><a href="#laws">UX laws</a><a href="#evolution">Sketch to screen</a><a href="#figma">Figma file</a><a href="#handoff">Handoff</a><a href="#reflection">Looking back</a></nav></div>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#story">The project</a><a href="#problems">The old portal</a><a href="#heuristics">Heuristics</a><a href="#research">Research</a><a href="#approach">How I worked</a><a href="#ai">Using AI</a><a href="#ia">Structure</a><a href="#laws">UX laws</a><a href="#evolution">Sketch to screen</a><a href="#system">Design system</a><a href="#figma">Figma file</a><a href="#handoff">Handoff</a><a href="#reflection">Looking back</a></nav></div>
 
 <section class="cs-sec" id="story"><div class="wrap two">
  <div><div class="eyebrow">The project</div><h2 class="h">Six months to fix a system people had used for years</h2>
@@ -274,6 +274,32 @@ Accessibility: visible focus ring on every element; links always underlined.</di
 <figcaption><span class="evo-n">4</span><b>Final design</b></figcaption><p>Funds are numbered in the order staff already know. The button says exactly what it does: "Save Appropriation". A check mark at the top confirms the settings are saved.</p></figure></div></div>
  <p class="muted" style="font-size:.82rem;margin-top:10px">Tip: click any stage to see it larger.</p>
  <div class="evo-lb" hidden><div class="evo-lb-in"><button type="button" class="evo-lb-x" aria-label="Close">✕</button><div class="evo-lb-body"></div></div></div>
+</div></section>
+
+<section class="cs-sec" id="system"><div class="wrap">
+ <div class="eyebrow">Design system</div><h2 class="h">One document, then Figma and code from it</h2>
+ <div class="prose"><p>With one designer, six months and a portal this connected, I couldn't design every screen by hand. So in February I wrote the design document first and built the system from it: tokens and components in Figma, and matching React components for the developers. The document was the reference for both.</p></div>
+ <div class="steps" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+  <div class="step"><h3>Design document</h3><p>Colors, typography, spacing and layout, core components, page flow for each role, key pages, responsive behavior and accessibility. Version 1.0 is dated May 29, 2026.</p></div>
+  <div class="step"><h3>Figma library</h3><p>Color tokens taken straight from the document, 18 components plus a dashboard layout shell, and one page structure (Header and Body) on every screen.</p></div>
+  <div class="step"><h3>React components</h3><p>Built with Claude Code from the same tokens in React, TypeScript and Tailwind CSS, with no outside UI library. Developers got components that matched the Figma file.</p></div>
+ </div>
+ <div class="three" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr));margin-top:26px">
+  <div class="box"><span class="k">Tokens</span><h3>Every color has one job</h3><p>The document lists each color with what it's for: navy for headers and table headers, blue for links, the active page and focus rings, yellow for alerts. The Figma tokens and the code use the same values, so nobody picks a color by eye.</p></div>
+  <div class="box"><span class="k">Component properties</span><h3>One component, three roles</h3><p>The sidebar and filter bar have a <strong>Role</strong> property: DESE staff see every control, district users see their district pre-filled and locked, and the public sees read-only dropdowns. Three views, one component set.</p></div>
+  <div class="box"><span class="k">Accessibility</span><h3>Built into the components</h3><p>A visible focus ring on every interactive element, links always underlined, inputs that show the expected format, and calculated values shown read-only. Each screen gets these from the components, not from a final check.</p></div>
+  <div class="box"><span class="k">Review</span><h3>What I checked myself</h3><p>I compared everything AI produced against the design document and the accessibility rules before it went to stakeholders or developers. The structure, wording and priorities came from the research and reviews, not from the tool.</p></div>
+ </div>
+ <div class="box" style="margin-top:22px"><span class="k">The component set · 18 components + layout shell</span>
+  <div class="three" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));gap:14px;margin-top:6px">
+   <div><h3 style="font-size:1rem">Layout</h3><p>DashboardLayout, TopNavBar, SidebarNav, PageHeader, DeseFoot</p></div>
+   <div><h3 style="font-size:1rem">Data</h3><p>DataTable, SummaryCard, Badge, EmptyState</p></div>
+   <div><h3 style="font-size:1rem">Forms</h3><p>FilterBar, LabeledSelect, LabeledInput, DropdownMenu, CollapsibleGroup</p></div>
+   <div><h3 style="font-size:1rem">Actions</h3><p>PrimaryButton, OutlineButton, LinkButton</p></div>
+   <div><h3 style="font-size:1rem">Messages</h3><p>InfoBox, AlertBox</p></div>
+  </div>
+  <p style="margin-top:12px">The same names are used in the document, the Figma file and the code, so a comment like “the FilterBar on Estimated ADA” means the same thing to everyone.</p></div>
+ <div class="box sun" style="margin-top:12px"><span class="k">What writing it down first changed</span><p>Decisions were settled in words before they were drawn, so reviews could focus on the portal instead of colors and spacing. And because the developers' components came from the same tokens, the handoff could focus on behavior instead of matching pixels.</p></div>
 </div></section>
 
 <section class="cs-sec" id="figma"><div class="wrap">

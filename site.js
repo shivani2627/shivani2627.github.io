@@ -38,7 +38,7 @@
     var tx=0,ty=0,x=0,y=0,vx=0,vy=0,K=0.16,D=0.72;
     addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;dot.style.transform='translate('+tx+'px,'+ty+'px)';root.classList.add('cur-on');
       var h=e.target.closest('a,button,[data-cursor]');
-      if(h&&!h.closest('.fig')){root.classList.add('cur-hover');ring.textContent=h.dataset.cursor||(h.matches('a.pcard,a.next')?'Open':'')}else root.classList.remove('cur-hover')});
+      if(h&&!h.closest('.fig')){root.classList.add('cur-hover');ring.textContent=h.dataset.cursor||(h.matches('a.pcard,a.gcard,a.next')?'Open':'')}else root.classList.remove('cur-hover')});
     document.addEventListener('pointerleave',function(){root.classList.remove('cur-on')});
     (function loop(){vx=(vx+(tx-x)*K)*D;vy=(vy+(ty-y)*K)*D;x+=vx;y+=vy;
       var hov=root.classList.contains('cur-hover');var sp=hov?0:Math.min(Math.hypot(vx,vy)/40,.35),ang=hov?0:Math.atan2(vy,vx)*180/Math.PI;
