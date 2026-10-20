@@ -751,3 +751,7 @@ footer.foot a{color:var(--ink-2)}
 @media (max-width:980px){.gcards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.gcards{grid-template-columns:1fr}}
 .gbody .tags{flex-wrap:nowrap;overflow:hidden;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+
+/* Numbered notes: number on the left, text flows normally beside it */
+.notes li{display:block;position:relative;padding-left:36px;min-height:24px}
+.notes li::before{position:absolute;left:0;top:0}
