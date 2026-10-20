@@ -23,18 +23,29 @@
 <main id="main">
 <style>
 .hero-cloak{position:relative;height:100svh;min-height:560px;max-height:1100px;display:grid;place-items:center;overflow:hidden;background:var(--bg);touch-action:pan-y}
-.hc-plate{position:relative;z-index:0;text-align:center;padding:0 16px}
+.hc-plate{position:relative;z-index:auto;text-align:center;padding:0 16px}
 .hc-name{font-family:var(--f-display);font-weight:600;font-size:clamp(2.8rem,10vw,8.5rem);line-height:.95;letter-spacing:-.045em;margin:0;
   background:linear-gradient(100deg,var(--ink) 0%,var(--ink) 38%,var(--sun-ink) 72%,var(--sun) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
   padding-bottom:.08em}
 .hc-role{font-family:var(--f-mono);font-size:clamp(.78rem,1.3vw,.95rem);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-top:clamp(12px,2vw,22px)}
-.hc-line{font-size:clamp(1rem,1.6vw,1.15rem);color:var(--ink-2);margin-top:14px;max-width:48ch;margin-inline:auto;text-wrap:balance}
+.hc-line{position:relative;z-index:2;isolation:isolate;display:inline-block;margin-top:clamp(18px,2.4vw,26px);padding:14px 28px;border-radius:999px;font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.4;font-weight:500;color:var(--ink);text-wrap:balance;max-width:min(92vw,64ch);background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.04) 55%,rgba(255,255,255,.14));-webkit-backdrop-filter:blur(2.5px) saturate(1.6);backdrop-filter:blur(2.5px) saturate(1.6);border:1px solid rgba(20,22,27,.10);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -12px 18px -12px rgba(255,255,255,.85),inset 10px 0 18px -14px rgba(255,255,255,.7),inset -10px 0 18px -14px rgba(255,255,255,.7),0 1px 2px rgba(20,22,27,.08),0 16px 34px -16px rgba(20,22,27,.35);transition:box-shadow .5s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.hc-line::before{content:"";position:absolute;z-index:-1;left:8%;right:8%;top:3px;height:46%;border-radius:999px;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,0));opacity:.55;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.hc-line::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.1) 35%,rgba(255,255,255,0) 60%,rgba(255,255,255,.7));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
+.hc-line:hover{transform:translateY(-2px) scale(1.01)}
+.hc-line:hover::before{transform:translateX(4%)}
+:root[data-theme="dark"] .hc-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 55%,rgba(255,255,255,.07));border-color:rgba(255,255,255,.18);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.35),inset 0 -12px 18px -12px rgba(255,255,255,.18),inset 10px 0 18px -14px rgba(255,255,255,.15),inset -10px 0 18px -14px rgba(255,255,255,.15),0 14px 34px -14px rgba(0,0,0,.7)}
+:root[data-theme="dark"] .hc-line::before{opacity:.18}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hc-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 55%,rgba(255,255,255,.07));border-color:rgba(255,255,255,.18);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.35),inset 0 -12px 18px -12px rgba(255,255,255,.18),inset 10px 0 18px -14px rgba(255,255,255,.15),inset -10px 0 18px -14px rgba(255,255,255,.15),0 14px 34px -14px rgba(0,0,0,.7)}:root:not([data-theme="light"]) .hc-line::before{opacity:.18}}
+:root[data-mode="focus"] .hc-line{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--surface);transition:none}:root[data-mode="focus"] .hc-line:hover{transform:none}
+@media (prefers-reduced-motion:reduce){.hc-line,.hc-line::before{transition:none}.hc-line:hover{transform:none}}
+.hc-line em{font-style:normal;font-weight:600;background:linear-gradient(100deg,var(--sun-ink),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
+@media (max-width:640px){.hc-line{border-radius:22px;padding:12px 18px}}
 .hc-cloak{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
 </style><section class="hero-cloak" aria-label="Introduction">
   <div class="hc-plate">
     <h1 class="hc-name">Shivani Harode</h1>
     <p class="hc-role">Senior UX Designer</p>
-    <p class="hc-line">I make complex information clear for the people who use it.</p>
+    <p class="hc-line">I make <em>complex information</em> clear for the people who use it.</p>
   </div>
   <canvas class="hc-cloak" aria-hidden="true"></canvas>
 </section>
@@ -151,6 +162,7 @@
   </div>
  </div>
 </div></section>
+
 <script>
 (function(){
   var host=document.querySelector('.hero-cloak');if(!host)return;
