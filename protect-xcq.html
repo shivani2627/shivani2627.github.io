@@ -6,13 +6,13 @@
 <title>PROTECT XCQ Case Study</title>
 <meta name="description" content="Rebuilding a 2005 inter-county search tool on a new design system.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
-<link rel="stylesheet" href="site.css?v=6">
+<link rel="stylesheet" href="site.css?v=9">
 </head>
 <body>
 <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
 <header class="nav glass" role="banner">
   <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
-  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#ai">AI workflow</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#process">How I work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
   <div class="modes" role="group" aria-label="Display mode">
     <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
     <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
@@ -27,7 +27,33 @@
   <p class="lede load-in d3">XCQ, the Inter-County Query, lets DA staff search people and cases across all Wisconsin counties. It was built in 2005, with no design system, inconsistent layouts, slow results and no accessibility support. I redesigned it on a new Figma design system, built from IBM's Carbon kit with light and dark modes, and validated it with stakeholders before engineering handoff.</p>
   <div class="tags load-in d3" style="margin-top:20px"><span class="tag fg">Design system first</span><span class="tag fg">IBM Carbon</span><span class="tag">Legacy redesign</span><span class="tag">Web app</span></div>
   <dl class="meta glass load-in d4"><div><dt>Client</dt><dd>State of Wisconsin · DA IT program</dd></div><div><dt>Role</dt><dd>Sole UI/UX designer</dd></div><div><dt>Timeline</dt><dd>2024 – 2025</dd></div><div><dt>Team</dt><dd>Me + business analysts + developers</dd></div></dl>
-</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#context">Before / after</a><a href="#research">Research</a><a href="#process">Process</a><a href="#tradeoffs">Trade-offs</a><a href="#figma">Figma file</a><a href="#reflection">Reflection</a></nav></div>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#compare">Compare</a><a href="#context">Before / after</a><a href="#research">Research</a><a href="#process">Process</a><a href="#tradeoffs">Trade-offs</a><a href="#figma">Figma file</a><a href="#reflection">Reflection</a></nav></div>
+<section class="cs-sec" id="compare"><div class="wrap">
+ <div class="eyebrow">Before and after</div><h2 class="h">Drag to compare</h2>
+ <div class="prose"><p>The same search for “Lars” in the 2005 tool and in the redesign. Both screens are recreated for this case study with fictional names.</p></div>
+ <div class="ba" data-ba data-w="900" style="--pos:50%">
+  <div class="ba-stage" style="width:900px">
+   <div class="ba-layer ba-after"><div class="m" style="--mp:#233b63;--ma:#e1c25c"><div class="m-top"><svg width="18" height="20" viewBox="0 0 52 56" aria-hidden="true"><path d="M26 2 4 12v16c0 12 10 22 22 26 12-4 22-14 22-26V12Z" fill="#e1c25c"/></svg><span class="brand">PRO<em>TECT</em></span><span style="opacity:.5">|</span><span style="display:flex;gap:2px;font-size:12px"><span style="padding:6px 10px;border-radius:6px;background:rgba(255,255,255,.14);opacity:1">XCQ Search</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Person Lookup</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Case Search</span><span style="padding:6px 10px;border-radius:6px;opacity:.75">Reports</span></span><span class="sp"><span>Data synced 2:00 AM</span><span class="m-av">KR</span></span></div>
+<div style="padding:18px 22px;background:#f6f7fa;display:flex;flex-direction:column;gap:12px">
+ <div style="display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#4b5563"><span><b style="color:#111">1,248 results</b> for Last name = “Lars” · all counties</span><span>Sorted by Full name A→Z · Show <b>25 ▾</b></span></div>
+ <div class="m-card" style="padding:0;overflow:hidden">
+  <table class="m-table"><thead><tr><th>Full name ↑</th><th>DOB ↕</th><th>Sex</th><th>County ↕</th><th>Aliases</th></tr></thead><tbody><tr class=""><td><a>Larsen, Erik J</a></td><td>03/14/1981</td><td>M</td><td>Dane</td><td style="color:#4b5563">AKA Erik Larssen</td></tr><tr class="sel"><td><a>Larsen-Holt, Priya A</a></td><td>11/02/1990</td><td>F</td><td>Brown</td><td style="color:#4b5563">AKA Priya Holt · AKA P. Larsen</td></tr><tr class=""><td><a>Larson, Dana K</a></td><td>06/27/1975</td><td>F</td><td>Eau Claire</td><td style="color:#4b5563">—</td></tr><tr class=""><td><a>Lars, Theo M</a></td><td>01/09/1968</td><td>M</td><td>Marathon</td><td style="color:#4b5563">AKA Ted Lars +2 more</td></tr><tr class=""><td><a>Lindqvist, Maya R</a></td><td>08/30/1996</td><td>F</td><td>Outagamie</td><td style="color:#4b5563">AKA Maya Larsen</td></tr></tbody></table>
+ </div>
+ <div style="display:flex;justify-content:space-between;font-size:12px;color:#4b5563"><span>Showing 1–25 of 1,248</span><span>← Prev &nbsp;<b style="background:#233b63;color:#fff;padding:2px 7px;border-radius:5px">1</b> 2 3 … 50 &nbsp;Next →</span></div>
+ <div class="m-foot" style="border-color:#e1c25c">County records refresh nightly. Last sync: today 2:00 AM. If a county is missing, it failed to sync and is listed here.</div>
+</div></div></div>
+   <div class="ba-layer ba-before"><div style="font-family:'Times New Roman',serif;font-size:13px;color:#000;background:#fff;min-height:100%">
+<div style="background:#3a5f9c;color:#fff;padding:6px 10px;font:bold 14px Arial">DA Inter-County Query</div>
+<div style="background:#c8d3e6;padding:4px 10px;font:11px Arial">Subject Search &gt; Results</div>
+<div style="padding:10px"><b>Inter-Search Criteria</b><br>( ) Search People &nbsp; ( ) Lookup ID<br>Last Name <span style="border:1px inset #999;display:inline-block;width:110px;height:14px;vertical-align:middle"></span> First <span style="border:1px inset #999;display:inline-block;width:80px;height:14px;vertical-align:middle"></span> <span style="border:1px outset #ccc;background:#ddd;padding:0 6px;font:11px Arial">Submit</span></div>
+<table style="border-collapse:collapse;margin:0 10px 12px;font-size:12px;width:calc(100% - 20px)" border="1"><tr style="background:#ddd"><th>NAME</th><th>DOB</th><th>SEX</th><th>ALIAS</th></tr><tr><td style="padding:2px 6px"><u style="color:#00c">LARSEN, ERIK J</u></td><td style="padding:2px 6px">03/14/1981</td><td style="padding:2px 6px">M</td><td style="padding:2px 6px">AKA Erik Larssen</td></tr><tr><td style="padding:2px 6px"><u style="color:#00c">LARSEN-HOLT, PRIYA A</u></td><td style="padding:2px 6px">11/02/1990</td><td style="padding:2px 6px">F</td><td style="padding:2px 6px">AKA Priya Holt · AKA P. Larsen</td></tr><tr><td style="padding:2px 6px"><u style="color:#00c">LARSON, DANA K</u></td><td style="padding:2px 6px">06/27/1975</td><td style="padding:2px 6px">F</td><td style="padding:2px 6px">—</td></tr><tr><td style="padding:2px 6px"><u style="color:#00c">LARS, THEO M</u></td><td style="padding:2px 6px">01/09/1968</td><td style="padding:2px 6px">M</td><td style="padding:2px 6px">AKA Ted Lars +2 more</td></tr><tr><td style="padding:2px 6px"><u style="color:#00c">LINDQVIST, MAYA R</u></td><td style="padding:2px 6px">08/30/1996</td><td style="padding:2px 6px">F</td><td style="padding:2px 6px">AKA Maya Larsen</td></tr></table>
+<div style="padding:0 10px 12px;font-size:10px;color:#555">Displaying all 1248 records. Page may be slow to load.</div></div></div>
+  </div>
+  <span class="ba-tag l">Before · 2005</span><span class="ba-tag r">After · redesign</span>
+  <span class="ba-line" aria-hidden="true"><span class="ba-knob">⟷</span></span>
+  <input type="range" class="ba-range" min="0" max="100" value="50" aria-label="Slide to compare before and after">
+ </div>
+</div></section>
 <section class="cs-sec" id="context"><div class="wrap two">
  <div class="box"><span class="k">Legacy XCQ · 2005</span><ul><li>No design system or reusable components</li><li>Different layouts for search, results and detail pages</li><li>No column sorting</li><li>Every result loaded at once, so large searches were slow</li><li>Failed contrast and keyboard checks</li><li>Fixed width, hard to use on smaller screens</li><li>No documentation, so every update started from scratch</li></ul></div>
  <div class="box sun"><span class="k">Redesigned XCQ · 2024</span><ul><li>Design system from IBM Carbon: tokens, type scale and components, in light and dark</li><li>Consistent layouts built from shared components</li><li>Sortable columns with clear indicators and keyboard support</li><li>Pagination with a choice of 10, 25 or 50 per page</li><li>WCAG AA contrast, proper table markup, keyboard navigation</li><li>Layout adapts to monitor size and browser zoom</li><li>The Figma library as the single source of truth</li></ul></div>
@@ -119,10 +145,10 @@
  <div class="quote" style="margin-top:18px"><blockquote>“Applying patterns to our XCQ design is one of your real strengths.”</blockquote><cite><b>Jenn Macainag</b>Project Lead, PROTECT</cite></div></div>
  <div class="box"><ul><li>Legacy systems hide requirements that only appear in design review, so plan for iteration.</li><li>A design system is the most useful first deliverable in a legacy redesign; it creates agreement before any screen exists.</li><li>For legal staff, density, accuracy and speed matter more than minimalism.</li></ul></div>
 </div></section>
-<div class="wrap"><a class="next glass" href="protect-efiling.html"><div><small>PROTECT · next case study 04</small><h3>eFiling site</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
+<div class="wrap" style="margin-bottom:18px"><a class="box box-link" href="protect.html#try" style="display:block"><span class="k">Try it</span><h3>Use a working version of XCQ search →</h3><p>Search, sort, page and simulate a failed county sync, on the PROTECT overview.</p></a></div><div class="wrap"><a class="next glass" href="protect-efiling.html"><div><small>PROTECT · next case study 04</small><h3>eFiling site</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
   <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
-  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="system.html">Site design system</a> · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
 </footer></div>
-<script src="site.js?v=6"></script>
+<script src="site.js?v=9"></script>
 </body>
 </html>

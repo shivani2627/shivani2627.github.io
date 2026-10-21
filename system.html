@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Site Design System</title>
+<meta name="description" content="The tokens, modes and components this portfolio is built on.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<link rel="stylesheet" href="site.css?v=9">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="nav glass" role="banner">
+  <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#process">How I work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <div class="modes" role="group" aria-label="Display mode">
+    <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
+    <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
+    <button type="button" data-focus aria-pressed="false" title="Focus mode: no motion, no blur, larger text">◎<span>Focus</span></button>
+  </div>
+  <button type="button" class="menu-btn" aria-expanded="false">Menu</button>
+</header>
+<main id="main"><section class="cs-hero"><div class="wrap">
+  <div class="crumbs load-in"><a href="index.html">Home</a><span>/</span><span>Site design system</span></div>
+  <h1 class="load-in d2">The design system behind this site</h1>
+  <p class="lede load-in d3">This portfolio runs on a small design system of its own: color tokens, three modes and a few shared components. Every value on this page comes from the site's own stylesheet. The Day, Night and Focus modes mirror my Figma variables experiment, <a href="lab.html#modes">One file, three moods</a>.</p>
+  <div class="tags load-in d3" style="margin-top:20px"><span class="tag fg">Tokens</span><span class="tag fg">3 modes</span><span class="tag">Components</span><span class="tag">Accessibility</span></div>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#modes">Modes</a><a href="#color">Color</a><a href="#type">Type</a><a href="#shape">Shape</a><a href="#components">Components</a><a href="#a11y">Accessibility</a></nav></div>
+
+<section class="cs-sec" id="modes"><div class="wrap two">
+ <div><div class="eyebrow">Modes</div><h2 class="h">One set of tokens, three modes</h2>
+ <div class="prose"><p>Components never use raw colors. They use tokens, and each mode changes the token values, so the whole site switches at once. Try the switch here or in the top right.</p></div>
+ <div class="ds-modes" role="group" aria-label="Try a mode"><button type="button" data-set-theme="light" aria-pressed="false">☀ Day</button><button type="button" data-set-theme="dark" aria-pressed="false">☾ Night</button><button type="button" data-focus aria-pressed="false">◎ Focus</button></div></div>
+ <div style="display:flex;flex-direction:column;gap:12px">
+  <div class="box"><span class="k">Day</span><p>Light porcelain background, frosted glass and soft color in the background. The default when your device is in light mode.</p></div>
+  <div class="box"><span class="k">Night</span><p>The same layout on dark surfaces, with lighter accent and status colors so they stay readable.</p></div>
+  <div class="box sun"><span class="k">Focus</span><p>A low-distraction view: no motion, no blur, solid surfaces, larger text and darker body text. It starts on its own when a device asks for more contrast.</p></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="color"><div class="wrap">
+ <div class="eyebrow">Color</div><h2 class="h">Color tokens</h2>
+ <div class="prose"><p>Fourteen color tokens cover the whole site. Focus mode keeps the Day or Night values and changes only the ones listed.</p></div>
+ <div class="tbl-scroll"><table class="ds-tbl"><thead><tr><th>Token</th><th>Used for</th><th>Day</th><th>Night</th><th>Focus</th></tr></thead><tbody><tr><td><code>--bg</code></td><td>Page background</td><td><span class="sw2" style="background:#eceef1"></span><code>#eceef1</code></td><td><span class="sw2" style="background:#0e0f12"></span><code>#0e0f12</code></td><td>same</td></tr><tr><td><code>--surface</code></td><td>Cards and panels</td><td><span class="sw2" style="background:#ffffff"></span><code>#ffffff</code></td><td><span class="sw2" style="background:#1a1c22"></span><code>#1a1c22</code></td><td>replaces glass</td></tr><tr><td><code>--surface-2</code></td><td>Quiet fills</td><td><span class="sw2" style="background:#f5f6f8"></span><code>#f5f6f8</code></td><td><span class="sw2" style="background:#22252c"></span><code>#22252c</code></td><td>same</td></tr><tr><td><code>--ink</code></td><td>Headings and main text</td><td><span class="sw2" style="background:#14161b"></span><code>#14161b</code></td><td><span class="sw2" style="background:#eef0f4"></span><code>#eef0f4</code></td><td>same</td></tr><tr><td><code>--ink-2</code></td><td>Body text</td><td><span class="sw2" style="background:#4b505c"></span><code>#4b505c</code></td><td><span class="sw2" style="background:#b5bac5"></span><code>#b5bac5</code></td><td>set to ink, for more contrast</td></tr><tr><td><code>--ink-3</code></td><td>Labels and captions</td><td><span class="sw2" style="background:#757b88"></span><code>#757b88</code></td><td><span class="sw2" style="background:#868c99"></span><code>#868c99</code></td><td>same</td></tr><tr><td><code>--line</code></td><td>Borders and dividers</td><td><span class="sw2" style="background:#d5d9e0"></span><code>#d5d9e0</code></td><td><span class="sw2" style="background:#2e323b"></span><code>#2e323b</code></td><td>same</td></tr><tr><td><code>--sun</code></td><td>Accent, from the sunflower photos</td><td><span class="sw2" style="background:#f2b300"></span><code>#f2b300</code></td><td><span class="sw2" style="background:#ffc533"></span><code>#ffc533</code></td><td>same</td></tr><tr><td><code>--sun-ink</code></td><td>Accent text</td><td><span class="sw2" style="background:#7a5600"></span><code>#7a5600</code></td><td><span class="sw2" style="background:#ffd66b"></span><code>#ffd66b</code></td><td>same</td></tr><tr><td><code>--sel</code></td><td>Focus rings and selection</td><td><span class="sw2" style="background:#0d99ff"></span><code>#0d99ff</code></td><td><span class="sw2" style="background:#2ea8ff"></span><code>#2ea8ff</code></td><td>same</td></tr><tr><td><code>--ok</code></td><td>Success</td><td><span class="sw2" style="background:#1a7f4b"></span><code>#1a7f4b</code></td><td><span class="sw2" style="background:#4cc38a"></span><code>#4cc38a</code></td><td>same</td></tr><tr><td><code>--warn</code></td><td>Warning</td><td><span class="sw2" style="background:#a15c00"></span><code>#a15c00</code></td><td><span class="sw2" style="background:#f0a43a"></span><code>#f0a43a</code></td><td>same</td></tr><tr><td><code>--bad</code></td><td>Error</td><td><span class="sw2" style="background:#c2312f"></span><code>#c2312f</code></td><td><span class="sw2" style="background:#ff6b66"></span><code>#ff6b66</code></td><td>same</td></tr><tr><td><code>--glass</code></td><td>Frosted nav and cards</td><td><span class="sw2" style="background:rgba(255,255,255,.72)"></span><code>rgba(255,255,255,.72)</code></td><td><span class="sw2" style="background:rgba(28,30,36,.70)"></span><code>rgba(28,30,36,.70)</code></td><td>solid surface, no blur</td></tr></tbody></table></div>
+</div></section>
+
+<section class="cs-sec" id="type"><div class="wrap">
+ <div class="eyebrow">Type</div><h2 class="h">Three typefaces, one job each</h2>
+ <div class="three">
+  <div class="box"><span class="k">Display · Bricolage Grotesque</span><p style="font-family:var(--f-display);font-size:2.2rem;font-weight:600;letter-spacing:-.03em;color:var(--ink);line-height:1.05">Case studies</p><p>Headings and big numbers.</p></div>
+  <div class="box"><span class="k">Body · Geist</span><p style="font-size:1.05rem;color:var(--ink)">I make complex information clear for the people who use it.</p><p>Paragraphs, buttons and interface text.</p></div>
+  <div class="box"><span class="k">Labels · Geist Mono</span><p style="font-family:var(--f-mono);font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)">Client work · 2018 – now</p><p>Small labels, dates and code.</p></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="shape"><div class="wrap two">
+ <div><div class="eyebrow">Shape</div><h2 class="h">Layout and corners</h2>
+ <div class="prose"><p>One 1180px column with a side gutter that shrinks from 40px to 16px on phones. Corners get rounder as elements get bigger.</p></div></div>
+ <div class="ds-radii"><div style="border-radius:999px">Pills · 999px</div><div style="border-radius:14px">Small cards · 14px</div><div style="border-radius:22px">Cards · 22px</div><div style="border-radius:26px">Project cards · 26px</div></div>
+</div></section>
+
+<section class="cs-sec" id="components"><div class="wrap">
+ <div class="eyebrow">Components</div><h2 class="h">The pieces every page is built from</h2>
+ <div class="three" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))">
+  <div class="box"><span class="k">Buttons</span><div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:6px"><a class="btn" href="#components">Primary <span class="arr" aria-hidden="true">→</span></a><a class="btn ghost" href="#components">Ghost</a></div></div>
+  <div class="box"><span class="k">Tags</span><div class="tags" style="margin-top:6px"><span class="tag">Default</span><span class="tag fg">Figma</span><span class="tag ai">AI-assisted</span><span class="tag sun">Accent</span></div></div>
+  <div class="box"><span class="k">Section label</span><div class="eyebrow" style="margin-top:8px">Selected work · 2018 – now</div></div>
+  <div class="box"><span class="k">Glass panel</span><div class="glass" style="border-radius:18px;padding:16px;margin-top:6px"><b style="color:var(--ink)">Frosted surface</b><p>Used for the nav, project cards and pop-ups.</p></div></div>
+  <div class="box"><span class="k">Numbered notes</span><ol class="notes" style="margin-top:6px"><li><b>Number on the left</b>, text flows beside it.</li><li><b>Used for</b> annotated screenshots.</li></ol></div>
+  <div class="box"><span class="k">Reading switch</span><p>The “Full story / 60-second version” control on every case study, for people who skim.</p><a href="dese.html" style="color:var(--ink);font-weight:600">See it on DESE →</a></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="a11y"><div class="wrap two">
+ <div><div class="eyebrow">Accessibility</div><h2 class="h">Built in, not added later</h2></div>
+ <div class="box"><ul>
+  <li>Follows the device's light or dark setting until you choose a mode.</li>
+  <li>Turns off motion when the device asks for reduced motion, and in Focus mode.</li>
+  <li>Starts in Focus mode when the device asks for more contrast.</li>
+  <li>Visible focus rings on links, buttons and controls.</li>
+  <li>The before-and-after sliders, the XCQ search and the reading switch all work with a keyboard.</li>
+ </ul></div>
+</div></section>
+<div class="wrap"><a class="next glass" href="index.html"><div><small>Back to</small><h3>Home</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
+  <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="system.html">Site design system</a> · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+</footer></div>
+<script src="site.js?v=9"></script>
+</body>
+</html>

@@ -6,13 +6,13 @@
 <title>PROTECT Details Pane</title>
 <meta name="description" content="A collapsible details pane for the PROTECT desktop app.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
-<link rel="stylesheet" href="site.css?v=6">
+<link rel="stylesheet" href="site.css?v=9">
 </head>
 <body>
 <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
 <header class="nav glass" role="banner">
   <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
-  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#ai">AI workflow</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#process">How I work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
   <div class="modes" role="group" aria-label="Display mode">
     <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
     <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
@@ -27,7 +27,34 @@
   <p class="lede load-in d3">In the PROTECT Windows desktop app, staff had to click through several tabs to see synced data for one case, then come back to the grid and repeat it for the next row. I designed a collapsible details pane that sits under the grid and follows the selected row.</p>
   <div class="tags load-in d3" style="margin-top:20px"><span class="tag">Desktop app</span><span class="tag">Strategic trade-offs</span><span class="tag fg">Component properties</span></div>
   <dl class="meta glass load-in d4"><div><dt>Client</dt><dd>State of Wisconsin · DA IT program</dd></div><div><dt>Role</dt><dd>Sole UI/UX designer</dd></div><div><dt>Timeline</dt><dd>2024 – 2025</dd></div><div><dt>Team</dt><dd>Me + business analysts + developers</dd></div></dl>
-</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#problem">Problem</a><a href="#research">Research</a><a href="#goals">Goals</a><a href="#tradeoffs">Constraints</a><a href="#figma">Figma file</a><a href="#solutions">Solutions</a><a href="#reflection">Reflection</a></nav></div>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#compare">Compare</a><a href="#problem">Problem</a><a href="#research">Research</a><a href="#goals">Goals</a><a href="#tradeoffs">Constraints</a><a href="#figma">Figma file</a><a href="#solutions">Solutions</a><a href="#reflection">Reflection</a></nav></div>
+<section class="cs-sec" id="compare"><div class="wrap">
+ <div class="eyebrow">Before and after</div><h2 class="h">Drag to compare</h2>
+ <div class="prose"><p>The old way of checking one case, and the new pane under the grid. Both screens are recreated for this case study with fictional names.</p></div>
+ <div class="ba" data-ba data-w="760" style="--pos:50%">
+  <div class="ba-stage" style="width:760px">
+   <div class="ba-layer ba-after"><div class="m" style="--mp:#233b63;font-size:12px;background:#f6f7fa">
+<div style="background:#fff;padding:5px 10px;display:flex;justify-content:space-between;border-bottom:1px solid #ddd;font-size:11px"><span>PROTECT — Desktop</span><span>— ☐ ✕</span></div>
+<div style="padding:10px"><div class="m-card" style="padding:0;overflow:hidden"><table class="m-table"><thead><tr><th>Case #</th><th>Defendant</th><th>County</th><th>Status</th></tr></thead><tbody><tr class=""><td>2024CF001180</td><td>Larsen, Erik J</td><td>Dane</td><td><span class="bd ok">Open</span></td></tr><tr class="sel"><td>2024CF001181</td><td>Larsen-Holt, Priya A</td><td>Brown</td><td><span class="bd ok">Open</span></td></tr><tr class=""><td>2024CF001182</td><td>Larson, Dana K</td><td>Eau Claire</td><td><span class="bd wa">Hearing set</span></td></tr><tr class=""><td>2024CF001183</td><td>Lars, Theo M</td><td>Marathon</td><td><span class="bd ok">Open</span></td></tr></tbody></table></div></div>
+<div style="margin:0 10px 10px;background:#fff;border:1px solid #d6dbe4;border-radius:10px;overflow:hidden">
+ <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:#233b63;color:#fff;font-size:12px"><b>Details · 2024CF001181 · Larsen-Holt, Priya A</b><span style="opacity:.8">Synced 2:00 AM · ═ drag to resize</span></div>
+ <div style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▾ Case info</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px 18px;padding:8px 12px 12px;font-size:11.5px"><div><span style="color:#6b7280;font-size:10px;display:block">Case type</span>Felony</div><div><span style="color:#6b7280;font-size:10px;display:block">Jurisdiction</span>Brown County</div><div><span style="color:#6b7280;font-size:10px;display:block">Assigned DA</span>R. Okafor</div><div><span style="color:#6b7280;font-size:10px;display:block">Filed</span>02/12/2024</div><div><span style="color:#6b7280;font-size:10px;display:block">Court</span>Branch 4</div><div><span style="color:#6b7280;font-size:10px;display:block">Next step</span>Arraignment</div></div></div>
+ <div style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▾ Defendant</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px 18px;padding:8px 12px 12px;font-size:11.5px"><div><span style="color:#6b7280;font-size:10px;display:block">Aliases</span>Priya Holt · P. Larsen</div><div><span style="color:#6b7280;font-size:10px;display:block">DOB</span>11/02/1990</div><div><span style="color:#6b7280;font-size:10px;display:block">Counties with records</span>Brown, Dane</div></div></div>
+ <div style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▸ Charges (3)</div></div>
+ <div style="border-bottom:1px solid #e5e7eb"><div style="display:flex;gap:8px;align-items:center;padding:8px 12px;font-weight:600;font-size:12px;background:#f8fafc">▸ Hearing dates (2)</div></div>
+</div></div></div>
+   <div class="ba-layer ba-before"><div style="font:11px Segoe UI,Arial;background:#f0f0f0;color:#111">
+<div style="background:#fff;padding:5px 10px;display:flex;justify-content:space-between;border-bottom:1px solid #ccc"><span>PROTECT — Desktop</span><span>— ☐ ✕</span></div>
+<div style="padding:3px 10px;border-bottom:1px solid #ccc;background:#fafafa">File &nbsp; Edit &nbsp; View &nbsp; Tools &nbsp; Help</div>
+<div style="padding:8px 10px"><div style="display:flex;gap:2px"><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#fff;font-size:10.5px">Case</span><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#dfe5ee;font-size:10.5px">Parties</span><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#dfe5ee;font-size:10.5px">Charges</span><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#dfe5ee;font-size:10.5px">Events</span><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#dfe5ee;font-size:10.5px">Synced data</span><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#dfe5ee;font-size:10.5px">Documents</span><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#dfe5ee;font-size:10.5px">Notes</span><span style="padding:4px 8px;border:1px solid #b9c3d3;border-bottom:0;background:#dfe5ee;font-size:10.5px">Victims</span></div><div style="background:#fff;border:1px solid #b9c3d3;height:30px;padding:6px;color:#888">Case summary…</div></div>
+<div style="padding:0 10px 10px"><table class="m-table" style="--mp:#4a5d7e;background:#fff"><thead><tr><th>Case #</th><th>Defendant</th><th>County</th><th>Status</th></tr></thead><tbody><tr><td>2024CF001180</td><td>Larsen, Erik J</td><td>Dane</td><td>Open</td></tr><tr style="background:#cfe0fb"><td>2024CF001181</td><td>Larsen-Holt, Priya A</td><td>Brown</td><td>Open</td></tr><tr><td>2024CF001182</td><td>Larson, Dana K</td><td>Eau Claire</td><td>Open</td></tr><tr><td>2024CF001183</td><td>Lars, Theo M</td><td>Marathon</td><td>Open</td></tr></tbody></table></div>
+<div style="margin:0 10px 12px;padding:8px;background:#fff3cd;border:1px solid #f0d27a;font-size:10.5px">To check synced data for the selected case: open the <b>Synced data</b> tab, then come back to the grid. Repeat for every row.</div></div></div>
+  </div>
+  <span class="ba-tag l">Before · tabs</span><span class="ba-tag r">After · details pane</span>
+  <span class="ba-line" aria-hidden="true"><span class="ba-knob">⟷</span></span>
+  <input type="range" class="ba-range" min="0" max="100" value="50" aria-label="Slide to compare before and after">
+ </div>
+</div></section>
 <section class="cs-sec" id="problem"><div class="wrap two">
  <div class="box"><span class="k">Before</span><ul><li>Several tab clicks to see one record's synced data</li><li>The same detour repeated for every row in the grid</li><li>No grouping; people memorized which tab held what</li><li>The area didn't adapt to window or monitor size</li></ul></div>
  <div class="box sun"><span class="k">After</span><ul><li>Details appear under the grid, no tab switching</li><li>The pane updates when a different row is selected</li><li>Collapsible sections group related fields</li><li>Layout tested at the window sizes DA offices use</li><li>Reviewed against real DA workflows before handoff</li></ul></div>
@@ -111,8 +138,8 @@
 </div></section>
 <div class="wrap"><a class="next glass" href="protect-xcq.html"><div><small>PROTECT · next case study 03</small><h3>XCQ inter-county query</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
   <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
-  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="system.html">Site design system</a> · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
 </footer></div>
-<script src="site.js?v=6"></script>
+<script src="site.js?v=9"></script>
 </body>
 </html>

@@ -6,13 +6,13 @@
 <title>PROTECT Case Study</title>
 <meta name="description" content="Sole designer for Wisconsin's prosecutor case management system.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
-<link rel="stylesheet" href="site.css?v=6">
+<link rel="stylesheet" href="site.css?v=9">
 </head>
 <body>
 <div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
 <header class="nav glass" role="banner">
   <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
-  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#ai">AI workflow</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html">My work</a><a href="index.html#process">How I work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
   <div class="modes" role="group" aria-label="Display mode">
     <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
     <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
@@ -31,13 +31,14 @@
    <div class="box"><span class="k">What I did</span><p>As the only designer for 18 months: the brand, a web design system built from IBM Carbon with light and dark modes, three web tools, desktop changes in Fluent UI, and 300+ screens made consistent.</p></div>
    <div class="box"><span class="k">Result</span><p>Live: three web interfaces (XCQ, eFiling and Administration) built on the new web design system, and the desktop app with the new changes. All tested in QA with the BAs. Plus the new logo and brand files.</p><!-- If you have a real number (fewer clicks, time saved, tasks completed), add it here. --></div>
   </div>
-</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#context">Context</a><a href="#research">Research</a><a href="#tradeoffs">Trade-offs</a><a href="#studies">4 case studies</a><a href="#carbon">Design system</a><a href="#system">Governance</a><a href="#reflection">Reflection</a></nav></div>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#context">Context</a><a href="#try">Try it</a><a href="#research">Research</a><a href="#tradeoffs">Trade-offs</a><a href="#studies">4 case studies</a><a href="#carbon">Design system</a><a href="#system">Governance</a><a href="#reflection">Reflection</a></nav></div>
 
 <section class="cs-sec" id="context"><div class="wrap two">
  <div><div class="eyebrow">Context</div><h2 class="h">One platform, four very different design problems</h2>
  <div class="prose"><p>PROTECT is built by the state's DA IT program (DAIT). It isn't one app. It's a Windows desktop application, a set of web tools, and the documents and training material around them. Each piece had its own users and its own technical limits.</p>
  <p>The desktop app follows Microsoft Fluent UI, and I designed with the Telerik and ComponentOne components the developers were building with. Across desktop and web, I moved more than 300 older Windows-based screens into one consistent experience.</p>
- <p>I worked directly with business analysts, who knew the legal workflows deeply, and with the developers who would build each piece. There was no other designer, so I owned everything from discovery notes to final specs.</p></div></div>
+ <p>I worked directly with business analysts, who knew the legal workflows deeply, and with the developers who would build each piece. There was no other designer, so I owned everything from discovery notes to final specs.</p>
+ <p>Without a design team, I also led the work around the design: I ran workshops and the bi-weekly design reviews with the BAs and stakeholders, reviewed builds with developers and helped with HTML, CSS and Angular, and mentored teammates on UX and Figma.</p></div></div>
  <div class="three" style="grid-template-columns:1fr 1fr;align-content:start">
   <a class="box box-link" href="protect-logo.html"><span class="k">01 · Brand</span><h3>Logo &amp; identity</h3><p>A mark that works from a 16px taskbar icon to a training manual cover.</p></a>
   <a class="box box-link" href="protect-details.html"><span class="k">02 · Desktop</span><h3>Details pane</h3><p>Shows synced case data under the grid so people stop hopping between tabs.</p></a>
@@ -46,6 +47,34 @@
  </div>
 </div></section>
 
+<section class="cs-sec" id="try"><div class="wrap">
+ <div class="eyebrow">Try it</div><h2 class="h">Search like DA staff do</h2>
+ <div class="prose"><p>A small working version of the XCQ search, built from the same components as the case study. Type a last name, sort the columns, change the page size, or turn on a failed county sync to see how the screen warns you. All names are fictional.</p></div>
+ <div class="xtry m" id="xcq-try" style="--mp:#233b63;--ma:#e1c25c">
+  <div class="m-top"><svg width="18" height="20" viewBox="0 0 52 56" aria-hidden="true"><path d="M26 2 4 12v16c0 12 10 22 22 26 12-4 22-14 22-26V12Z" fill="#e1c25c"/></svg><span class="brand">PRO<em>TECT</em></span><span style="opacity:.5">|</span><span style="font-size:12px">XCQ Search</span><span class="sp"><span class="xt-sync">Data synced 2:00 AM</span></span></div>
+  <div class="xt-body">
+   <div class="xt-alert m-alert" hidden></div>
+   <div class="m-card xt-form">
+    <label class="m-field">Last name *<input class="m-in xt-q" value="Lar" autocomplete="off" aria-describedby="xt-err"></label>
+    <label class="m-field">County<select class="m-in xt-county"></select></label>
+    <label class="m-field">Show<select class="m-in xt-size"><option>10</option><option selected>25</option><option>50</option></select></label>
+    <label class="xt-check"><input type="checkbox" class="xt-fail"> Simulate failed sync (Iron, Florence)</label>
+    <div class="xt-mode" role="group" aria-label="Theme"><button type="button" data-m="light" aria-pressed="true">Light</button><button type="button" data-m="dark" aria-pressed="false">Dark</button></div>
+    <span class="m-err" id="xt-err" hidden>Enter at least 2 letters of the last name</span>
+   </div>
+   <div class="xt-bar" aria-live="polite"></div>
+   <div class="m-card xt-tablewrap"><table class="m-table"><thead><tr>
+    <th aria-sort="ascending"><button type="button" data-k="name">Full name <span>↑</span></button></th>
+    <th aria-sort="none"><button type="button" data-k="dob">DOB <span>↕</span></button></th>
+    <th>Sex</th>
+    <th aria-sort="none"><button type="button" data-k="county">County <span>↕</span></button></th>
+    <th>Aliases</th></tr></thead><tbody></tbody></table>
+    <div class="xt-empty" hidden></div></div>
+   <div class="xt-pager"></div>
+   <div class="m-foot xt-foot" style="border-color:#e1c25c">County records refresh nightly. Last sync: today 2:00 AM.</div>
+  </div>
+ </div>
+</div></section>
 <section class="cs-sec" id="research"><div class="wrap">
  <div class="eyebrow">Research</div><h2 class="h">Learning a legal domain with limited access to users</h2>
  <div class="prose"><p>Prosecutors and their staff are busy, and government projects don't always grant designers direct sessions with them. I combined what I could get: <strong>BA-led requirement sessions, walkthroughs of the live tools, feedback already logged by users, and stakeholder reviews of every prototype.</strong> When I couldn't test with end users, I ran proxy sessions where analysts who support DA offices worked through the prototype while I watched and took notes.</p></div>
@@ -188,8 +217,8 @@
 </div></section>
 <div class="wrap"><a class="next glass" href="hp.html"><div><small>Next case study</small><h3>HP Managed Print Central</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
   <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
-  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="system.html">Site design system</a> · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
 </footer></div>
-<script src="site.js?v=6"></script>
+<script src="site.js?v=9"></script>
 </body>
 </html>
