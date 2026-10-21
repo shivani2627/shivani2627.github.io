@@ -96,3 +96,29 @@
   document.querySelectorAll('[data-toggle-demo]').forEach(function(b){b.addEventListener('click',function(){b.setAttribute('aria-pressed',String(b.getAttribute('aria-pressed')!=='true'))})});
   document.querySelectorAll('[data-mode-demo]').forEach(function(g){g.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});var s=document.querySelector(g.dataset.modeDemo);if(s)s.dataset.vm=b.dataset.v})});
 })();
+
+
+/* ---------- Card motion: reveal on scroll, tilt and light follow the pointer ---------- */
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.gcard'));if(!cards.length)return;
+  var root=document.documentElement;
+  function calm(){return matchMedia('(prefers-reduced-motion: reduce)').matches||root.getAttribute('data-mode')==='focus'}
+  cards.forEach(function(c){var g=document.createElement('span');g.className='glare';g.setAttribute('aria-hidden','true');c.appendChild(g)});
+  if(!calm()&&'IntersectionObserver' in window){
+    root.classList.add('js');
+    cards.forEach(function(c,i){c.classList.add('pre');c.style.transitionDelay=(i%3)*90+'ms'});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');io.unobserve(e.target);
+      setTimeout(function(){e.target.style.transitionDelay=''},900)}})},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+    cards.forEach(function(c){io.observe(c)});
+  }
+  if(!matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  cards.forEach(function(c){
+    var raf=0;
+    c.addEventListener('pointermove',function(e){if(calm())return;var r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width,y=(e.clientY-r.top)/r.height;
+      cancelAnimationFrame(raf);raf=requestAnimationFrame(function(){c.classList.add('tilting');
+        c.style.setProperty('--ry',((x-.5)*8).toFixed(2)+'deg');c.style.setProperty('--rx',((.5-y)*6).toFixed(2)+'deg');
+        c.style.setProperty('--gx',(x*100).toFixed(1)+'%');c.style.setProperty('--gy',(y*100).toFixed(1)+'%');
+        c.style.setProperty('--dx',((x-.5)*1.2).toFixed(3));c.style.setProperty('--dy',((y-.5)*1.2).toFixed(3))})});
+    c.addEventListener('pointerleave',function(){cancelAnimationFrame(raf);c.classList.remove('tilting');['--rx','--ry','--dx','--dy'].forEach(function(p){c.style.removeProperty(p)})});
+  });
+})();
