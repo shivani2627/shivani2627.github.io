@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pantri Grocery App</title>
+<meta name="description" content="Pantri: a self-initiated grocery and pantry app that helps home cooks decide what to make from what they already have. Research, scope, design system, Figma variables, components and motion.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700&family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Caveat:wght@500&display=swap">
+<link rel="stylesheet" href="site.css?v=9">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="nav glass" role="banner">
+  <a class="logo" href="index.html" aria-label="Shivani Harode, home"><b>SH</b><span>Shivani Harode</span></a>
+  <nav class="nav-links" aria-label="Main"><a href="index.html#work">Case studies</a><a href="lab.html" aria-current="page">My work</a><a href="index.html#process">How I work</a><a href="index.html#about">About</a><a href="index.html#contact">Contact</a></nav>
+  <div class="modes" role="group" aria-label="Display mode">
+    <button type="button" data-set-theme="light" aria-pressed="false" title="Day theme">☀<span>Day</span></button>
+    <button type="button" data-set-theme="dark" aria-pressed="false" title="Night theme">☾<span>Night</span></button>
+    <button type="button" data-focus aria-pressed="false" title="Focus mode: no motion, no blur, larger text">◎<span>Focus</span></button>
+  </div>
+  <button type="button" class="menu-btn" aria-expanded="false">Menu</button>
+</header>
+<main id="main"><style>
+.p-tbl{width:100%;border-collapse:collapse;font-size:.9rem;background:var(--surface);border-radius:16px;overflow:hidden}
+.p-tbl th{text-align:left;font-family:var(--f-mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:12px 14px;border-bottom:1px solid var(--line)}
+.p-tbl td{padding:12px 14px;border-bottom:1px solid var(--line-2);vertical-align:top;color:var(--ink-2)}
+.p-tbl td:first-child{color:var(--ink);font-weight:500}
+.p-tbl td b{color:var(--ink)}
+.tbl-scroll{overflow-x:auto;margin-top:22px;border-radius:16px}
+.tbl-scroll .p-tbl{min-width:640px}
+.ok-pill{display:inline-flex;align-items:center;gap:6px;font-size:.74rem;font-weight:600;padding:3px 10px;border-radius:999px;background:color-mix(in srgb,var(--ok) 15%,transparent);color:var(--ok);white-space:nowrap}
+.ok-pill::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.p-hero{margin-top:28px;border-radius:24px;overflow:hidden;border:1px solid var(--line)}
+.p-hero img{display:block;width:100%;height:auto}
+.screens{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin-top:24px}
+.screens figure{margin:0}
+.screens img{display:block;width:100%;height:auto;border-radius:22px;border:1px solid var(--line);box-shadow:var(--shadow)}
+.screens figcaption{font-size:.84rem;color:var(--ink-2);margin-top:10px}
+.screens figcaption b{display:block;color:var(--ink)}
+.swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}
+.psw{border-radius:16px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.psw i{display:block;height:84px}
+.psw div{padding:10px 12px;font-size:.84rem;color:var(--ink-2)}
+.psw div b{display:block;color:var(--ink);font-family:var(--f-mono);font-size:.74rem;font-weight:500}
+.chain{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px}
+.chain span{font-family:var(--f-mono);font-size:.78rem;padding:8px 12px;border-radius:10px;background:var(--surface);border:1px solid var(--line-2)}
+.chain span.v{background:#3a2d52;color:#e3d4ff;border-color:transparent}
+.chain em{font-style:normal;color:var(--ink-3)}
+.chain small{display:block;font-family:var(--f-body,inherit);font-size:.66rem;color:var(--ink-3);margin-top:2px}
+.chain span.v small{color:#b9a3e6}
+.pfeat{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:24px}
+.pfeat article{border-radius:20px;overflow:hidden;background:var(--surface);border:1px solid var(--line-2);display:flex;flex-direction:column}
+.pfeat img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--bg-2)}
+.pfeat .ft{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px}
+.pfeat h3{font-size:1.02rem}
+.pfeat p{font-size:.88rem;color:var(--ink-2)}
+.pfeat .k{font-family:var(--f-mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:22px}
+.duo figure{margin:0}
+.duo img{display:block;width:100%;height:auto;border-radius:18px;border:1px solid var(--line)}
+.duo figcaption{font-size:.84rem;color:var(--ink-2);margin-top:8px}
+/* substitution concept (built in HTML so it reads at any size) */
+.sub{max-width:360px;border-radius:30px;padding:18px;background:linear-gradient(160deg,#E7E3DC,#D9D2C7);color:#1F1E1C;font-family:"Geist",system-ui,sans-serif;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.sub::before{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:#AFBAA6;filter:blur(60px);right:-80px;top:-60px;opacity:.8}
+.sub>*{position:relative}
+.sub .g{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.85);border-radius:20px;padding:14px;margin-top:10px}
+.sub .over{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:#57534D;font-weight:600}
+.sub h4{font-family:"Bricolage Grotesque",Georgia,serif;font-size:1.3rem;font-weight:500;margin:4px 0 2px;letter-spacing:-.01em}
+.sub .m{font-size:.8rem;color:#57534D}
+.sub .row{display:flex;justify-content:space-between;align-items:center;font-size:.86rem;padding:7px 0;border-top:1px solid rgba(31,30,28,.08)}
+.sub .row:first-of-type{border-top:0}
+.sub .have{color:#44533F;font-weight:600;font-size:.76rem}
+.sub .miss{color:#8E4220;font-weight:600;font-size:.76rem}
+.sub .swap{display:flex;gap:8px;align-items:center;font-size:.82rem;background:#F4F1EC;border-radius:12px;padding:8px 10px;margin-top:6px}
+.sub .swap b{font-weight:600}
+.sub .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.sub .chips span{font-size:.74rem;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.9)}
+.sub .chips span.on{background:#1F1E1C;color:#F4F1EC;border-color:#1F1E1C}
+.sub .cta{display:flex;gap:8px;margin-top:12px}
+.sub .cta span{flex:1;text-align:center;font-size:.84rem;font-weight:600;padding:11px;border-radius:14px;background:#44533F;color:#F4F1EC}
+.sub .cta span+span{background:rgba(255,255,255,.7);color:#1F1E1C}
+.flinks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+.flinks a{display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-radius:16px;background:var(--surface);border:1px solid var(--line-2);text-decoration:none;color:var(--ink)}
+.flinks a span{font-size:.84rem;color:var(--ink-2)}
+.flinks a:hover{border-color:var(--ink-3)}
+/* fig mock contents */
+.pf{font-family:"Geist",system-ui,sans-serif;color:#1F1E1C}
+.pf-tok{display:grid;grid-template-columns:repeat(2,150px);gap:14px;padding:22px;background:#F4F1EC}
+.pf-tok>div{border-radius:12px;overflow:hidden;background:#fff;border:1px solid #e6e1d9}
+.pf-tok i{display:block;height:64px}
+.pf-tok span{display:block;padding:8px 10px;font-size:11px;font-family:"Geist Mono",monospace}
+.pf-comp{display:flex;flex-direction:column;gap:22px;padding:26px;background:#E7E3DC;width:420px}
+.pf-row{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:16px;padding:12px 14px}
+.pf-check{width:22px;height:22px;border-radius:7px;background:#44533F;display:grid;place-items:center;color:#F4F1EC;font-size:13px;flex:none}
+.pf-row .n{flex:1;font-size:14px;font-weight:500;text-decoration:line-through;color:#57534D}
+.pf-row .q{font-size:12px;color:#57534D}
+.pf-row .p{font-size:13px;font-weight:600}
+.pf-card{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.pf-card .top{display:flex;justify-content:space-between;align-items:center}
+.pf-card b{font-size:15px}
+.pf-card small{display:block;font-size:12px;color:#57534D}
+.pf-badge{font-size:11px;font-weight:600;padding:4px 9px;border-radius:999px;background:#F3E3DA;color:#8E4220}
+.pf-bar{height:6px;border-radius:6px;background:rgba(31,30,28,.1)}
+.pf-bar i{display:block;height:6px;width:15%;border-radius:6px;background:#8E4220}
+.pf-btns{display:flex;gap:10px}
+.pf-btn{flex:1;text-align:center;padding:12px;border-radius:14px;font-size:13px;font-weight:600;background:#44533F;color:#F4F1EC}
+.pf-btn.s{background:rgba(255,255,255,.7);color:#1F1E1C;border:1px solid rgba(255,255,255,.9)}
+.pf-tab{display:flex;justify-content:space-around;align-items:center;background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.9);border-radius:26px;padding:10px 8px;font-size:11px;color:#57534D}
+.pf-tab span{display:flex;flex-direction:column;align-items:center;gap:3px}
+.pf-tab span.on{color:#1F1E1C;font-weight:600}
+.pf-tab span i{width:18px;height:18px;border-radius:5px;border:1.6px solid currentColor;display:block}
+.pf-fab{width:46px;height:46px;border-radius:50%;background:#1F1E1C;color:#F4F1EC;display:grid;place-items:center;font-size:22px}
+@media (max-width:900px){.screens{grid-template-columns:repeat(3,minmax(0,1fr))}.pfeat{grid-template-columns:repeat(2,minmax(0,1fr))}.swatches{grid-template-columns:repeat(2,minmax(0,1fr))}.flinks{grid-template-columns:1fr}}
+@media (max-width:600px){.screens{grid-template-columns:repeat(2,minmax(0,1fr))}.pfeat,.duo{grid-template-columns:1fr}}
+</style>
+
+<section class="cs-hero"><div class="wrap">
+ <div class="crumbs load-in"><a href="lab.html">My work</a><span>/</span><span>Pantri grocery app</span></div>
+ <h1 class="load-in d2">Pantri: cook from what you already have</h1>
+ <p class="lede load-in d3">A self-initiated grocery and pantry app, born from conversations with home cooks I met at a cooking competition in Dallas. It answers the question they kept coming back to: what can I make for dinner tonight with what's actually in my kitchen? This page shows the research, the scope I chose, why it looks the way it does, and how the Figma file is built.</p>
+ <div class="tags load-in d3" style="margin-top:18px"><span class="tag">Self-initiated</span><span class="tag">Mobile app</span><span class="tag fg">Figma variables</span><span class="tag fg">Components</span><span class="tag fg">Smart Animate</span><span class="tag fg">Figma Motion</span><span class="tag ai">AI-assisted build</span></div>
+ <p class="load-in d3" style="margin-top:16px"><a class="btn" href="https://www.figma.com/community/file/1695334220349090007" target="_blank" rel="noopener">Get the Figma file on Community <span class="arr">↗</span></a></p>
+ <dl class="meta glass load-in d4">
+  <div><dt>Type</dt><dd>Self-initiated concept, 2026</dd></div>
+  <div><dt>Role</dt><dd>Solo: research, UX, UI, system, motion</dd></div>
+  <div><dt>Platform</dt><dd>iOS and Android, 390 pt base</dd></div>
+  <div><dt>Tools</dt><dd>Figma (variables, components, prototyping, Motion), Claude</dd></div>
+ </dl>
+ <figure class="p-hero load-in d4"><img src="pantri-hero.jpg" alt="Pantri cover: three phone screens (pantry, home and shopping list) in a frosted-glass, warm neutral style, with the title Pantri, daily grocery management made calm." width="1600" height="1200"></figure>
+</div></section>
+
+<div class="wrap"><nav class="toc glass" aria-label="On this page">
+ <a href="#overview">Overview</a><a href="#research">Research</a><a href="#scope">Plan &amp; scope</a><a href="#process">Process</a><a href="#decisions">Decisions</a><a href="#screens">Screens</a><a href="#color">Color &amp; glass</a><a href="#system">Figma system</a><a href="#file">Inspect the file</a><a href="#motion">Motion</a><a href="#trends">Trends</a><a href="#config">New in Figma</a><a href="#a11y">Accessibility</a><a href="#validate">Validation</a><a href="#reflect">Reflection</a>
+</nav></div>
+
+<section class="cs-sec" id="overview"><div class="wrap">
+ <div class="eyebrow">Overview</div><h2 class="h">The problem isn't the shopping list. It's 6 pm.</h2>
+ <div class="two">
+  <div class="prose">
+   <p>Most grocery apps help in one moment: the list helps in the store, a pantry tracker asks you to type in everything you own, and a recipe app assumes your kitchen is fully stocked. Real cooking doesn't happen in those moments. It happens at 6 pm, in front of a half-empty cupboard, with kids who want dinner.</p>
+   <p>The USDA estimates that <strong>30–40% of the US food supply is wasted</strong>, and households are the biggest single source. A lot of that waste starts with not knowing what's at home, and with recipes that send you out for ingredients you don't really need.</p>
+   <p><strong>Problem statement:</strong> home cooks need one place that knows what they have, suggests what they can make with it, and offers swaps for what's missing, so they can cook tonight without another store run.</p>
+  </div>
+  <div class="box sun"><span class="k">What I delivered</span><ul>
+   <li>Research synthesis from conversations with home cooks</li>
+   <li>A scoped MVP and the loop it follows: plan, shop, store, cook</li>
+   <li>5 core screens and a substitution concept</li>
+   <li>A Figma file with 80 variables in 4 collections, 20+ components with variants and properties, 13 text styles and 5 effect styles</li>
+   <li>3 Smart Animate prototypes and timeline animations in Figma Motion</li>
+   <li>A WCAG AA contrast audit of the glass UI, and a test plan</li>
+  </ul></div>
+ </div>
+ <div class="facts">
+  <div class="fact"><b>27 → 35</b><span>primitive colors aliased into semantic tokens</span></div>
+  <div class="fact"><b>20+</b><span>components with variants, text, boolean and instance-swap properties</span></div>
+  <div class="fact"><b>3</b><span>interaction prototypes, built with Smart Animate</span></div>
+  <div class="fact"><b>14.6 : 1</b><span>body-text contrast on glass, measured on the blended color</span></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="research"><div class="wrap">
+ <div class="eyebrow">Research</div><h2 class="h">It started with home cooks, not a feature list</h2>
+ <div class="prose">
+  <p>I took part in a cooking competition in Dallas, and the conversations I had with other home cooks there became the starting point. Many of them cook every day for families, often across more than one cuisine. Talk kept coming back to the same frustrations, so I wrote them down and later grouped them into themes.</p>
+ </div>
+ <div class="methods">
+  <span class="method"><i>01</i>Informal conversations with home cooks</span>
+  <span class="method"><i>02</i>Affinity grouping of what I heard</span>
+  <span class="method"><i>03</i>Audit of list, pantry and recipe apps</span>
+  <span class="method"><i>04</i>Assumption mapping</span>
+ </div>
+ <h3 style="font-size:1.15rem;margin:8px 0 12px">What I heard, and what I designed in response</h3>
+ <div class="insights">
+  <div class="insight"><div><span class="lbl">Heard</span><div class="heard">The pantry is always messy and incomplete. You only find out what's missing halfway through a recipe.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">Designed</span>A <b>Pantry</b> view grouped by Fridge, Freezer and Cupboard, with quantities and freshness. <b>Receipt scan</b> restocks it, so nobody has to type their whole kitchen in.</div></div>
+  <div class="insight"><div><span class="lbl">Heard</span><div class="heard">The daily struggle is deciding what to make for dinner, for the kids, and for different cuisines.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">Designed</span><b>Cook from your pantry</b> on Home: dinner ideas built from what you have, filtered by who's eating (kid-friendly) and by cuisine.</div></div>
+  <div class="insight"><div><span class="lbl">Heard</span><div class="heard">YouTube and cookbooks list specific ingredients. What if you don't have them?</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">Designed</span>A <b>recipe match</b> that shows "you have 7 of 9" and suggests a <b>swap</b> for each missing ingredient before it suggests buying anything.</div></div>
+  <div class="insight"><div><span class="lbl">Heard</span><div class="heard">When something really is missing, it's hard to know where to find it.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">Designed</span>One tap sends missing items to the <b>shared list</b>, grouped by aisle, with an optional store tag (for example, a specialty grocery for regional spices).</div></div>
+ </div>
+ <div class="guard" style="margin-top:22px"><span aria-hidden="true" style="font-size:1.3rem">✎</span><div><b>An honest note on the research</b><p style="margin-top:6px;color:var(--ink-2)">These were informal conversations, not structured interviews, so I've paraphrased themes rather than quoting anyone. They gave me a strong direction, not proof. That's why every decision below comes with an assumption to test, and why the next step is a structured round of interviews and a usability test.</p></div></div>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Assumption</th><th>Risk if wrong</th><th>How I'll test it</th></tr></thead>
+  <tbody>
+   <tr><td>People will trust dinner ideas that start from their own pantry</td><td>High: it's the core of the app</td><td>Concept test with 5–6 home cooks: would you cook this tonight?</td></tr>
+   <tr><td>A suggested swap is more useful than adding the item to a list</td><td>High: drives the recipe match</td><td>Show both options on real recipes; record which one people pick</td></tr>
+   <tr><td>Typing in the pantry is why trackers get abandoned</td><td>High: receipt scan is the bet</td><td>One-week diary: items logged by hand vs. skipped</td></tr>
+   <tr><td>Filtering by "who's eating" (kids, adults) matters more than by diet</td><td>Medium: shapes the filters</td><td>Card sort of filter options with parents</td></tr>
+  </tbody>
+ </table></div>
+</div></section>
+
+<section class="cs-sec" id="scope"><div class="wrap two">
+ <div><div class="eyebrow">Plan &amp; scope</div><h2 class="h">What I built, and what I left out on purpose</h2>
+ <div class="prose">
+  <p>A solo concept can grow forever, so I scoped it to one loop: <strong>plan, shop, store, cook</strong>. Every screen had to move someone to the next step of that loop. Anything that didn't was cut, even if it was trendy.</p>
+  <p>I also worked within real constraints. On Figma's Starter plan a file gets 3 pages and one mode per variable collection. Instead of fighting that, I structured the file as Cover, Design system and Screens &amp; prototypes, and planned dark mode as a second mode on the same semantic tokens, ready to add on a paid plan.</p>
+ </div></div>
+ <div style="display:flex;flex-direction:column;gap:14px">
+  <div class="box"><span class="k">In scope · MVP</span><ul>
+   <li>Home: the unfinished shop, items to use soon, and dinner ideas</li>
+   <li>Shared, live shopping list grouped by aisle</li>
+   <li>Pantry with freshness, restocked by receipt or barcode scan</li>
+   <li>Cook from your pantry, with swaps for missing ingredients</li>
+   <li>Insights: spend, trips and food saved from waste</li>
+  </ul></div>
+  <div class="box"><span class="k">Out of scope, and why</span><ul>
+   <li><b>Grocery delivery and payments:</b> a business partnership problem, not a design one</li>
+   <li><b>Calorie and macro tracking:</b> a different product with different users</li>
+   <li><b>Social feed and recipe sharing:</b> adds noise to a daily utility</li>
+   <li><b>Video recipes:</b> I link out to them; the app's job is matching ingredients</li>
+  </ul></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="process"><div class="wrap">
+ <div class="eyebrow">Process</div><h2 class="h">From kitchen conversations to a test-ready file</h2>
+ <div class="steps">
+  <div class="step"><h3>Listen</h3><p>Conversations with home cooks; grouped what I heard into four themes.</p></div>
+  <div class="step"><h3>Frame</h3><p>Journey map of the grocery loop, problem statement, assumptions and the MVP scope.</p></div>
+  <div class="step"><h3>Structure</h3><p>Four tabs that follow the loop, plus one Add button in the middle for the most frequent task.</p></div>
+  <div class="step"><h3>System first</h3><p>Variables, styles and components before any screen, so every screen is built from instances.</p></div>
+  <div class="step"><h3>Prototype</h3><p>Smart Animate flows, Figma Motion timelines, a contrast audit and a test plan.</p></div>
+ </div>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Stage</th><th>Plan</th><th>Shop</th><th>Store</th><th>Cook</th></tr></thead>
+  <tbody>
+   <tr><td>Doing</td><td>Writes a list from memory</td><td>Walks the aisles, guesses quantities</td><td>Pushes new food in front of old</td><td>Decides dinner at 6 pm from what's visible</td></tr>
+   <tr><td>Feeling</td><td>Rushed</td><td>Unsure</td><td>Neutral</td><td>Stuck</td></tr>
+   <tr><td>Pain</td><td>"Do we still have rice?"</td><td>Two people, two lists, duplicates</td><td>Nothing records what was bought</td><td>The recipe needs things you don't have</td></tr>
+   <tr><td>Opportunity</td><td>A pantry-aware list</td><td>One live list, grouped by aisle</td><td>Receipt scan restocks the pantry</td><td>Cook from your pantry, with swaps</td></tr>
+  </tbody>
+ </table></div>
+</div></section>
+
+<section class="cs-sec" id="decisions"><div class="wrap">
+ <div class="eyebrow">Key decisions</div><h2 class="h">Six decisions, what I rejected, and the trade-offs</h2>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Decision</th><th>What I considered</th><th>Why this one</th><th>Trade-off</th></tr></thead>
+  <tbody>
+   <tr><td>Swaps before shopping<br><small style="color:var(--ink-3)">Research theme 3</small></td><td>Add every missing ingredient straight to the list</td><td>The cooks wanted to cook tonight, not go out again. A swap ("use yogurt instead of sour cream") keeps dinner possible.</td><td>Swaps need good data and can change the dish, so each one says what changes.</td></tr>
+   <tr><td>One Add button, three ways in<br><small style="color:var(--ink-3)">Hick's · Fitts's law</small></td><td>An add field on every screen; separate scan and voice buttons</td><td>One 56 pt target in thumb reach, and three options is a choice you make at a glance.</td><td>Adding from the List costs a tap, so the List keeps its own inline add bar.</td></tr>
+   <tr><td>Group the list by aisle<br><small style="color:var(--ink-3)">Chunking · Jakob's law</small></td><td>A flat list in the order items were added</td><td>Matches how people walk a store; small groups are easy to scan with one hand.</td><td>Aisles differ by store, so aisle numbers are optional data.</td></tr>
+   <tr><td>Home opens on the unfinished task<br><small style="color:var(--ink-3)">Zeigarnik · goal-gradient</small></td><td>A dashboard of equal tiles; a recipe feed</td><td>"7 of 12 picked" with a Resume button is what people come back for.</td><td>With nothing in progress, the slot becomes "Plan dinner".</td></tr>
+   <tr><td>Color only for urgent items<br><small style="color:var(--ink-3)">Von Restorff · WCAG 1.4.1</small></td><td>A traffic-light color on every item</td><td>On a calm screen, the few clay items stand out. Every tag also says "1 day".</td><td>Fresh and "a week left" look alike; the freshness bar carries that detail.</td></tr>
+   <tr><td>The scan sorts storage<br><small style="color:var(--ink-3)">Tesler's law</small></td><td>Asking people to file every scanned item</td><td>The system holds the complexity, so restocking is one tap.</td><td>Wrong guesses happen, so Review stays one tap away.</td></tr>
+  </tbody>
+ </table></div>
+ <div class="two" style="margin-top:34px;align-items:center">
+  <div class="prose"><div class="eyebrow">Next iteration</div><h3 style="font-size:1.3rem;color:var(--ink)">Recipe match with swaps</h3>
+   <p>This screen came straight from the third research theme. Pick a recipe from YouTube or a cookbook, and Pantri checks it against your pantry. Instead of a shopping list, it leads with what you can do <strong>right now</strong>.</p>
+   <p>It reuses the existing system: glass panels, the Chip component for "who's eating" and cuisine filters, and the clay token for what's missing, with the label "missing" in text so color never carries the meaning alone.</p>
+   <p style="font-size:.84rem;color:var(--ink-3)">Concept built in HTML for this page. Ingredients and swaps are illustrative.</p></div>
+  <div class="sub" role="img" aria-label="Concept screen: recipe match for Paneer butter masala. You have 7 of 9 ingredients. Heavy cream is missing, with a swap to cashew paste or yogurt. Kasuri methi is missing and can be skipped. Buttons: Cook with swaps, and Add 2 to list.">
+   <div class="over">Recipe match</div>
+   <h4>Paneer butter masala</h4>
+   <div class="m">From a saved video · serves 4 · 40 min</div>
+   <div class="chips"><span class="on">Kid-friendly</span><span>Indian</span><span>Mexican</span><span>Italian</span></div>
+   <div class="g">
+    <div class="m" style="margin-bottom:6px"><b style="color:#1F1E1C">You have 7 of 9</b></div>
+    <div class="row"><span>Paneer</span><span class="have">✓ Fridge</span></div>
+    <div class="row"><span>Tomatoes</span><span class="have">✓ Counter</span></div>
+    <div class="row"><span>Heavy cream</span><span class="miss">missing</span></div>
+    <div class="swap">↺ <span>Swap: <b>cashew paste</b> or <b>yogurt</b> · slightly lighter</span></div>
+    <div class="row" style="margin-top:6px"><span>Kasuri methi</span><span class="miss">missing</span></div>
+    <div class="swap">↺ <span>Optional: <b>skip it</b> · less aroma</span></div>
+   </div>
+   <div class="cta"><span>Cook with swaps</span><span>Add 2 to list</span></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="screens"><div class="wrap">
+ <div class="eyebrow">Final design</div><h2 class="h">Five screens that follow the loop</h2>
+ <div class="screens">
+  <figure><img src="pantri-home.png" alt="Home screen: the unfinished shopping run with 7 of 12 picked, items to use soon, and dinner ideas from the pantry." loading="lazy" width="390" height="844"><figcaption><b>Home</b>Resume the run, use what's expiring, get dinner ideas.</figcaption></figure>
+  <figure><img src="pantri-list.png" alt="Shared shopping list grouped by aisle, with checked items struck through and a running total." loading="lazy" width="390" height="844"><figcaption><b>Shared list</b>Grouped by aisle, live with the household.</figcaption></figure>
+  <figure><img src="pantri-pantry.png" alt="Pantry screen with item cards showing freshness bars; urgent items marked in clay with days left." loading="lazy" width="390" height="844"><figcaption><b>Pantry</b>Freshness at a glance; urgency in clay.</figcaption></figure>
+  <figure><img src="pantri-scan.png" alt="Receipt scan screen: scanned items already sorted into fridge, freezer and counter, with an Add all to pantry button." loading="lazy" width="390" height="844"><figcaption><b>Receipt scan</b>Restock the pantry in one tap.</figcaption></figure>
+  <figure><img src="pantri-insights.png" alt="Insights screen showing spend against budget, shopping trips and food saved from waste." loading="lazy" width="390" height="844"><figcaption><b>Insights</b>Spend, trips and food saved.</figcaption></figure>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="color"><div class="wrap">
+ <div class="eyebrow">Why this color and design</div><h2 class="h">A kitchen is already loud. The app should be quiet.</h2>
+ <div class="two">
+  <div class="prose">
+   <p>Kitchens are full of color: packaging, produce, food photos and recipe thumbnails. A bright, saturated app would compete with all of it. So the palette is <strong>warm neutrals</strong>, like stone, sand and linen, and the app steps back so the food and the few urgent items stand out.</p>
+   <p><strong>Only two colors carry meaning.</strong> Sage means "go": primary buttons, checked items, progress. Clay means "use soon". I picked clay over red on purpose. Red reads as an error or danger, and an avocado that needs eating tomorrow isn't an emergency. It's a nudge.</p>
+   <p>Text is a warm near-black (#1F1E1C), not pure black, which is softer on a warm background and still gives 14.6 : 1 contrast.</p>
+  </div>
+  <div class="prose">
+   <p><strong>Why glass?</strong> Glassmorphism is a trend, but here it does a job: it shows <em>layers</em>. The tab bar, sheets and cards float over a soft, blurred background, so you can tell what sits on top without heavy borders or shadows. That keeps the UI calm.</p>
+   <p>The trend version usually fails accessibility: transparent panels on bright gradients. I set rules instead. Glass is only for grouping surfaces, never behind text without a solid floor. Panels stay 45–60% white over a low-contrast neutral background, and I measured contrast on the <strong>blended</strong> color, which is what people actually see.</p>
+   <p>Type pairs <strong>Fraunces</strong>, a soft serif for headings that feels like a cookbook, with <strong>Manrope</strong>, a clear sans for everything you read quickly.</p>
+  </div>
+ </div>
+ <div class="swatches">
+  <div class="psw"><i style="background:#E7E3DC"></i><div><b>bg/canvas</b>Warm stone base</div></div>
+  <div class="psw"><i style="background:#1F1E1C"></i><div><b>text/primary</b>Warm near-black</div></div>
+  <div class="psw"><i style="background:#44533F"></i><div><b>bg/accent · sage</b>Go: actions, progress</div></div>
+  <div class="psw"><i style="background:#8E4220"></i><div><b>text/warn · clay</b>Use soon, never alarm</div></div>
+  <div class="psw"><i style="background:#57534D"></i><div><b>text/secondary</b>Quantities, meta</div></div>
+  <div class="psw"><i style="background:#CBBFAE"></i><div><b>blob/sand</b>Blurred background</div></div>
+  <div class="psw"><i style="background:#AFBAA6"></i><div><b>blob/sage</b>Blurred background</div></div>
+  <div class="psw"><i style="background:linear-gradient(135deg,rgba(255,255,255,.75),rgba(255,255,255,.45)),#D9D2C7"></i><div><b>bg/glass</b>White 45–60%, blur 24</div></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="system"><div class="wrap">
+ <div class="eyebrow">Figma craft</div><h2 class="h">The design system, and what made it easy</h2>
+ <div class="prose"><p>I built the system before any screen. Every screen is assembled from component instances, and every component binds its fills, strokes, gaps and corner radius to variables. That's what made the rest of the project fast: one change to a token updates every component and every screen.</p></div>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Collection</th><th>Count</th><th>What it holds</th><th>Set-up detail</th></tr></thead>
+  <tbody>
+   <tr><td>Primitives</td><td>27</td><td>The raw palette: ink, stone, sand, sage, clay, alpha whites</td><td><b>Hidden from pickers</b> (no scopes), so nobody can apply a raw hex by mistake</td></tr>
+   <tr><td>Color</td><td>35</td><td>Semantic roles: bg/glass, text/secondary, border/glass, icon/inverse…</td><td>Every value <b>aliases</b> a primitive; <b>scoped</b> to fills, text or strokes only</td></tr>
+   <tr><td>Spacing</td><td>11</td><td>A 4 pt scale, space/4 to space/32</td><td>Scoped to <b>Gap</b>; bound to padding and item spacing in auto layout</td></tr>
+   <tr><td>Radius</td><td>7</td><td>radius/sm 9 to radius/full 999</td><td>Scoped to <b>Corner radius</b>; bound per corner</td></tr>
+  </tbody>
+ </table></div>
+ <h3 style="font-size:1.1rem;margin:28px 0 4px">How one token travels from palette to code</h3>
+ <div class="chain">
+  <span>ink/600<small>Primitive · hidden</small></span><em>→</em>
+  <span class="v">text/secondary<small>Semantic · Text fill scope</small></span><em>→</em>
+  <span>var(--color-text-secondary)<small>Web code syntax</small></span><em>→</em>
+  <span>ListRow · Qty<small>Bound in the component</small></span>
+ </div>
+ <p style="font-size:.88rem;color:var(--ink-2);margin-top:10px;max-width:66ch">Each semantic variable carries web code syntax, so a developer inspecting a layer in Dev Mode sees the CSS variable name, not a hex value.</p>
+
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Component</th><th>Variants</th><th>Properties</th><th>UX rule in its description</th></tr></thead>
+  <tbody>
+   <tr><td>ListRow</td><td>Checked = True / False</td><td>Name, Qty, Price (text); nested Checkbox instance</td><td>Law of similarity: every row reads the same way</td></tr>
+   <tr><td>PantryCard</td><td>Status = Urgent / Fresh</td><td>Name, Location, Qty, Days; nested ProgressBar and Expiry Badge</td><td>Von Restorff: only urgent cards use clay</td></tr>
+   <tr><td>TabBar</td><td>Active = Home / Lists / Pantry / Insights</td><td>Built from TabItem instances plus the FAB</td><td>Jakob's law: a familiar bottom bar</td></tr>
+   <tr><td>IconButton</td><td>Glass / Tonal / FAB</td><td>Icon: <b>instance swap</b> from a 15-icon set</td><td>Fitts's law: 44 pt minimum, FAB 56 pt</td></tr>
+   <tr><td>SectionHeader</td><td>—</td><td>Title (text); Show link (<b>boolean</b>)</td><td>Proximity: label sits with its group</td></tr>
+   <tr><td>ProgressBar</td><td>15 / 35 / 60 / 80 / 100%</td><td>Fill uses a Scale constraint, so it resizes with the bar</td><td>Goal-gradient: visible progress</td></tr>
+   <tr><td>Button · Chip · Badge</td><td>3 · 2 · 2 styles</td><td>Label (text)</td><td>One primary action per screen</td></tr>
+  </tbody>
+ </table></div>
+
+ <div class="three" style="margin-top:26px">
+  <div class="box sun"><span class="k">What made it easy · 1</span><h3>Aliasing</h3><p>Semantic tokens point at primitives. To warm the whole palette, I only edit the 27 primitives; all 35 semantic colors follow, across every screen.</p></div>
+  <div class="box sun"><span class="k">What made it easy · 2</span><h3>Scopes</h3><p>Text colors only show up in the text picker, gaps only in gap fields. Fewer wrong choices meant fewer fixes, and it would help anyone else using the file.</p></div>
+  <div class="box sun"><span class="k">What made it easy · 3</span><h3>Properties over variants</h3><p>Text, boolean and instance-swap properties keep the variant count small. TabItem has 2 variants, not 2 × 4 icons × 4 labels.</p></div>
+  <div class="box sun"><span class="k">What made it easy · 4</span><h3>Nested instances</h3><p>PantryCard nests ProgressBar and Badge. Fixing the bar once fixed every card in the pantry.</p></div>
+  <div class="box sun"><span class="k">What made it easy · 5</span><h3>Styles for recipes</h3><p>The glass look is one effect style (background blur 24 + soft shadow). Applying it is one click, and tuning it updates every panel.</p></div>
+  <div class="box sun"><span class="k">What made it easy · 6</span><h3>The why travels</h3><p>Each component description states the UX rule it follows, so the reasoning shows up in Dev Mode and in reviews, not in a separate deck.</p></div>
+ </div>
+ <div class="guard" style="margin-top:22px"><span aria-hidden="true" style="font-size:1.3rem">✦</span><div><b>How I used AI</b><p style="margin-top:6px;color:var(--ink-2)">I worked with Claude, connected to Figma, to script the repetitive set-up: creating the variable collections, generating component variants and placing keyframes. The research, scope, palette, rules, layouts and every design decision are mine, and I reviewed and adjusted everything it built. It saved hours of clicking, not thinking.</p></div></div>
+</div></section>
+
+<section class="cs-sec" id="file"><div class="wrap">
+ <div class="eyebrow">Inspect the file</div><h2 class="h">Click around a slice of the Figma file</h2>
+ <div class="prose"><p>A small, interactive copy of the components page. Select a layer or click anything on the canvas to see its variables, auto layout and properties, the way they're set up in the real file. Purple fields are bound to variables.</p></div>
+ <div class="fig" data-fig data-default="c-row" data-fit="fcomp">
+  <div class="fig-bar"><div class="fig-logo" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="fig-tools" aria-hidden="true"><span class="on">➚</span><span>#</span><span>▭</span><span>✎</span><span>T</span><span>💬</span></div>
+    <div class="fig-file">Pantri · app / <b>Design system</b></div>
+    <div class="fig-zoom"><button type="button" data-zoom="-0.1" aria-label="Zoom out">−</button><output>100%</output><button type="button" data-zoom="0.1" aria-label="Zoom in">+</button></div></div>
+  <div class="fig-body">
+    <aside class="fig-layers" aria-label="Layers"><div class="fl-h">Pages<span>+</span></div><div class="fl-pages"><div>Cover</div><div class="on">Design system</div><div>Screens &amp; prototypes</div></div><div class="fl-h">Layers</div>
+     <button type="button" class="ly" style="--d:0" data-t="ftok"><i>#</i>Color tokens</button>
+     <button type="button" class="ly" style="--d:1" data-t="t-sec"><i>▢</i>text/secondary</button>
+     <button type="button" class="ly" style="--d:1" data-t="t-acc"><i>▢</i>bg/accent</button>
+     <button type="button" class="ly" style="--d:1" data-t="t-warn"><i>▢</i>text/warn</button>
+     <button type="button" class="ly" style="--d:1" data-t="t-glass"><i>▢</i>bg/glass</button>
+     <button type="button" class="ly" style="--d:0" data-t="fcomp"><i>#</i>Components</button>
+     <button type="button" class="ly comp" style="--d:1" data-t="c-row"><i>❖</i>ListRow · Checked=True</button>
+     <button type="button" class="ly inst" style="--d:2" data-t="c-check"><i>◇</i>Checkbox</button>
+     <button type="button" class="ly comp" style="--d:1" data-t="c-card"><i>❖</i>PantryCard · Urgent</button>
+     <button type="button" class="ly inst" style="--d:2" data-t="c-badge"><i>◇</i>Expiry Badge</button>
+     <button type="button" class="ly inst" style="--d:2" data-t="c-bar"><i>◇</i>ProgressBar · 15</button>
+     <button type="button" class="ly comp" style="--d:1" data-t="c-btn"><i>❖</i>Button · Primary</button>
+     <button type="button" class="ly comp" style="--d:1" data-t="c-tab"><i>❖</i>TabBar · Active=Pantry</button>
+     <button type="button" class="ly inst" style="--d:2" data-t="c-fab"><i>◇</i>IconButton · FAB</button>
+    </aside>
+    <div class="fig-canvas" tabindex="0" aria-label="Canvas, scroll to pan"><div class="fig-board">
+     <div class="ff" id="ftok"><div class="ff-label"># Color tokens</div><div class="ff-body pf" data-id="ftok">
+      <div class="pf-tok">
+       <div data-id="t-sec"><i style="background:#57534D"></i><span>text/secondary</span></div>
+       <div data-id="t-acc"><i style="background:#44533F"></i><span>bg/accent</span></div>
+       <div data-id="t-warn"><i style="background:#8E4220"></i><span>text/warn</span></div>
+       <div data-id="t-glass"><i style="background:linear-gradient(135deg,rgba(255,255,255,.8),rgba(255,255,255,.5)),#CBBFAE"></i><span>bg/glass</span></div>
+      </div></div></div>
+     <div class="ff" id="fcomp"><div class="ff-label comp">❖ Components</div><div class="ff-body pf" data-id="fcomp" data-al="vertical">
+      <div class="pf-comp">
+       <div class="pf-row" data-id="c-row" data-al="horizontal"><span class="pf-check" data-id="c-check">✓</span><span class="n">Spinach</span><span class="q">1 bag</span><span class="p">$3.49</span></div>
+       <div class="pf-card" data-id="c-card" data-al="vertical"><div class="top"><div><b>Greek yogurt</b><small>Fridge · 1 tub</small></div><span class="pf-badge" data-id="c-badge">1 day</span></div><div class="pf-bar" data-id="c-bar"><i></i></div></div>
+       <div class="pf-btns"><span class="pf-btn" data-id="c-btn">Add all to pantry</span><span class="pf-btn s">Review</span></div>
+       <div class="pf-tab" data-id="c-tab" data-al="horizontal"><span><i></i>Home</span><span><i></i>Lists</span><span class="pf-fab" data-id="c-fab">+</span><span class="on"><i></i>Pantry</span><span><i></i>Insights</span></div>
+      </div></div></div>
+    </div></div>
+    <aside class="fig-props" aria-label="Properties"><div class="fp-tabs"><span class="on">Design</span><span>Prototype</span><span>Dev Mode</span></div><div class="fig-props-body"></div></aside>
+  </div>
+  <div class="fig-help"><b>Interactive file</b>Click a layer or anything on the canvas to inspect it</div>
+  <template data-p="ftok"><div class="fp-sec"><h5>Frame<span></span></h5><div class="fp-row"><div class="fp-f"><i>W</i>Hug</div><div class="fp-f"><i>H</i>Hug</div></div></div><div class="fp-sec"><h5>Local variables<span>4 collections</span></h5><div class="fp-f full"><i>Primitives</i>27 · hidden</div><div class="fp-f full var"><i>Color</i>35 · aliases</div><div class="fp-f full var"><i>Spacing</i>11 · Gap</div><div class="fp-f full var"><i>Radius</i>7 · Corner</div></div><div class="fp-sec"><div class="fp-note">Primitives have no scopes, so they never appear in pickers. Designers can only reach the semantic layer.</div></div></template>
+  <template data-p="t-sec"><div class="fp-sec"><h5>Variable<span>Color</span></h5><div class="fp-f full var"><i>◈</i>text/secondary</div><div class="fp-f full"><i>Value</i>→ ink/600 (alias)</div><div class="fp-f full"><i>Scope</i>Text fill</div><div class="fp-f full"><i>Web</i>var(--color-text-secondary)</div></div><div class="fp-sec"><div class="fp-note">Used for quantities and meta text. 6.7 : 1 on glass, so it passes AA for body text.</div></div></template>
+  <template data-p="t-acc"><div class="fp-sec"><h5>Variable<span>Color</span></h5><div class="fp-f full var"><i>◈</i>bg/accent</div><div class="fp-f full"><i>Value</i>→ sage/700 (alias)</div><div class="fp-f full"><i>Scope</i>Frame fill, Shape fill</div><div class="fp-f full"><i>Web</i>var(--color-bg-accent)</div></div><div class="fp-sec"><div class="fp-note">Sage means "go": primary buttons, checked boxes, progress. Light text on it is 7.3 : 1.</div></div></template>
+  <template data-p="t-warn"><div class="fp-sec"><h5>Variable<span>Color</span></h5><div class="fp-f full var"><i>◈</i>text/warn</div><div class="fp-f full"><i>Value</i>→ clay/700 (alias)</div><div class="fp-f full"><i>Scope</i>Text fill</div><div class="fp-f full"><i>Web</i>var(--color-text-warn)</div></div><div class="fp-sec"><div class="fp-note">Clay, not red: "use soon" is a nudge, not an error. Always paired with text such as "1 day".</div></div></template>
+  <template data-p="t-glass"><div class="fp-sec"><h5>Variable<span>Color</span></h5><div class="fp-f full var"><i>◈</i>bg/glass</div><div class="fp-f full"><i>Value</i>→ white/55 (alias)</div><div class="fp-f full"><i>Effect</i>Glass/Panel · blur 24</div></div><div class="fp-sec"><div class="fp-note">The glass recipe is split in two: the fill is a variable, the blur and shadow are an effect style. Either can change without touching the other.</div></div></template>
+  <template data-p="fcomp"><div class="fp-sec"><h5>Frame<span></span></h5><div class="fp-row"><div class="fp-f"><i>W</i>420</div><div class="fp-f"><i>H</i>Hug</div></div></div><div class="fp-sec"><h5>Auto layout<span>⋮⋮</span></h5><div class="fp-dir"><span class="on">↓</span><span>→</span><span>⤶</span></div><div class="fp-row"><div class="fp-f var"><i>⇹</i>space/24</div><div class="fp-f var"><i>▢</i>space/24</div></div></div><div class="fp-sec"><div class="fp-note">20+ components live here. Screens on the next page are built only from their instances.</div></div></template>
+  <template data-p="c-row"><div class="fp-sec"><h5>❖ ListRow<span>Component</span></h5><div class="fp-f full"><i>Checked</i>True ▾</div><div class="fp-f full"><i>T Name</i>Spinach</div><div class="fp-f full"><i>T Qty</i>1 bag</div><div class="fp-f full"><i>T Price</i>$3.49</div></div><div class="fp-sec"><h5>Auto layout<span>⋮⋮</span></h5><div class="fp-dir"><span>↓</span><span class="on">→</span><span>⤶</span></div><div class="fp-row"><div class="fp-f var"><i>⇹</i>space/12</div><div class="fp-f var"><i>▢</i>space/12</div><div class="fp-f"><i>W</i>Fill</div><div class="fp-f"><i>H</i>Hug</div></div></div><div class="fp-sec"><h5>Fill &amp; radius</h5><div class="fp-f full var"><i>◈</i>bg/glass</div><div class="fp-f full var"><i>◈</i>radius/lg</div></div><div class="fp-sec"><div class="fp-note">Checked = True strikes through the name and dims it. In the prototype, tapping the box Smart Animates between the two variants.</div></div></template>
+  <template data-p="c-check"><div class="fp-sec"><h5>◇ Checkbox<span>Instance</span></h5><div class="fp-f full"><i>Checked</i>True</div><div class="fp-row"><div class="fp-f"><i>W</i>22</div><div class="fp-f"><i>H</i>22</div></div><div class="fp-f full var"><i>◈</i>bg/accent</div></div><div class="fp-sec"><div class="fp-note">The visible box is 22 pt, but the row is the tap target, so it clears 44 pt. Its border on glass is 3.2 : 1, just above the 3 : 1 rule for UI parts.</div></div></template>
+  <template data-p="c-card"><div class="fp-sec"><h5>❖ PantryCard<span>Component</span></h5><div class="fp-f full"><i>Status</i>Urgent ▾</div><div class="fp-f full"><i>T Name</i>Greek yogurt</div><div class="fp-f full"><i>T Location</i>Fridge</div><div class="fp-f full"><i>T Days</i>1 day</div></div><div class="fp-sec"><h5>Auto layout<span>⋮⋮</span></h5><div class="fp-dir"><span class="on">↓</span><span>→</span><span>⤶</span></div><div class="fp-row"><div class="fp-f var"><i>⇹</i>space/10</div><div class="fp-f var"><i>▢</i>space/14</div></div></div><div class="fp-sec"><div class="fp-note">Two nested instances: Expiry Badge and ProgressBar. Status = Urgent switches both to clay in one change.</div></div></template>
+  <template data-p="c-badge"><div class="fp-sec"><h5>◇ Expiry Badge<span>Instance</span></h5><div class="fp-f full"><i>Status</i>Urgent</div><div class="fp-f full"><i>T Label</i>1 day</div><div class="fp-f full var"><i>◈</i>text/warn</div></div><div class="fp-sec"><div class="fp-note">5.4 : 1 contrast. The label always says how many days, so meaning never depends on color (WCAG 1.4.1).</div></div></template>
+  <template data-p="c-bar"><div class="fp-sec"><h5>◇ ProgressBar<span>Instance</span></h5><div class="fp-f full"><i>Value</i>15 ▾</div><div class="fp-f full"><i>Fill constraint</i>Scale</div><div class="fp-f full var"><i>◈</i>radius/full</div></div><div class="fp-sec"><div class="fp-note">The fill uses a Scale constraint, so the card can be any width and 15% stays 15%.</div></div></template>
+  <template data-p="c-btn"><div class="fp-sec"><h5>❖ Button<span>Component</span></h5><div class="fp-f full"><i>Style</i>Primary ▾</div><div class="fp-f full"><i>T Label</i>Add all to pantry</div><div class="fp-f full var"><i>◈</i>bg/accent</div><div class="fp-f full var"><i>◈</i>radius/md</div></div><div class="fp-sec"><div class="fp-note">Three styles: Primary, Secondary, Tonal. One primary per screen, so the next step is always obvious.</div></div></template>
+  <template data-p="c-tab"><div class="fp-sec"><h5>❖ TabBar<span>Component</span></h5><div class="fp-f full"><i>Active</i>Pantry ▾</div><div class="fp-f full"><i>Built from</i>4 × TabItem + FAB</div><div class="fp-f full var"><i>◈</i>bg/glass</div></div><div class="fp-sec"><h5>Effect</h5><div class="fp-f full"><i>✦</i>Glass/Bar</div></div><div class="fp-sec"><div class="fp-note">Four variants, one per tab. Each TabItem uses instance swap for its icon, so variants stay few.</div></div></template>
+  <template data-p="c-fab"><div class="fp-sec"><h5>◇ IconButton<span>Instance</span></h5><div class="fp-f full"><i>Style</i>FAB</div><div class="fp-f full"><i>⇄ Icon</i>Plus (instance swap)</div><div class="fp-row"><div class="fp-f"><i>W</i>56</div><div class="fp-f"><i>H</i>56</div></div></div><div class="fp-sec"><h5>Prototype</h5><div class="fp-f full"><i>On tap</i>Smart Animate → Quick add</div></div><div class="fp-sec"><div class="fp-note">The most frequent task gets the biggest, closest target (Fitts's law). It morphs into the Quick add sheet.</div></div></template>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="motion"><div class="wrap">
+ <div class="eyebrow">Prototyping &amp; motion</div><h2 class="h">Motion that confirms, never decorates</h2>
+ <div class="prose"><p>I prototyped the three moments where feedback matters most: first as Smart Animate flows for testing, then as timeline animations in <strong>Figma Motion</strong> for handoff. Each one confirms an action within the 400 ms the Doherty threshold suggests.</p></div>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Moment</th><th>What moves</th><th>How it's built</th><th>Why</th></tr></thead>
+  <tbody>
+   <tr><td>Check off an item</td><td>Checkbox springs 1 → 1.18 → 1, the line strikes through, the counter and bar update</td><td>Smart Animate between ListRow variants; spring easing</td><td>Instant confirmation; progress pulls toward finishing</td></tr>
+   <tr><td>Scan to pantry</td><td>Scan line sweeps, items pop in a 120 ms stagger, the sheet rises</td><td>After-delay trigger (1.6 s), then Smart Animate</td><td>Shows the system is working, then hands back control</td></tr>
+   <tr><td>Quick add</td><td>The + button grows into the sheet: width, height, radius and position together</td><td>Matching layer names so Smart Animate morphs one into the other</td><td>The sheet visibly comes from what you tapped</td></tr>
+  </tbody>
+ </table></div>
+ <div class="duo">
+  <figure><img src="pantri-timeline.png" alt="Figma Motion timeline with keyframe tracks for scale, position and opacity." loading="lazy" width="468" height="477"><figcaption>Keyframes in Figma Motion: each track is one property change, so timing is visible and easy to hand off.</figcaption></figure>
+  <figure><img src="pantri-motion.png" alt="Frame from the check-off motion study, exported from Figma Motion." loading="lazy" width="640" height="800"><figcaption>The check-off study, exported to MP4 straight from Figma.</figcaption></figure>
+ </div>
+ <div class="box" style="margin-top:18px"><ul>
+  <li>Spring easing only for confirmations; standard ease-out for layout changes.</li>
+  <li>Every duration is between 180 and 600 ms.</li>
+  <li>With Reduce Motion on, every animation falls back to a simple fade.</li>
+ </ul></div>
+</div></section>
+
+<section class="cs-sec" id="trends"><div class="wrap">
+ <div class="eyebrow">Trends, explained differently</div><h2 class="h">I didn't follow trends. I gave each one a job.</h2>
+ <div class="prose"><p>Every trend is a tool with a cost. For each one I asked: what problem does it solve for these cooks, what does it usually break, and when would I drop it?</p></div>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Trend</th><th>The job it does in Pantri</th><th>What it usually breaks</th><th>My guardrail</th></tr></thead>
+  <tbody>
+   <tr><td>Glassmorphism</td><td>Shows what sits on top: bars, sheets, cards</td><td>Text contrast</td><td>Solid floor behind text, contrast measured on the blend, Reduce Transparency fallback</td></tr>
+   <tr><td>Quiet, warm neutrals</td><td>Lets food and urgent items stand out in a busy kitchen</td><td>Hierarchy can go flat</td><td>Only two meaning colors; size and weight carry the rest</td></tr>
+   <tr><td>AI suggestions</td><td>Turns "what's in my pantry" into "what's for dinner"</td><td>Trust: suggestions that ignore real life</td><td>Shows why ("uses spinach before it expires"), always offers a swap or a no</td></tr>
+   <tr><td>Micro-interactions</td><td>Confirms a tap when hands are busy</td><td>Slowness and distraction</td><td>Under 600 ms, only on actions, off with Reduce Motion</td></tr>
+   <tr><td>Bento cards and widgets</td><td>Home shows three answers at once: the run, use soon, dinner</td><td>Everything gets equal weight</td><td>One card leads; the rest support it</td></tr>
+   <tr><td>Token-driven theming</td><td>Dark mode or a new brand without redrawing</td><td>Token sprawl</td><td>Two layers only (primitive → semantic), with scopes</td></tr>
+  </tbody>
+ </table></div>
+</div></section>
+
+<section class="cs-sec" id="config"><div class="wrap">
+ <div class="eyebrow">New in Figma · Config 2026</div><h2 class="h">The newest Figma features, each tied to a Pantri problem</h2>
+ <div class="prose"><p>Instead of demoing features for their own sake, I used Pantri as a test bed and asked what each new tool could do for this product. Some became part of the work, others are experiments I'd keep exploring.</p></div>
+ <div class="pfeat">
+  <article><img src="pantri-shaders.png" alt="Custom shader experiment: an animated aurora fill behind a glass card." loading="lazy"><div class="ft"><span class="k">Shaders</span><h3>A living background for the glass</h3><p>I wrote two custom WebGPU shaders: an animated "Liquid Aurora" fill and a cursor-following "Glass Ripple". The glass needs something soft behind it; a shader does that without heavy image files.</p></div></article>
+  <article><img src="pantri-plugin.png" alt="Generative plugin panel filling list rows with grocery data." loading="lazy"><div class="ft"><span class="k">Generative plugins</span><h3>Real-looking data, instantly</h3><p>A working plugin that fills list rows with realistic grocery items, quantities and prices. Testing a list full of "Item 1" hides real problems like long names.</p></div></article>
+  <article><img src="pantri-agentb.png" alt="Figma agent experiment working on the Pantri file." loading="lazy"><div class="ft"><span class="k">Figma agent</span><h3>Busywork, not decisions</h3><p>An experiment handing the agent repetitive tasks like making variants and renaming layers, while layout and judgment stay with me.</p></div></article>
+  <article><img src="pantri-weave.png" alt="Weave experiment generating food imagery." loading="lazy"><div class="ft"><span class="k">Weave</span><h3>Imagery for dinner ideas</h3><p>Exploring generated food images for recipe cards, so concepts don't depend on stock photos that never match the dish.</p></div></article>
+  <article><img src="pantri-code.png" alt="Code layer experiment rendering a live component on the canvas." loading="lazy"><div class="ft"><span class="k">Code layers</span><h3>Closer to what ships</h3><p>A live code layer on the canvas, to check how a component behaves with real interaction before handoff.</p></div></article>
+  <article><img src="pantri-threed.png" alt="3D transform experiment with tilted phone screens." loading="lazy"><div class="ft"><span class="k">3D transforms</span><h3>Presentation without leaving Figma</h3><p>Tilted device layouts for the cover and Behance shots, built natively instead of in a separate 3D tool.</p></div></article>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="a11y"><div class="wrap">
+ <div class="eyebrow">Accessibility</div><h2 class="h">Glass that still passes WCAG AA</h2>
+ <div class="prose"><p>Glassmorphism is known for failing contrast. I measured every text pairing against the blended glass color, not the raw token, because that is what people actually see.</p></div>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Pairing</th><th>Ratio</th><th>Needs</th><th>Result</th></tr></thead>
+  <tbody>
+   <tr><td>Primary text on glass</td><td>14.6 : 1</td><td>4.5 : 1</td><td><span class="ok-pill">AA pass</span></td></tr>
+   <tr><td>Secondary text on glass</td><td>6.7 : 1</td><td>4.5 : 1</td><td><span class="ok-pill">AA pass</span></td></tr>
+   <tr><td>Clay "1 day" tag</td><td>5.4 : 1</td><td>4.5 : 1</td><td><span class="ok-pill">AA pass</span></td></tr>
+   <tr><td>Light text on sage button</td><td>7.3 : 1</td><td>4.5 : 1</td><td><span class="ok-pill">AA pass</span></td></tr>
+   <tr><td>Checkbox border on glass</td><td>3.2 : 1</td><td>3 : 1 (non-text)</td><td><span class="ok-pill">Pass, narrow margin</span></td></tr>
+  </tbody>
+ </table></div>
+ <div class="box" style="margin-top:18px"><ul>
+  <li>Every touch target is at least 44 × 44 pt; the Add button is 56 pt.</li>
+  <li>Status is never color alone: urgency tags always say how many days are left.</li>
+  <li>Icon-only buttons have labels such as "Add by voice" for screen readers.</li>
+  <li>Planned: Reduce Transparency swaps glass for solid surfaces, and text styles map to Dynamic Type sizes.</li>
+ </ul></div>
+</div></section>
+
+<section class="cs-sec" id="validate"><div class="wrap">
+ <div class="eyebrow">Validation plan</div><h2 class="h">How I'd prove it works</h2>
+ <div class="prose"><p>The prototype is ready for a moderated test with 5–6 home cooks, ideally including the people whose stories started this. I set the targets before testing, so the results can prove the design wrong.</p></div>
+ <div class="tbl-scroll"><table class="p-tbl">
+  <thead><tr><th>Task</th><th>Metric</th><th>Target</th><th>Tests which decision</th></tr></thead>
+  <tbody>
+   <tr><td>"Find something for dinner tonight the kids will eat"</td><td>Time and success</td><td>Under 60 s, 5 of 6</td><td>Cook from your pantry, filters</td></tr>
+   <tr><td>"This recipe needs heavy cream. What can you do?"</td><td>Picks swap vs. buy</td><td>Swap found unaided</td><td>Swaps before shopping</td></tr>
+   <tr><td>Add "2 lemons" to the list</td><td>Time on task</td><td>Under 5 s</td><td>One Add button</td></tr>
+   <tr><td>Restock the pantry after a shop</td><td>Task success</td><td>5 of 6 unaided</td><td>Receipt scan sorting</td></tr>
+   <tr><td>Overall</td><td>SUS score</td><td>80 or more</td><td>The whole experience</td></tr>
+  </tbody>
+ </table></div>
+ <p style="font-size:.9rem;color:var(--ink-2);margin-top:14px;max-width:66ch">After launch I'd track meals cooked from pantry suggestions, swaps accepted, and items marked "used" before expiry. The north star is food saved from waste per household.</p>
+</div></section>
+
+<section class="cs-sec" id="reflect"><div class="wrap">
+ <div class="eyebrow">Reflection</div><h2 class="h">What I learned, and what's next</h2>
+ <div class="three">
+  <div class="box"><span class="k">Learned</span><h3>Listen in the real setting</h3><p>Talking to cooks at a competition, not in a meeting room, showed me the real question is "what's for dinner?", not "how do I organize my list?". That shifted the whole product toward cooking.</p></div>
+  <div class="box"><span class="k">Learned</span><h3>Write the rule into the component</h3><p>Putting the UX reasoning in each component's description made reviews faster. The why travelled with every instance.</p></div>
+  <div class="box"><span class="k">Next</span><h3>Test, then cut</h3><p>Run structured interviews and the test above. Validate the swap and scan bets first, since everything downstream depends on them. Then add dark mode as a second token mode.</p></div>
+ </div>
+ <h3 style="font-size:1.1rem;margin:30px 0 0">Open the Figma files</h3>
+ <a class="btn" href="https://www.figma.com/community/file/1695334220349090007" target="_blank" rel="noopener" style="margin-top:14px">Duplicate on Figma Community <span class="arr">↗</span></a>
+ <div class="flinks">
+  <a href="https://www.figma.com/design/Gp43XmbNDsjmQKdrdnlu2B" target="_blank" rel="noopener"><b>Pantri app ↗</b><span>Screens, variables, components, prototypes</span></a>
+  <a href="https://www.figma.com/design/3UbCcnOZFHcMh5XOHIhPQN" target="_blank" rel="noopener"><b>Config 2026 feature lab ↗</b><span>Shaders, plugin, agent, Weave, code layers, 3D</span></a>
+  <a href="https://www.figma.com/design/jCL3ReaL7yW7zPsTjrT3sx" target="_blank" rel="noopener"><b>Feature reels ↗</b><span>Seven Figma Motion animations</span></a>
+ </div>
+ <p class="muted" style="font-size:.82rem;margin-top:16px">Pantri is a self-initiated concept by Shivani Harode, 2026. Research came from informal conversations and is treated as direction to validate. The food-waste figure is the USDA's estimate.</p>
+</div></section>
+<div class="wrap"><a class="next glass" href="lab.html"><div><small>Back to</small><h3>My work</h3></div><span class="circle" aria-hidden="true">→</span></a></div></main><div class="wrap"><footer class="foot">
+  <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
+  <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="system.html">Site design system</a> · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
+</footer></div>
+<script src="site.js?v=9"></script>
+</body>
+</html>
