@@ -335,39 +335,49 @@ main>section{position:relative;z-index:1}
   var B=D.map(function(d){var e=document.createElement('div');var im=new Image();im.src=d[0]+'.webp';im.alt='';
     if(d[1]){e.className='bb lab';var t=document.createElement('span');t.textContent=d[1];e.appendChild(im);e.appendChild(t)}
     else{e.className='bb dot';e.style.width=e.style.height=d[2]+'px';e.appendChild(im)}
-    layer.appendChild(e);var a=rnd()*6.283,sp=d[1]?62+rnd()*26:36+rnd()*30;
+    layer.appendChild(e);var a=rnd()*6.283,sp=d[1]?17+rnd()*8:11+rnd()*9;
     return{el:e,x:0,y:0,w:0,h:0,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,sp:sp,lab:!!d[1],placed:false}});
   var OB=[],W=0,H=0,TOP=84;
   var SEL='.hc-plate,.sec-head>div,.sec-head>p,.steps,#about .txt,.foot';
+  var SOLID='.hc-face,.gcard,.b-stats,#xcq-try,.quote,.guard,.mw-card,.polaroids,.contact';
   function measure(){W=innerWidth;H=innerHeight;var phone=W<760;TOP=phone?76:84;OB=[];
     if(!phone)[].forEach.call(document.querySelectorAll(SEL),function(a){if(!a.textContent.trim())return;var r=a.getBoundingClientRect();if(!r.width)return;
-      OB.push({x:r.left-12,y:r.top+scrollY-12,w:r.width+24,h:r.height+24})});
+      OB.push({x:r.left-12,y:r.top+scrollY-12,w:r.width+24,h:r.height+24,text:1})});
+    if(!phone)[].forEach.call(document.querySelectorAll(SOLID),function(a){var r=a.getBoundingClientRect();if(!r.width)return;
+      OB.push({x:r.left-2,y:r.top+scrollY-2,w:r.width+4,h:r.height+4})});
     B.forEach(function(b){b.w=b.el.offsetWidth;b.h=b.el.offsetHeight;
       if(!b.placed&&b.w){b.placed=true;b.x=rnd()*Math.max(1,W-b.w);b.y=TOP+rnd()*Math.max(1,H-TOP-b.h)}
       b.x=Math.min(b.x,Math.max(0,W-b.w));b.y=Math.min(b.y,Math.max(TOP,H-b.h))})}
   var last=0,lastY=scrollY,px=-999,py=-999,running=false;
-  function hit(b,o,sy){var ox=o.x,oy=o.y-sy;if(b.x+b.w<=ox||b.x>=ox+o.w||b.y+b.h<=oy||b.y>=oy+o.h)return;
-    var l=b.x+b.w-ox,r=ox+o.w-b.x,t=b.y+b.h-oy,d=oy+o.h-b.y,m=Math.min(l,r,t,d);
-    if(m===l){b.x-=l;if(b.vx>0)b.vx=-b.vx}else if(m===r){b.x+=r;if(b.vx<0)b.vx=-b.vx}
-    else if(m===t){b.y-=t;if(b.vy>0)b.vy=-b.vy}else{b.y+=d;if(b.vy<0)b.vy=-b.vy}}
+  function over(x,y,b,o,sy){var oy=o.y-sy;return !(x+b.w<=o.x||x>=o.x+o.w||y+b.h<=oy||y>=oy+o.h)}
+  /* text pushes a badge away. A card or photo bounces it on touch; if scrolling slid one over a badge,
+     the badge drifts behind it to the nearest edge, then bounces normally. */
+  function hit(b,o,sy,px0,py0){if(!over(b.x,b.y,b,o,sy))return;
+    var ox=o.x,oy=o.y-sy,l=b.x+b.w-ox,r=ox+o.w-b.x,t=b.y+b.h-oy,d=oy+o.h-b.y,m=Math.min(l,r,t,d);
+    if(!o.text&&over(px0,py0,b,o,sy)){var pull=8*(1/60);
+      if(m===l)b.vx-=pull*b.sp;else if(m===r)b.vx+=pull*b.sp;else if(m===t)b.vy-=pull*b.sp;else b.vy+=pull*b.sp;return}
+    var was=false;
+    if(m===l){b.x-=l;if(b.vx>0){b.vx=-b.vx;was=true}}else if(m===r){b.x+=r;if(b.vx<0){b.vx=-b.vx;was=true}}
+    else if(m===t){b.y-=t;if(b.vy>0){b.vy=-b.vy;was=true}}else{b.y+=d;if(b.vy<0){b.vy=-b.vy;was=true}}
+    if(was){b.sq=1;b.sqx=(m===l||m===r)}}
   function frame(now){
     if(calm()||document.hidden){running=false;return}
     var dt=Math.min(.04,(now-last)/1000||.016);last=now;
     var sy=scrollY,ds=sy-lastY;lastY=sy;
     B.forEach(function(b){if(!b.w)return;
-      if(ds){b.vy-=Math.max(-60,Math.min(60,ds*2.2))*(b.lab?.6:1)}
-      if(px>-900){var dx=b.x+b.w/2-px,dy=b.y+b.h/2-py,dd=Math.hypot(dx,dy);if(dd<170&&dd>1){var f=(170-dd)*2.4*dt;b.vx+=dx/dd*f;b.vy+=dy/dd*f}}
+      if(ds){b.vy-=Math.max(-14,Math.min(14,ds*.5))}
+      if(px>-900){var dx=b.x+b.w/2-px,dy=b.y+b.h/2-py,dd=Math.hypot(dx,dy);if(dd<170&&dd>1){var f=(170-dd)*.7*dt;b.vx+=dx/dd*f;b.vy+=dy/dd*f}}
       /* keep moving: drift back to its own cruising speed */
-      var v=Math.hypot(b.vx,b.vy)||1,k=1+(b.sp/v-1)*Math.min(1,dt*1.4);b.vx*=k;b.vy*=k;
-      b.x+=b.vx*dt;b.y+=b.vy*dt;
-      OB.forEach(function(o){hit(b,o,sy)});
-      if(b.x<0){b.x=0;b.vx=Math.abs(b.vx)}if(b.x+b.w>W){b.x=Math.max(0,W-b.w);b.vx=-Math.abs(b.vx)}
-      if(b.y<TOP){b.y=TOP;b.vy=Math.abs(b.vy)}if(b.y+b.h>H){b.y=Math.max(TOP,H-b.h);b.vy=-Math.abs(b.vy)}});
+      var v=Math.hypot(b.vx,b.vy)||1,k=1+(b.sp/v-1)*Math.min(1,dt*.9);b.vx*=k;b.vy*=k;
+      var x0=b.x,y0=b.y;b.x+=b.vx*dt;b.y+=b.vy*dt;
+      OB.forEach(function(o){hit(b,o,sy,x0,y0)});
+      if(b.x<0){b.x=0;b.vx=Math.abs(b.vx);b.sq=1;b.sqx=true}if(b.x+b.w>W){b.x=Math.max(0,W-b.w);b.vx=-Math.abs(b.vx);b.sq=1;b.sqx=true}
+      if(b.y<TOP){b.y=TOP;b.vy=Math.abs(b.vy);b.sq=1;b.sqx=false}if(b.y+b.h>H){b.y=Math.max(TOP,H-b.h);b.vy=-Math.abs(b.vy);b.sq=1;b.sqx=false}});
     /* badges bounce off each other */
     for(var i=0;i<B.length;i++)for(var j=i+1;j<B.length;j++){var a=B[i],c=B[j];if(!a.w||!c.w)continue;
       var ox=Math.min(a.x+a.w,c.x+c.w)-Math.max(a.x,c.x),oy=Math.min(a.y+a.h,c.y+c.h)-Math.max(a.y,c.y);if(ox<=0||oy<=0)continue;
-      if(ox<oy){var s=a.x<c.x?-1:1;a.x+=s*ox/2;c.x-=s*ox/2;var t=a.vx;a.vx=c.vx;c.vx=t}else{var s2=a.y<c.y?-1:1;a.y+=s2*oy/2;c.y-=s2*oy/2;var t2=a.vy;a.vy=c.vy;c.vy=t2}}
-    B.forEach(function(b){var tilt=Math.max(-3,Math.min(3,b.vx*.03));if(!b.lab)tilt=0;b.el.style.transform='translate3d('+b.x.toFixed(1)+'px,'+b.y.toFixed(1)+'px,0) rotate('+tilt.toFixed(2)+'deg)'});
+      if(ox<oy){var s=a.x<c.x?-1:1;a.x+=s*ox/2;c.x-=s*ox/2;var t=a.vx;a.vx=c.vx;c.vx=t;a.sq=c.sq=1;a.sqx=c.sqx=true}else{var s2=a.y<c.y?-1:1;a.y+=s2*oy/2;c.y-=s2*oy/2;var t2=a.vy;a.vy=c.vy;c.vy=t2;a.sq=c.sq=1;a.sqx=c.sqx=false}}
+    B.forEach(function(b){var tilt=Math.max(-3,Math.min(3,b.vx*.1));if(!b.lab)tilt=0;b.sq=(b.sq||0)*Math.pow(.05,dt);var q=b.sq*.07,sx=b.sqx?1-q:1+q*.5,sy2=b.sqx?1+q*.5:1-q;b.el.style.transform='translate3d('+b.x.toFixed(1)+'px,'+b.y.toFixed(1)+'px,0) rotate('+tilt.toFixed(2)+'deg) scale('+sx.toFixed(3)+','+sy2.toFixed(3)+')'});
     requestAnimationFrame(frame)}
   function go(){if(running||calm()||document.hidden)return;running=true;last=performance.now();lastY=scrollY;requestAnimationFrame(frame)}
   if(matchMedia('(hover:hover) and (pointer:fine)').matches)addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY},{passive:true});
