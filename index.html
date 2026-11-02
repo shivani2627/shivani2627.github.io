@@ -22,49 +22,106 @@
 </header>
 <main id="main">
 <style>
-.hero-cloak{position:relative;height:100svh;min-height:560px;max-height:1100px;display:grid;place-items:center;overflow:hidden;background:var(--bg);touch-action:pan-y}
-.hc-plate{position:relative;z-index:auto;text-align:center;padding:0 16px}
-.hc-name{font-family:var(--f-display);font-weight:600;font-size:clamp(2.8rem,10vw,8.5rem);line-height:.95;letter-spacing:-.045em;margin:0;
-  background:linear-gradient(100deg,var(--ink) 0%,var(--ink) 38%,var(--sun-ink) 72%,var(--sun) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;
-  padding-bottom:.08em}
-.hc-role{font-family:var(--f-mono);font-size:clamp(.78rem,1.3vw,.95rem);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin-top:clamp(12px,2vw,22px)}
-.hc-line{position:relative;z-index:2;isolation:isolate;display:inline-block;margin-top:clamp(18px,2.4vw,26px);padding:14px 28px;border-radius:999px;font-size:clamp(1rem,1.7vw,1.3rem);line-height:1.4;font-weight:500;color:var(--ink);text-wrap:balance;max-width:min(92vw,64ch);background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.04) 55%,rgba(255,255,255,.14));-webkit-backdrop-filter:blur(2.5px) saturate(1.6);backdrop-filter:blur(2.5px) saturate(1.6);border:1px solid rgba(20,22,27,.10);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -12px 18px -12px rgba(255,255,255,.85),inset 10px 0 18px -14px rgba(255,255,255,.7),inset -10px 0 18px -14px rgba(255,255,255,.7),0 1px 2px rgba(20,22,27,.08),0 16px 34px -16px rgba(20,22,27,.35);transition:box-shadow .5s,transform .5s cubic-bezier(.2,.8,.2,1)}
-.hc-line::before{content:"";position:absolute;z-index:-1;left:8%;right:8%;top:3px;height:46%;border-radius:999px;pointer-events:none;background:linear-gradient(180deg,rgba(255,255,255,.75),rgba(255,255,255,0));opacity:.55;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
-.hc-line::after{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.1) 35%,rgba(255,255,255,0) 60%,rgba(255,255,255,.7));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
-.hc-line:hover{transform:translateY(-2px) scale(1.01)}
-.hc-line:hover::before{transform:translateX(4%)}
-:root[data-theme="dark"] .hc-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 55%,rgba(255,255,255,.07));border-color:rgba(255,255,255,.18);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.35),inset 0 -12px 18px -12px rgba(255,255,255,.18),inset 10px 0 18px -14px rgba(255,255,255,.15),inset -10px 0 18px -14px rgba(255,255,255,.15),0 14px 34px -14px rgba(0,0,0,.7)}
-:root[data-theme="dark"] .hc-line::before{opacity:.18}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hc-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 55%,rgba(255,255,255,.07));border-color:rgba(255,255,255,.18);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.35),inset 0 -12px 18px -12px rgba(255,255,255,.18),inset 10px 0 18px -14px rgba(255,255,255,.15),inset -10px 0 18px -14px rgba(255,255,255,.15),0 14px 34px -14px rgba(0,0,0,.7)}:root:not([data-theme="light"]) .hc-line::before{opacity:.18}}
-:root[data-mode="focus"] .hc-line{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--surface);transition:none}:root[data-mode="focus"] .hc-line:hover{transform:none}
-@media (prefers-reduced-motion:reduce){.hc-line,.hc-line::before{transition:none}.hc-line:hover{transform:none}}
-.hc-line em{font-style:normal;font-weight:600;background:linear-gradient(100deg,var(--sun-ink),var(--sun));-webkit-background-clip:text;background-clip:text;color:transparent}
-@media (max-width:640px){.hc-line{border-radius:22px;padding:12px 18px}}
+.hero-cloak{position:relative;min-height:min(100svh,940px);display:grid;align-items:center;overflow:hidden;background:var(--bg);touch-action:pan-y;padding:clamp(92px,11vh,120px) 0 clamp(36px,6vh,64px)}
+.hc-grid{width:min(1180px,calc(100% - 40px));margin-inline:auto;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.85fr);gap:clamp(28px,5vw,72px);align-items:center}
+.hc-plate{position:relative;z-index:2;text-align:left;min-width:0}
+.hc-name{font-family:var(--f-display);font-weight:600;font-size:clamp(3.2rem,8.4vw,7.6rem);line-height:.92;letter-spacing:-.045em;margin:0;color:var(--ink);padding-bottom:.08em}
+.hc-name span{display:block}
+.hc-role{font-family:var(--f-mono);font-size:clamp(.78rem,1.2vw,.92rem);letter-spacing:.18em;text-transform:uppercase;color:var(--ink-2);margin:clamp(10px,1.6vw,18px) 0 0}
+.hc-line{position:relative;z-index:2;isolation:isolate;display:inline-block;margin:clamp(18px,2.4vw,26px) 0 0;padding:14px 26px;border-radius:26px;font-size:clamp(1.05rem,1.7vw,1.32rem);line-height:1.4;font-weight:500;color:var(--ink);text-wrap:balance;max-width:min(100%,34ch);background:linear-gradient(180deg,rgba(255,255,255,.30),rgba(255,255,255,.04) 55%,rgba(255,255,255,.14));-webkit-backdrop-filter:blur(2.5px) saturate(1.6);backdrop-filter:blur(2.5px) saturate(1.6);border:1px solid rgba(20,22,27,.10);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.95),inset 0 -12px 18px -12px rgba(255,255,255,.85),inset 10px 0 18px -14px rgba(255,255,255,.7),inset -10px 0 18px -14px rgba(255,255,255,.7),0 1px 2px rgba(20,22,27,.08),0 16px 34px -16px rgba(20,22,27,.35)}
+:root[data-theme="dark"] .hc-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 55%,rgba(255,255,255,.07));border-color:rgba(255,255,255,.18);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.35),inset 0 -12px 18px -12px rgba(255,255,255,.18),0 14px 34px -14px rgba(0,0,0,.7)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .hc-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.03) 55%,rgba(255,255,255,.07));border-color:rgba(255,255,255,.18);box-shadow:inset 0 1.5px 1px rgba(255,255,255,.35),inset 0 -12px 18px -12px rgba(255,255,255,.18),0 14px 34px -14px rgba(0,0,0,.7)}}
+:root[data-mode="focus"] .hc-line{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--surface)}
+.hc-line em{font-style:normal;font-weight:600;color:var(--sun-ink)}
+.hc-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.hc-w{display:inline-block;white-space:nowrap}
+.hc-c{display:inline-block;white-space:pre;animation:hcSettle .95s cubic-bezier(.2,.85,.25,1) both;animation-delay:calc(.35s + var(--i)*26ms)}
+@keyframes hcSettle{from{transform:translate(var(--x),var(--y)) rotate(var(--r));opacity:.15}to{transform:none;opacity:1}}
+.hc-proof{position:relative;z-index:2;margin:16px 0 0;font-size:.98rem;color:var(--ink-2);max-width:46ch}
+.hc-proof b{color:var(--ink);font-weight:600}
+.hc-cta{position:relative;z-index:2;display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hc-cta .btn:focus-visible{outline:2px solid var(--sel);outline-offset:3px}
+.hc-face{position:relative;z-index:2;margin:0;border-radius:32px;overflow:hidden;aspect-ratio:4/5;max-height:calc(min(100svh,940px) - 150px);justify-self:end;width:100%;background:var(--bg-2);box-shadow:var(--shadow)}
+.hc-face img{display:block;width:100%;height:100%;object-fit:cover}
+.hc-face figcaption{position:absolute;left:12px;right:12px;bottom:12px;padding:10px 14px;border-radius:16px;font-size:.84rem;line-height:1.35;color:var(--ink);background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(1.6);backdrop-filter:blur(16px) saturate(1.6);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 var(--glass-edge)}
+.hc-face figcaption b{display:block;font-weight:600}
+:root[data-mode="focus"] .hc-face figcaption{-webkit-backdrop-filter:none;backdrop-filter:none}
 .hc-cloak{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+@media (max-width:820px){.hc-cloak{opacity:.4}}
+@media (max-width:820px){.hc-grid{grid-template-columns:1fr}.hc-face{order:-1;justify-self:start;width:min(62%,300px);max-height:none;border-radius:24px}.hc-face figcaption{display:none}.hc-name{font-size:clamp(3.2rem,16vw,5.4rem)}.hc-line{padding:12px 18px;border-radius:20px}}
+@media (prefers-reduced-motion:reduce){.hc-c{animation:none}}
+:root[data-mode="focus"] .hc-c{animation:none}
+
+/* Case study bento */
+.gcards.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px}
+.bento .gcard{grid-column:span 4}
+.bento .b-protect{grid-column:span 7;grid-row:span 2}
+.bento .b-dese{grid-column:span 5}
+.bento .b-protect .gthumb{aspect-ratio:auto;flex:1;min-height:300px}
+.bento .b-protect .gbody h3{font-size:clamp(1.5rem,2.4vw,2rem)}
+.bento .b-protect .gbody{flex:none}
+.bento .b-protect .gbody .tags{margin-top:6px}
+.bento .b-protect .gbody p{min-height:0}
+.bento .b-dese .gbody p{min-height:0}
+.bento .b-dese .gthumb{aspect-ratio:16/9}
+.bento .gshot{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top left;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.bento .gcard:hover .gshot{transform:scale(1.025)}
+:root[data-mode="focus"] .bento .gcard:hover .gshot{transform:none}
+@media (prefers-reduced-motion:reduce){.bento .gcard:hover .gshot{transform:none}}
+.b-stats{grid-column:span 5;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:20px 22px;border-radius:26px;background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(1.7);backdrop-filter:blur(22px) saturate(1.7);border:1px solid var(--glass-line);box-shadow:inset 0 1px 0 var(--glass-edge),var(--shadow)}
+:root[data-mode="focus"] .b-stats{-webkit-backdrop-filter:none;backdrop-filter:none}
+.b-stats b{display:block;font-family:var(--f-display);font-size:clamp(1.25rem,2vw,1.65rem);font-weight:600;letter-spacing:-.03em;line-height:1.1}
+.b-stats span{display:block;font-size:.8rem;line-height:1.35;color:var(--ink-2);margin-top:4px}
+.bx{position:absolute;left:5%;right:5%;top:7%;bottom:-3%;border-radius:14px 14px 0 0;overflow:hidden;background:#fff;color:#111827;font-family:var(--f-body);font-size:13px;box-shadow:0 22px 44px -18px rgba(20,22,27,.45);transform:translate3d(calc(var(--dx,0)*10px),calc(var(--dy,0)*10px),0);transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.bx-top{display:flex;gap:9px;align-items:center;padding:10px 14px;background:#233b63;color:#fff;font-size:12px}
+.bx-top b{font-weight:700}.bx-top b em{font-style:normal;color:#e1c25c}.bx-top span:last-child{margin-left:auto;opacity:.85}
+.bx-meta{padding:10px 14px;display:flex;justify-content:space-between;gap:10px;font-size:12px;color:#4b5563;border-bottom:1px solid #e5e7eb}
+.bx-meta b{color:#111827}
+.bx table{width:100%;border-collapse:collapse}
+.bx th{text-align:left;font-size:11px;font-weight:600;color:#4b5563;padding:8px 14px;background:#f3f5f9;border-bottom:1px solid #e5e7eb}
+.bx td{padding:9px 14px;border-bottom:1px solid #eef0f4;white-space:nowrap}
+.bx tr.on td{background:rgba(225,194,92,.22)}
+.bx td:first-child{font-weight:600;color:#233b63}
+.bx td.al{color:#4b5563;font-size:12px}
+@media (max-width:980px){.bento .gcard,.bento .gcard.b-protect,.bento .gcard.b-dese,.b-stats{grid-column:span 6;grid-row:auto}.bento .b-protect,.b-stats{grid-column:span 12!important}.bento .gcard:last-child{grid-column:span 12}}
+@media (max-width:640px){.gcards.bento{grid-template-columns:1fr}.bento .gcard,.bento .gcard.b-protect,.bento .gcard.b-dese,.bento .gcard:last-child,.b-stats{grid-column:auto!important}.bento .b-protect .gthumb{min-height:240px}.bx .h-sm{display:none}}
+
+/* Try XCQ on the landing page */
+#try{padding-top:0}
+#try .sec-head{margin-bottom:22px}
+#try .xtry{margin-top:0}
 </style><section class="hero-cloak" aria-label="Introduction">
-  <div class="hc-plate">
-    <h1 class="hc-name">Shivani Harode</h1>
-    <p class="hc-role">Senior UX Designer</p>
-    <p class="hc-line">I make <em>complex information</em> clear for the people who use it.</p>
+  <div class="hc-grid">
+    <div class="hc-plate">
+      <h1 class="hc-name"><span>Shivani</span> <span>Harode</span></h1>
+      <p class="hc-role">Senior UX Designer</p>
+      <p class="hc-line">I make <em class="hc-kin">complex information</em> clear for the people who use it.</p>
+      <p class="hc-proof">Sole designer of PROTECT, <b>live in all 72 Wisconsin counties</b>.</p>
+      <div class="hc-cta"><a class="btn" href="#work">See case studies <span class="arr" aria-hidden="true">↓</span></a><a class="btn ghost" href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></div>
+    </div>
+    <figure class="hc-face tilt">
+      <img src="sh-portrait.jpg" width="960" height="1200" alt="Portrait of Shivani Harode smiling in front of autumn trees" fetchpriority="high">
+      <figcaption><b>Open to senior UX roles</b>Remote or Dallas–Fort Worth</figcaption>
+    </figure>
   </div>
   <canvas class="hc-cloak" aria-hidden="true"></canvas>
 </section>
 
 
 <section id="work"><div class="wrap">
- <div class="sec-head"><div><div class="eyebrow">Selected work · 2018 – now</div><h2>Case studies</h2></div>
-  <div class="proof">
+ <div class="sec-head"><div><div class="eyebrow">Selected work · 2018 – now</div><h2>Case studies</h2></div><p></p></div>
+ <div class="gcards bento">
+  <a class="gcard b-protect" href="protect.html" style="--acc:#8fa6d6;--acc2:#f2d27a;--acc-ink:#c79a1a;--acc-soft:rgba(225,194,92,.35)">
+   <div class="gthumb" aria-hidden="true"><i class="b1"></i><i class="b2"></i><div class="bx"><div class="bx-top"><b>PRO<em>TECT</em></b><span>| XCQ Search</span><span>Data synced 2:00 AM</span></div><div class="bx-meta"><span><b>1,248 results</b> for Last name = “Lars”</span><span>Show 25</span></div><table><thead><tr><th>Full name ↑</th><th class="h-sm">DOB</th><th>County</th><th class="h-sm">Aliases</th></tr></thead><tbody><tr><td>Larsen, Erik J</td><td class="h-sm">03/14/1981</td><td>Dane</td><td class="al h-sm">AKA Erik Larssen</td></tr><tr class="on"><td>Larsen-Holt, Priya A</td><td class="h-sm">11/02/1990</td><td>Brown</td><td class="al h-sm">AKA Priya Holt · P. Larsen</td></tr><tr><td>Larson, Dana K</td><td class="h-sm">06/27/1975</td><td>Eau Claire</td><td class="al h-sm">—</td></tr><tr><td>Lars, Theo M</td><td class="h-sm">01/09/1968</td><td>Marathon</td><td class="al h-sm">AKA Ted Lars +2 more</td></tr><tr><td>Lindqvist, Maya R</td><td class="h-sm">08/30/1996</td><td>Outagamie</td><td class="al h-sm">AKA Maya Larsen</td></tr></tbody></table></div></div>
+   <div class="gbody"><div class="org"><span>State of Wisconsin</span><span>2024 – 25</span></div><h3>PROTECT case management</h3><p>Sole designer for a statewide legal system: brand, a design system built from IBM Carbon, three web tools and a desktop app.</p><p class="gout">Live in all 72 Wisconsin counties</p><div class="tags"><span class="tag fg">IBM Carbon</span><span class="tag">Light + dark</span><span class="tag">Legal</span></div><span class="gmore">Read case study <span aria-hidden="true">→</span></span></div>
+  </a>
+  <div class="b-stats">
    <div><b>8 years</b><span>in UX and UI design</span></div>
    <div><b>72 counties</b><span>use PROTECT, live statewide</span></div>
    <div><b>300+ screens</b><span>moved into one system</span></div>
-  </div></div>
- <div class="gcards feat">
-  <a class="gcard" href="protect.html" style="--acc:#8fa6d6;--acc2:#f2d27a;--acc-ink:#c79a1a;--acc-soft:rgba(225,194,92,.35)">
-   <div class="gthumb" aria-hidden="true"><i class="b1"></i><i class="b2"></i><div class="gwin"><div class="gbar"><i></i><i></i><i></i></div><svg viewBox="0 0 240 128"><path d="M30 10 52 18v22c0 16-10 26-22 30-12-4-22-14-22-30V18Z" class="k"/><path d="M30 26v22M21 32h18M21 32l-4 9h8Zm18 0-4 9h8Z" class="sl" style="stroke:var(--acc-ink)"/><rect x="66" y="8" width="166" height="114" rx="6" class="f"/><rect x="66" y="8" width="166" height="16" rx="6" class="k"/><rect x="76" y="33" width="44" height="4" rx="2.0" class="l"/><rect x="132" y="33" width="26" height="4" rx="2.0" class="l"/><rect x="170" y="33" width="40" height="4" rx="2.0" class="l"/><rect x="70" y="45" width="158" height="15" rx="3" class="as"/><rect x="76" y="51" width="44" height="4" rx="2.0" class="l"/><rect x="132" y="51" width="26" height="4" rx="2.0" class="l"/><rect x="170" y="51" width="40" height="4" rx="2.0" class="l"/><rect x="76" y="69" width="44" height="4" rx="2.0" class="l"/><rect x="132" y="69" width="26" height="4" rx="2.0" class="l"/><rect x="170" y="69" width="40" height="4" rx="2.0" class="l"/><rect x="76" y="87" width="44" height="4" rx="2.0" class="l"/><rect x="132" y="87" width="26" height="4" rx="2.0" class="l"/><rect x="170" y="87" width="40" height="4" rx="2.0" class="l"/><rect x="76" y="105" width="44" height="4" rx="2.0" class="l"/><rect x="132" y="105" width="26" height="4" rx="2.0" class="l"/><rect x="170" y="105" width="40" height="4" rx="2.0" class="l"/><rect x="8" y="84" width="48" height="38" rx="6" class="f"/><rect x="14" y="94" width="30" height="4" rx="2.0" class="a"/><rect x="14" y="104" width="22" height="4" rx="2.0" class="l"/><rect x="14" y="112" width="30" height="4" rx="2.0" class="l"/></svg></div></div>
-   <div class="gbody"><div class="org"><span>State of Wisconsin</span><span>2024 – 25</span></div><h3>PROTECT case management</h3><p>Sole designer for a statewide legal system: brand, a design system built from IBM Carbon, three web tools and a desktop app.</p><p class="gout">Live in all 72 Wisconsin counties</p><div class="tags"><span class="tag fg">IBM Carbon</span><span class="tag">Light + dark</span><span class="tag">Legal</span></div><span class="gmore">Read case study <span aria-hidden="true">→</span></span></div>
-  </a>
-  <a class="gcard" href="dese.html" style="--acc:#7fb2ff;--acc2:#ffd36b;--acc-ink:#2563eb;--acc-soft:rgba(37,99,235,.18)">
-   <div class="gthumb" aria-hidden="true"><i class="b1"></i><i class="b2"></i><div class="gwin"><div class="gbar"><i></i><i></i><i></i></div><svg viewBox="0 0 240 128"><rect x="8" y="6" width="68" height="34" rx="6" class="f"/><rect x="16" y="14" width="30" height="4" rx="2.0" class="l"/><rect x="16" y="24" width="22" height="8" rx="4.0" class="k"/><rect x="84" y="6" width="68" height="34" rx="6" class="f"/><rect x="92" y="14" width="30" height="4" rx="2.0" class="l"/><rect x="92" y="24" width="22" height="8" rx="4.0" class="k"/><rect x="160" y="6" width="68" height="34" rx="6" class="f"/><rect x="168" y="14" width="30" height="4" rx="2.0" class="l"/><rect x="168" y="24" width="22" height="8" rx="4.0" class="k"/><rect x="8" y="48" width="220" height="74" rx="6" class="f"/><rect x="20" y="82" width="10" height="30" rx="2" class="k"/><rect x="37" y="88" width="10" height="24" rx="2" class="a"/><rect x="54" y="72" width="10" height="40" rx="2" class="k"/><rect x="71" y="76" width="10" height="36" rx="2" class="a"/><rect x="88" y="90" width="10" height="22" rx="2" class="k"/><rect x="105" y="92" width="10" height="20" rx="2" class="a"/><rect x="122" y="66" width="10" height="46" rx="2" class="k"/><rect x="139" y="70" width="10" height="42" rx="2" class="a"/><rect x="156" y="78" width="10" height="34" rx="2" class="k"/><rect x="173" y="82" width="10" height="30" rx="2" class="a"/><rect x="190" y="86" width="10" height="26" rx="2" class="k"/><rect x="207" y="84" width="10" height="28" rx="2" class="a"/></svg></div></div>
+  </div>
+  <a class="gcard b-dese" href="dese.html" style="--acc:#7fb2ff;--acc2:#ffd36b;--acc-ink:#2563eb;--acc-soft:rgba(37,99,235,.18)">
+   <div class="gthumb" aria-hidden="true"><img class="gshot" src="dese-final-dashboard.jpg" alt="" loading="lazy"></div>
    <div class="gbody"><div class="org"><span>State of Missouri · DESE</span><span>Jan – Jun 2026</span></div><h3>School finance portal</h3><p>A six-month rebuild of the state's school-finance portal, from a maze of links to a role-based system.</p><p class="gout">Research to handoff in six months</p><div class="tags"><span class="tag ai">AI-assisted</span><span class="tag fg">Design system</span></div><span class="gmore">Read case study <span aria-hidden="true">→</span></span></div>
   </a>
   <a class="gcard" href="hp.html" style="--acc:#7fd3f2;--acc2:#b7c4ff;--acc-ink:#0284c7;--acc-soft:rgba(2,132,199,.18)">
@@ -79,6 +136,34 @@
    <div class="gthumb" aria-hidden="true"><i class="b1"></i><i class="b2"></i><div class="gwin"><div class="gbar"><i></i><i></i><i></i></div><svg viewBox="0 0 240 128"><rect x="8" y="6" width="68" height="116" rx="6" class="f"/><rect x="14" y="12" width="56" height="44" rx="5" class="as"/><path d="M28 26h28v14h-28zM34 40v10M50 40v10" class="sl"/><rect x="16" y="66" width="44" height="6" rx="3.0" class="k"/><rect x="16" y="78" width="22" height="10" rx="5" class="a"/><rect x="16" y="96" width="50" height="4" rx="2.0" class="l"/><rect x="16" y="106" width="36" height="4" rx="2.0" class="l"/><rect x="84" y="6" width="68" height="116" rx="6" class="f"/><rect x="90" y="12" width="56" height="44" rx="5" class="as"/><path d="M104 26h28v14h-28zM110 40v10M126 40v10" class="sl"/><rect x="92" y="66" width="44" height="6" rx="3.0" class="k"/><rect x="92" y="78" width="30" height="10" rx="5" class="a"/><rect x="92" y="96" width="50" height="4" rx="2.0" class="l"/><rect x="92" y="106" width="36" height="4" rx="2.0" class="l"/><rect x="160" y="6" width="68" height="116" rx="6" class="f"/><rect x="166" y="12" width="56" height="44" rx="5" class="as"/><path d="M180 26h28v14h-28zM186 40v10M202 40v10" class="sl"/><rect x="168" y="66" width="44" height="6" rx="3.0" class="k"/><rect x="168" y="78" width="38" height="10" rx="5" class="a"/><rect x="168" y="96" width="50" height="4" rx="2.0" class="l"/><rect x="168" y="106" width="36" height="4" rx="2.0" class="l"/></svg></div></div>
    <div class="gbody"><div class="org"><span>Atos Syntel · FedEx</span><span>2018 – 21</span></div><h3>Print product pages</h3><p>Where I moved from UI developer to designer: customer research and tested concepts for choosing print products.</p><p class="gout">Two rounds of usability testing</p><div class="tags"><span class="tag">E‑commerce</span><span class="tag">Usability testing</span></div><span class="gmore">Read case study <span aria-hidden="true">→</span></span></div>
   </a>
+ </div>
+</div></section>
+
+<section id="try"><div class="wrap">
+ <div class="sec-head"><div><div class="eyebrow">Try it · PROTECT</div><h2>Search like DA staff do</h2></div><p>A small working version of the XCQ search. Type a last name, sort the columns, or turn on a failed county sync to see how the screen warns you. All names are fictional.</p></div>
+ <div class="xtry m" id="xcq-try" style="--mp:#233b63;--ma:#e1c25c">
+  <div class="m-top"><svg width="18" height="20" viewBox="0 0 52 56" aria-hidden="true"><path d="M26 2 4 12v16c0 12 10 22 22 26 12-4 22-14 22-26V12Z" fill="#e1c25c"/></svg><span class="brand">PRO<em>TECT</em></span><span style="opacity:.5">|</span><span style="font-size:12px">XCQ Search</span><span class="sp"><span class="xt-sync">Data synced 2:00 AM</span></span></div>
+  <div class="xt-body">
+   <div class="xt-alert m-alert" hidden></div>
+   <div class="m-card xt-form">
+    <label class="m-field">Last name *<input class="m-in xt-q" value="Lar" autocomplete="off" aria-describedby="xt-err"></label>
+    <label class="m-field">County<select class="m-in xt-county"></select></label>
+    <label class="m-field">Show<select class="m-in xt-size"><option selected>10</option><option>25</option><option>50</option></select></label>
+    <label class="xt-check"><input type="checkbox" class="xt-fail"> Simulate failed sync (Iron, Florence)</label>
+    <div class="xt-mode" role="group" aria-label="Theme"><button type="button" data-m="light" aria-pressed="true">Light</button><button type="button" data-m="dark" aria-pressed="false">Dark</button></div>
+    <span class="m-err" id="xt-err" hidden>Enter at least 2 letters of the last name</span>
+   </div>
+   <div class="xt-bar" aria-live="polite"></div>
+   <div class="m-card xt-tablewrap"><table class="m-table"><thead><tr>
+    <th aria-sort="ascending"><button type="button" data-k="name">Full name <span>↑</span></button></th>
+    <th aria-sort="none"><button type="button" data-k="dob">DOB <span>↕</span></button></th>
+    <th>Sex</th>
+    <th aria-sort="none"><button type="button" data-k="county">County <span>↕</span></button></th>
+    <th>Aliases</th></tr></thead><tbody></tbody></table>
+    <div class="xt-empty" hidden></div></div>
+   <div class="xt-pager"></div>
+   <div class="m-foot xt-foot" style="border-color:#e1c25c">County records refresh nightly. Last sync: today 2:00 AM.</div>
+  </div>
  </div>
 </div></section>
 
@@ -205,7 +290,23 @@
   var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(reset,120)});
   reset();
 })();
-</script></main><div class="wrap"><footer class="foot">
+</script><script>
+(function(){
+  var el=document.querySelector('.hc-kin');if(!el)return;
+  var root=document.documentElement;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches||root.getAttribute('data-mode')==='focus')return;
+  var t=el.textContent,i=0,seed=11;function r(){seed=(seed*9301+49297)%233280;return seed/233280-.5}
+  var sr=document.createElement('span');sr.className='hc-sr';sr.textContent=t;
+  var vis=document.createElement('span');vis.setAttribute('aria-hidden','true');
+  t.split(' ').forEach(function(w,n){if(n)vis.appendChild(document.createTextNode(' '));
+    var ws=document.createElement('span');ws.className='hc-w';
+    w.split('').forEach(function(ch){var c=document.createElement('span');c.className='hc-c';c.textContent=ch;
+      c.style.setProperty('--i',i++);c.style.setProperty('--x',(r()*1.1).toFixed(2)+'em');c.style.setProperty('--y',(r()*1.3).toFixed(2)+'em');c.style.setProperty('--r',(r()*50).toFixed(0)+'deg');ws.appendChild(c)});
+    vis.appendChild(ws)});
+  el.textContent='';el.appendChild(sr);el.appendChild(vis);
+})();
+</script>
+</main><div class="wrap"><footer class="foot">
   <span>© 2026 Shivani Harode · Senior UX Designer · Frisco, TX</span>
   <span>Designed in Figma, built by hand in HTML &amp; CSS · <a href="system.html">Site design system</a> · <a href="Shivani-Harode-Resume.pdf">Résumé (PDF)</a></span>
 </footer></div>
