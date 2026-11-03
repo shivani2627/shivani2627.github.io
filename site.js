@@ -241,3 +241,138 @@
   addEventListener('resize',place);
   setTimeout(function(){place();tip.classList.add('on')},1400);
 })();
+
+/* ---------- Dot field behind each hero ---------- */
+document.querySelectorAll('.hero-cloak,.cs-hero').forEach(function(host){
+  var cv=host.querySelector('.hc-cloak');
+  if(!cv){cv=document.createElement('canvas');cv.className='hc-cloak';cv.setAttribute('aria-hidden','true');host.insertBefore(cv,host.firstChild)}
+  (function(){
+  var ctx=cv.getContext('2d');if(!ctx)return;
+  var root=document.documentElement;
+  function calm(){return matchMedia('(prefers-reduced-motion: reduce)').matches||root.getAttribute('data-mode')==='focus'}
+
+  var W=0,H=0,dpr=1,R=0,P=[],ink='20,22,27';
+  function readInk(){var c=getComputedStyle(root).getPropertyValue('--ink').trim(),m;
+    if((m=c.match(/^#([0-9a-f]{6})$/i))){var n=parseInt(m[1],16);ink=(n>>16)+','+((n>>8)&255)+','+(n&255)}
+    else if((m=c.match(/^#([0-9a-f]{3})$/i))){ink=m[1].split('').map(function(h){return parseInt(h+h,16)}).join(',')}}
+  function build(){
+    var r=host.getBoundingClientRect();W=r.width;H=r.height;dpr=Math.min(window.devicePixelRatio||1,2);
+    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);
+    var step=Math.max(9,Math.min(W,H)/22);R=.34*Math.min(W,H);P=[];
+    var cols=Math.ceil(W/step),rows=Math.ceil(H/step),ox=(W-(cols-1)*step)/2,oy=(H-(rows-1)*step)/2;
+    for(var j=0;j<rows;j++)for(var i=0;i<cols;i++){var x=ox+i*step,y=oy+j*step;
+      P.push({hx:x,hy:y,x:x,y:y,vx:0,vy:0,r:1+Math.random()*1.6})}
+    readInk();
+  }
+
+  /* pointer: eased toward the target; drifts on a Lissajous until a mouse arrives */
+  var tx=0,ty=0,px=0,py=0,entered=false,inside=false,t0=performance.now();
+  function lissa(t){return [W*.5+W*.3*Math.sin(t*.00031),H*.5+H*.26*Math.sin(t*.00047+1.2)]}
+  host.addEventListener('pointermove',function(e){if(e.pointerType!=='mouse')return;var r=host.getBoundingClientRect();tx=e.clientX-r.left;ty=e.clientY-r.top;entered=inside=true;wake()});
+  host.addEventListener('pointerleave',function(e){if(e.pointerType!=='mouse')return;inside=false;
+    // send the target well off the plate so the cloak knits itself back together
+    var dx=tx-W/2,dy=ty-H/2,L=Math.hypot(dx,dy)||1;tx=W/2+dx/L*(W+R);ty=H/2+dy/L*(H+R)});
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);ctx.fillStyle='rgb('+ink+')';
+    for(var k=0;k<P.length;k++){var p=P[k],a=Math.max(0,.72-Math.hypot(p.x-p.hx,p.y-p.hy)/70);if(a<=0)continue;
+      ctx.globalAlpha=a;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,6.2832);ctx.fill()}
+    ctx.globalAlpha=1}
+  function step(now){
+    if(!entered){var l=lissa(now-t0);tx=l[0];ty=l[1]}
+    px+=(tx-px)*.16;py+=(ty-py)*.16;
+    var moving=false;
+    for(var k=0;k<P.length;k++){var p=P[k],dx=p.x-px,dy=p.y-py,d=Math.hypot(dx,dy);
+      if(d<R&&d>.001){var f=Math.pow(1-d/R,2)*3.4;p.vx+=dx/d*f;p.vy+=dy/d*f}
+      p.vx+=(p.hx-p.x)*.024;p.vy+=(p.hy-p.y)*.024;
+      p.vx*=.86;p.vy*=.86;p.x+=p.vx;p.y+=p.vy;
+      if(!moving&&(Math.abs(p.vx)>.01||Math.abs(p.vy)>.01))moving=true}
+    draw();
+    return moving||!entered||inside||Math.hypot(tx-px,ty-py)>.5}
+
+  var running=false,visible=true;
+  function wake(){if(running||calm()||!visible||document.hidden)return;running=true;
+    requestAnimationFrame(function f(now){if(!step(now)||calm()||!visible||document.hidden){running=false;return}requestAnimationFrame(f)})}
+  function still(){P.forEach(function(p){p.x=p.hx;p.y=p.hy;p.vx=p.vy=0});draw()}
+  function reset(){build();var l=lissa(0);px=tx=l[0];py=ty=l[1];if(calm())still();else{draw();wake()}}
+
+  if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;if(visible)wake()}).observe(host);
+  document.addEventListener('visibilitychange',function(){if(!document.hidden)wake()});
+  new MutationObserver(function(){readInk();if(calm())still();else{draw();wake()}}).observe(root,{attributes:true,attributeFilter:['data-theme','data-mode']});
+  matchMedia('(prefers-color-scheme: dark)').addEventListener&&matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){readInk();draw()});
+  var rz;addEventListener('resize',function(){clearTimeout(rz);rz=setTimeout(reset,120)});
+  reset();
+  })();
+});
+
+/* Bouncing badges: real physics in a fixed layer behind the content. They bounce off the screen edges,
+   each other and blocks of text, get nudged by scrolling, and move away from the pointer. */
+(function(){
+  var main=document.getElementById('main');if(!main)return;
+  var home=!!document.querySelector('.hero-cloak');
+  var root=document.documentElement;
+  function calm(){return matchMedia('(prefers-reduced-motion: reduce)').matches||root.getAttribute('data-mode')==='focus'}
+  var layer=document.createElement('div');layer.className='bl';layer.setAttribute('aria-hidden','true');main.insertBefore(layer,main.firstChild);
+  var D=[['ic-mic','I sing'],['ic-pot','I cook'],['ic-trophy','Best Creative Dish, Dallas StarChef'],['ic-heart','Mom of a 1-year-old'],['ic-leaf','I love nature'],
+    ['dot-amber',0,34],['dot-coral',0,22],['dot-ink',0,28],['dot-sage',0,18],['dot-amber',0,16]];
+  var seed=5;function rnd(){seed=(seed*9301+49297)%233280;return seed/233280}
+  var B=D.map(function(d){var e=document.createElement('div');var im=new Image();im.src=d[0]+'.webp';im.alt='';
+    if(d[1]&&!home){e.className='bb ico';e.appendChild(im)}
+    else if(d[1]){e.className='bb lab';var t=document.createElement('span');t.textContent=d[1];e.appendChild(im);e.appendChild(t)}
+    else{e.className='bb dot';e.style.width=e.style.height=d[2]+'px';e.appendChild(im)}
+    layer.appendChild(e);var a=rnd()*6.283,sp=d[1]?17+rnd()*8:11+rnd()*9;
+    return{el:e,x:0,y:0,w:0,h:0,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,sp:sp,lab:!!d[1],placed:false}});
+  var OB=[],W=0,H=0,TOP=84;
+  var SEL='.hc-plate,.sec-head>div,.sec-head>p,.steps,#about .txt,.foot';
+  var SOLID='.hc-face,.gcard,.b-stats,#xcq-try,.quote,.guard,.mw-card,.polaroids,.contact';
+  function measure(){W=innerWidth;H=innerHeight;var phone=W<760;TOP=phone?76:84;OB=[];
+    if(!home){layer.style.display=W<1200?'none':'';
+      [].forEach.call(document.querySelectorAll('main .wrap'),function(a){var r=a.getBoundingClientRect();if(!r.width)return;OB.push({x:r.left,y:r.top+scrollY-6,w:r.width,h:r.height+12,text:1})})}
+    else
+    if(!phone)[].forEach.call(document.querySelectorAll(SEL),function(a){if(!a.textContent.trim())return;var r=a.getBoundingClientRect();if(!r.width)return;
+      OB.push({x:r.left-12,y:r.top+scrollY-12,w:r.width+24,h:r.height+24,text:1})});
+    if(!phone)[].forEach.call(document.querySelectorAll(SOLID),function(a){var r=a.getBoundingClientRect();if(!r.width)return;
+      OB.push({x:r.left-2,y:r.top+scrollY-2,w:r.width+4,h:r.height+4})});
+    B.forEach(function(b){b.w=b.el.offsetWidth;b.h=b.el.offsetHeight;
+      if(!b.placed&&b.w){b.placed=true;b.x=home?rnd()*Math.max(1,W-b.w):(rnd()<.5?rnd()*40:W-b.w-rnd()*40);b.y=TOP+rnd()*Math.max(1,H-TOP-b.h)}
+      b.x=Math.min(b.x,Math.max(0,W-b.w));b.y=Math.min(b.y,Math.max(TOP,H-b.h))})}
+  var last=0,lastY=scrollY,px=-999,py=-999,running=false;
+  function over(x,y,b,o,sy){var oy=o.y-sy;return !(x+b.w<=o.x||x>=o.x+o.w||y+b.h<=oy||y>=oy+o.h)}
+  /* text pushes a badge away. A card or photo bounces it on touch; if scrolling slid one over a badge,
+     the badge drifts behind it to the nearest edge, then bounces normally. */
+  function hit(b,o,sy,px0,py0){if(!over(b.x,b.y,b,o,sy))return;
+    var ox=o.x,oy=o.y-sy,l=b.x+b.w-ox,r=ox+o.w-b.x,t=b.y+b.h-oy,d=oy+o.h-b.y,m=Math.min(l,r,t,d);
+    if(!o.text&&over(px0,py0,b,o,sy)){var pull=8*(1/60);
+      if(m===l)b.vx-=pull*b.sp;else if(m===r)b.vx+=pull*b.sp;else if(m===t)b.vy-=pull*b.sp;else b.vy+=pull*b.sp;return}
+    var was=false;
+    if(m===l){b.x-=l;if(b.vx>0){b.vx=-b.vx;was=true}}else if(m===r){b.x+=r;if(b.vx<0){b.vx=-b.vx;was=true}}
+    else if(m===t){b.y-=t;if(b.vy>0){b.vy=-b.vy;was=true}}else{b.y+=d;if(b.vy<0){b.vy=-b.vy;was=true}}
+    if(was){b.sq=1;b.sqx=(m===l||m===r)}}
+  function frame(now){
+    if(calm()||document.hidden){running=false;return}
+    var dt=Math.min(.04,(now-last)/1000||.016);last=now;
+    var sy=scrollY,ds=sy-lastY;lastY=sy;
+    B.forEach(function(b){if(!b.w)return;
+      if(ds){b.vy-=Math.max(-14,Math.min(14,ds*.5))}
+      if(px>-900){var dx=b.x+b.w/2-px,dy=b.y+b.h/2-py,dd=Math.hypot(dx,dy);if(dd<170&&dd>1){var f=(170-dd)*.7*dt;b.vx+=dx/dd*f;b.vy+=dy/dd*f}}
+      /* keep moving: drift back to its own cruising speed */
+      var v=Math.hypot(b.vx,b.vy)||1,k=1+(b.sp/v-1)*Math.min(1,dt*.9);b.vx*=k;b.vy*=k;
+      var x0=b.x,y0=b.y;b.x+=b.vx*dt;b.y+=b.vy*dt;
+      OB.forEach(function(o){hit(b,o,sy,x0,y0)});
+      if(b.x<0){b.x=0;b.vx=Math.abs(b.vx);b.sq=1;b.sqx=true}if(b.x+b.w>W){b.x=Math.max(0,W-b.w);b.vx=-Math.abs(b.vx);b.sq=1;b.sqx=true}
+      if(b.y<TOP){b.y=TOP;b.vy=Math.abs(b.vy);b.sq=1;b.sqx=false}if(b.y+b.h>H){b.y=Math.max(TOP,H-b.h);b.vy=-Math.abs(b.vy);b.sq=1;b.sqx=false}});
+    /* badges bounce off each other */
+    for(var i=0;i<B.length;i++)for(var j=i+1;j<B.length;j++){var a=B[i],c=B[j];if(!a.w||!c.w)continue;
+      var ox=Math.min(a.x+a.w,c.x+c.w)-Math.max(a.x,c.x),oy=Math.min(a.y+a.h,c.y+c.h)-Math.max(a.y,c.y);if(ox<=0||oy<=0)continue;
+      if(ox<oy){var s=a.x<c.x?-1:1;a.x+=s*ox/2;c.x-=s*ox/2;var t=a.vx;a.vx=c.vx;c.vx=t;a.sq=c.sq=1;a.sqx=c.sqx=true}else{var s2=a.y<c.y?-1:1;a.y+=s2*oy/2;c.y-=s2*oy/2;var t2=a.vy;a.vy=c.vy;c.vy=t2;a.sq=c.sq=1;a.sqx=c.sqx=false}}
+    B.forEach(function(b){var tilt=Math.max(-3,Math.min(3,b.vx*.1));if(!b.lab)tilt=0;b.sq=(b.sq||0)*Math.pow(.05,dt);var q=b.sq*.07,sx=b.sqx?1-q:1+q*.5,sy2=b.sqx?1+q*.5:1-q;b.el.style.transform='translate3d('+b.x.toFixed(1)+'px,'+b.y.toFixed(1)+'px,0) rotate('+tilt.toFixed(2)+'deg) scale('+sx.toFixed(3)+','+sy2.toFixed(3)+')'});
+    requestAnimationFrame(frame)}
+  function go(){if(running||calm()||document.hidden)return;running=true;last=performance.now();lastY=scrollY;requestAnimationFrame(frame)}
+  if(matchMedia('(hover:hover) and (pointer:fine)').matches)addEventListener('pointermove',function(e){px=e.clientX;py=e.clientY},{passive:true});
+  document.addEventListener('visibilitychange',go);
+  new MutationObserver(function(){measure();go()}).observe(root,{attributes:true,attributeFilter:['data-mode']});
+  var rz;function re(){clearTimeout(rz);rz=setTimeout(measure,80)}
+  addEventListener('resize',re);if('ResizeObserver' in window)new ResizeObserver(re).observe(main);
+  addEventListener('load',measure);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(measure);
+  measure();go();
+})();
