@@ -31,7 +31,7 @@
    <div class="box"><span class="k">What I did</span><p>Interviews with three roles, a requirements matrix, and enhancements to both platforms, designed in Axure RP from one shared set of components that matched the coded components.</p></div>
    <div class="box"><span class="k">Result</span><p>Each change went through QA testing with the BA and the team before handoff, then was released into the live application.</p><!-- If you have a real number (fewer clicks, time saved, tasks completed), add it here. --></div>
   </div>
-</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#research">Research</a><a href="#split">The split</a><a href="#screens">Screens</a><a href="#figma">Figma</a><a href="#reflection">Reflection</a></nav></div>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#research">Research</a><a href="#process">Process</a><a href="#accessibility">Accessibility</a><a href="#split">The split</a><a href="#screens">Screens</a><a href="#figma">Figma</a><a href="#reflection">Reflection</a></nav></div>
 
 <section class="cs-sec" id="research"><div class="wrap two">
  <div><div class="eyebrow">Research</div><h2 class="h">Three roles pulling in different directions</h2>
@@ -41,6 +41,30 @@
   <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Sales reps tracked opportunities in personal spreadsheets, so nobody could see which proposals were live.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>A shared opportunities list with Create / Existing / Archived tabs.</div></div>
   <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Contract managers logged into several systems just to check a shipment.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>CMPS brings fleet, shipment and supply status into one place.</div></div>
   <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Managers couldn't see their team's pipeline until someone sent a report.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Dashboard widgets for proposals by status, visible to managers.</div></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="process"><div class="wrap">
+ <div class="eyebrow">Design process</div><h2 class="h">From interview to live release</h2>
+ <div class="prose"><p>The screens on this page are annotated mockups and Axure prototypes, not the live build. Because the application was already live, every enhancement went through the same steps before anything was released.</p></div>
+ <div class="steps" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-top:24px;row-gap:22px">
+  <div class="step"><h3>Understand</h3><p>Interviews with sales reps, contract managers and their managers. Current-tool inventory and a requirements matrix.</p></div>
+  <div class="step"><h3>Structure</h3><p>Site map in Draw.io, user flows for each role, and the split into PMPS and CMPS with an Onboarding handoff.</p></div>
+  <div class="step"><h3>Wireframe</h3><p>Annotated wireframes in Figma using shared components that followed HP's Veneer design system.</p></div>
+  <div class="step"><h3>Prototype</h3><p>Clickable Axure RP prototypes, the client's sign-off format, matched to the coded components.</p></div>
+  <div class="step" style="padding-left:0;border-left:0"><h3>Review</h3><p>Prototype reviews with product, engineering and the BA, revised until each flow was clear.</p></div>
+  <div class="step"><h3>Test</h3><p>The BA and the team tested each prototype before handoff.</p></div>
+  <div class="step"><h3>Hand off</h3><p>Annotated specs with states, spacing and component names that matched the code.</p></div>
+  <div class="step"><h3>QA and release</h3><p>QA testing with the BA and the team, then release into the live application.</p></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="accessibility"><div class="wrap two">
+ <div><div class="eyebrow">Accessibility &amp; testing</div><h2 class="h">Accessible by default, tested before release</h2>
+ <div class="prose"><p>Building from Veneer's coded components meant accessibility was built into the base parts. In the mockups I made sure each new screen kept it that way, and the prototypes were tested before they reached development.</p></div></div>
+ <div style="display:flex;flex-direction:column;gap:12px">
+  <div class="box"><span class="k">Accessibility in the mockups</span><ul><li>Veneer colors and components, checked for WCAG AA contrast</li><li>A visible label on every form field, not placeholder text only</li><li>Status shown in words, not color alone</li><li>Keyboard order and focus states noted for the toggle, filters and table</li><li>Table column headers and pager labels spelled out for developers</li></ul></div>
+  <div class="box"><span class="k">Testing the prototypes</span><ul><li>Task walkthroughs of the Axure prototypes with the BA and the team, such as creating a proposal or finding an archived opportunity</li><li>Prototype reviews with product and engineering before handoff</li><li>QA testing with the BA before each release</li><li>Onboarding took two rounds to make the handover clear</li></ul></div>
  </div>
 </div></section>
 

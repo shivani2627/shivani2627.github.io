@@ -31,7 +31,7 @@
    <div class="box"><span class="k">What I did</span><p>As the only designer for 18 months: the brand, a web design system built from IBM Carbon with light and dark modes, three web tools, desktop changes in Fluent UI, and 300+ screens made consistent.</p></div>
    <div class="box"><span class="k">Result</span><p>Live: three web interfaces (XCQ, eFiling and Administration) built on the new web design system, and the desktop app with the new changes. All tested in QA with the BAs. Plus the new logo and brand files.</p><!-- If you have a real number (fewer clicks, time saved, tasks completed), add it here. --></div>
   </div>
-</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#context">Context</a><a href="#try">Try it</a><a href="#research">Research</a><a href="#tradeoffs">Trade-offs</a><a href="#studies">4 case studies</a><a href="#carbon">Design system</a><a href="#system">Governance</a><a href="#reflection">Reflection</a></nav></div>
+</div></section><div class="wrap"><nav class="toc glass" aria-label="On this page"><a href="#context">Context</a><a href="#try">Try it</a><a href="#research">Research</a><a href="#accessibility">Accessibility</a><a href="#testing">Testing</a><a href="#tradeoffs">Trade-offs</a><a href="#studies">4 case studies</a><a href="#carbon">Design system</a><a href="#system">Governance</a><a href="#reflection">Reflection</a></nav></div>
 
 <section class="cs-sec" id="context"><div class="wrap two">
  <div><div class="eyebrow">Context</div><h2 class="h">One platform, four very different design problems</h2>
@@ -84,6 +84,37 @@
   <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">To check one case's synced data, people left the grid, opened a tab, read it, and went back. For every row.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>A details pane docked under the grid that follows the selected row. No tab switching.</div></div>
   <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Nobody trusted search results without knowing how old the county data was.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>“Last synced” sits in every header and footer, and counties that failed to sync are named instead of silently missing.</div></div>
   <div class="insight"><div><span class="lbl">What we heard</span><div class="heard">Prosecutors read dense information all day and found “clean” layouts slower, not faster.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Compact table density stays the default. Hierarchy comes from type weight and grouping, not white space.</div></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="accessibility"><div class="wrap">
+ <div class="eyebrow">Accessibility</div><h2 class="h">Checked with tools, then by hand</h2>
+ <div class="prose"><p>The old XCQ tool had no accessibility support, and many PROTECT users are older staff who read dense screens all day. I designed to <strong>WCAG 2.1 AA</strong> from the first frame, then checked the built screens with two tools: <strong>WAVE</strong> for the web tools and <strong>Microsoft Accessibility Insights</strong> for the desktop app. Automated tools only catch part of the problem, so I also checked keyboard use and screen-reader notes by hand.</p></div>
+ <div class="steps" style="grid-template-columns:repeat(5,minmax(0,1fr));margin-top:24px">
+  <div class="step"><h3>Design to AA</h3><p>Contrast-checked tokens, type sizes for older readers, visible focus states, and labels on every field.</p></div>
+  <div class="step"><h3>Spec it</h3><p>Every component state, keyboard order and screen-reader notes for tables went into the developer specs.</p></div>
+  <div class="step"><h3>Run WAVE</h3><p>Ran WAVE on each web page in QA and reviewed its errors, contrast errors and alerts.</p></div>
+  <div class="step"><h3>Check the desktop app</h3><p>Used Microsoft Accessibility Insights on the Windows app for contrast, names of controls and tab order.</p></div>
+  <div class="step"><h3>Fix and re-check</h3><p>Logged each issue with the WCAG rule, fixed it with developers, and ran the tools again before release.</p></div>
+ </div>
+ <div class="insights" style="margin-top:28px">
+  <div class="insight"><div><span class="lbl">What we found</span><div class="heard">Low-contrast text and status colors in the legacy screens.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Color tokens checked against WCAG AA contrast, in light and dark themes. Status never relies on color alone.</div></div>
+  <div class="insight"><div><span class="lbl">What we found</span><div class="heard">Result tables that a screen reader couldn't read as tables.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Proper table markup with column headers, and sort state that is announced, not just shown with an arrow.</div></div>
+  <div class="insight"><div><span class="lbl">What we found</span><div class="heard">Parts of the search could only be used with a mouse.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Full keyboard support: logical tab order, sortable columns and pagination by keyboard, and a visible focus ring.</div></div>
+  <div class="insight"><div><span class="lbl">What we found</span><div class="heard">Small text was hard for older staff to read, and layouts broke when zoomed.</div></div><div class="arrow" aria-hidden="true">→</div><div class="did"><span class="lbl">What it changed</span>Larger base text with hierarchy from weight, and layouts that adapt to monitor size and browser zoom.</div></div>
+ </div>
+</div></section>
+
+<section class="cs-sec" id="testing"><div class="wrap">
+ <div class="eyebrow">Testing</div><h2 class="h">Testing with stakeholders and the team</h2>
+ <div class="prose"><p>With limited access to DA staff, I tested in layers. Each layer caught a different kind of problem, and the decision log recorded what still needed confirming with real users.</p></div>
+ <div class="three" style="margin-top:24px">
+  <div class="box"><span class="k">With stakeholders</span><h3>Bi-weekly prototype reviews</h3><p>Stakeholders and BAs clicked through interactive Figma prototypes for real tasks, like finding a person across counties. Feedback went into the decision log with who approved what.</p></div>
+  <div class="box"><span class="k">With the team</span><h3>Walkthroughs with developers and BAs</h3><p>I walked developers and BAs through each flow before build to catch technical limits early, and reviewed builds with developers so the shipped screens matched the design.</p></div>
+  <div class="box"><span class="k">With proxy users</span><h3>Task-based proxy sessions</h3><p>Analysts who support DA offices worked through the prototype while I watched and took notes on where they hesitated.</p></div>
+  <div class="box"><span class="k">Accessibility</span><h3>Tool and manual checks</h3><p>WAVE and Microsoft Accessibility Insights, plus keyboard-only runs and screen-reader notes, before each release.</p></div>
+  <div class="box"><span class="k">Before release</span><h3>QA testing with the BAs</h3><p>Every screen went through QA testing with the BAs before it went live.</p></div>
+  <div class="box"><span class="k">After release</span><h3>Logged user feedback</h3><p>Feedback logged by DA offices was reviewed and fed into the next round of changes.</p></div>
  </div>
 </div></section>
 
